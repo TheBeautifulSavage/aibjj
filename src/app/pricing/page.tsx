@@ -1,0 +1,692 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import {
+  Check,
+  X,
+  Zap,
+  Crown,
+  Star,
+  Shield,
+  Menu,
+  ChevronRight,
+  ArrowRight,
+  Globe,
+  AtSign,
+  Rss,
+  MessageCircle,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
+
+// ---------------------------------------------------------------------------
+// Data
+// ---------------------------------------------------------------------------
+
+const NAV_LINKS = [
+  { label: "Features", href: "/#features" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Marketplace", href: "/#marketplace" },
+];
+
+const PRICING_TIERS = [
+  {
+    key: "free",
+    name: "Free",
+    price: "$0",
+    period: "/month",
+    description: "Get started with the essentials",
+    icon: Shield,
+    features: [
+      "5 AI Coach messages per day",
+      "Basic training journal",
+      "Limited technique library (white belt only)",
+    ],
+    cta: "Get Started Free",
+    ctaHref: "/auth/signup",
+    featured: false,
+    variant: "outline" as const,
+  },
+  {
+    key: "pro",
+    name: "Pro",
+    price: "$14.99",
+    period: "/month",
+    description: "Everything you need to accelerate your game",
+    icon: Zap,
+    features: [
+      "Unlimited AI Coach conversations",
+      "Full training journal with analytics",
+      "Complete technique library (all belts)",
+      "Game plan builder",
+      "Progress dashboard & charts",
+      "Priority support",
+    ],
+    cta: "Start Pro Trial",
+    ctaHref: "/auth/signup?plan=pro",
+    featured: true,
+    variant: "default" as const,
+  },
+  {
+    key: "annual",
+    name: "Annual",
+    price: "$99",
+    period: "/year",
+    savings: "Save $80!",
+    description: "Best value for committed grapplers",
+    icon: Crown,
+    features: [
+      "Everything in Pro",
+      "Save $80 vs monthly",
+      "Exclusive creator content",
+      "Early access to new features",
+    ],
+    cta: "Go Annual",
+    ctaHref: "/auth/signup?plan=annual",
+    featured: false,
+    variant: "outline" as const,
+  },
+];
+
+const COMPARISON_FEATURES = [
+  {
+    name: "AI Coach Messages",
+    free: "5/day",
+    pro: "Unlimited",
+    annual: "Unlimited",
+  },
+  {
+    name: "Training Journal",
+    free: "Basic",
+    pro: "Full + Analytics",
+    annual: "Full + Analytics",
+  },
+  {
+    name: "Technique Library",
+    free: "White belt only",
+    pro: "All belts",
+    annual: "All belts",
+  },
+  {
+    name: "Game Plan Builder",
+    free: false,
+    pro: true,
+    annual: true,
+  },
+  {
+    name: "Progress Dashboard",
+    free: false,
+    pro: true,
+    annual: true,
+  },
+  {
+    name: "Creator Content Access",
+    free: false,
+    pro: false,
+    annual: true,
+  },
+  {
+    name: "Priority Support",
+    free: false,
+    pro: true,
+    annual: true,
+  },
+];
+
+const FAQ_ITEMS = [
+  {
+    question: "Can I cancel anytime?",
+    answer:
+      "Yes, absolutely. You can cancel your subscription at any time from your account settings. Your Pro features will remain active until the end of your current billing period. No cancellation fees, no hassle.",
+  },
+  {
+    question: "Is there a free trial?",
+    answer:
+      "Yes! When you sign up for Pro, you get a 7-day free trial with full access to all Pro features. You will not be charged until the trial ends, and you can cancel at any time during the trial period.",
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer:
+      "We accept all major credit and debit cards (Visa, Mastercard, American Express) as well as Apple Pay and Google Pay. All payments are securely processed through Stripe.",
+  },
+  {
+    question: "Can I upgrade or downgrade later?",
+    answer:
+      "Of course. You can switch between plans at any time. When upgrading, you will be prorated for the remainder of your billing cycle. When downgrading, the change takes effect at the start of your next billing period.",
+  },
+  {
+    question: "Do you offer team or academy pricing?",
+    answer:
+      "Yes! We offer special pricing for academies and teams with 10 or more members. Contact us at team@aibjj.com for a custom quote tailored to your academy's needs.",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Helper: render comparison cell value
+// ---------------------------------------------------------------------------
+function ComparisonCell({ value }: { value: boolean | string }) {
+  if (typeof value === "string") {
+    return <span className="text-sm text-zinc-300">{value}</span>;
+  }
+  return value ? (
+    <Check className="mx-auto h-5 w-5 text-red-500" />
+  ) : (
+    <X className="mx-auto h-5 w-5 text-zinc-700" />
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Component
+// ---------------------------------------------------------------------------
+
+export default function PricingPage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-black text-zinc-100">
+      {/* ----------------------------------------------------------------- */}
+      {/* Navigation                                                        */}
+      {/* ----------------------------------------------------------------- */}
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/60 bg-black/80 backdrop-blur-xl">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          <Link
+            href="/"
+            className="flex items-center gap-1 text-xl font-black tracking-tight"
+          >
+            <span className="text-red-600">AI</span>
+            <span className="text-white">BJJ</span>
+          </Link>
+
+          <div className="hidden items-center gap-8 md:flex">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-white",
+                  link.href === "/pricing"
+                    ? "text-white"
+                    : "text-zinc-400"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="hidden items-center gap-3 md:flex">
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/auth/signin">Sign In</Link>
+            </Button>
+            <Button size="sm" asChild>
+              <Link href="/auth/signup">Get Started</Link>
+            </Button>
+          </div>
+
+          <button
+            className="inline-flex items-center justify-center rounded-md p-2 text-zinc-400 hover:text-white md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
+
+        {mobileMenuOpen && (
+          <div className="border-t border-zinc-800 bg-black/95 backdrop-blur-xl md:hidden">
+            <div className="space-y-1 px-4 py-4">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="block rounded-md px-3 py-2 text-base font-medium text-zinc-300 hover:bg-zinc-900 hover:text-white"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="flex flex-col gap-2 pt-4">
+                <Button variant="outline" asChild>
+                  <Link href="/auth/signin">Sign In</Link>
+                </Button>
+                <Button asChild>
+                  <Link href="/auth/signup">Get Started</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* ----------------------------------------------------------------- */}
+      {/* Hero                                                              */}
+      {/* ----------------------------------------------------------------- */}
+      <section className="relative overflow-hidden pt-16">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-1/2 top-0 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-red-600/10 blur-[120px]" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-20 sm:px-6 sm:pt-28 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 px-4 py-1.5 text-sm text-zinc-300">
+              <Star className="h-4 w-4 text-red-500" />
+              Simple, transparent pricing
+              <ChevronRight className="h-3 w-3 text-zinc-500" />
+            </div>
+            <h1 className="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
+              Choose Your{" "}
+              <span className="bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+                Plan
+              </span>
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400 sm:text-xl">
+              Start free and upgrade when you are ready. Every plan includes
+              access to our AI-powered BJJ coaching platform.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------------------- */}
+      {/* Pricing Cards                                                     */}
+      {/* ----------------------------------------------------------------- */}
+      <section className="relative pb-24">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-6 lg:grid-cols-3">
+            {PRICING_TIERS.map((tier) => (
+              <Card
+                key={tier.key}
+                className={cn(
+                  "relative flex flex-col overflow-hidden transition-all duration-300",
+                  tier.featured
+                    ? "border-red-600/50 bg-zinc-900 shadow-2xl shadow-red-950/30 lg:scale-[1.05] lg:py-4 z-10"
+                    : "border-zinc-800/60 bg-zinc-900/50 hover:border-zinc-700"
+                )}
+              >
+                {tier.featured && (
+                  <Badge className="absolute right-4 top-4 border-0 bg-red-600 text-white hover:bg-red-600">
+                    Most Popular
+                  </Badge>
+                )}
+
+                <CardHeader className="pb-4">
+                  <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-lg bg-red-600/10 text-red-500">
+                    <tier.icon className="h-5 w-5" />
+                  </div>
+                  <CardTitle className="text-xl font-bold">
+                    {tier.name}
+                  </CardTitle>
+                  <div className="mt-3 flex items-baseline gap-1">
+                    <span className="text-5xl font-black text-white">
+                      {tier.price}
+                    </span>
+                    <span className="text-zinc-500">{tier.period}</span>
+                  </div>
+                  {tier.savings && (
+                    <Badge
+                      variant="outline"
+                      className="mt-2 w-fit border-green-600/40 bg-green-600/10 text-green-400"
+                    >
+                      {tier.savings}
+                    </Badge>
+                  )}
+                  <CardDescription className="mt-2">
+                    {tier.description}
+                  </CardDescription>
+                </CardHeader>
+
+                <Separator className="bg-zinc-800/60" />
+
+                <CardContent className="flex-1 pt-6">
+                  <ul className="space-y-3">
+                    {tier.features.map((feature) => (
+                      <li
+                        key={feature}
+                        className="flex items-start gap-3 text-sm text-zinc-300"
+                      >
+                        <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-500" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+
+                <CardFooter className="pt-2">
+                  <Button
+                    className={cn(
+                      "w-full text-base font-semibold",
+                      tier.featured &&
+                        "bg-red-600 text-white shadow-lg shadow-red-900/30 hover:bg-red-700"
+                    )}
+                    variant={tier.variant}
+                    size="lg"
+                    asChild
+                  >
+                    <Link href={tier.ctaHref}>
+                      {tier.cta}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+
+          <p className="mt-8 text-center text-sm text-zinc-500">
+            All plans include a 7-day money-back guarantee. No questions asked.
+          </p>
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------------------- */}
+      {/* Feature Comparison Table                                          */}
+      {/* ----------------------------------------------------------------- */}
+      <section className="relative border-t border-zinc-800/60 py-24 sm:py-32">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Compare Plans
+            </h2>
+            <p className="mt-4 text-lg text-zinc-400">
+              See exactly what you get with each plan
+            </p>
+          </div>
+
+          {/* Desktop table */}
+          <div className="mt-16 hidden md:block">
+            <div className="overflow-hidden rounded-xl border border-zinc-800/60">
+              {/* Header */}
+              <div className="grid grid-cols-4 border-b border-zinc-800/60 bg-zinc-900/80">
+                <div className="p-4 text-sm font-semibold text-zinc-400">
+                  Feature
+                </div>
+                <div className="p-4 text-center text-sm font-semibold text-zinc-300">
+                  Free
+                </div>
+                <div className="p-4 text-center text-sm font-semibold text-red-400">
+                  Pro
+                </div>
+                <div className="p-4 text-center text-sm font-semibold text-zinc-300">
+                  Annual
+                </div>
+              </div>
+
+              {/* Rows */}
+              {COMPARISON_FEATURES.map((feature, idx) => (
+                <div
+                  key={feature.name}
+                  className={cn(
+                    "grid grid-cols-4",
+                    idx < COMPARISON_FEATURES.length - 1 &&
+                      "border-b border-zinc-800/40",
+                    idx % 2 === 0 ? "bg-zinc-950/50" : "bg-zinc-900/30"
+                  )}
+                >
+                  <div className="flex items-center p-4 text-sm font-medium text-zinc-300">
+                    {feature.name}
+                  </div>
+                  <div className="flex items-center justify-center p-4">
+                    <ComparisonCell value={feature.free} />
+                  </div>
+                  <div className="flex items-center justify-center p-4">
+                    <ComparisonCell value={feature.pro} />
+                  </div>
+                  <div className="flex items-center justify-center p-4">
+                    <ComparisonCell value={feature.annual} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile accordion */}
+          <div className="mt-12 md:hidden">
+            <Accordion type="single" collapsible className="space-y-3">
+              {COMPARISON_FEATURES.map((feature) => (
+                <AccordionItem
+                  key={feature.name}
+                  value={feature.name}
+                  className="rounded-lg border border-zinc-800/60 bg-zinc-900/50 px-4"
+                >
+                  <AccordionTrigger className="text-sm font-medium">
+                    {feature.name}
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="space-y-2">
+                      {(
+                        [
+                          { label: "Free", value: feature.free },
+                          { label: "Pro", value: feature.pro },
+                          { label: "Annual", value: feature.annual },
+                        ] as const
+                      ).map((plan) => (
+                        <div
+                          key={plan.label}
+                          className="flex items-center justify-between text-sm"
+                        >
+                          <span className="text-zinc-500">{plan.label}</span>
+                          <ComparisonCell value={plan.value} />
+                        </div>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------------------- */}
+      {/* FAQ                                                               */}
+      {/* ----------------------------------------------------------------- */}
+      <section className="relative border-t border-zinc-800/60 py-24 sm:py-32">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Frequently Asked Questions
+            </h2>
+            <p className="mt-4 text-lg text-zinc-400">
+              Everything you need to know about our plans
+            </p>
+          </div>
+
+          <div className="mt-12">
+            <Accordion type="single" collapsible className="space-y-3">
+              {FAQ_ITEMS.map((item) => (
+                <AccordionItem
+                  key={item.question}
+                  value={item.question}
+                  className="rounded-lg border border-zinc-800/60 bg-zinc-900/50 px-6"
+                >
+                  <AccordionTrigger className="text-left text-base font-semibold">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-zinc-400 leading-relaxed">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------------------- */}
+      {/* Final CTA                                                         */}
+      {/* ----------------------------------------------------------------- */}
+      <section className="relative border-t border-zinc-800/60">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-1/2 bottom-0 -translate-x-1/2 h-[400px] w-[800px] rounded-full bg-red-600/8 blur-[100px]" />
+        </div>
+        <div className="relative mx-auto max-w-4xl px-4 py-24 text-center sm:py-32">
+          <h2 className="text-3xl font-black tracking-tight sm:text-5xl">
+            Ready to transform your{" "}
+            <span className="bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+              Jiu-Jitsu
+            </span>
+            ?
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-lg text-zinc-400">
+            Join thousands of athletes who are using AI to train smarter, learn
+            faster, and compete harder. Your next belt is closer than you think.
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button
+              size="lg"
+              className="w-full sm:w-auto text-base px-8"
+              asChild
+            >
+              <Link href="/auth/signup">
+                Get Started for Free
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------------------- */}
+      {/* Footer                                                            */}
+      {/* ----------------------------------------------------------------- */}
+      <footer className="border-t border-zinc-800/60 bg-zinc-950">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="grid gap-8 md:grid-cols-4">
+            <div className="md:col-span-1">
+              <Link
+                href="/"
+                className="text-xl font-black tracking-tight"
+              >
+                <span className="text-red-600">AI</span>
+                <span className="text-white">BJJ</span>
+              </Link>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-500">
+                The AI-powered platform for Brazilian Jiu-Jitsu athletes at
+                every level.
+              </p>
+              <div className="mt-4 flex gap-3">
+                <a
+                  href="#"
+                  className="text-zinc-600 transition-colors hover:text-zinc-300"
+                  aria-label="Twitter"
+                >
+                  <Globe className="h-5 w-5" />
+                </a>
+                <a
+                  href="#"
+                  className="text-zinc-600 transition-colors hover:text-zinc-300"
+                  aria-label="Instagram"
+                >
+                  <AtSign className="h-5 w-5" />
+                </a>
+                <a
+                  href="#"
+                  className="text-zinc-600 transition-colors hover:text-zinc-300"
+                  aria-label="YouTube"
+                >
+                  <Rss className="h-5 w-5" />
+                </a>
+                <a
+                  href="#"
+                  className="text-zinc-600 transition-colors hover:text-zinc-300"
+                  aria-label="Discord"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold text-zinc-300">Product</h4>
+              <ul className="mt-3 space-y-2">
+                {[
+                  "AI Coach",
+                  "Training Journal",
+                  "Technique Library",
+                  "Game Plans",
+                  "Marketplace",
+                ].map((item) => (
+                  <li key={item}>
+                    <Link
+                      href="#"
+                      className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold text-zinc-300">Company</h4>
+              <ul className="mt-3 space-y-2">
+                {["About", "Blog", "Careers", "Press", "Partners"].map(
+                  (item) => (
+                    <li key={item}>
+                      <Link
+                        href="#"
+                        className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
+                      >
+                        {item}
+                      </Link>
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold text-zinc-300">Legal</h4>
+              <ul className="mt-3 space-y-2">
+                {[
+                  "Privacy Policy",
+                  "Terms of Service",
+                  "Cookie Policy",
+                  "Contact",
+                ].map((item) => (
+                  <li key={item}>
+                    <Link
+                      href="#"
+                      className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-zinc-800/60 pt-8 sm:flex-row">
+            <p className="text-sm text-zinc-600">
+              &copy; {new Date().getFullYear()} AIBJJ. All rights reserved.
+            </p>
+            <p className="text-sm text-zinc-700">Built for the gentle art.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
