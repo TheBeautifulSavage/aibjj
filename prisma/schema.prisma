@@ -86,6 +86,16 @@ model User {
   stylePreference String?
   bio             String?          @db.Text
   username        String?          @unique
+  customDomain    String?          @unique
+  templateId      String?          @default("DARK_PRO")
+  academyName     String?
+  socialInstagram String?
+  socialYoutube   String?
+  socialTwitter   String?
+  profilePhoto    String?
+  academyLogo     String?
+  verified        Boolean          @default(false)
+  creatorTier     String?          @default("FREE")
   subscriptionTier SubscriptionTier @default(FREE)
   stripeCustomerId String?         @unique
   stripeSubscriptionId String?     @unique
