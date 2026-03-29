@@ -21,6 +21,7 @@ import {
   User,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import GlobalAIPrompt from "@/components/GlobalAIPrompt";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -241,6 +242,9 @@ export default function DashboardLayout({
         {/* Page content */}
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">{children}</main>
       </div>
+
+      {/* Floating AI prompt bar */}
+      <GlobalAIPrompt />
     </div>
   );
 }
