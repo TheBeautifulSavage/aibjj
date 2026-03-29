@@ -12,9 +12,9 @@ import {
   User,
   Upload,
   Eye,
-  Instagram,
-  Youtube,
-  Twitter,
+
+
+
   Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -392,7 +392,7 @@ export default function CreatorSetupPage() {
                 </Label>
                 <div className="grid gap-3 sm:grid-cols-3">
                   <div className="flex items-center gap-2">
-                    <Instagram className="h-4 w-4 text-zinc-500 flex-shrink-0" />
+                    📸
                     <Input
                       value={socialInstagram}
                       onChange={(e) => setSocialInstagram(e.target.value)}
@@ -401,7 +401,7 @@ export default function CreatorSetupPage() {
                     />
                   </div>
                   <div className="flex items-center gap-2">
-                    <Youtube className="h-4 w-4 text-zinc-500 flex-shrink-0" />
+                    ▶️
                     <Input
                       value={socialYoutube}
                       onChange={(e) => setSocialYoutube(e.target.value)}
@@ -410,7 +410,7 @@ export default function CreatorSetupPage() {
                     />
                   </div>
                   <div className="flex items-center gap-2">
-                    <Twitter className="h-4 w-4 text-zinc-500 flex-shrink-0" />
+                    𝕏
                     <Input
                       value={socialTwitter}
                       onChange={(e) => setSocialTwitter(e.target.value)}

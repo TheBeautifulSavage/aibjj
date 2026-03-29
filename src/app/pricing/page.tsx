@@ -43,6 +43,7 @@ import { cn } from "@/lib/utils";
 const NAV_LINKS = [
   { label: "Features", href: "/#features" },
   { label: "Pricing", href: "/pricing" },
+  { label: "For Creators", href: "/pricing#creators" },
   { label: "Marketplace", href: "/#marketplace" },
 ];
 
@@ -175,6 +176,16 @@ const FAQ_ITEMS = [
     question: "Do you offer team or academy pricing?",
     answer:
       "Yes! We offer special pricing for academies and teams with 10 or more members. Contact us at team@aibjj.com for a custom quote tailored to your academy's needs.",
+  },
+  {
+    question: "How does the creator platform work?",
+    answer:
+      "Sign up for free, claim your subdomain (yourname.aibjj.com), upload your courses, and start selling immediately. We only take 15% on sales — compared to BJJ Fanatics which takes 40-50%. You keep 85% of every sale, get your own branded page, and we handle all the payments and hosting.",
+  },
+  {
+    question: "Why is AIBJJ better than BJJ Fanatics for creators?",
+    answer:
+      "Three reasons: 1) You keep 85% vs 50-60% on Fanatics. 2) You get your own branded subdomain that looks like your own website, not ours. 3) Zero upfront cost — uploading courses is free. Fanatics charges creators and takes a massive cut. We believe creators should keep more of what they earn.",
   },
 ];
 
@@ -494,6 +505,187 @@ export default function PricingPage() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------------------- */}
+      {/* Creator Pricing                                                   */}
+      {/* ----------------------------------------------------------------- */}
+      <section className="relative border-t border-zinc-800/60 py-24 sm:py-32" id="creators">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="mb-6 border-0 bg-red-600/10 text-red-400 hover:bg-red-600/10">
+              For Creators
+            </Badge>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Teach BJJ. Keep{" "}
+              <span className="bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
+                85%
+              </span>{" "}
+              of Your Sales.
+            </h2>
+            <p className="mt-4 text-lg text-zinc-400">
+              BJJ Fanatics takes 40-50% of your revenue. We take 15%. Upload courses for free,
+              get your own subdomain, and start earning from day one.
+            </p>
+          </div>
+
+          <div className="mt-16 grid items-start gap-6 lg:grid-cols-3">
+            {/* FREE Creator */}
+            <Card className="relative flex flex-col border-zinc-800/60 bg-zinc-900/50 hover:border-zinc-700 transition-all">
+              <CardHeader className="pb-4">
+                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-lg bg-zinc-800 text-zinc-400">
+                  <Shield className="h-5 w-5" />
+                </div>
+                <CardTitle className="text-xl font-bold">Creator Free</CardTitle>
+                <div className="mt-3 flex items-baseline gap-1">
+                  <span className="text-5xl font-black text-white">$0</span>
+                  <span className="text-zinc-500">/month</span>
+                </div>
+                <Badge variant="outline" className="mt-2 w-fit border-green-600/40 bg-green-600/10 text-green-400">
+                  15% platform fee
+                </Badge>
+                <CardDescription className="mt-2">
+                  Everything you need to start selling courses
+                </CardDescription>
+              </CardHeader>
+              <Separator className="bg-zinc-800/60" />
+              <CardContent className="flex-1 pt-6">
+                <ul className="space-y-3">
+                  {[
+                    "Your own subdomain (you.aibjj.com)",
+                    "1 page template",
+                    "Unlimited course uploads",
+                    "15% platform fee on sales",
+                    "Student analytics",
+                    "Instant payouts via Stripe",
+                  ].map((f) => (
+                    <li key={f} className="flex items-start gap-3 text-sm text-zinc-300">
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-500" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+              <CardFooter className="pt-2">
+                <Button className="w-full text-base font-semibold" variant="outline" size="lg" asChild>
+                  <Link href="/creator-setup">
+                    Start for Free
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+
+            {/* PRO Creator */}
+            <Card className="relative flex flex-col border-red-600/50 bg-zinc-900 shadow-2xl shadow-red-950/30 lg:scale-[1.05] lg:py-4 z-10 transition-all">
+              <Badge className="absolute right-4 top-4 border-0 bg-red-600 text-white hover:bg-red-600">
+                Best Value
+              </Badge>
+              <CardHeader className="pb-4">
+                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-lg bg-red-600/10 text-red-500">
+                  <Zap className="h-5 w-5" />
+                </div>
+                <CardTitle className="text-xl font-bold">Creator Pro</CardTitle>
+                <div className="mt-3 flex items-baseline gap-1">
+                  <span className="text-5xl font-black text-white">$29</span>
+                  <span className="text-zinc-500">/month</span>
+                </div>
+                <Badge variant="outline" className="mt-2 w-fit border-green-600/40 bg-green-600/10 text-green-400">
+                  10% platform fee
+                </Badge>
+                <CardDescription className="mt-2">
+                  For serious instructors who want their own brand
+                </CardDescription>
+              </CardHeader>
+              <Separator className="bg-zinc-800/60" />
+              <CardContent className="flex-1 pt-6">
+                <ul className="space-y-3">
+                  {[
+                    "Custom domain (youracademy.com)",
+                    "All 3 page templates",
+                    "No AIBJJ branding",
+                    "10% platform fee on sales",
+                    "Priority support",
+                    "Advanced analytics",
+                    "Email collection",
+                    "Unlimited course uploads",
+                  ].map((f) => (
+                    <li key={f} className="flex items-start gap-3 text-sm text-zinc-300">
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-500" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+              <CardFooter className="pt-2">
+                <Button className="w-full text-base font-semibold bg-red-600 text-white shadow-lg shadow-red-900/30 hover:bg-red-700" size="lg" asChild>
+                  <Link href="/creator-setup">
+                    Go Pro
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+
+            {/* AGENCY Creator */}
+            <Card className="relative flex flex-col border-zinc-800/60 bg-zinc-900/50 hover:border-zinc-700 transition-all">
+              <CardHeader className="pb-4">
+                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-lg bg-zinc-800 text-zinc-400">
+                  <Crown className="h-5 w-5" />
+                </div>
+                <CardTitle className="text-xl font-bold">Agency</CardTitle>
+                <div className="mt-3 flex items-baseline gap-1">
+                  <span className="text-5xl font-black text-white">$99</span>
+                  <span className="text-zinc-500">/month</span>
+                </div>
+                <Badge variant="outline" className="mt-2 w-fit border-green-600/40 bg-green-600/10 text-green-400">
+                  8% platform fee
+                </Badge>
+                <CardDescription className="mt-2">
+                  For academies and multi-instructor teams
+                </CardDescription>
+              </CardHeader>
+              <Separator className="bg-zinc-800/60" />
+              <CardContent className="flex-1 pt-6">
+                <ul className="space-y-3">
+                  {[
+                    "3 custom domains",
+                    "White-label (fully your brand)",
+                    "Custom CSS styling",
+                    "API access",
+                    "8% platform fee on sales",
+                    "Dedicated account manager",
+                    "Multi-instructor support",
+                    "Revenue splitting",
+                  ].map((f) => (
+                    <li key={f} className="flex items-start gap-3 text-sm text-zinc-300">
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-500" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+              <CardFooter className="pt-2">
+                <Button className="w-full text-base font-semibold" variant="outline" size="lg" asChild>
+                  <Link href="/creator-setup">
+                    Contact Sales
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          </div>
+
+          {/* Comparison callout */}
+          <div className="mt-12 mx-auto max-w-2xl rounded-xl border border-red-600/20 bg-red-600/5 p-6 text-center">
+            <p className="text-lg font-semibold text-zinc-100">
+              BJJ Fanatics takes <span className="text-red-500">40-50%</span> of every sale.
+            </p>
+            <p className="mt-1 text-zinc-400">
+              AIBJJ creators keep <span className="text-green-400 font-semibold">85-92%</span> of their revenue. Free to start.
+            </p>
           </div>
         </div>
       </section>

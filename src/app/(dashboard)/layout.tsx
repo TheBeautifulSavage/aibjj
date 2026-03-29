@@ -23,6 +23,8 @@ import {
 import { Button } from "@/components/ui/button";
 import GlobalAIPrompt from "@/components/GlobalAIPrompt";
 
+import { Upload, Palette } from "lucide-react";
+
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "AI Coach", href: "/coach", icon: MessageSquare },
@@ -32,7 +34,11 @@ const navigation = [
   { name: "Marketplace", href: "/marketplace", icon: ShoppingBag },
 ];
 
-const creatorNav = { name: "Creator", href: "/creator", icon: Video };
+const creatorNavItems = [
+  { name: "Creator", href: "/creator", icon: Video },
+  { name: "Upload", href: "/upload", icon: Upload },
+  { name: "My Page", href: "/creator-setup", icon: Palette },
+];
 
 export default function DashboardLayout({
   children,
@@ -47,7 +53,7 @@ export default function DashboardLayout({
   const user = session?.user;
   const isCreator = (user as { role?: string })?.role === "creator";
 
-  const navItems = isCreator ? [...navigation, creatorNav] : navigation;
+  const navItems = isCreator ? [...navigation, ...creatorNavItems] : navigation;
 
   const isActive = (href: string) => {
     if (href === "/dashboard") return pathname === "/dashboard";

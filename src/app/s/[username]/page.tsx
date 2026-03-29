@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { getTemplate } from "@/lib/creator-templates";
 import { BJJ_FANATICS_CREATORS } from "@/lib/bjj-fanatics-creators";
-import { Instagram, Youtube, Twitter, ShoppingCart, Play, Star, Users, BookOpen } from "lucide-react";
+import { ShoppingCart, Play, Star, BookOpen } from "lucide-react";
 
 interface Props {
   params: Promise<{ username: string }>;
@@ -162,17 +161,17 @@ export default async function CreatorPage({ params }: Props) {
           <div className="flex items-center gap-3">
             {creator.socialInstagram && (
               <a href={`https://instagram.com/${creator.socialInstagram}`} target="_blank" rel="noopener noreferrer" className={`${mutedText} hover:opacity-80`}>
-                <Instagram className="h-5 w-5" />
+                📸
               </a>
             )}
             {creator.socialYoutube && (
               <a href={`https://youtube.com/@${creator.socialYoutube}`} target="_blank" rel="noopener noreferrer" className={`${mutedText} hover:opacity-80`}>
-                <Youtube className="h-5 w-5" />
+                ▶️
               </a>
             )}
             {creator.socialTwitter && (
               <a href={`https://x.com/${creator.socialTwitter}`} target="_blank" rel="noopener noreferrer" className={`${mutedText} hover:opacity-80`}>
-                <Twitter className="h-5 w-5" />
+                𝕏
               </a>
             )}
           </div>

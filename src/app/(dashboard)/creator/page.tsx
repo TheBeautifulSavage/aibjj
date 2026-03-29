@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   Video,
   Upload,
@@ -12,6 +13,10 @@ import {
   Trash,
   Eye,
   BarChart3,
+  ExternalLink,
+  TrendingUp,
+  Palette,
+  ArrowRight,
 } from "lucide-react";
 import {
   Card,
@@ -21,29 +26,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   LineChart,
   Line,
@@ -59,6 +45,7 @@ const mockStats = {
   totalCourses: 5,
   totalStudents: 1247,
   totalRevenue: 34580,
+  conversionRate: 4.2,
   averageRating: 4.7,
 };
 
@@ -135,74 +122,35 @@ const mockRevenueData = [
   { month: "Aug", revenue: 7900 },
 ];
 
-const categories = [
-  "Guard",
-  "Passing",
-  "Submissions",
-  "Takedowns",
-  "Competition",
-  "Fundamentals",
+const mockRecentSales = [
+  { buyer: "Alex M.", course: "Complete Guard System", amount: 79, time: "2 min ago" },
+  { buyer: "Sarah K.", course: "Pressure Passing Masterclass", amount: 89, time: "18 min ago" },
+  { buyer: "Jake T.", course: "No-Gi Fundamentals", amount: 49, time: "1 hr ago" },
+  { buyer: "Maria L.", course: "Submission Chain Attacks", amount: 59, time: "3 hrs ago" },
+  { buyer: "Chris B.", course: "Complete Guard System", amount: 79, time: "5 hrs ago" },
 ];
 
-const beltLevels = ["WHITE", "BLUE", "PURPLE", "BROWN", "BLACK"];
-
-interface LessonForm {
-  title: string;
-  description: string;
-  duration: string;
-  order: number;
-  free: boolean;
-}
-
 export default function CreatorDashboard() {
-  const [uploadOpen, setUploadOpen] = useState(false);
-  const [courseTitle, setCourseTitle] = useState("");
-  const [courseDescription, setCourseDescription] = useState("");
-  const [coursePrice, setCoursePrice] = useState("");
-  const [courseCategory, setCourseCategory] = useState("");
-  const [courseBelt, setCourseBelt] = useState("");
-  const [lessons, setLessons] = useState<LessonForm[]>([]);
+  const [username, setUsername] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/api/creator/profile")
+      .then((r) => r.json())
+      .then((d) => setUsername(d.username))
+      .catch(() => {});
+  }, []);
 
   const hasCourses = mockCourses.length > 0;
 
-  const addLesson = () => {
-    setLessons([
-      ...lessons,
-      {
-        title: "",
-        description: "",
-        duration: "",
-        order: lessons.length + 1,
-        free: false,
-      },
-    ]);
-  };
-
-  const updateLesson = (
-    index: number,
-    field: keyof LessonForm,
-    value: string | boolean | number
-  ) => {
-    const updated = [...lessons];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (updated[index] as any)[field] = value;
-    setLessons(updated);
-  };
-
-  const removeLesson = (index: number) => {
-    setLessons(lessons.filter((_, i) => i !== index));
-  };
-
-  const resetForm = () => {
-    setCourseTitle("");
-    setCourseDescription("");
-    setCoursePrice("");
-    setCourseCategory("");
-    setCourseBelt("");
-    setLessons([]);
-  };
-
-  const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: Array<{ value: number }>; label?: string }) => {
+  const CustomTooltip = ({
+    active,
+    payload,
+    label,
+  }: {
+    active?: boolean;
+    payload?: Array<{ value: number }>;
+    label?: string;
+  }) => {
     if (active && payload && payload.length) {
       return (
         <div className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 shadow-lg">
@@ -228,227 +176,75 @@ export default function CreatorDashboard() {
             Manage your courses and track performance
           </p>
         </div>
-        <Dialog open={uploadOpen} onOpenChange={setUploadOpen}>
-          <DialogTrigger asChild>
-            <Button className="bg-red-600 hover:bg-red-700 text-white">
+        <div className="flex items-center gap-3">
+          {username && (
+            <Button variant="outline" className="border-zinc-700" asChild>
+              <a
+                href={`https://${username}.aibjj.com`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="h-4 w-4 mr-2" />
+                My Public Page
+              </a>
+            </Button>
+          )}
+          <Button className="bg-red-600 hover:bg-red-700 text-white" asChild>
+            <Link href="/upload">
               <Upload className="mr-2 h-4 w-4" />
               Upload Course
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle>Create New Course</DialogTitle>
-              <DialogDescription>
-                Build your BJJ course and share your knowledge with the
-                community.
-              </DialogDescription>
-            </DialogHeader>
+            </Link>
+          </Button>
+        </div>
+      </div>
 
-            <div className="space-y-4 py-4">
-              {/* Course Details */}
-              <div className="space-y-2">
-                <Label htmlFor="title">Course Title</Label>
-                <Input
-                  id="title"
-                  placeholder="e.g., Complete Guard System"
-                  value={courseTitle}
-                  onChange={(e) => setCourseTitle(e.target.value)}
-                />
+      {/* Quick Actions */}
+      <div className="grid gap-3 sm:grid-cols-3">
+        <Link href="/upload">
+          <Card className="border-zinc-800 hover:border-zinc-700 transition-colors cursor-pointer group">
+            <CardContent className="flex items-center gap-3 p-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-600/10">
+                <Plus className="h-5 w-5 text-red-500" />
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="description">Description</Label>
-                <Textarea
-                  id="description"
-                  placeholder="Describe what students will learn..."
-                  rows={4}
-                  value={courseDescription}
-                  onChange={(e) => setCourseDescription(e.target.value)}
-                />
+              <div className="flex-1">
+                <p className="text-sm font-medium text-zinc-200">Upload Course</p>
+                <p className="text-xs text-zinc-500">60 seconds to live</p>
               </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="price">Price ($)</Label>
-                  <Input
-                    id="price"
-                    type="number"
-                    placeholder="49.99"
-                    value={coursePrice}
-                    onChange={(e) => setCoursePrice(e.target.value)}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label>Category</Label>
-                  <Select
-                    value={courseCategory}
-                    onValueChange={setCourseCategory}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categories.map((cat) => (
-                        <SelectItem key={cat} value={cat}>
-                          {cat}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+              <ArrowRight className="h-4 w-4 text-zinc-600 group-hover:text-zinc-400 transition-colors" />
+            </CardContent>
+          </Card>
+        </Link>
+        <Link href="/creator-setup">
+          <Card className="border-zinc-800 hover:border-zinc-700 transition-colors cursor-pointer group">
+            <CardContent className="flex items-center gap-3 p-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800">
+                <Palette className="h-5 w-5 text-zinc-400" />
               </div>
-
-              <div className="space-y-2">
-                <Label>Belt Level</Label>
-                <Select value={courseBelt} onValueChange={setCourseBelt}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select belt level" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {beltLevels.map((belt) => (
-                      <SelectItem key={belt} value={belt}>
-                        {belt.charAt(0) + belt.slice(1).toLowerCase()}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-zinc-200">Edit Page</p>
+                <p className="text-xs text-zinc-500">Template & profile</p>
               </div>
-
-              {/* Cover Image Upload */}
-              <div className="space-y-2">
-                <Label>Cover Image</Label>
-                <div className="flex h-32 w-full items-center justify-center rounded-lg border-2 border-dashed border-zinc-700 bg-zinc-900/50 transition-colors hover:border-zinc-600 cursor-pointer">
-                  <div className="text-center">
-                    <Upload className="mx-auto h-8 w-8 text-zinc-500" />
-                    <p className="mt-2 text-sm text-zinc-400">
-                      Click to upload cover image
-                    </p>
-                    <p className="text-xs text-zinc-500">
-                      PNG, JPG up to 5MB
-                    </p>
-                  </div>
-                </div>
+              <ArrowRight className="h-4 w-4 text-zinc-600 group-hover:text-zinc-400 transition-colors" />
+            </CardContent>
+          </Card>
+        </Link>
+        <Link href="/pricing">
+          <Card className="border-zinc-800 hover:border-zinc-700 transition-colors cursor-pointer group">
+            <CardContent className="flex items-center gap-3 p-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800">
+                <BarChart3 className="h-5 w-5 text-zinc-400" />
               </div>
-
-              <Separator />
-
-              {/* Lessons */}
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <Label className="text-base">Lessons</Label>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={addLesson}
-                    className="border-zinc-700"
-                  >
-                    <Plus className="mr-1 h-3 w-3" />
-                    Add Lesson
-                  </Button>
-                </div>
-
-                {lessons.length === 0 && (
-                  <p className="text-sm text-zinc-500 text-center py-4">
-                    No lessons added yet. Click &quot;Add Lesson&quot; to get started.
-                  </p>
-                )}
-
-                {lessons.map((lesson, index) => (
-                  <Card key={index} className="border-zinc-800">
-                    <CardContent className="p-4 space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-zinc-300">
-                          Lesson {index + 1}
-                        </span>
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => removeLesson(index)}
-                          className="text-zinc-500 hover:text-red-400 h-8 w-8 p-0"
-                        >
-                          <Trash className="h-3.5 w-3.5" />
-                        </Button>
-                      </div>
-
-                      <Input
-                        placeholder="Lesson title"
-                        value={lesson.title}
-                        onChange={(e) =>
-                          updateLesson(index, "title", e.target.value)
-                        }
-                      />
-
-                      <Textarea
-                        placeholder="Lesson description"
-                        rows={2}
-                        value={lesson.description}
-                        onChange={(e) =>
-                          updateLesson(index, "description", e.target.value)
-                        }
-                      />
-
-                      <div className="grid grid-cols-2 gap-3">
-                        {/* Video Upload Placeholder */}
-                        <div className="flex h-20 items-center justify-center rounded-lg border border-dashed border-zinc-700 bg-zinc-900/50 cursor-pointer hover:border-zinc-600 transition-colors">
-                          <div className="text-center">
-                            <Video className="mx-auto h-5 w-5 text-zinc-500" />
-                            <p className="mt-1 text-xs text-zinc-500">
-                              Upload video
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="space-y-2">
-                          <Input
-                            placeholder="Duration (min)"
-                            type="number"
-                            value={lesson.duration}
-                            onChange={(e) =>
-                              updateLesson(index, "duration", e.target.value)
-                            }
-                          />
-                          <label className="flex items-center gap-2 text-sm text-zinc-400 cursor-pointer">
-                            <input
-                              type="checkbox"
-                              checked={lesson.free}
-                              onChange={(e) =>
-                                updateLesson(index, "free", e.target.checked)
-                              }
-                              className="rounded border-zinc-700 bg-zinc-900 text-red-600 focus:ring-red-600"
-                            />
-                            Free preview
-                          </label>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="flex-1">
+                <p className="text-sm font-medium text-zinc-200">View Analytics</p>
+                <p className="text-xs text-zinc-500">Deep insights</p>
               </div>
-            </div>
-
-            <DialogFooter className="gap-2">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  resetForm();
-                  setUploadOpen(false);
-                }}
-                className="border-zinc-700"
-              >
-                Save Draft
-              </Button>
-              <Button className="bg-red-600 hover:bg-red-700 text-white">
-                Publish Course
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+              <ArrowRight className="h-4 w-4 text-zinc-600 group-hover:text-zinc-400 transition-colors" />
+            </CardContent>
+          </Card>
+        </Link>
       </div>
 
       {!hasCourses ? (
-        /* Empty State */
         <Card className="border-zinc-800">
           <CardContent className="flex flex-col items-center justify-center py-16">
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-zinc-800">
@@ -458,15 +254,16 @@ export default function CreatorDashboard() {
               Start creating BJJ content
             </h3>
             <p className="mt-2 max-w-sm text-center text-sm text-zinc-400">
-              Share your knowledge with the BJJ community. Create your first
-              course and start earning today.
+              Share your knowledge with the BJJ community. Upload for free — we only take 15% when you make a sale.
             </p>
             <Button
               className="mt-6 bg-red-600 hover:bg-red-700 text-white"
-              onClick={() => setUploadOpen(true)}
+              asChild
             >
-              <Plus className="mr-2 h-4 w-4" />
-              Create Your First Course
+              <Link href="/upload">
+                <Plus className="mr-2 h-4 w-4" />
+                Create Your First Course
+              </Link>
             </Button>
           </CardContent>
         </Card>
@@ -477,7 +274,22 @@ export default function CreatorDashboard() {
             <Card className="border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-zinc-400">
-                  Total Courses
+                  Total Revenue
+                </CardTitle>
+                <DollarSign className="h-4 w-4 text-zinc-500" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-zinc-100">
+                  ${mockStats.totalRevenue.toLocaleString()}
+                </div>
+                <p className="text-xs text-green-500 mt-1">+8% this month</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-zinc-800">
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-sm font-medium text-zinc-400">
+                  Courses Published
                 </CardTitle>
                 <Video className="h-4 w-4 text-zinc-500" />
               </CardHeader>
@@ -510,54 +322,24 @@ export default function CreatorDashboard() {
             <Card className="border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-zinc-400">
-                  Total Revenue
+                  Conversion Rate
                 </CardTitle>
-                <DollarSign className="h-4 w-4 text-zinc-500" />
+                <TrendingUp className="h-4 w-4 text-zinc-500" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-zinc-100">
-                  ${mockStats.totalRevenue.toLocaleString()}
+                  {mockStats.conversionRate}%
                 </div>
-                <p className="text-xs text-green-500 mt-1">+8% this month</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-zinc-800">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-400">
-                  Average Rating
-                </CardTitle>
-                <Star className="h-4 w-4 text-zinc-500" />
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-bold text-zinc-100">
-                    {mockStats.averageRating}
-                  </span>
-                  <div className="flex">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star
-                        key={star}
-                        className={`h-3.5 w-3.5 ${
-                          star <= Math.round(mockStats.averageRating)
-                            ? "fill-yellow-500 text-yellow-500"
-                            : "text-zinc-700"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-                <p className="text-xs text-zinc-500 mt-1">
-                  Based on all reviews
-                </p>
+                <p className="text-xs text-green-500 mt-1">+0.5% this month</p>
               </CardContent>
             </Card>
           </div>
 
-          {/* Tabs: Courses / Analytics */}
+          {/* Tabs: Courses / Analytics / Sales */}
           <Tabs defaultValue="courses" className="space-y-4">
             <TabsList>
               <TabsTrigger value="courses">Courses</TabsTrigger>
+              <TabsTrigger value="sales">Recent Sales</TabsTrigger>
               <TabsTrigger value="analytics">Analytics</TabsTrigger>
             </TabsList>
 
@@ -569,7 +351,6 @@ export default function CreatorDashboard() {
                     <CardContent className="p-4">
                       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex items-start gap-4">
-                          {/* Cover image placeholder */}
                           <div className="hidden sm:flex h-16 w-24 flex-shrink-0 items-center justify-center rounded-lg bg-zinc-800">
                             <Video className="h-6 w-6 text-zinc-600" />
                           </div>
@@ -657,6 +438,46 @@ export default function CreatorDashboard() {
               </div>
             </TabsContent>
 
+            {/* Recent Sales Tab */}
+            <TabsContent value="sales" className="space-y-4">
+              <Card className="border-zinc-800">
+                <CardHeader>
+                  <CardTitle className="text-base">Recent Sales</CardTitle>
+                  <CardDescription>Your latest course purchases</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {mockRecentSales.map((sale, i) => (
+                    <div key={i}>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-800 text-sm font-medium text-zinc-300">
+                            {sale.buyer.charAt(0)}
+                          </div>
+                          <div>
+                            <p className="text-sm font-medium text-zinc-200">
+                              {sale.buyer}
+                            </p>
+                            <p className="text-xs text-zinc-500">
+                              {sale.course}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-semibold text-green-500">
+                            +${sale.amount}
+                          </p>
+                          <p className="text-xs text-zinc-500">{sale.time}</p>
+                        </div>
+                      </div>
+                      {i < mockRecentSales.length - 1 && (
+                        <Separator className="mt-4 bg-zinc-800/50" />
+                      )}
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
             {/* Analytics Tab */}
             <TabsContent value="analytics" className="space-y-4">
               <Card className="border-zinc-800">
@@ -709,7 +530,6 @@ export default function CreatorDashboard() {
                 </CardContent>
               </Card>
 
-              {/* Top Performing Courses */}
               <Card className="border-zinc-800">
                 <CardHeader>
                   <CardTitle className="text-base">
