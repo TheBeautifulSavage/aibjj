@@ -159,6 +159,9 @@ export default async function CreatorPage({ params }: Props) {
           </div>
 
           <div className="flex items-center gap-3">
+            <a href={`/s/${username}/blog`} className={`text-sm font-medium ${accentText} hover:opacity-80`}>
+              Blog
+            </a>
             {creator.socialInstagram && (
               <a href={`https://instagram.com/${creator.socialInstagram}`} target="_blank" rel="noopener noreferrer" className={`${mutedText} hover:opacity-80`}>
                 📸

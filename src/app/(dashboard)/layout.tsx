@@ -23,7 +23,7 @@ import {
 import { Button } from "@/components/ui/button";
 import GlobalAIPrompt from "@/components/GlobalAIPrompt";
 
-import { Upload, Palette } from "lucide-react";
+import { Upload, Palette, PenLine } from "lucide-react";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -38,6 +38,7 @@ const creatorNavItems = [
   { name: "Creator", href: "/creator", icon: Video },
   { name: "Upload", href: "/upload", icon: Upload },
   { name: "My Page", href: "/creator-setup", icon: Palette },
+  { name: "Blog", href: "/blog", icon: PenLine },
 ];
 
 export default function DashboardLayout({
