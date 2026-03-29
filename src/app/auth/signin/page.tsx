@@ -10,14 +10,8 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { Library, Zap, Brain } from "lucide-react";
 
 const signInSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -77,135 +71,213 @@ function SignInForm() {
   };
 
   return (
-    <div className="w-full max-w-md">
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-white">
-          AI<span className="text-red-600">BJJ</span>
-        </h1>
-        <p className="mt-1 text-sm text-zinc-500">
-          AI-Powered Brazilian Jiu-Jitsu Training
-        </p>
-      </div>
+    <div className="flex min-h-screen w-full">
+      {/* Left Side - Hero Panel */}
+      <div className="hidden md:flex md:w-1/2 lg:w-[55%] relative flex-col justify-between bg-gradient-to-br from-black via-zinc-950 to-red-950/30 p-10 lg:p-14">
+        {/* Logo */}
+        <div>
+          <Link href="/" className="inline-block">
+            <h1 className="text-2xl font-bold tracking-tight text-white">
+              AI<span className="text-red-600">BJJ</span>
+            </h1>
+          </Link>
+        </div>
 
-      <Card>
-        <CardHeader className="text-center">
-          <CardTitle className="text-xl">Welcome Back</CardTitle>
-          <CardDescription>
-            Sign in to continue your training journey
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          {error && (
-            <div className="rounded-md border border-red-800 bg-red-950/50 px-4 py-3 text-sm text-red-400">
-              {error}
+        {/* Main Content */}
+        <div className="max-w-lg">
+          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            The #1 Platform for BJJ Creators and Students
+          </h2>
+          <p className="mt-4 text-lg text-zinc-400 leading-relaxed">
+            Join thousands of practitioners learning and teaching world-class
+            Brazilian Jiu-Jitsu
+          </p>
+        </div>
+
+        {/* Trust Signals */}
+        <div className="flex flex-wrap gap-8">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10">
+              <Library className="h-5 w-5 text-red-500" />
             </div>
-          )}
-
-          <Button
-            variant="outline"
-            className="w-full"
-            onClick={handleGoogleSignIn}
-            disabled={isGoogleLoading || isLoading}
-          >
-            {isGoogleLoading ? (
-              <span className="flex items-center gap-2">
-                <LoadingSpinner />
-                Connecting...
-              </span>
-            ) : (
-              <span className="flex items-center gap-2">
-                <GoogleIcon />
-                Continue with Google
-              </span>
-            )}
-          </Button>
-
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-zinc-700" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-zinc-900 px-2 text-zinc-500">or</span>
+            <div>
+              <p className="text-sm font-semibold text-white">510+ Techniques</p>
+              <p className="text-xs text-zinc-500">Full library</p>
             </div>
           </div>
-
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="you@example.com"
-                autoComplete="email"
-                disabled={isLoading}
-                {...register("email")}
-                className={cn(errors.email && "border-red-600")}
-              />
-              {errors.email && (
-                <p className="text-xs text-red-500">{errors.email.message}</p>
-              )}
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10">
+              <Zap className="h-5 w-5 text-red-500" />
             </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                autoComplete="current-password"
-                disabled={isLoading}
-                {...register("password")}
-                className={cn(errors.password && "border-red-600")}
-              />
-              {errors.password && (
-                <p className="text-xs text-red-500">
-                  {errors.password.message}
-                </p>
-              )}
+            <div>
+              <p className="text-sm font-semibold text-white">15% Platform Fee</p>
+              <p className="text-xs text-zinc-500">Industry lowest</p>
             </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10">
+              <Brain className="h-5 w-5 text-red-500" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-white">AI-Powered Coaching</p>
+              <p className="text-xs text-zinc-500">Smart training</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Side - Form */}
+      <div className="flex w-full md:w-1/2 lg:w-[45%] items-center justify-center bg-zinc-950 px-6 py-12 sm:px-10">
+        <div className="w-full max-w-md">
+          {/* Mobile Logo */}
+          <div className="mb-8 text-center md:hidden">
+            <Link href="/">
+              <h1 className="text-3xl font-bold tracking-tight text-white">
+                AI<span className="text-red-600">BJJ</span>
+              </h1>
+            </Link>
+          </div>
+
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold tracking-tight text-white">
+              Welcome back
+            </h2>
+            <p className="mt-2 text-sm text-zinc-400">
+              Sign in to continue your training journey
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            {error && (
+              <div className="rounded-lg border border-red-800 bg-red-950/50 px-4 py-3 text-sm text-red-400">
+                {error}
+              </div>
+            )}
 
             <Button
-              type="submit"
-              className="w-full"
-              disabled={isLoading || isGoogleLoading}
+              variant="outline"
+              className="w-full h-11 bg-zinc-900 border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 text-white"
+              onClick={handleGoogleSignIn}
+              disabled={isGoogleLoading || isLoading}
             >
-              {isLoading ? (
+              {isGoogleLoading ? (
                 <span className="flex items-center gap-2">
                   <LoadingSpinner />
-                  Signing in...
+                  Connecting...
                 </span>
               ) : (
-                "Sign In"
+                <span className="flex items-center gap-2">
+                  <GoogleIcon />
+                  Continue with Google
+                </span>
               )}
             </Button>
-          </form>
 
-          <p className="text-center text-sm text-zinc-400">
-            Don&apos;t have an account?{" "}
-            <Link
-              href="/auth/signup"
-              className="font-medium text-red-500 hover:text-red-400 hover:underline"
-            >
-              Sign up
-            </Link>
-          </p>
-        </CardContent>
-      </Card>
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-zinc-800" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-zinc-950 px-2 text-zinc-500">or</span>
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-zinc-300">
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  autoComplete="email"
+                  disabled={isLoading}
+                  {...register("email")}
+                  className={cn(
+                    "h-11 bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600 focus:border-red-600 focus:ring-red-600/20",
+                    errors.email && "border-red-600"
+                  )}
+                />
+                {errors.email && (
+                  <p className="text-xs text-red-500">{errors.email.message}</p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="password" className="text-zinc-300">
+                    Password
+                  </Label>
+                  <Link
+                    href="#"
+                    className="text-xs text-zinc-500 hover:text-red-400 transition-colors"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  autoComplete="current-password"
+                  disabled={isLoading}
+                  {...register("password")}
+                  className={cn(
+                    "h-11 bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600 focus:border-red-600 focus:ring-red-600/20",
+                    errors.password && "border-red-600"
+                  )}
+                />
+                {errors.password && (
+                  <p className="text-xs text-red-500">
+                    {errors.password.message}
+                  </p>
+                )}
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full h-11 bg-red-600 hover:bg-red-700 text-white font-medium"
+                disabled={isLoading || isGoogleLoading}
+              >
+                {isLoading ? (
+                  <span className="flex items-center gap-2">
+                    <LoadingSpinner />
+                    Signing in...
+                  </span>
+                ) : (
+                  "Sign In"
+                )}
+              </Button>
+            </form>
+
+            <p className="text-center text-sm text-zinc-400">
+              Don&apos;t have an account?{" "}
+              <Link
+                href="/auth/signup"
+                className="font-medium text-red-500 hover:text-red-400 transition-colors"
+              >
+                Sign up
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default function SignInPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-black px-4">
-      <Suspense
-        fallback={
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-zinc-950">
           <div className="text-zinc-500">Loading...</div>
-        }
-      >
-        <SignInForm />
-      </Suspense>
-    </div>
+        </div>
+      }
+    >
+      <SignInForm />
+    </Suspense>
   );
 }
 

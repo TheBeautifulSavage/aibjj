@@ -114,24 +114,37 @@ model User {
   reviews         Review[]
   blogPosts       BlogPost[]
   blogQueues      BlogQueue[]
+  bookmarks       TechniqueBookmark[]
 }
 
 model JournalEntry {
-  id          String       @id @default(cuid())
-  userId      String
-  date        DateTime     @default(now())
-  duration    Int          // minutes
-  type        TrainingType
-  techniques  String[]
-  notes       String?      @db.Text
-  taps        Int          @default(0)
-  wasTapped   Int          @default(0)
-  sparringRounds Int       @default(0)
-  energyLevel Int?         // 1-5
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date           DateTime
+  trainingType   String   @default("GI")
+  duration       Int      @default(60)
+  partners       String?
+  workedOn       String?  @db.Text
+  wentWell       String?  @db.Text
+  toImprove      String?  @db.Text
+  energyLevel    Int?
+  rating         Int?
+  injuryNotes    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, date])
+}
+
+model TechniqueBookmark {
+  id          String   @id @default(cuid())
+  userId      String
+  techniqueId String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  @@unique([userId, techniqueId])
 }
 
 model ChatSession {

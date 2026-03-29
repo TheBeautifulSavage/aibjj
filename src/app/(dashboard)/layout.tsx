@@ -19,6 +19,8 @@ import {
   X,
   LogOut,
   User,
+  Download,
+  TrendingUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GlobalAIPrompt from "@/components/GlobalAIPrompt";
@@ -31,7 +33,9 @@ const navigation = [
   { name: "Journal", href: "/journal", icon: BookOpen },
   { name: "Techniques", href: "/library", icon: Library },
   { name: "Game Plan", href: "/gameplan", icon: Target },
+  { name: "Progress", href: "/progress", icon: TrendingUp },
   { name: "Marketplace", href: "/marketplace", icon: ShoppingBag },
+  { name: "Import", href: "/import", icon: Download },
 ];
 
 const creatorNavItems = [

@@ -11,13 +11,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
   Select,
   SelectContent,
   SelectItem,
@@ -25,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { Library, Zap, Brain } from "lucide-react";
 
 const signUpSchema = z
   .object({
@@ -58,6 +52,8 @@ export default function SignUpPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isCreator, setIsCreator] = useState(false);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   const {
     register,
@@ -72,6 +68,11 @@ export default function SignUpPage() {
   });
 
   const onSubmit = async (data: SignUpFormData) => {
+    if (!agreedToTerms) {
+      setError("You must agree to the Terms of Service and Privacy Policy.");
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
 
@@ -125,34 +126,92 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-black px-4 py-8">
-      <div className="w-full max-w-md">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-white">
-            AI<span className="text-red-600">BJJ</span>
-          </h1>
-          <p className="mt-1 text-sm text-zinc-500">
-            AI-Powered Brazilian Jiu-Jitsu Training
+    <div className="flex min-h-screen w-full">
+      {/* Left Side - Hero Panel */}
+      <div className="hidden md:flex md:w-1/2 lg:w-[55%] relative flex-col justify-between bg-gradient-to-br from-black via-zinc-950 to-red-950/30 p-10 lg:p-14">
+        {/* Logo */}
+        <div>
+          <Link href="/" className="inline-block">
+            <h1 className="text-2xl font-bold tracking-tight text-white">
+              AI<span className="text-red-600">BJJ</span>
+            </h1>
+          </Link>
+        </div>
+
+        {/* Main Content */}
+        <div className="max-w-lg">
+          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            The #1 Platform for BJJ Creators and Students
+          </h2>
+          <p className="mt-4 text-lg text-zinc-400 leading-relaxed">
+            Join thousands of practitioners learning and teaching world-class
+            Brazilian Jiu-Jitsu
           </p>
         </div>
 
-        <Card>
-          <CardHeader className="text-center">
-            <CardTitle className="text-xl">Create Your Account</CardTitle>
-            <CardDescription>
+        {/* Trust Signals */}
+        <div className="flex flex-wrap gap-8">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10">
+              <Library className="h-5 w-5 text-red-500" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-white">510+ Techniques</p>
+              <p className="text-xs text-zinc-500">Full library</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10">
+              <Zap className="h-5 w-5 text-red-500" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-white">15% Platform Fee</p>
+              <p className="text-xs text-zinc-500">Industry lowest</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 border border-white/10">
+              <Brain className="h-5 w-5 text-red-500" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-white">AI-Powered Coaching</p>
+              <p className="text-xs text-zinc-500">Smart training</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Side - Form */}
+      <div className="flex w-full md:w-1/2 lg:w-[45%] items-center justify-center bg-zinc-950 px-6 py-10 sm:px-10">
+        <div className="w-full max-w-md">
+          {/* Mobile Logo */}
+          <div className="mb-8 text-center md:hidden">
+            <Link href="/">
+              <h1 className="text-3xl font-bold tracking-tight text-white">
+                AI<span className="text-red-600">BJJ</span>
+              </h1>
+            </Link>
+          </div>
+
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold tracking-tight text-white">
+              Create Your Account
+            </h2>
+            <p className="mt-2 text-sm text-zinc-400">
               Start your AI-powered BJJ journey today
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
+            </p>
+          </div>
+
+          <div className="space-y-5">
             {error && (
-              <div className="rounded-md border border-red-800 bg-red-950/50 px-4 py-3 text-sm text-red-400">
+              <div className="rounded-lg border border-red-800 bg-red-950/50 px-4 py-3 text-sm text-red-400">
                 {error}
               </div>
             )}
 
             <Button
               variant="outline"
-              className="w-full"
+              className="w-full h-11 bg-zinc-900 border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 text-white"
               onClick={handleGoogleSignUp}
               disabled={isGoogleLoading || isLoading}
             >
@@ -171,16 +230,18 @@ export default function SignUpPage() {
 
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-zinc-700" />
+                <span className="w-full border-t border-zinc-800" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-zinc-900 px-2 text-zinc-500">or</span>
+                <span className="bg-zinc-950 px-2 text-zinc-500">or</span>
               </div>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name" className="text-zinc-300">
+                  Full Name
+                </Label>
                 <Input
                   id="name"
                   type="text"
@@ -188,7 +249,10 @@ export default function SignUpPage() {
                   autoComplete="name"
                   disabled={isLoading}
                   {...register("name")}
-                  className={cn(errors.name && "border-red-600")}
+                  className={cn(
+                    "h-11 bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600 focus:border-red-600 focus:ring-red-600/20",
+                    errors.name && "border-red-600"
+                  )}
                 />
                 {errors.name && (
                   <p className="text-xs text-red-500">{errors.name.message}</p>
@@ -196,7 +260,9 @@ export default function SignUpPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-zinc-300">
+                  Email
+                </Label>
                 <Input
                   id="email"
                   type="email"
@@ -204,57 +270,74 @@ export default function SignUpPage() {
                   autoComplete="email"
                   disabled={isLoading}
                   {...register("email")}
-                  className={cn(errors.email && "border-red-600")}
+                  className={cn(
+                    "h-11 bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600 focus:border-red-600 focus:ring-red-600/20",
+                    errors.email && "border-red-600"
+                  )}
                 />
                 {errors.email && (
                   <p className="text-xs text-red-500">{errors.email.message}</p>
                 )}
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Min. 8 characters"
-                  autoComplete="new-password"
-                  disabled={isLoading}
-                  {...register("password")}
-                  className={cn(errors.password && "border-red-600")}
-                />
-                {errors.password && (
-                  <p className="text-xs text-red-500">
-                    {errors.password.message}
-                  </p>
-                )}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-2">
+                  <Label htmlFor="password" className="text-zinc-300">
+                    Password
+                  </Label>
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="Min. 8 characters"
+                    autoComplete="new-password"
+                    disabled={isLoading}
+                    {...register("password")}
+                    className={cn(
+                      "h-11 bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600 focus:border-red-600 focus:ring-red-600/20",
+                      errors.password && "border-red-600"
+                    )}
+                  />
+                  {errors.password && (
+                    <p className="text-xs text-red-500">
+                      {errors.password.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="confirmPassword" className="text-zinc-300">
+                    Confirm Password
+                  </Label>
+                  <Input
+                    id="confirmPassword"
+                    type="password"
+                    placeholder="Confirm password"
+                    autoComplete="new-password"
+                    disabled={isLoading}
+                    {...register("confirmPassword")}
+                    className={cn(
+                      "h-11 bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600 focus:border-red-600 focus:ring-red-600/20",
+                      errors.confirmPassword && "border-red-600"
+                    )}
+                  />
+                  {errors.confirmPassword && (
+                    <p className="text-xs text-red-500">
+                      {errors.confirmPassword.message}
+                    </p>
+                  )}
+                </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
-                <Input
-                  id="confirmPassword"
-                  type="password"
-                  placeholder="Confirm your password"
-                  autoComplete="new-password"
-                  disabled={isLoading}
-                  {...register("confirmPassword")}
-                  className={cn(errors.confirmPassword && "border-red-600")}
-                />
-                {errors.confirmPassword && (
-                  <p className="text-xs text-red-500">
-                    {errors.confirmPassword.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="belt">Belt Level</Label>
+                <Label htmlFor="belt" className="text-zinc-300">
+                  Belt Level
+                </Label>
                 <Select
                   defaultValue="WHITE"
                   onValueChange={(value) => setValue("belt", value)}
                   disabled={isLoading}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="h-11 bg-zinc-900 border-zinc-800 text-white focus:ring-red-600/20">
                     <SelectValue placeholder="Select your belt level" />
                   </SelectTrigger>
                   <SelectContent>
@@ -270,9 +353,59 @@ export default function SignUpPage() {
                 )}
               </div>
 
+              {/* Creator Toggle */}
+              <div className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-3">
+                <div>
+                  <p className="text-sm font-medium text-zinc-300">
+                    Are you a creator?
+                  </p>
+                  <p className="text-xs text-zinc-500">
+                    Publish courses and techniques
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={isCreator}
+                  onClick={() => setIsCreator(!isCreator)}
+                  className={cn(
+                    "relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950",
+                    isCreator ? "bg-red-600" : "bg-zinc-700"
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                      isCreator ? "translate-x-5" : "translate-x-0"
+                    )}
+                  />
+                </button>
+              </div>
+
+              {/* Terms Checkbox */}
+              <div className="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="terms"
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  className="mt-1 h-4 w-4 rounded border-zinc-700 bg-zinc-900 text-red-600 focus:ring-red-600/20 focus:ring-offset-zinc-950"
+                />
+                <label htmlFor="terms" className="text-xs text-zinc-400 leading-relaxed">
+                  I agree to the{" "}
+                  <Link href="#" className="text-red-500 hover:text-red-400">
+                    Terms of Service
+                  </Link>{" "}
+                  and{" "}
+                  <Link href="#" className="text-red-500 hover:text-red-400">
+                    Privacy Policy
+                  </Link>
+                </label>
+              </div>
+
               <Button
                 type="submit"
-                className="w-full"
+                className="w-full h-11 bg-red-600 hover:bg-red-700 text-white font-medium"
                 disabled={isLoading || isGoogleLoading}
               >
                 {isLoading ? (
@@ -290,13 +423,13 @@ export default function SignUpPage() {
               Already have an account?{" "}
               <Link
                 href="/auth/signin"
-                className="font-medium text-red-500 hover:text-red-400 hover:underline"
+                className="font-medium text-red-500 hover:text-red-400 transition-colors"
               >
                 Sign in
               </Link>
             </p>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

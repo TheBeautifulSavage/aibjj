@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import {
@@ -19,10 +19,11 @@ import {
   Target,
   Flame,
   Clock,
-  Dumbbell,
-  TrendingUp,
   ChevronRight,
   Zap,
+  ShoppingBag,
+  Check,
+  Loader2,
 } from "lucide-react";
 import {
   Card,
@@ -32,97 +33,35 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
 
-// ---------- Mock Data ----------
+// ---------- Types ----------
 
-const trainingChartData = Array.from({ length: 30 }, (_, i) => {
-  const date = new Date();
-  date.setDate(date.getDate() - 29 + i);
-  const dayOfWeek = date.getDay();
-  const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-  return {
-    date: date.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
-    minutes: isWeekend
-      ? Math.floor(Math.random() * 60 + 60)
-      : Math.random() > 0.35
-      ? Math.floor(Math.random() * 90 + 30)
-      : 0,
-  };
-});
+interface JournalEntry {
+  id: string;
+  date: string;
+  trainingType: string;
+  duration: number;
+  workedOn: string | null;
+  wentWell: string | null;
+}
 
-const recentSessions = [
-  {
-    id: 1,
-    date: "Mar 27, 2026",
-    type: "Gi Training",
-    duration: 90,
-    notes: "Focused on closed guard sweeps and collar chokes",
-  },
-  {
-    id: 2,
-    date: "Mar 25, 2026",
-    type: "No-Gi Rolling",
-    duration: 60,
-    notes: "Worked on guillotine defense and leg lock entries",
-  },
-  {
-    id: 3,
-    date: "Mar 24, 2026",
-    type: "Drilling",
-    duration: 45,
-    notes: "Hip escape drills and guard retention patterns",
-  },
-  {
-    id: 4,
-    date: "Mar 22, 2026",
-    type: "Competition Class",
-    duration: 120,
-    notes: "Takedown sequences and pressure passing",
-  },
-  {
-    id: 5,
-    date: "Mar 20, 2026",
-    type: "Open Mat",
-    duration: 75,
-    notes: "Experimented with de la Riva guard transitions",
-  },
-];
+interface TrainingDataPoint {
+  date: string;
+  duration: number;
+}
 
-const stats = [
-  {
-    label: "Total Sessions",
-    value: "142",
-    icon: Dumbbell,
-    change: "+8 this month",
-    color: "text-blue-400",
-    bg: "bg-blue-500/10",
-  },
-  {
-    label: "Hours Trained",
-    value: "213",
-    icon: Clock,
-    change: "+12h this month",
-    color: "text-emerald-400",
-    bg: "bg-emerald-500/10",
-  },
-  {
-    label: "Current Streak",
-    value: "7 days",
-    icon: Flame,
-    change: "Personal best!",
-    color: "text-orange-400",
-    bg: "bg-orange-500/10",
-  },
-  {
-    label: "Techniques Logged",
-    value: "68",
-    icon: TrendingUp,
-    change: "+5 this month",
-    color: "text-purple-400",
-    bg: "bg-purple-500/10",
-  },
-];
+interface DashboardStats {
+  journalCount: number;
+  techniqueCount: number;
+  chatSessionCount: number;
+  courseCount: number;
+  streak: number;
+  recentJournals: JournalEntry[];
+  trainingData: TrainingDataPoint[];
+}
+
+// ---------- Quick Actions ----------
 
 const quickActions = [
   {
@@ -141,7 +80,7 @@ const quickActions = [
   },
   {
     label: "View Techniques",
-    href: "/techniques",
+    href: "/library",
     icon: Library,
     description: "Browse your library",
     accent: false,
@@ -155,16 +94,54 @@ const quickActions = [
   },
 ];
 
-const beltInfo = {
-  current: "Blue Belt",
-  stripe: 3,
-  progress: 72,
-  nextBelt: "Purple Belt",
-};
+// ---------- Onboarding Cards ----------
+
+const onboardingCards = [
+  {
+    label: "AI Coach",
+    href: "/coach",
+    icon: MessageSquare,
+    description: "Get personalized guidance",
+    color: "text-red-400",
+    bg: "bg-red-500/10",
+  },
+  {
+    label: "Technique Library",
+    href: "/library",
+    icon: Library,
+    description: "Browse 510+ techniques",
+    color: "text-emerald-400",
+    bg: "bg-emerald-500/10",
+  },
+  {
+    label: "Training Journal",
+    href: "/journal",
+    icon: BookOpen,
+    description: "Log your sessions",
+    color: "text-blue-400",
+    bg: "bg-blue-500/10",
+  },
+  {
+    label: "Browse Courses",
+    href: "/marketplace",
+    icon: ShoppingBag,
+    description: "Discover instructionals",
+    color: "text-purple-400",
+    bg: "bg-purple-500/10",
+  },
+];
 
 // ---------- Custom Tooltip ----------
 
-function ChartTooltip({ active, payload, label }: { active?: boolean; payload?: { value: number }[]; label?: string }) {
+function ChartTooltip({
+  active,
+  payload,
+  label,
+}: {
+  active?: boolean;
+  payload?: { value: number }[];
+  label?: string;
+}) {
   if (!active || !payload?.length) return null;
   return (
     <div className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 shadow-xl">
@@ -176,11 +153,274 @@ function ChartTooltip({ active, payload, label }: { active?: boolean; payload?: 
   );
 }
 
+// ---------- Loading Skeleton ----------
+
+function DashboardSkeleton() {
+  return (
+    <div className="mx-auto max-w-7xl space-y-6">
+      {/* Header skeleton */}
+      <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+        <div className="space-y-2">
+          <div className="h-7 w-64 animate-pulse rounded bg-zinc-800" />
+          <div className="h-4 w-80 animate-pulse rounded bg-zinc-800" />
+        </div>
+        <div className="h-6 w-28 animate-pulse rounded-full bg-zinc-800 mt-2 sm:mt-0" />
+      </div>
+
+      {/* Stats skeleton */}
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {[...Array(4)].map((_, i) => (
+          <Card key={i}>
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 animate-pulse rounded-lg bg-zinc-800" />
+                <div className="space-y-1.5">
+                  <div className="h-3 w-20 animate-pulse rounded bg-zinc-800" />
+                  <div className="h-6 w-12 animate-pulse rounded bg-zinc-800" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Chart + Sessions skeleton */}
+      <div className="grid gap-6 lg:grid-cols-5">
+        <Card className="lg:col-span-3">
+          <CardContent className="p-6">
+            <div className="h-64 animate-pulse rounded bg-zinc-800" />
+          </CardContent>
+        </Card>
+        <Card className="lg:col-span-2">
+          <CardContent className="p-6 space-y-3">
+            {[...Array(4)].map((_, i) => (
+              <div
+                key={i}
+                className="h-16 animate-pulse rounded-lg bg-zinc-800"
+              />
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+// ---------- Quick Log Widget ----------
+
+function QuickLogWidget() {
+  const [type, setType] = useState("GI");
+  const [duration, setDuration] = useState(60);
+  const [notes, setNotes] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [lastSession, setLastSession] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchLast() {
+      try {
+        const res = await fetch("/api/journal?limit=1");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.entries?.length > 0) {
+            const d = new Date(data.entries[0].date);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            d.setHours(0, 0, 0, 0);
+            const diff = Math.floor(
+              (today.getTime() - d.getTime()) / (1000 * 60 * 60 * 24)
+            );
+            if (diff === 0) setLastSession("today");
+            else if (diff === 1) setLastSession("1 day ago");
+            else setLastSession(`${diff} days ago`);
+          }
+        }
+      } catch {
+        // silent
+      }
+    }
+    fetchLast();
+  }, [success]);
+
+  async function handleQuickLog() {
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/journal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          date: new Date().toISOString().split("T")[0],
+          trainingType: type,
+          duration,
+          workedOn: notes || undefined,
+        }),
+      });
+      if (res.ok) {
+        setSuccess(true);
+        setNotes("");
+        setTimeout(() => setSuccess(false), 3000);
+      }
+    } catch {
+      // silent
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  const durations = [30, 60, 90, 120];
+
+  return (
+    <Card>
+      <CardHeader className="pb-3">
+        <CardTitle className="text-base flex items-center gap-2">
+          Quick Log
+          {lastSession && (
+            <span className="text-xs font-normal text-zinc-500 ml-auto">
+              {lastSession === "today" ? (
+                <span className="text-emerald-400">You trained today!</span>
+              ) : (
+                `Last session: ${lastSession}`
+              )}
+            </span>
+          )}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        {success ? (
+          <div className="flex items-center gap-2 text-emerald-400 py-4 justify-center">
+            <Check className="h-5 w-5" />
+            <span className="text-sm font-medium">Session logged!</span>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {/* Type toggle */}
+            <div className="flex gap-2">
+              {[
+                { value: "GI", label: "Gi" },
+                { value: "NOGI", label: "No-Gi" },
+              ].map((t) => (
+                <button
+                  key={t.value}
+                  onClick={() => setType(t.value)}
+                  className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                    type === t.value
+                      ? "bg-red-600 text-white"
+                      : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Duration quick picker */}
+            <div className="flex gap-2">
+              {durations.map((d) => (
+                <button
+                  key={d}
+                  onClick={() => setDuration(d)}
+                  className={`flex-1 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                    duration === d
+                      ? "bg-zinc-700 text-zinc-100"
+                      : "bg-zinc-800/50 text-zinc-500 hover:bg-zinc-800"
+                  }`}
+                >
+                  {d}m
+                </button>
+              ))}
+            </div>
+
+            {/* Notes */}
+            <textarea
+              placeholder="Quick notes (optional)"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              rows={2}
+              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-zinc-600 resize-none"
+            />
+
+            {/* Submit */}
+            <Button
+              className="w-full bg-red-600 hover:bg-red-700 text-white"
+              onClick={handleQuickLog}
+              disabled={submitting}
+            >
+              {submitting ? (
+                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+              ) : null}
+              Log Session
+            </Button>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
 // ---------- Page ----------
 
 export default function DashboardPage() {
   const { data: session } = useSession();
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [loading, setLoading] = useState(true);
+
   const userName = session?.user?.name?.split(" ")[0] || "Practitioner";
+  const belt = (session?.user as { belt?: string })?.belt;
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const res = await fetch("/api/dashboard/stats");
+        if (res.ok) {
+          const data = await res.json();
+          setStats(data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch dashboard stats:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchStats();
+  }, []);
+
+  if (loading) {
+    return <DashboardSkeleton />;
+  }
+
+  const statCards = [
+    {
+      label: "Journal Entries",
+      value: String(stats?.journalCount ?? 0),
+      icon: BookOpen,
+      color: "text-blue-400",
+      bg: "bg-blue-500/10",
+    },
+    {
+      label: "Techniques Available",
+      value: String(stats?.techniqueCount ?? 0),
+      icon: Library,
+      color: "text-emerald-400",
+      bg: "bg-emerald-500/10",
+    },
+    {
+      label: "Current Streak",
+      value: `${stats?.streak ?? 0} days`,
+      icon: Flame,
+      color: "text-orange-400",
+      bg: "bg-orange-500/10",
+    },
+    {
+      label: "Coach Sessions",
+      value: String(stats?.chatSessionCount ?? 0),
+      icon: MessageSquare,
+      color: "text-purple-400",
+      bg: "bg-purple-500/10",
+    },
+  ];
+
+  const trainingData = stats?.trainingData ?? [];
+  const recentJournals = stats?.recentJournals ?? [];
 
   return (
     <div className="mx-auto max-w-7xl space-y-6">
@@ -194,15 +434,20 @@ export default function DashboardPage() {
             Keep pushing forward on the mats. Here is your training overview.
           </p>
         </div>
-        <Badge variant="outline" className="w-fit mt-2 sm:mt-0 border-blue-500/30 text-blue-400">
-          <Zap className="mr-1 h-3 w-3" />
-          {beltInfo.current} &middot; {beltInfo.stripe} stripes
-        </Badge>
+        {belt && (
+          <Badge
+            variant="outline"
+            className="w-fit mt-2 sm:mt-0 border-blue-500/30 text-blue-400"
+          >
+            <Zap className="mr-1 h-3 w-3" />
+            {belt}
+          </Badge>
+        )}
       </div>
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {stats.map((stat) => (
+        {statCards.map((stat) => (
           <Card key={stat.label}>
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
@@ -213,10 +458,11 @@ export default function DashboardPage() {
                 </div>
                 <div>
                   <p className="text-xs text-zinc-500">{stat.label}</p>
-                  <p className="text-xl font-bold text-zinc-100">{stat.value}</p>
+                  <p className="text-xl font-bold text-zinc-100">
+                    {stat.value}
+                  </p>
                 </div>
               </div>
-              <p className="mt-2 text-xs text-zinc-500">{stat.change}</p>
             </CardContent>
           </Card>
         ))}
@@ -228,48 +474,86 @@ export default function DashboardPage() {
         <Card className="lg:col-span-3">
           <CardHeader className="pb-2">
             <CardTitle className="text-base">Training Frequency</CardTitle>
-            <CardDescription>Minutes trained per day (last 30 days)</CardDescription>
+            <CardDescription>
+              Minutes trained per day (last 30 days)
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart
-                  data={trainingChartData}
-                  margin={{ top: 5, right: 5, left: -20, bottom: 0 }}
-                >
-                  <defs>
-                    <linearGradient id="trainGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#dc2626" stopOpacity={0.3} />
-                      <stop offset="100%" stopColor="#dc2626" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    stroke="#27272a"
-                    vertical={false}
-                  />
-                  <XAxis
-                    dataKey="date"
-                    tick={{ fontSize: 11, fill: "#71717a" }}
-                    tickLine={false}
-                    axisLine={false}
-                    interval={6}
-                  />
-                  <YAxis
-                    tick={{ fontSize: 11, fill: "#71717a" }}
-                    tickLine={false}
-                    axisLine={false}
-                  />
-                  <Tooltip content={<ChartTooltip />} />
-                  <Area
-                    type="monotone"
-                    dataKey="minutes"
-                    stroke="#dc2626"
-                    strokeWidth={2}
-                    fill="url(#trainGrad)"
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
+              {trainingData.length > 0 ? (
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart
+                    data={trainingData}
+                    margin={{ top: 5, right: 5, left: -20, bottom: 0 }}
+                  >
+                    <defs>
+                      <linearGradient
+                        id="trainGrad"
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="1"
+                      >
+                        <stop
+                          offset="0%"
+                          stopColor="#dc2626"
+                          stopOpacity={0.3}
+                        />
+                        <stop
+                          offset="100%"
+                          stopColor="#dc2626"
+                          stopOpacity={0}
+                        />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      stroke="#27272a"
+                      vertical={false}
+                    />
+                    <XAxis
+                      dataKey="date"
+                      tick={{ fontSize: 11, fill: "#71717a" }}
+                      tickLine={false}
+                      axisLine={false}
+                      interval={6}
+                    />
+                    <YAxis
+                      tick={{ fontSize: 11, fill: "#71717a" }}
+                      tickLine={false}
+                      axisLine={false}
+                    />
+                    <Tooltip content={<ChartTooltip />} />
+                    <Area
+                      type="monotone"
+                      dataKey="duration"
+                      stroke="#dc2626"
+                      strokeWidth={2}
+                      fill="url(#trainGrad)"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              ) : (
+                <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
+                  <Clock className="h-10 w-10 text-zinc-600" />
+                  <div>
+                    <p className="text-sm font-medium text-zinc-400">
+                      No training data yet
+                    </p>
+                    <p className="text-xs text-zinc-500 mt-1">
+                      Start logging sessions to see your progress
+                    </p>
+                  </div>
+                  <Link href="/journal">
+                    <Button
+                      size="sm"
+                      className="mt-1 bg-red-600 hover:bg-red-700 text-white"
+                    >
+                      Log Your First Session
+                    </Button>
+                  </Link>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
@@ -279,64 +563,81 @@ export default function DashboardPage() {
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
               <CardTitle className="text-base">Recent Sessions</CardTitle>
-              <Link
-                href="/journal"
-                className="text-xs text-red-500 hover:text-red-400 flex items-center gap-0.5"
-              >
-                View all <ChevronRight className="h-3 w-3" />
-              </Link>
+              {recentJournals.length > 0 && (
+                <Link
+                  href="/journal"
+                  className="text-xs text-red-500 hover:text-red-400 flex items-center gap-0.5"
+                >
+                  View all <ChevronRight className="h-3 w-3" />
+                </Link>
+              )}
             </div>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {recentSessions.map((session) => (
-                <div
-                  key={session.id}
-                  className="flex items-start gap-3 rounded-lg border border-zinc-800/50 bg-zinc-800/20 p-3"
-                >
-                  <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md bg-zinc-800">
-                    <BookOpen className="h-4 w-4 text-zinc-400" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="truncate text-sm font-medium text-zinc-200">
-                        {session.type}
-                      </p>
-                      <span className="flex-shrink-0 text-xs text-zinc-500">
-                        {session.duration}m
-                      </span>
+            {recentJournals.length > 0 ? (
+              <div className="space-y-3">
+                {recentJournals.map((entry) => (
+                  <div
+                    key={entry.id}
+                    className="flex items-start gap-3 rounded-lg border border-zinc-800/50 bg-zinc-800/20 p-3"
+                  >
+                    <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md bg-zinc-800">
+                      <BookOpen className="h-4 w-4 text-zinc-400" />
                     </div>
-                    <p className="text-xs text-zinc-500 mt-0.5">{session.date}</p>
-                    <p className="mt-1 truncate text-xs text-zinc-400">
-                      {session.notes}
-                    </p>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="truncate text-sm font-medium text-zinc-200">
+                          {entry.trainingType.replace("_", " ")}
+                        </p>
+                        <span className="flex-shrink-0 text-xs text-zinc-500">
+                          {entry.duration}m
+                        </span>
+                      </div>
+                      <p className="text-xs text-zinc-500 mt-0.5">
+                        {new Date(entry.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                      </p>
+                      {entry.workedOn && (
+                        <p className="mt-1 truncate text-xs text-zinc-400">
+                          {entry.workedOn}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <p className="text-sm text-zinc-400 mb-4">
+                  Get started with your BJJ journey
+                </p>
+                {onboardingCards.map((card) => (
+                  <Link key={card.label} href={card.href}>
+                    <div className="flex items-center gap-3 rounded-lg border border-zinc-800/50 bg-zinc-800/20 p-3 transition-colors hover:border-zinc-700 hover:bg-zinc-800/40">
+                      <div
+                        className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md ${card.bg}`}
+                      >
+                        <card.icon className={`h-4 w-4 ${card.color}`} />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-medium text-zinc-200">
+                          {card.label}
+                        </p>
+                        <p className="text-xs text-zinc-500">
+                          {card.description}
+                        </p>
+                      </div>
+                      <ChevronRight className="h-4 w-4 text-zinc-600" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
 
-      {/* Belt Progress */}
-      <Card>
-        <CardContent className="p-4 sm:p-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="space-y-1">
-              <h3 className="text-sm font-medium text-zinc-200">
-                Belt Progression
-              </h3>
-              <p className="text-xs text-zinc-500">
-                {beltInfo.current} &rarr; {beltInfo.nextBelt} &middot;{" "}
-                {beltInfo.progress}% complete
-              </p>
-            </div>
-            <div className="w-full sm:w-64">
-              <Progress value={beltInfo.progress} className="h-2.5" />
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      {/* Quick Log Widget */}
+      <QuickLogWidget />
 
       {/* Quick Actions */}
       <div>

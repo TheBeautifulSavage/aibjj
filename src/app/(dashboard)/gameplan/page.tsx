@@ -31,6 +31,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn, formatDate } from "@/lib/utils";
+import Link from "next/link";
 
 interface GamePlanData {
   id: string;
@@ -61,12 +62,44 @@ const BODY_TYPE_OPTIONS = [
   { value: "heavy-strong", label: "Heavy / Strong" },
 ];
 
-const STYLE_OPTIONS = [
-  { value: "Guard Player", label: "Guard Player" },
-  { value: "Pressure Passer", label: "Pressure Passer" },
-  { value: "Wrestler", label: "Wrestler" },
-  { value: "Berimbolo/Modern", label: "Berimbolo / Modern" },
-  { value: "Submission Hunter", label: "Submission Hunter" },
+const WEIGHT_CLASS_OPTIONS = [
+  "Rooster",
+  "Light Feather",
+  "Feather",
+  "Light",
+  "Middle",
+  "Medium Heavy",
+  "Heavy",
+  "Super Heavy",
+  "Ultra Heavy",
+  "Open",
+];
+
+const STRENGTH_OPTIONS = [
+  "Guard Player",
+  "Passer",
+  "Wrestler",
+  "Leg Locker",
+  "Submission Hunter",
+  "Pressure Player",
+];
+
+const WEAKNESS_OPTIONS = [
+  "Guard Player",
+  "Passer",
+  "Wrestler",
+  "Leg Locker",
+  "Submission Hunter",
+  "Pressure Player",
+];
+
+const GOAL_OPTIONS = ["Competition", "Self-Defense", "Fitness", "Hobbyist"];
+
+const TRAINING_FREQUENCY_OPTIONS = [
+  "1-2x/week",
+  "3-4x/week",
+  "5-6x/week",
+  "Daily",
 ];
 
 const SECTION_CONFIG = [
@@ -140,8 +173,12 @@ export default function GamePlanPage() {
   // Form state
   const [belt, setBelt] = useState("");
   const [weight, setWeight] = useState("");
+  const [weightClass, setWeightClass] = useState("");
   const [bodyType, setBodyType] = useState("");
-  const [style, setStyle] = useState("");
+  const [strengths, setStrengths] = useState<string[]>([]);
+  const [weaknesses, setWeaknesses] = useState<string[]>([]);
+  const [goals, setGoals] = useState<string[]>([]);
+  const [trainingFrequency, setTrainingFrequency] = useState("");
   const [focus, setFocus] = useState("");
 
   const fetchPlans = useCallback(async () => {
@@ -172,14 +209,24 @@ export default function GamePlanPage() {
   }, [fetchPlans]);
 
   const handleGenerate = async () => {
-    if (!belt || !bodyType || !style) return;
+    if (!belt || !bodyType || strengths.length === 0) return;
 
     setGenerating(true);
     try {
       const res = await fetch("/api/gameplan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ belt, weight: weight || undefined, bodyType, style, focus: focus || undefined }),
+        body: JSON.stringify({
+          belt,
+          weight: weight || undefined,
+          weightClass: weightClass || undefined,
+          bodyType,
+          strengths,
+          weaknesses,
+          goals,
+          trainingFrequency: trainingFrequency || undefined,
+          focus: focus || undefined,
+        }),
       });
 
       if (!res.ok) {
@@ -234,10 +281,22 @@ export default function GamePlanPage() {
   const startNewPlan = () => {
     setBelt("");
     setWeight("");
+    setWeightClass("");
     setBodyType("");
-    setStyle("");
+    setStrengths([]);
+    setWeaknesses([]);
+    setGoals([]);
+    setTrainingFrequency("");
     setFocus("");
     setViewMode("form");
+  };
+
+  const toggleArrayValue = (
+    arr: string[],
+    setter: React.Dispatch<React.SetStateAction<string[]>>,
+    value: string
+  ) => {
+    setter(arr.includes(value) ? arr.filter((v) => v !== value) : [...arr, value]);
   };
 
   // ---------- RENDER ----------
@@ -327,6 +386,22 @@ export default function GamePlanPage() {
                   </div>
 
                   <div className="space-y-2">
+                    <Label htmlFor="weightClass">Weight Class</Label>
+                    <Select value={weightClass} onValueChange={setWeightClass}>
+                      <SelectTrigger id="weightClass">
+                        <SelectValue placeholder="Select weight class" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {WEIGHT_CLASS_OPTIONS.map((wc) => (
+                          <SelectItem key={wc} value={wc}>
+                            {wc}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
                     <Label htmlFor="bodyType">Body Type</Label>
                     <Select value={bodyType} onValueChange={setBodyType}>
                       <SelectTrigger id="bodyType">
@@ -343,19 +418,82 @@ export default function GamePlanPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="style">Style Preference</Label>
-                    <Select value={style} onValueChange={setStyle}>
-                      <SelectTrigger id="style">
-                        <SelectValue placeholder="Select style" />
+                    <Label htmlFor="trainingFrequency">Training Frequency</Label>
+                    <Select value={trainingFrequency} onValueChange={setTrainingFrequency}>
+                      <SelectTrigger id="trainingFrequency">
+                        <SelectValue placeholder="Select frequency" />
                       </SelectTrigger>
                       <SelectContent>
-                        {STYLE_OPTIONS.map((opt) => (
-                          <SelectItem key={opt.value} value={opt.value}>
-                            {opt.label}
+                        {TRAINING_FREQUENCY_OPTIONS.map((freq) => (
+                          <SelectItem key={freq} value={freq}>
+                            {freq}
                           </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label>Strengths</Label>
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                    {STRENGTH_OPTIONS.map((opt) => (
+                      <button
+                        key={opt}
+                        type="button"
+                        onClick={() => toggleArrayValue(strengths, setStrengths, opt)}
+                        className={cn(
+                          "rounded-md border px-3 py-2 text-sm font-medium transition-colors",
+                          strengths.includes(opt)
+                            ? "border-red-500 bg-red-500/10 text-red-400"
+                            : "border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600 hover:text-zinc-300"
+                        )}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label>Weaknesses</Label>
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                    {WEAKNESS_OPTIONS.map((opt) => (
+                      <button
+                        key={opt}
+                        type="button"
+                        onClick={() => toggleArrayValue(weaknesses, setWeaknesses, opt)}
+                        className={cn(
+                          "rounded-md border px-3 py-2 text-sm font-medium transition-colors",
+                          weaknesses.includes(opt)
+                            ? "border-orange-500 bg-orange-500/10 text-orange-400"
+                            : "border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600 hover:text-zinc-300"
+                        )}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label>Goals</Label>
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                    {GOAL_OPTIONS.map((opt) => (
+                      <button
+                        key={opt}
+                        type="button"
+                        onClick={() => toggleArrayValue(goals, setGoals, opt)}
+                        className={cn(
+                          "rounded-md border px-3 py-2 text-sm font-medium transition-colors",
+                          goals.includes(opt)
+                            ? "border-green-500 bg-green-500/10 text-green-400"
+                            : "border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600 hover:text-zinc-300"
+                        )}
+                      >
+                        {opt}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
@@ -381,7 +519,7 @@ export default function GamePlanPage() {
                 className="w-full"
                 size="lg"
                 onClick={handleGenerate}
-                disabled={generating || !belt || !bodyType || !style}
+                disabled={generating || !belt || !bodyType || strengths.length === 0}
               >
                 {generating ? (
                   <>
@@ -440,6 +578,10 @@ export default function GamePlanPage() {
                 </div>
               </div>
               <div className="flex gap-2 print:hidden">
+                <Button variant="outline" size="sm" onClick={() => { setViewMode("form"); }}>
+                  <Sparkles className="mr-2 h-4 w-4" />
+                  Regenerate
+                </Button>
                 <Button variant="outline" size="sm" onClick={handlePrint}>
                   <Printer className="mr-2 h-4 w-4" />
                   Print
@@ -526,6 +668,22 @@ export default function GamePlanPage() {
               );
             })}
           </div>
+
+          {/* Recommended Techniques */}
+          <Card className="border-zinc-800 bg-zinc-900/50">
+            <CardContent className="p-6 flex items-center justify-between">
+              <div>
+                <h3 className="text-sm font-semibold text-zinc-200">Recommended Techniques</h3>
+                <p className="mt-1 text-xs text-zinc-500">Browse techniques that match your game plan</p>
+              </div>
+              <Button variant="outline" size="sm" asChild>
+                <Link href="/library">
+                  View in Library
+                  <ChevronRight className="ml-1 h-4 w-4" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       )}
 

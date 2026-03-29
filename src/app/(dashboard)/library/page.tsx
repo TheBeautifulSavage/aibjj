@@ -5,6 +5,7 @@ import {
   Search,
   Filter,
   BookOpen,
+  Bookmark,
   Play,
   ChevronRight,
   X,
@@ -29,6 +30,8 @@ import {
 } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 import {
   TECHNIQUES,
   POSITIONS,
@@ -79,11 +82,58 @@ export default function TechniqueLibraryPage() {
   const [category, setCategory] = useState("All");
   const [belt, setBelt] = useState("All");
   const [techniques, setTechniques] = useState<Technique[]>(TECHNIQUES);
-  const [selectedTechnique, setSelectedTechnique] = useState<Technique | null>(
-    null
-  );
+  const [selectedTechnique, setSelectedTechnique] = useState<Technique | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("all");
+  const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set());
+  const [bookmarkLoading, setBookmarkLoading] = useState<string | null>(null);
+
+  // Fetch bookmarks
+  useEffect(() => {
+    async function fetchBookmarks() {
+      try {
+        const res = await fetch("/api/techniques/bookmark");
+        if (res.ok) {
+          const data = await res.json();
+          setBookmarkedIds(new Set(data.map((b: { techniqueId: string }) => b.techniqueId)));
+        }
+      } catch {
+        // silent
+      }
+    }
+    fetchBookmarks();
+  }, []);
+
+  async function toggleBookmark(e: React.MouseEvent, techniqueId: string) {
+    e.stopPropagation();
+    setBookmarkLoading(techniqueId);
+
+    const isBookmarked = bookmarkedIds.has(techniqueId);
+    try {
+      if (isBookmarked) {
+        await fetch(`/api/techniques/bookmark?techniqueId=${techniqueId}`, {
+          method: "DELETE",
+        });
+        setBookmarkedIds((prev) => {
+          const next = new Set(prev);
+          next.delete(techniqueId);
+          return next;
+        });
+      } else {
+        await fetch("/api/techniques/bookmark", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ techniqueId }),
+        });
+        setBookmarkedIds((prev) => new Set(prev).add(techniqueId));
+      }
+    } catch {
+      // silent
+    } finally {
+      setBookmarkLoading(null);
+    }
+  }
 
   // Fetch techniques from API
   const fetchTechniques = useCallback(async () => {
@@ -101,51 +151,42 @@ export default function TechniqueLibraryPage() {
         setTechniques(data);
       }
     } catch {
-      // Fallback to client-side filtering if API fails
       clientFilter();
     } finally {
       setLoading(false);
     }
   }, [position, category, belt, searchQuery]);
 
-  // Client-side filter fallback
   const clientFilter = useCallback(() => {
     let filtered = [...TECHNIQUES];
-    if (position !== "All") {
-      filtered = filtered.filter((t) => t.position === position);
-    }
-    if (category !== "All") {
-      filtered = filtered.filter((t) => t.category === category);
-    }
-    if (belt !== "All") {
-      filtered = filtered.filter((t) => t.beltLevel === belt);
-    }
+    if (position !== "All") filtered = filtered.filter((t) => t.position === position);
+    if (category !== "All") filtered = filtered.filter((t) => t.category === category);
+    if (belt !== "All") filtered = filtered.filter((t) => t.beltLevel === belt);
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       filtered = filtered.filter(
-        (t) =>
-          t.name.toLowerCase().includes(q) ||
-          t.description.toLowerCase().includes(q)
+        (t) => t.name.toLowerCase().includes(q) || t.description.toLowerCase().includes(q)
       );
     }
     setTechniques(filtered);
   }, [position, category, belt, searchQuery]);
 
-  // Debounced search via API
   useEffect(() => {
-    const timer = setTimeout(() => {
-      fetchTechniques();
-    }, 300);
+    const timer = setTimeout(() => fetchTechniques(), 300);
     return () => clearTimeout(timer);
   }, [fetchTechniques]);
 
-  // Get related techniques for the detail view
   const relatedTechniques = useMemo(() => {
     if (!selectedTechnique?.relatedTechniqueIds) return [];
-    return TECHNIQUES.filter((t) =>
-      selectedTechnique.relatedTechniqueIds?.includes(t.id)
-    );
+    return TECHNIQUES.filter((t) => selectedTechnique.relatedTechniqueIds?.includes(t.id));
   }, [selectedTechnique]);
+
+  const displayedTechniques = useMemo(() => {
+    if (activeTab === "saved") {
+      return techniques.filter((t) => bookmarkedIds.has(t.id));
+    }
+    return techniques;
+  }, [activeTab, techniques, bookmarkedIds]);
 
   const openDetail = (technique: Technique) => {
     setSelectedTechnique(technique);
@@ -160,10 +201,7 @@ export default function TechniqueLibraryPage() {
   };
 
   const hasActiveFilters =
-    position !== "All" ||
-    category !== "All" ||
-    belt !== "All" ||
-    searchQuery.trim() !== "";
+    position !== "All" || category !== "All" || belt !== "All" || searchQuery.trim() !== "";
 
   return (
     <div className="space-y-6">
@@ -174,8 +212,7 @@ export default function TechniqueLibraryPage() {
             Technique Library
           </h1>
           <p className="text-sm text-zinc-400 mt-1">
-            Browse and study {TECHNIQUES.length} BJJ techniques across all
-            positions
+            Browse and study {TECHNIQUES.length} BJJ techniques across all positions
           </p>
         </div>
         <div className="relative w-full sm:w-80">
@@ -197,6 +234,19 @@ export default function TechniqueLibraryPage() {
         </div>
       </div>
 
+      {/* Tabs: All / Saved */}
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <TabsList className="bg-zinc-900 border border-zinc-800">
+          <TabsTrigger value="all" className="data-[state=active]:bg-zinc-800">
+            All Techniques
+          </TabsTrigger>
+          <TabsTrigger value="saved" className="data-[state=active]:bg-zinc-800">
+            <Bookmark className="h-3.5 w-3.5 mr-1.5" />
+            Saved ({bookmarkedIds.size})
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
+
       {/* Filter Bar */}
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2 text-zinc-400">
@@ -211,9 +261,7 @@ export default function TechniqueLibraryPage() {
           <SelectContent>
             <SelectItem value="All">All Positions</SelectItem>
             {POSITIONS.map((p) => (
-              <SelectItem key={p} value={p}>
-                {p}
-              </SelectItem>
+              <SelectItem key={p} value={p}>{p}</SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -225,9 +273,7 @@ export default function TechniqueLibraryPage() {
           <SelectContent>
             <SelectItem value="All">All Categories</SelectItem>
             {CATEGORIES.map((c) => (
-              <SelectItem key={c} value={c}>
-                {c}
-              </SelectItem>
+              <SelectItem key={c} value={c}>{c}</SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -241,9 +287,7 @@ export default function TechniqueLibraryPage() {
             {BELT_LEVELS.map((b) => (
               <SelectItem key={b} value={b}>
                 <span className="flex items-center gap-2">
-                  <span
-                    className={`inline-block h-3 w-3 rounded-full ${BELT_COLORS[b]}`}
-                  />
+                  <span className={`inline-block h-3 w-3 rounded-full ${BELT_COLORS[b]}`} />
                   {b.charAt(0) + b.slice(1).toLowerCase()}
                 </span>
               </SelectItem>
@@ -264,7 +308,7 @@ export default function TechniqueLibraryPage() {
         )}
 
         <span className="ml-auto text-sm text-zinc-500">
-          {techniques.length} technique{techniques.length !== 1 ? "s" : ""}
+          {displayedTechniques.length} technique{displayedTechniques.length !== 1 ? "s" : ""}
         </span>
       </div>
 
@@ -287,17 +331,18 @@ export default function TechniqueLibraryPage() {
             </Card>
           ))}
         </div>
-      ) : techniques.length === 0 ? (
+      ) : displayedTechniques.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <BookOpen className="h-12 w-12 text-zinc-600 mb-4" />
           <h3 className="text-lg font-medium text-zinc-300">
-            No techniques found
+            {activeTab === "saved" ? "No saved techniques" : "No techniques found"}
           </h3>
           <p className="text-sm text-zinc-500 mt-1 max-w-sm">
-            Try adjusting your filters or search query to find what you are
-            looking for.
+            {activeTab === "saved"
+              ? "Bookmark techniques to save them here for quick access."
+              : "Try adjusting your filters or search query."}
           </p>
-          {hasActiveFilters && (
+          {hasActiveFilters && activeTab !== "saved" && (
             <Button
               variant="outline"
               size="sm"
@@ -310,13 +355,32 @@ export default function TechniqueLibraryPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {techniques.map((technique) => (
+          {displayedTechniques.map((technique) => (
             <Card
               key={technique.id}
-              className="border-zinc-800 bg-zinc-900/50 hover:bg-zinc-900 hover:border-zinc-700 transition-all cursor-pointer group"
+              className="border-zinc-800 bg-zinc-900/50 hover:bg-zinc-900 hover:border-zinc-700 transition-all cursor-pointer group relative"
               onClick={() => openDetail(technique)}
             >
-              <CardHeader className="pb-3">
+              {/* Bookmark button */}
+              <button
+                onClick={(e) => toggleBookmark(e, technique.id)}
+                disabled={bookmarkLoading === technique.id}
+                className={cn(
+                  "absolute top-3 right-3 z-10 p-1.5 rounded-md transition-all",
+                  bookmarkedIds.has(technique.id)
+                    ? "text-red-400 bg-red-500/10 hover:bg-red-500/20"
+                    : "text-zinc-600 hover:text-zinc-400 hover:bg-zinc-800 opacity-0 group-hover:opacity-100"
+                )}
+              >
+                <Bookmark
+                  className={cn(
+                    "h-4 w-4",
+                    bookmarkedIds.has(technique.id) && "fill-red-400"
+                  )}
+                />
+              </button>
+
+              <CardHeader className="pb-3 pr-10">
                 <div className="flex items-start justify-between gap-2">
                   <CardTitle className="text-base font-semibold text-zinc-100 group-hover:text-red-400 transition-colors leading-tight">
                     {technique.name}
@@ -373,12 +437,30 @@ export default function TechniqueLibraryPage() {
                         {selectedTechnique.description}
                       </DialogDescription>
                     </div>
-                    <span
-                      className={`flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-full text-xs font-bold ${BELT_COLORS[selectedTechnique.beltLevel]} ${BELT_TEXT_COLORS[selectedTechnique.beltLevel]}`}
-                    >
-                      {selectedTechnique.beltLevel.charAt(0) +
-                        selectedTechnique.beltLevel.slice(1).toLowerCase()}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={(e) => toggleBookmark(e, selectedTechnique.id)}
+                        className={cn(
+                          "p-2 rounded-lg transition-all",
+                          bookmarkedIds.has(selectedTechnique.id)
+                            ? "text-red-400 bg-red-500/10"
+                            : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800"
+                        )}
+                      >
+                        <Bookmark
+                          className={cn(
+                            "h-5 w-5",
+                            bookmarkedIds.has(selectedTechnique.id) && "fill-red-400"
+                          )}
+                        />
+                      </button>
+                      <span
+                        className={`flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-full text-xs font-bold ${BELT_COLORS[selectedTechnique.beltLevel]} ${BELT_TEXT_COLORS[selectedTechnique.beltLevel]}`}
+                      >
+                        {selectedTechnique.beltLevel.charAt(0) +
+                          selectedTechnique.beltLevel.slice(1).toLowerCase()}
+                      </span>
+                    </div>
                   </div>
                   <div className="flex flex-wrap gap-2 mt-3">
                     <Badge
@@ -403,12 +485,10 @@ export default function TechniqueLibraryPage() {
                   <div className="flex h-14 w-14 items-center justify-center rounded-full bg-zinc-800 border border-zinc-700">
                     <Play className="h-6 w-6 text-red-500 ml-0.5" />
                   </div>
-                  <p className="text-sm text-zinc-500">
-                    Video tutorial coming soon
-                  </p>
+                  <p className="text-sm text-zinc-500">Video tutorial coming soon</p>
                 </div>
 
-                {/* Step by Step Instructions */}
+                {/* Steps */}
                 <div>
                   <h3 className="text-sm font-semibold text-zinc-200 uppercase tracking-wider mb-3 flex items-center gap-2">
                     <BookOpen className="h-4 w-4 text-red-500" />
@@ -438,13 +518,8 @@ export default function TechniqueLibraryPage() {
                     </h3>
                     <ul className="space-y-2">
                       {selectedTechnique.tips.map((tip, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-start gap-2 text-sm text-zinc-400"
-                        >
-                          <span className="text-red-500 mt-1 flex-shrink-0">
-                            &bull;
-                          </span>
+                        <li key={idx} className="flex items-start gap-2 text-sm text-zinc-400">
+                          <span className="text-red-500 mt-1 flex-shrink-0">&bull;</span>
                           {tip}
                         </li>
                       ))}
@@ -452,7 +527,7 @@ export default function TechniqueLibraryPage() {
                   </div>
                 )}
 
-                {/* Related Techniques */}
+                {/* Related */}
                 {relatedTechniques.length > 0 && (
                   <>
                     <Separator className="bg-zinc-800" />
@@ -467,9 +542,7 @@ export default function TechniqueLibraryPage() {
                             onClick={() => setSelectedTechnique(rt)}
                             className="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/50 p-3 text-left hover:bg-zinc-900 hover:border-zinc-700 transition-all group"
                           >
-                            <span
-                              className={`flex-shrink-0 h-5 w-5 rounded-full ${BELT_COLORS[rt.beltLevel]}`}
-                            />
+                            <span className={`flex-shrink-0 h-5 w-5 rounded-full ${BELT_COLORS[rt.beltLevel]}`} />
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-medium text-zinc-200 group-hover:text-red-400 transition-colors truncate">
                                 {rt.name}

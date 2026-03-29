@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { BJJ_FANATICS_CREATORS } from "@/lib/bjj-fanatics-creators";
 import {
   Brain,
   BookOpen,
@@ -310,12 +311,12 @@ export default function Home() {
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button size="lg" className="w-full sm:w-auto text-base px-8" asChild>
                 <Link href="/auth/signup">
-                  Start Training Free
+                  Start Free — No Credit Card
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button variant="outline" size="lg" className="w-full sm:w-auto text-base px-8" asChild>
-                <Link href="#how-it-works">Watch Demo</Link>
+                <Link href="/creator-setup">Claim Your Creator Page</Link>
               </Button>
             </div>
 
@@ -328,6 +329,38 @@ export default function Home() {
                   <span className="text-sm text-zinc-500">{stat.label}</span>
                 </div>
               ))}
+            </div>
+
+            {/* Comparison Table */}
+            <div className="mx-auto mt-20 max-w-2xl">
+              <h3 className="text-center text-lg font-bold text-zinc-300 mb-6">Why Creators Choose AIBJJ</h3>
+              <div className="overflow-hidden rounded-xl border border-zinc-800">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-zinc-800 bg-zinc-900/80">
+                      <th className="px-6 py-3 text-left font-medium text-zinc-400">Feature</th>
+                      <th className="px-6 py-3 text-center font-bold text-red-500">AIBJJ</th>
+                      <th className="px-6 py-3 text-center font-medium text-zinc-500">BJJ Fanatics</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-zinc-800/50">
+                    {[
+                      ["Platform Fee", "15%", "40-50%"],
+                      ["Custom Website", "✅ Free", "❌"],
+                      ["AI Blog", "✅ Included", "❌"],
+                      ["Custom Domain", "✅ $29/mo", "❌"],
+                      ["AI Coach", "✅ Included", "❌"],
+                      ["Technique Library", "✅ 510+", "❌"],
+                    ].map(([feature, aibjj, fanatics]) => (
+                      <tr key={feature} className="bg-zinc-950/50 hover:bg-zinc-900/50 transition-colors">
+                        <td className="px-6 py-3 font-medium text-zinc-300">{feature}</td>
+                        <td className="px-6 py-3 text-center font-semibold text-green-400">{aibjj}</td>
+                        <td className="px-6 py-3 text-center text-zinc-500">{fanatics}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -370,6 +403,45 @@ export default function Home() {
                   <CardDescription className="text-sm leading-relaxed">
                     {feature.description}
                   </CardDescription>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------------------- */}
+      {/* Social Proof / Featured Creators                                  */}
+      {/* ----------------------------------------------------------------- */}
+      <section className="relative border-t border-zinc-800/60 py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-widest text-red-500">Built for Champions</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Trusted by the best in BJJ</h2>
+            <p className="mt-4 text-lg text-zinc-400">World-class athletes and coaches are building their platforms on AIBJJ.</p>
+          </div>
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {BJJ_FANATICS_CREATORS.slice(0, 8).map((creator) => (
+              <Card key={creator.username} className="group border-zinc-800/60 bg-zinc-900/50 hover:border-red-900/40 transition-all">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-red-600 to-red-800 text-sm font-bold text-white">
+                      {creator.name.split(" ").map(n => n[0]).join("")}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-zinc-100 group-hover:text-red-400 transition-colors">{creator.name}</p>
+                      <div className="flex items-center gap-1.5">
+                        <span className={`inline-block h-2 w-2 rounded-full ${creator.belt === "BLACK" ? "bg-zinc-800 ring-1 ring-zinc-500" : "bg-amber-700"}`} />
+                        <span className="text-xs text-zinc-500">{creator.belt.charAt(0) + creator.belt.slice(1).toLowerCase()} Belt</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="mt-3 line-clamp-2 text-xs text-zinc-500">{creator.bio}</p>
+                  <div className="mt-3 flex flex-wrap gap-1">
+                    {creator.specialties.slice(0, 2).map(s => (
+                      <span key={s} className="rounded-full bg-zinc-800 px-2 py-0.5 text-[10px] text-zinc-400">{s}</span>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             ))}
