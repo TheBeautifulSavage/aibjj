@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
+import { sendWelcomeEmail } from "@/lib/email";
 
 export async function POST(request: Request) {
   try {
@@ -35,6 +36,9 @@ export async function POST(request: Request) {
         belt: belt || "WHITE",
       },
     });
+
+    // Send welcome email (non-blocking)
+    sendWelcomeEmail(user.email!, user.name || "Practitioner").catch(console.error);
 
     return NextResponse.json({
       id: user.id,

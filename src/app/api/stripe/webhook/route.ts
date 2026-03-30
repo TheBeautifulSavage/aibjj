@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
+import { sendCoursePurchaseEmail, sendCreatorSaleEmail } from "@/lib/email";
 import Stripe from "stripe";
 
 export const runtime = "nodejs";
@@ -73,6 +74,27 @@ export async function POST(req: NextRequest) {
         );
 
         const priceId = subscription.items.data[0]?.price.id;
+
+        // Handle course purchase emails
+        if (planType === "COURSE_PURCHASE") {
+          const courseId = session.metadata?.courseId;
+          const buyerEmail = session.customer_details?.email;
+          if (courseId && buyerEmail) {
+            const course = await prisma.course.findUnique({
+              where: { id: courseId },
+              include: { creator: { select: { name: true, email: true } } }
+            });
+            if (course) {
+              const amount = (session.amount_total || 0) / 100;
+              const buyer = await prisma.user.findUnique({ where: { id: userId }, select: { name: true, email: true } });
+              sendCoursePurchaseEmail(buyerEmail, buyer?.name || "Student", course.title, course.creator?.name || "Instructor", amount).catch(console.error);
+              if (course.creator?.email) {
+                sendCreatorSaleEmail(course.creator.email, course.creator.name || "Creator", course.title, buyer?.name || "Student", amount).catch(console.error);
+              }
+            }
+          }
+          break;
+        }
 
         // Handle creator plans
         if (planType === "CREATOR_PRO" || planType === "CREATOR_ELITE") {
