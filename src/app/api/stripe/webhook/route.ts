@@ -69,23 +69,33 @@ export async function POST(req: NextRequest) {
           break;
         }
 
-        const subscription = await stripe.subscriptions.retrieve(
-          session.subscription as string
-        );
-
-        const priceId = subscription.items.data[0]?.price.id;
-
-        // Handle course purchase emails
+        // Handle course purchase (one-time payment, no subscription)
         if (planType === "COURSE_PURCHASE") {
           const courseId = session.metadata?.courseId;
           const buyerEmail = session.customer_details?.email;
+          const amount = (session.amount_total || 0) / 100;
+
+          // Create purchase record
+          if (courseId) {
+            await prisma.purchase.upsert({
+              where: { userId_courseId: { userId, courseId } },
+              update: { amount, stripePaymentId: session.payment_intent as string },
+              create: {
+                userId,
+                courseId,
+                amount,
+                stripePaymentId: session.payment_intent as string,
+              },
+            });
+          }
+
+          // Send emails
           if (courseId && buyerEmail) {
             const course = await prisma.course.findUnique({
               where: { id: courseId },
               include: { creator: { select: { name: true, email: true } } }
             });
             if (course) {
-              const amount = (session.amount_total || 0) / 100;
               const buyer = await prisma.user.findUnique({ where: { id: userId }, select: { name: true, email: true } });
               sendCoursePurchaseEmail(buyerEmail, buyer?.name || "Student", course.title, course.creator?.name || "Instructor", amount).catch(console.error);
               if (course.creator?.email) {
@@ -95,6 +105,12 @@ export async function POST(req: NextRequest) {
           }
           break;
         }
+
+        // For subscription-based plans, retrieve the subscription
+        const subscription = await stripe.subscriptions.retrieve(
+          session.subscription as string
+        );
+        const priceId = subscription.items.data[0]?.price.id;
 
         // Handle creator plans
         if (planType === "CREATOR_PRO" || planType === "CREATOR_ELITE") {

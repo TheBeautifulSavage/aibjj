@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   Search,
   Star,
@@ -13,6 +14,7 @@ import {
   Lock,
   Globe,
   Upload,
+  Loader2,
 } from "lucide-react";
 import {
   Card,
@@ -157,12 +159,14 @@ function SkeletonCard() {
 // ---------- Main Page ----------
 
 export default function MarketplacePage() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortBy, setSortBy] = useState("popular");
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const [enrolling, setEnrolling] = useState(false);
 
   const fetchCourses = useCallback(async () => {
     setLoading(true);
@@ -600,20 +604,41 @@ export default function MarketplacePage() {
             <DialogFooter className="gap-2 sm:gap-0">
               <div className="flex items-center gap-2 mr-auto">
                 <span className="text-2xl font-bold text-zinc-100">
-                  ${selectedCourse.price}
+                  {selectedCourse.price === 0
+                    ? "Free"
+                    : `$${selectedCourse.price}`}
                 </span>
               </div>
-              <div className="relative group/buy">
-                <Button
-                  disabled
-                  className="bg-red-600 text-white opacity-60 cursor-not-allowed"
-                >
-                  Purchase Course
-                </Button>
-                <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-zinc-800 border border-zinc-700 px-3 py-1.5 text-xs text-zinc-300 opacity-0 group-hover/buy:opacity-100 transition-opacity pointer-events-none">
-                  Coming Soon — Stripe setup required
-                </div>
-              </div>
+              <Button
+                onClick={async () => {
+                  setEnrolling(true);
+                  try {
+                    const res = await fetch(
+                      `/api/courses/${selectedCourse.id}/enroll`,
+                      { method: "POST" }
+                    );
+                    const data = await res.json();
+                    if (data.checkoutUrl) {
+                      window.location.href = data.checkoutUrl;
+                    } else if (data.redirect) {
+                      router.push(data.redirect);
+                    }
+                  } catch {
+                    // handle error
+                  } finally {
+                    setEnrolling(false);
+                  }
+                }}
+                disabled={enrolling}
+                className="bg-red-600 hover:bg-red-700 text-white"
+              >
+                {enrolling ? (
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                ) : (
+                  <Play className="h-4 w-4 mr-2" />
+                )}
+                {selectedCourse.price === 0 ? "Enroll Free" : "Enroll Now"}
+              </Button>
             </DialogFooter>
           </DialogContent>
         )}

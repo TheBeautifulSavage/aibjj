@@ -21,6 +21,7 @@ import {
   User,
   Download,
   TrendingUp,
+  PlayCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GlobalAIPrompt from "@/components/GlobalAIPrompt";
@@ -34,6 +35,7 @@ const navigation = [
   { name: "Techniques", href: "/library", icon: Library },
   { name: "Game Plan", href: "/gameplan", icon: Target },
   { name: "Progress", href: "/progress", icon: TrendingUp },
+  { name: "My Courses", href: "/my-courses", icon: PlayCircle },
   { name: "Marketplace", href: "/marketplace", icon: ShoppingBag },
   { name: "Import", href: "/import", icon: Download },
 ];
