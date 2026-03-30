@@ -132,13 +132,38 @@ const mockRecentSales = [
 
 export default function CreatorDashboard() {
   const [username, setUsername] = useState<string | null>(null);
+  const [connectStatus, setConnectStatus] = useState<{
+    connected: boolean;
+    chargesEnabled: boolean;
+    payoutsEnabled: boolean;
+    accountId: string | null;
+  } | null>(null);
+  const [connectLoading, setConnectLoading] = useState(false);
 
   useEffect(() => {
     fetch("/api/creator/profile")
       .then((r) => r.json())
       .then((d) => setUsername(d.username))
       .catch(() => {});
+
+    fetch("/api/stripe/connect/status")
+      .then((r) => r.json())
+      .then((d) => setConnectStatus(d))
+      .catch(() => {});
   }, []);
+
+  const handleConnectBank = async () => {
+    setConnectLoading(true);
+    try {
+      const res = await fetch("/api/stripe/connect/onboard", { method: "POST" });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch {
+      setConnectLoading(false);
+    }
+  };
 
   const hasCourses = mockCourses.length > 0;
 
@@ -243,6 +268,65 @@ export default function CreatorDashboard() {
           </Card>
         </Link>
       </div>
+
+      {/* Payouts Section */}
+      <Card className="border-zinc-800">
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <DollarSign className="h-5 w-5 text-zinc-400" />
+            <CardTitle className="text-base">Payouts</CardTitle>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {!connectStatus || (!connectStatus.connected && !connectStatus.chargesEnabled) ? (
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="space-y-1">
+                <p className="text-sm text-zinc-200 font-medium">Set up payouts to get paid</p>
+                <p className="text-sm text-zinc-400 max-w-lg">
+                  Connect your bank account to receive 85% of every sale directly. AIBJJ takes 15% — compared to BJJ Fanatics which takes 40-50%.
+                </p>
+              </div>
+              <Button
+                onClick={handleConnectBank}
+                disabled={connectLoading}
+                className="bg-red-600 hover:bg-red-700 text-white shrink-0"
+              >
+                <DollarSign className="mr-2 h-4 w-4" />
+                {connectLoading ? "Redirecting..." : "Connect Bank Account"}
+              </Button>
+            </div>
+          ) : connectStatus.connected && !connectStatus.chargesEnabled ? (
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-600/10">
+                <DollarSign className="h-5 w-5 text-yellow-500" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-yellow-400">Verification in progress</p>
+                <p className="text-xs text-zinc-500">
+                  Stripe is reviewing your account. This usually takes 1-2 business days.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-600/10">
+                  <DollarSign className="h-5 w-5 text-green-500" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-green-400">Payouts Active</p>
+                  <p className="text-xs text-zinc-500">
+                    Your earnings are deposited automatically within 2 business days.
+                  </p>
+                </div>
+              </div>
+              <Badge className="bg-green-600/20 text-green-400 border-green-800 w-fit">
+                Connected
+              </Badge>
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {!hasCourses ? (
         <Card className="border-zinc-800">

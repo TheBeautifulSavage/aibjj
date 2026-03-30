@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
+import Stripe from "stripe";
 
 export async function POST(
   request: Request,
@@ -74,7 +75,10 @@ export async function POST(
       select: { email: true, stripeCustomerId: true },
     });
 
-    const checkoutSession = await stripe.checkout.sessions.create({
+    const unitAmount = Math.round(course.price * 100);
+
+    // Build checkout session options
+    const checkoutParams: Stripe.Checkout.SessionCreateParams = {
       mode: "payment",
       customer_email: user?.stripeCustomerId ? undefined : (user?.email || undefined),
       customer: user?.stripeCustomerId || undefined,
@@ -86,7 +90,7 @@ export async function POST(
               name: course.title,
               description: `BJJ Course by ${course.creator.name}`,
             },
-            unit_amount: Math.round(course.price * 100),
+            unit_amount: unitAmount,
           },
           quantity: 1,
         },
@@ -98,7 +102,20 @@ export async function POST(
       },
       success_url: `${process.env.NEXTAUTH_URL}/courses/${course.id}?enrolled=true`,
       cancel_url: `${process.env.NEXTAUTH_URL}/marketplace`,
-    });
+    };
+
+    // If creator has Stripe Connect, use transfer with 15% platform fee
+    if (course.creator.stripeConnectId) {
+      const applicationFee = Math.round(unitAmount * 0.15);
+      checkoutParams.payment_intent_data = {
+        application_fee_amount: applicationFee,
+        transfer_data: {
+          destination: course.creator.stripeConnectId,
+        },
+      };
+    }
+
+    const checkoutSession = await stripe.checkout.sessions.create(checkoutParams);
 
     return NextResponse.json({ checkoutUrl: checkoutSession.url });
   } catch (error) {

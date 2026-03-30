@@ -101,6 +101,7 @@ model User {
   stripeCustomerId String?         @unique
   stripeSubscriptionId String?     @unique
   stripeConnectId  String?         @unique
+  stripeConnectStatus String?      @default("pending")
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
 
