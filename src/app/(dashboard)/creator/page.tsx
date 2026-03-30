@@ -138,7 +138,7 @@ export default function CreatorDashboard() {
     payoutsEnabled: boolean;
     accountId: string | null;
   } | null>(null);
-  const [connectLoading, setConnectLoading] = useState(false);
+  // connectLoading removed
 
   useEffect(() => {
     fetch("/api/creator/profile")
@@ -152,18 +152,7 @@ export default function CreatorDashboard() {
       .catch(() => {});
   }, []);
 
-  const handleConnectBank = async () => {
-    setConnectLoading(true);
-    try {
-      const res = await fetch("/api/stripe/connect/onboard", { method: "POST" });
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      }
-    } catch {
-      setConnectLoading(false);
-    }
-  };
+
 
   const hasCourses = mockCourses.length > 0;
 
