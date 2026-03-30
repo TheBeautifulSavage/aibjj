@@ -61,6 +61,7 @@ export async function POST(req: NextRequest) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
         const userId = session.metadata?.userId;
+        const planType = session.metadata?.planType;
 
         if (!userId) {
           console.error("[STRIPE_WEBHOOK] No userId in session metadata");
@@ -73,6 +74,21 @@ export async function POST(req: NextRequest) {
 
         const priceId = subscription.items.data[0]?.price.id;
 
+        // Handle creator plans
+        if (planType === "CREATOR_PRO" || planType === "CREATOR_ELITE") {
+          const creatorTier = planType === "CREATOR_ELITE" ? "ELITE" : "PRO";
+          await prisma.user.update({
+            where: { id: userId },
+            data: {
+              creatorTier,
+              creatorStripeSubscriptionId: subscription.id,
+              stripeCustomerId: session.customer as string,
+            },
+          });
+          break;
+        }
+
+        // Handle student plans
         const tier =
           priceId === process.env.STRIPE_ANNUAL_PRICE_ID ? "ANNUAL" : "PRO";
 
@@ -143,6 +159,23 @@ export async function POST(req: NextRequest) {
         const subscription = event.data.object as Stripe.Subscription;
         const userId = subscription.metadata?.userId;
 
+        // Check if this is a creator subscription
+        const isCreatorSub = await prisma.user.findFirst({
+          where: { creatorStripeSubscriptionId: subscription.id },
+        });
+
+        if (isCreatorSub) {
+          await prisma.user.update({
+            where: { id: isCreatorSub.id },
+            data: {
+              creatorTier: "FREE",
+              creatorStripeSubscriptionId: null,
+            },
+          });
+          break;
+        }
+
+        // Handle student subscription deletion
         if (userId) {
           await prisma.user.update({
             where: { id: userId },
@@ -152,7 +185,6 @@ export async function POST(req: NextRequest) {
             },
           });
         } else {
-          // Fallback: look up user by stripeCustomerId
           const user = await prisma.user.findFirst({
             where: { stripeCustomerId: subscription.customer as string },
           });

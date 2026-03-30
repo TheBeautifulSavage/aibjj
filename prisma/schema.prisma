@@ -96,6 +96,7 @@ model User {
   academyLogo     String?
   verified        Boolean          @default(false)
   creatorTier     String?          @default("FREE")
+  creatorStripeSubscriptionId String? @unique
   subscriptionTier SubscriptionTier @default(FREE)
   stripeCustomerId String?         @unique
   stripeSubscriptionId String?     @unique

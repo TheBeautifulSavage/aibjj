@@ -521,12 +521,12 @@ export default function PricingPage() {
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Teach BJJ. Keep{" "}
               <span className="bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
-                85%
+                85-92%
               </span>{" "}
               of Your Sales.
             </h2>
             <p className="mt-4 text-lg text-zinc-400">
-              BJJ Fanatics takes 40-50% of your revenue. We take 15%. Upload courses for free,
+              BJJ Fanatics takes 40-50% of your revenue. We take as little as 8%. Upload courses for free,
               get your own subdomain, and start earning from day one.
             </p>
           </div>
@@ -538,7 +538,7 @@ export default function PricingPage() {
                 <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-lg bg-zinc-800 text-zinc-400">
                   <Shield className="h-5 w-5" />
                 </div>
-                <CardTitle className="text-xl font-bold">Creator Free</CardTitle>
+                <CardTitle className="text-xl font-bold">Free Creator</CardTitle>
                 <div className="mt-3 flex items-baseline gap-1">
                   <span className="text-5xl font-black text-white">$0</span>
                   <span className="text-zinc-500">/month</span>
@@ -554,11 +554,11 @@ export default function PricingPage() {
               <CardContent className="flex-1 pt-6">
                 <ul className="space-y-3">
                   {[
-                    "Your own subdomain (you.aibjj.com)",
+                    "Your subdomain (username.aibjj.com)",
                     "1 page template",
                     "Unlimited course uploads",
-                    "15% platform fee on sales",
-                    "Student analytics",
+                    "AI blog",
+                    "Basic analytics",
                     "Instant payouts via Stripe",
                   ].map((f) => (
                     <li key={f} className="flex items-start gap-3 text-sm text-zinc-300">
@@ -571,7 +571,7 @@ export default function PricingPage() {
               <CardFooter className="pt-2">
                 <Button className="w-full text-base font-semibold" variant="outline" size="lg" asChild>
                   <Link href="/creator-setup">
-                    Start for Free
+                    Claim Your Free Page
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -587,7 +587,7 @@ export default function PricingPage() {
                 <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-lg bg-red-600/10 text-red-500">
                   <Zap className="h-5 w-5" />
                 </div>
-                <CardTitle className="text-xl font-bold">Creator Pro</CardTitle>
+                <CardTitle className="text-xl font-bold">Pro Creator</CardTitle>
                 <div className="mt-3 flex items-baseline gap-1">
                   <span className="text-5xl font-black text-white">$29</span>
                   <span className="text-zinc-500">/month</span>
@@ -601,16 +601,14 @@ export default function PricingPage() {
               </CardHeader>
               <Separator className="bg-zinc-800/60" />
               <CardContent className="flex-1 pt-6">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">Everything in Free, plus:</p>
                 <ul className="space-y-3">
                   {[
-                    "Custom domain (youracademy.com)",
+                    "Custom domain (yourdomain.com)",
                     "All 3 page templates",
-                    "No AIBJJ branding",
-                    "10% platform fee on sales",
+                    "Remove AIBJJ branding",
                     "Priority support",
                     "Advanced analytics",
-                    "Email collection",
-                    "Unlimited course uploads",
                   ].map((f) => (
                     <li key={f} className="flex items-start gap-3 text-sm text-zinc-300">
                       <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-500" />
@@ -621,7 +619,7 @@ export default function PricingPage() {
               </CardContent>
               <CardFooter className="pt-2">
                 <Button className="w-full text-base font-semibold bg-red-600 text-white shadow-lg shadow-red-900/30 hover:bg-red-700" size="lg" asChild>
-                  <Link href="/creator-setup">
+                  <Link href="/auth/signup?plan=creator_pro">
                     Go Pro
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -629,36 +627,34 @@ export default function PricingPage() {
               </CardFooter>
             </Card>
 
-            {/* AGENCY Creator */}
+            {/* ELITE Creator */}
             <Card className="relative flex flex-col border-zinc-800/60 bg-zinc-900/50 hover:border-zinc-700 transition-all">
               <CardHeader className="pb-4">
                 <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-lg bg-zinc-800 text-zinc-400">
                   <Crown className="h-5 w-5" />
                 </div>
-                <CardTitle className="text-xl font-bold">Agency</CardTitle>
+                <CardTitle className="text-xl font-bold">Elite Creator</CardTitle>
                 <div className="mt-3 flex items-baseline gap-1">
-                  <span className="text-5xl font-black text-white">$99</span>
+                  <span className="text-5xl font-black text-white">$97</span>
                   <span className="text-zinc-500">/month</span>
                 </div>
                 <Badge variant="outline" className="mt-2 w-fit border-green-600/40 bg-green-600/10 text-green-400">
                   8% platform fee
                 </Badge>
                 <CardDescription className="mt-2">
-                  For academies and multi-instructor teams
+                  Full white-label for top-tier instructors
                 </CardDescription>
               </CardHeader>
               <Separator className="bg-zinc-800/60" />
               <CardContent className="flex-1 pt-6">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">Everything in Pro, plus:</p>
                 <ul className="space-y-3">
                   {[
                     "3 custom domains",
-                    "White-label (fully your brand)",
-                    "Custom CSS styling",
+                    "Full white-label (your brand only)",
+                    "Custom CSS",
                     "API access",
-                    "8% platform fee on sales",
                     "Dedicated account manager",
-                    "Multi-instructor support",
-                    "Revenue splitting",
                   ].map((f) => (
                     <li key={f} className="flex items-start gap-3 text-sm text-zinc-300">
                       <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-500" />
@@ -669,13 +665,76 @@ export default function PricingPage() {
               </CardContent>
               <CardFooter className="pt-2">
                 <Button className="w-full text-base font-semibold" variant="outline" size="lg" asChild>
-                  <Link href="/creator-setup">
-                    Contact Sales
+                  <Link href="/auth/signup?plan=creator_elite">
+                    Go Elite
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </CardFooter>
             </Card>
+          </div>
+
+          {/* AIBJJ vs BJJ Fanatics Comparison Table */}
+          <div className="mt-20 mx-auto max-w-4xl">
+            <h3 className="text-2xl font-bold text-center mb-8">
+              AIBJJ vs BJJ Fanatics
+            </h3>
+            <div className="hidden md:block overflow-hidden rounded-xl border border-zinc-800/60">
+              <div className="grid grid-cols-5 border-b border-zinc-800/60 bg-zinc-900/80">
+                <div className="p-4 text-sm font-semibold text-zinc-400" />
+                <div className="p-4 text-center text-sm font-semibold text-zinc-300">Free</div>
+                <div className="p-4 text-center text-sm font-semibold text-red-400">Pro</div>
+                <div className="p-4 text-center text-sm font-semibold text-zinc-300">Elite</div>
+                <div className="p-4 text-center text-sm font-semibold text-zinc-500">BJJ Fanatics</div>
+              </div>
+              {[
+                { name: "Platform fee", free: "15%", pro: "10%", elite: "8%", fanatics: "40-50%" },
+                { name: "Custom domain", free: false, pro: true, elite: true, fanatics: false },
+                { name: "Your own website", free: true, pro: true, elite: true, fanatics: false },
+                { name: "AI Blog", free: true, pro: true, elite: true, fanatics: false },
+                { name: "AI Coach", free: true, pro: true, elite: true, fanatics: false },
+                { name: "White-label", free: false, pro: false, elite: true, fanatics: false },
+                { name: "Custom CSS", free: false, pro: false, elite: true, fanatics: false },
+                { name: "API access", free: false, pro: false, elite: true, fanatics: false },
+              ].map((row, idx) => (
+                <div
+                  key={row.name}
+                  className={cn(
+                    "grid grid-cols-5",
+                    idx % 2 === 0 ? "bg-zinc-950/50" : "bg-zinc-900/30"
+                  )}
+                >
+                  <div className="flex items-center p-4 text-sm font-medium text-zinc-300">{row.name}</div>
+                  <div className="flex items-center justify-center p-4"><ComparisonCell value={row.free} /></div>
+                  <div className="flex items-center justify-center p-4"><ComparisonCell value={row.pro} /></div>
+                  <div className="flex items-center justify-center p-4"><ComparisonCell value={row.elite} /></div>
+                  <div className="flex items-center justify-center p-4"><ComparisonCell value={row.fanatics} /></div>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile version */}
+            <div className="md:hidden mt-8 space-y-3">
+              {[
+                { name: "Platform fee", free: "15%", pro: "10%", elite: "8%", fanatics: "40-50%" },
+                { name: "Custom domain", free: false, pro: true, elite: true, fanatics: false },
+                { name: "Your own website", free: true, pro: true, elite: true, fanatics: false },
+                { name: "AI Blog", free: true, pro: true, elite: true, fanatics: false },
+                { name: "AI Coach", free: true, pro: true, elite: true, fanatics: false },
+              ].map((row) => (
+                <div key={row.name} className="rounded-lg border border-zinc-800/60 bg-zinc-900/50 p-4">
+                  <p className="text-sm font-medium text-zinc-300 mb-2">{row.name}</p>
+                  <div className="grid grid-cols-4 gap-2 text-xs">
+                    {(["free", "pro", "elite", "fanatics"] as const).map((k) => (
+                      <div key={k} className="text-center">
+                        <p className="text-zinc-500 mb-1 capitalize">{k === "fanatics" ? "Fanatics" : k}</p>
+                        <ComparisonCell value={row[k]} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Comparison callout */}

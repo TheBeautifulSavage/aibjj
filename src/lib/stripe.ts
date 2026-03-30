@@ -39,4 +39,30 @@ export const PLANS = {
       "Early feature access",
     ],
   },
+  CREATOR_PRO: {
+    name: "Creator Pro",
+    priceMonthly: 29,
+    stripePriceId: process.env.STRIPE_CREATOR_PRO_PRICE_ID,
+    platformFee: 10,
+    features: [
+      "Custom domain (yourdomain.com)",
+      "All 3 page templates",
+      "Remove AIBJJ branding",
+      "Priority support",
+      "Advanced analytics",
+    ],
+  },
+  CREATOR_ELITE: {
+    name: "Creator Elite",
+    priceMonthly: 97,
+    stripePriceId: process.env.STRIPE_CREATOR_ELITE_PRICE_ID,
+    platformFee: 8,
+    features: [
+      "3 custom domains",
+      "Full white-label",
+      "Custom CSS",
+      "API access",
+      "Dedicated account manager",
+    ],
+  },
 } as const;

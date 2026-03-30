@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import {
   Check,
   ChevronLeft,
@@ -12,16 +13,18 @@ import {
   User,
   Upload,
   Eye,
-
-
-
   Loader2,
+  Zap,
+  Crown,
+  Shield,
+  ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   Select,
   SelectContent,
@@ -41,11 +44,33 @@ const STEPS = [
 
 const BELT_OPTIONS = ["WHITE", "BLUE", "PURPLE", "BROWN", "BLACK"];
 
+const TIER_CONFIG = {
+  FREE: { label: "Free", icon: Shield, color: "bg-zinc-700 text-zinc-300" },
+  PRO: { label: "Pro", icon: Zap, color: "bg-red-600 text-white" },
+  ELITE: { label: "Elite", icon: Crown, color: "bg-yellow-500 text-black" },
+} as const;
+
 export default function CreatorSetupPage() {
   const router = useRouter();
   const { data: session } = useSession();
   const [step, setStep] = useState(0);
   const [saving, setSaving] = useState(false);
+  const [creatorTier, setCreatorTier] = useState<"FREE" | "PRO" | "ELITE">("FREE");
+
+  useEffect(() => {
+    async function fetchTier() {
+      try {
+        const res = await fetch("/api/creator/profile");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.creatorTier) {
+            setCreatorTier(data.creatorTier as "FREE" | "PRO" | "ELITE");
+          }
+        }
+      } catch {}
+    }
+    fetchTier();
+  }, []);
 
   // Step 1
   const [username, setUsername] = useState("");
@@ -145,15 +170,41 @@ export default function CreatorSetupPage() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-8">
-      {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold text-zinc-100">
-          Set Up Your Creator Page
-        </h1>
-        <p className="text-sm text-zinc-400 mt-1">
-          Get your own site at <span className="text-red-500 font-medium">{username || "yourname"}.aibjj.com</span> — free, takes 2 minutes
-        </p>
+      {/* Header + Tier Badge */}
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-zinc-100">
+            Set Up Your Creator Page
+          </h1>
+          <p className="text-sm text-zinc-400 mt-1">
+            Get your own site at <span className="text-red-500 font-medium">{username || "yourname"}.aibjj.com</span> — free, takes 2 minutes
+          </p>
+        </div>
+        <Badge className={`${TIER_CONFIG[creatorTier].color} border-0 flex items-center gap-1.5 px-3 py-1`}>
+          {React.createElement(TIER_CONFIG[creatorTier].icon, { className: "h-3.5 w-3.5" })}
+          {TIER_CONFIG[creatorTier].label}
+        </Badge>
       </div>
+
+      {/* Upgrade Banner (shown on Free tier) */}
+      {creatorTier === "FREE" && (
+        <div className="rounded-xl border border-red-600/20 bg-red-600/5 p-4 flex items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-zinc-100">
+              Upgrade to Pro for a custom domain
+            </p>
+            <p className="text-xs text-zinc-400 mt-0.5">
+              Get yourdomain.com, remove AIBJJ branding, all templates, and lower your platform fee to 10% — just $29/mo
+            </p>
+          </div>
+          <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white shrink-0" asChild>
+            <Link href="/pricing#creators">
+              Go Pro
+              <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+            </Link>
+          </Button>
+        </div>
+      )}
 
       {/* Progress Steps */}
       <div className="flex items-center gap-2">
