@@ -42,8 +42,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { BJJ_FANATICS_CREATORS } from "@/lib/bjj-fanatics-creators";
-
 // ---------- Types ----------
 
 interface CourseLesson {
@@ -107,7 +105,8 @@ const beltDotMap: Record<string, string> = {
   BLACK: "bg-zinc-800 ring-1 ring-zinc-600",
 };
 
-const featuredCreators = BJJ_FANATICS_CREATORS.slice(0, 6);
+// Featured creators placeholder — shown when no real creators have signed up yet
+const featuredCreators: { name: string; username: string; belt: string; specialties: string[] }[] = [];
 
 // ---------- Helpers ----------
 
@@ -223,78 +222,80 @@ export default function MarketplacePage() {
         </div>
       </div>
 
-      {/* Featured Creators */}
-      <section>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-zinc-200">
-            Featured Creators
-          </h2>
-          <Link
-            href="/marketplace"
-            className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors flex items-center gap-1"
-          >
-            <Globe className="h-3 w-3" />
-            View all
-          </Link>
-        </div>
-        <ScrollArea className="w-full">
-          <div className="flex gap-3 pb-2">
-            {featuredCreators.map((creator) => (
-              <Link
-                key={creator.username}
-                href={`/s/${creator.username}`}
-                className="flex-shrink-0"
-              >
-                <Card className="border-zinc-800 hover:border-zinc-600 transition-colors w-52 cursor-pointer group">
-                  <CardContent className="p-4 space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 rounded-full bg-gradient-to-br from-red-700 to-zinc-800 flex items-center justify-center text-sm font-bold text-zinc-100 flex-shrink-0">
-                        {getInitials(creator.name)}
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-sm font-medium text-zinc-200 truncate group-hover:text-red-400 transition-colors">
-                          {creator.name}
-                        </p>
-                        <div className="flex items-center gap-1.5">
-                          <span
-                            className={`h-2 w-2 rounded-full ${
-                              beltDotMap[creator.belt] ?? "bg-zinc-600"
-                            }`}
-                          />
-                          <span className="text-xs text-zinc-500">
-                            {creator.belt.charAt(0) +
-                              creator.belt.slice(1).toLowerCase()}{" "}
-                            Belt
-                          </span>
+      {/* Featured Creators — shown once real creators sign up */}
+      {featuredCreators.length > 0 && (
+        <section>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-zinc-200">
+              Featured Creators
+            </h2>
+            <Link
+              href="/marketplace"
+              className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors flex items-center gap-1"
+            >
+              <Globe className="h-3 w-3" />
+              View all
+            </Link>
+          </div>
+          <ScrollArea className="w-full">
+            <div className="flex gap-3 pb-2">
+              {featuredCreators.map((creator) => (
+                <Link
+                  key={creator.username}
+                  href={`/s/${creator.username}`}
+                  className="flex-shrink-0"
+                >
+                  <Card className="border-zinc-800 hover:border-zinc-600 transition-colors w-52 cursor-pointer group">
+                    <CardContent className="p-4 space-y-3">
+                      <div className="flex items-center gap-3">
+                        <div className="h-10 w-10 rounded-full bg-gradient-to-br from-red-700 to-zinc-800 flex items-center justify-center text-sm font-bold text-zinc-100 flex-shrink-0">
+                          {getInitials(creator.name)}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-sm font-medium text-zinc-200 truncate group-hover:text-red-400 transition-colors">
+                            {creator.name}
+                          </p>
+                          <div className="flex items-center gap-1.5">
+                            <span
+                              className={`h-2 w-2 rounded-full ${
+                                beltDotMap[creator.belt] ?? "bg-zinc-600"
+                              }`}
+                            />
+                            <span className="text-xs text-zinc-500">
+                              {creator.belt.charAt(0) +
+                                creator.belt.slice(1).toLowerCase()}{" "}
+                              Belt
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="flex flex-wrap gap-1">
-                      {creator.specialties.slice(0, 2).map((s) => (
-                        <Badge
-                          key={s}
-                          variant="outline"
-                          className="text-[10px] px-1.5 py-0 border-zinc-700 text-zinc-400"
-                        >
-                          {s}
-                        </Badge>
-                      ))}
-                      {creator.specialties.length > 2 && (
-                        <Badge
-                          variant="outline"
-                          className="text-[10px] px-1.5 py-0 border-zinc-700 text-zinc-500"
-                        >
-                          +{creator.specialties.length - 2}
-                        </Badge>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </ScrollArea>
-      </section>
+                      <div className="flex flex-wrap gap-1">
+                        {creator.specialties.slice(0, 2).map((s) => (
+                          <Badge
+                            key={s}
+                            variant="outline"
+                            className="text-[10px] px-1.5 py-0 border-zinc-700 text-zinc-400"
+                          >
+                            {s}
+                          </Badge>
+                        ))}
+                        {creator.specialties.length > 2 && (
+                          <Badge
+                            variant="outline"
+                            className="text-[10px] px-1.5 py-0 border-zinc-700 text-zinc-500"
+                          >
+                            +{creator.specialties.length - 2}
+                          </Badge>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </ScrollArea>
+        </section>
+      )}
 
       <Separator className="bg-zinc-800" />
 
