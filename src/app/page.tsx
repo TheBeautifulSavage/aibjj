@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { BJJ_FANATICS_CREATORS } from "@/lib/bjj-fanatics-creators";
 import {
   Brain,
   BookOpen,
@@ -45,11 +44,11 @@ const NAV_LINKS = [
   { label: "Marketplace", href: "#marketplace" },
 ];
 
-const STATS = [
-  { value: "10,000+", label: "Techniques", icon: Library },
-  { value: "24/7", label: "AI Coach Access", icon: Clock },
-  { value: "50,000+", label: "Active Athletes", icon: Users },
-  { value: "4.9/5", label: "Average Rating", icon: Star },
+const EARLY_ACCESS_BADGES = [
+  { label: "Early Access", icon: Zap },
+  { label: "Founding Members", icon: Users },
+  { label: "Beta Platform", icon: Star },
+  { label: "Join Now", icon: ArrowRight },
 ];
 
 const FEATURES = [
@@ -320,13 +319,15 @@ export default function Home() {
               </Button>
             </div>
 
-            {/* Stats */}
-            <div className="mt-16 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
-              {STATS.map((stat) => (
-                <div key={stat.label} className="flex flex-col items-center gap-1">
-                  <stat.icon className="mb-1 h-5 w-5 text-red-500" />
-                  <span className="text-2xl font-bold text-white sm:text-3xl">{stat.value}</span>
-                  <span className="text-sm text-zinc-500">{stat.label}</span>
+            {/* Early Access Badges */}
+            <div className="mt-16 flex flex-wrap items-center justify-center gap-3">
+              {EARLY_ACCESS_BADGES.map((badge) => (
+                <div
+                  key={badge.label}
+                  className="flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900/80 px-4 py-2 text-sm font-medium text-zinc-300"
+                >
+                  <badge.icon className="h-4 w-4 text-red-500" />
+                  {badge.label}
                 </div>
               ))}
             </div>
@@ -411,37 +412,46 @@ export default function Home() {
       </section>
 
       {/* ----------------------------------------------------------------- */}
-      {/* Social Proof / Featured Creators                                  */}
+      {/* Built for Serious Grapplers                                       */}
       {/* ----------------------------------------------------------------- */}
       <section className="relative border-t border-zinc-800/60 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-red-500">Built for Champions</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Trusted by the best in BJJ</h2>
-            <p className="mt-4 text-lg text-zinc-400">World-class athletes and coaches are building their platforms on AIBJJ.</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-red-500">Built for Every Level</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+              Built for serious grapplers
+            </h2>
+            <p className="mt-4 text-lg text-zinc-400">
+              From hobbyist to world champion level — AIBJJ is built to meet you where you are and take you further.
+            </p>
           </div>
-          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {BJJ_FANATICS_CREATORS.slice(0, 8).map((creator) => (
-              <Card key={creator.username} className="group border-zinc-800/60 bg-zinc-900/50 hover:border-red-900/40 transition-all">
-                <CardContent className="p-5">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-red-600 to-red-800 text-sm font-bold text-white">
-                      {creator.name.split(" ").map(n => n[0]).join("")}
-                    </div>
-                    <div>
-                      <p className="font-semibold text-zinc-100 group-hover:text-red-400 transition-colors">{creator.name}</p>
-                      <div className="flex items-center gap-1.5">
-                        <span className={`inline-block h-2 w-2 rounded-full ${creator.belt === "BLACK" ? "bg-zinc-800 ring-1 ring-zinc-500" : "bg-amber-700"}`} />
-                        <span className="text-xs text-zinc-500">{creator.belt.charAt(0) + creator.belt.slice(1).toLowerCase()} Belt</span>
-                      </div>
-                    </div>
+          <div className="mt-16 grid gap-6 sm:grid-cols-3">
+            {[
+              {
+                icon: Users,
+                title: "Hobbyists & Beginners",
+                description: "Just starting your journey? The AI coach adapts to your level, answers every question without judgment, and builds your foundation from day one.",
+              },
+              {
+                icon: BarChart3,
+                title: "Competitors",
+                description: "Training for IBJJF, ADCC qualifiers, or local tourneys? Use game plan builder and progress analytics to sharpen your edge before fight day.",
+              },
+              {
+                icon: BookOpen,
+                title: "Coaches & Academy Owners",
+                description: "Track your students, build curriculum, and run your academy's content — all in one place. Spend less time on admin, more time on the mats.",
+              },
+            ].map((item) => (
+              <Card key={item.title} className="group border-zinc-800/60 bg-zinc-900/50 hover:border-red-900/40 transition-all">
+                <CardHeader>
+                  <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-lg bg-red-600/10 text-red-500 group-hover:bg-red-600/20 transition-colors">
+                    <item.icon className="h-5 w-5" />
                   </div>
-                  <p className="mt-3 line-clamp-2 text-xs text-zinc-500">{creator.bio}</p>
-                  <div className="mt-3 flex flex-wrap gap-1">
-                    {creator.specialties.slice(0, 2).map(s => (
-                      <span key={s} className="rounded-full bg-zinc-800 px-2 py-0.5 text-[10px] text-zinc-400">{s}</span>
-                    ))}
-                  </div>
+                  <CardTitle className="text-lg">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-sm leading-relaxed">{item.description}</CardDescription>
                 </CardContent>
               </Card>
             ))}
@@ -594,6 +604,67 @@ export default function Home() {
                 </CardFooter>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------------------- */}
+      {/* Why AIBJJ / Founder Credibility                                   */}
+      {/* ----------------------------------------------------------------- */}
+      <section className="relative border-t border-zinc-800/60 py-24 sm:py-32">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/60">
+            <div className="grid gap-0 md:grid-cols-2">
+              {/* Left: badge + copy */}
+              <div className="flex flex-col justify-center p-8 sm:p-10">
+                <p className="text-sm font-semibold uppercase tracking-widest text-red-500">Why AIBJJ</p>
+                <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+                  Built by someone who&apos;s been on the mats for 20 years.
+                </h2>
+                <p className="mt-5 text-zinc-400 leading-relaxed">
+                  AIBJJ was built by a retired U.S. Army Infantry Paratrooper with combat deployments to Afghanistan, Iraq, and Syria — and a BJJ black belt who&apos;s been running his own academy in Anchorage, Alaska for over two decades.
+                </p>
+                <p className="mt-4 text-zinc-400 leading-relaxed">
+                  This isn&apos;t some tech startup that discovered jiu-jitsu last year. Every feature was designed from the perspective of someone who has bled on the mats, coached hundreds of students, and lived this art at every level.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {[
+                    "BJJ Black Belt",
+                    "Academy Owner",
+                    "Combat Veteran",
+                    "20+ Years on the Mats",
+                  ].map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-zinc-700 bg-zinc-800/80 px-3 py-1 text-xs font-medium text-zinc-300"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right: quote block */}
+              <div className="flex flex-col justify-center border-t border-zinc-800 bg-zinc-950/60 p-8 sm:border-l sm:border-t-0 sm:p-10">
+                <div className="mb-4 flex gap-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-red-500 text-red-500" />
+                  ))}
+                </div>
+                <blockquote className="text-lg font-medium leading-relaxed text-zinc-200">
+                  &ldquo;I built the tool I always wished existed. Something that actually thinks about jiu-jitsu the way a coach does — not just a search engine with a chat box.&rdquo;
+                </blockquote>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-red-700 to-red-900 text-sm font-black text-white">
+                    JB
+                  </div>
+                  <div>
+                    <p className="font-semibold text-zinc-100">Jesse</p>
+                    <p className="text-xs text-zinc-500">Founder · BJJ Black Belt · U.S. Army Veteran</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
