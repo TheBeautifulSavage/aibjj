@@ -15,7 +15,6 @@ import {
   Star,
   Zap,
   Users,
-  Clock,
   Check,
   ArrowRight,
   Globe,
