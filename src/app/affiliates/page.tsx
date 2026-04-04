@@ -30,7 +30,7 @@ const STEPS = [
     number: "02",
     title: "Get Your Link",
     description:
-      "You'll receive a unique referral link and tracking code. Share it anywhere — Instagram, YouTube, your academy, or word of mouth.",
+      "You&apos;ll receive a unique referral link and tracking code. Share it anywhere — Instagram, YouTube, your academy, or word of mouth.",
   },
   {
     number: "03",
@@ -66,7 +66,7 @@ const FAQS = [
   },
   {
     q: "Is there a limit to how much I can earn?",
-    a: "No. There's no cap. The more people you refer, the more you earn — every single month.",
+    a: "No. There&apos;s no cap. The more people you refer, the more you earn — every single month.",
   },
   {
     q: "What promotional materials are available?",
@@ -118,7 +118,7 @@ export default function AffiliatesPage() {
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Button size="lg" className="w-full sm:w-auto px-10 bg-red-600 hover:bg-red-700 text-white" asChild>
               <Link href="/auth/signup">
-                Apply Now — It's Free
+                Apply Now — It&apos;s Free
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -234,7 +234,7 @@ export default function AffiliatesPage() {
         </div>
       </section>
 
-      {/* Who's it for */}
+      {/* Who&apos;s it for */}
       <section className="border-t border-zinc-800/60 py-16 bg-zinc-950/40">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
           <h2 className="text-2xl font-bold mb-8">Perfect for</h2>

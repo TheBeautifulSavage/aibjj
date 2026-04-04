@@ -1,9 +1,7 @@
 import Link from "next/link";
 import {
-  Users,
   BarChart3,
   BookOpen,
-  Bell,
   Shield,
   ArrowRight,
   Check,
@@ -171,7 +169,7 @@ export default function AcademiesPage() {
             Running an academy without the right tools is a full-time job.
           </h2>
           <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-            You're tracking attendance in notebooks, sending messages on WhatsApp, and trying to remember which student needs to work on their guard — while also coaching, teaching, and running a business. There's a better way.
+            You&apos;re tracking attendance in notebooks, sending messages on WhatsApp, and trying to remember which student needs to work on their guard — while also coaching, teaching, and running a business. There&apos;s a better way.
           </p>
         </div>
       </section>
@@ -214,10 +212,10 @@ export default function AcademiesPage() {
                   I built this because I needed it.
                 </h2>
                 <p className="text-zinc-400 leading-relaxed mb-4">
-                  I'm a retired U.S. Army Infantry Paratrooper with combat deployments to Afghanistan, Iraq, and Syria. BJJ black belt. Academy owner in Anchorage, Alaska for over 20 years.
+                  I&apos;m a retired U.S. Army Infantry Paratrooper with combat deployments to Afghanistan, Iraq, and Syria. BJJ black belt. Academy owner in Anchorage, Alaska for over 20 years.
                 </p>
                 <p className="text-zinc-400 leading-relaxed">
-                  I know exactly what it's like to be the coach, the manager, the marketer, and the janitor. I built AIBJJ to take at least one of those hats off.
+                  I know exactly what it&apos;s like to be the coach, the manager, the marketer, and the janitor. I built AIBJJ to take at least one of those hats off.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {["BJJ Black Belt", "Academy Owner", "Combat Veteran", "Anchorage, AK"].map((tag) => (
@@ -234,7 +232,7 @@ export default function AcademiesPage() {
                   ))}
                 </div>
                 <blockquote className="text-lg font-medium leading-relaxed text-zinc-200">
-                  &ldquo;I designed the academy features around what I actually needed — not what some tech company thought gym owners needed. There's a big difference.&rdquo;
+                  &ldquo;I designed the academy features around what I actually needed — not what some tech company thought gym owners needed. There&apos;s a big difference.&rdquo;
                 </blockquote>
                 <div className="mt-6 flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-red-700 to-red-900 text-sm font-black text-white">
@@ -351,7 +349,7 @@ export default function AcademiesPage() {
             </span>
           </h2>
           <p className="text-zinc-400 mb-8">
-            Start your free 14-day trial. No credit card. No commitment. If it doesn't make your life easier, cancel in one click.
+            Start your free 14-day trial. No credit card. No commitment. If it doesn&apos;t make your life easier, cancel in one click.
           </p>
           <Button size="lg" className="px-12 bg-red-600 hover:bg-red-700 text-white" asChild>
             <Link href="/auth/signup?plan=academy">
