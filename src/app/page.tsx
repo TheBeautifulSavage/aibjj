@@ -38,9 +38,9 @@ import {
 
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
+  { label: "For Academies", href: "/academies" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Marketplace", href: "#marketplace" },
+  { label: "Affiliates", href: "/affiliates" },
 ];
 
 const EARLY_ACCESS_BADGES = [
@@ -119,77 +119,74 @@ const PRICING_TIERS = [
     features: [
       "5 AI coach messages per day",
       "Basic training journal",
-      "Limited technique library (100+)",
-      "Community forum access",
+      "Limited technique library",
       "Belt progress tracking",
     ],
     cta: "Start Free",
+    href: "/auth/signup",
     featured: false,
+    badge: null,
+  },
+  {
+    name: "Founding Member",
+    price: "$9.99",
+    period: "/month",
+    description: "Lock in the lowest price — forever",
+    features: [
+      "Unlimited AI coach messages",
+      "Full journal with analytics",
+      "Complete technique library (510+)",
+      "Game plan builder",
+      "Progress dashboard & insights",
+      "Marketplace access",
+      "Price locked forever — never increases",
+    ],
+    cta: "Lock In $9.99/mo",
+    href: "/auth/signup?plan=founding",
+    featured: true,
+    badge: "First 500 Only",
   },
   {
     name: "Pro",
     price: "$14.99",
     period: "/month",
-    description: "Everything you need to accelerate your game",
+    description: "Full access, standard pricing",
     features: [
       "Unlimited AI coach messages",
       "Full journal with analytics",
-      "Complete technique library (10,000+)",
+      "Complete technique library",
       "Game plan builder",
       "Progress dashboard & insights",
       "Marketplace access",
-      "Priority support",
     ],
     cta: "Go Pro",
-    featured: true,
-  },
-  {
-    name: "Annual",
-    price: "$99",
-    period: "/year",
-    description: "Best value -- save $80 per year",
-    features: [
-      "Everything in Pro",
-      "Save $80/year vs monthly",
-      "Exclusive instructional content",
-      "Early access to new features",
-      "Custom AI coach personality",
-      "Competition prep mode",
-      "1-on-1 onboarding session",
-    ],
-    cta: "Save $80/year",
+    href: "/auth/signup?plan=pro",
     featured: false,
+    badge: null,
   },
 ];
 
-const TESTIMONIALS = [
+// Honest early-stage social proof — no fake testimonials
+const EARLY_SIGNALS = [
   {
-    quote:
-      "AIBJJ completely changed how I approach training. The AI coach helped me identify holes in my guard game I didn't even know existed. I went from getting passed constantly to having one of the best guards in my gym.",
-    name: "Marcus Rivera",
-    role: "Purple Belt, 3 years on the platform",
-    avatar: "MR",
+    icon: "🥋",
+    title: "Built for serious grapplers",
+    desc: "Every feature was designed by someone who's been on the mats for 20+ years — not a tech startup that discovered BJJ last month.",
   },
   {
-    quote:
-      "As a coach running a 200-student academy, the training journal and analytics save me hours every week. I can see exactly where each student needs work and tailor my classes accordingly.",
-    name: "Sarah Chen",
-    role: "Black Belt, Academy Owner",
-    avatar: "SC",
+    icon: "🤖",
+    title: "AI that actually knows BJJ",
+    desc: "The AI coach understands positions, game plans, and the language of jiu-jitsu. Ask it anything you'd ask a knowledgeable training partner.",
   },
   {
-    quote:
-      "I used the Game Plan Builder to prep for Pans and won gold at my weight class. Having a structured, position-by-position plan that my AI coach helped me refine was an absolute game-changer.",
-    name: "Diego Almeida",
-    role: "Brown Belt, IBJJF Competitor",
-    avatar: "DA",
+    icon: "📈",
+    title: "Early mover advantage",
+    desc: "We're in early access. Founding members lock in the lowest price forever and help shape the platform. This is the ground floor.",
   },
   {
-    quote:
-      "The technique library is insane. I was stuck at blue belt for two years. Within six months of using AIBJJ daily, my coach promoted me to purple. The AI just knows what you need to work on next.",
-    name: "Jake Thompson",
-    role: "Purple Belt, Hobbyist",
-    avatar: "JT",
+    icon: "💰",
+    title: "Lowest fees in the industry",
+    desc: "Creators keep 85-92% of every sale. BJJ Fanatics takes 40-50%. The math is simple — your audience deserves better.",
   },
 ];
 
@@ -522,9 +519,9 @@ export default function Home() {
                     : "border-zinc-800/60 bg-zinc-900/50 hover:border-zinc-700"
                 }`}
               >
-                {tier.featured && (
+                {tier.badge && (
                   <div className="absolute right-4 top-4 rounded-full bg-red-600 px-3 py-0.5 text-xs font-semibold text-white">
-                    Most Popular
+                    {tier.badge}
                   </div>
                 )}
                 <CardHeader className="pb-4">
@@ -547,12 +544,12 @@ export default function Home() {
                 </CardContent>
                 <CardFooter>
                   <Button
-                    className="w-full"
+                    className={`w-full ${tier.featured ? "bg-red-600 hover:bg-red-700 text-white" : ""}`}
                     variant={tier.featured ? "default" : "outline"}
                     size="lg"
                     asChild
                   >
-                    <Link href="/auth/signup">{tier.cta}</Link>
+                    <Link href={tier.href}>{tier.cta}</Link>
                   </Button>
                 </CardFooter>
               </Card>
@@ -562,45 +559,33 @@ export default function Home() {
       </section>
 
       {/* ----------------------------------------------------------------- */}
-      {/* Testimonials                                                      */}
+      {/* Early Signals / Trust                                            */}
       {/* ----------------------------------------------------------------- */}
       <section className="relative border-t border-zinc-800/60 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-red-500">
-              Testimonials
+              Why AIBJJ
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              Trusted by grapplers worldwide
+              Built for serious grapplers
             </h2>
+            <p className="mt-4 text-lg text-zinc-400">
+              We&apos;re early. We&apos;re honest about it. And we&apos;re building something that actually matters for the BJJ community.
+            </p>
           </div>
 
           <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {TESTIMONIALS.map((t) => (
+            {EARLY_SIGNALS.map((s) => (
               <Card
-                key={t.name}
-                className="flex flex-col border-zinc-800/60 bg-zinc-900/50"
+                key={s.title}
+                className="flex flex-col border-zinc-800/60 bg-zinc-900/50 hover:border-red-900/40 transition-all"
               >
                 <CardContent className="flex-1 pt-6">
-                  {/* Stars */}
-                  <div className="mb-4 flex gap-1">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-red-500 text-red-500" />
-                    ))}
-                  </div>
-                  <p className="text-sm leading-relaxed text-zinc-300">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
+                  <div className="text-3xl mb-4">{s.icon}</div>
+                  <h3 className="text-sm font-semibold text-zinc-100 mb-2">{s.title}</h3>
+                  <p className="text-sm leading-relaxed text-zinc-400">{s.desc}</p>
                 </CardContent>
-                <CardFooter className="gap-3 border-t border-zinc-800/60 pt-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-600/20 text-sm font-bold text-red-400">
-                    {t.avatar}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-white">{t.name}</p>
-                    <p className="text-xs text-zinc-500">{t.role}</p>
-                  </div>
-                </CardFooter>
               </Card>
             ))}
           </div>
@@ -752,10 +737,16 @@ export default function Home() {
             <div>
               <h4 className="text-sm font-semibold text-zinc-300">Company</h4>
               <ul className="mt-3 space-y-2">
-                {["About", "Blog", "Careers", "Press", "Partners"].map((item) => (
-                  <li key={item}>
-                    <Link href="#" className="text-sm text-zinc-500 transition-colors hover:text-zinc-300">
-                      {item}
+                {[
+                  { label: "For Academies", href: "/academies" },
+                  { label: "Affiliates", href: "/affiliates" },
+                  { label: "Pricing", href: "/pricing" },
+                  { label: "Blog", href: "#" },
+                  { label: "Contact", href: "mailto:hello@aibjj.com" },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link href={item.href} className="text-sm text-zinc-500 transition-colors hover:text-zinc-300">
+                      {item.label}
                     </Link>
                   </li>
                 ))}
