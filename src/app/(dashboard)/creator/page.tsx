@@ -17,6 +17,10 @@ import {
   TrendingUp,
   Palette,
   ArrowRight,
+  AlertCircle,
+  Loader2,
+  CheckCircle,
+  Clock,
 } from "lucide-react";
 import {
   Card,
@@ -138,7 +142,18 @@ export default function CreatorDashboard() {
     payoutsEnabled: boolean;
     accountId: string | null;
   } | null>(null);
-  // connectLoading removed
+  const [connectLoading, setConnectLoading] = useState(false);
+
+  const handleConnectBank = async () => {
+    setConnectLoading(true);
+    try {
+      const res = await fetch("/api/stripe/connect/onboard", { method: "POST" });
+      const data = await res.json();
+      if (data.url) window.location.href = data.url;
+    } catch {
+      setConnectLoading(false);
+    }
+  };
 
   useEffect(() => {
     fetch("/api/creator/profile")
@@ -259,56 +274,71 @@ export default function CreatorDashboard() {
       </div>
 
       {/* Payouts Section */}
-      <Card className="border-zinc-800">
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <DollarSign className="h-5 w-5 text-zinc-400" />
-            <CardTitle className="text-base">Payouts</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent>
-          {!connectStatus || (!connectStatus.connected && !connectStatus.chargesEnabled) ? (
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-600/10">
-                <DollarSign className="h-5 w-5 text-green-500" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-green-400">Payouts Active ✅</p>
-                <p className="text-xs text-zinc-400">You receive <strong className="text-zinc-200">85% of every sale</strong>. AIBJJ takes 15% (vs BJJ Fanatics 40–50%). Payouts processed within 7 business days.</p>
-              </div>
+      {!connectStatus || (!connectStatus.connected && !connectStatus.chargesEnabled) ? (
+        <Card className="border-red-600/50 border-2">
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <AlertCircle className="h-5 w-5 text-red-500" />
+              <CardTitle className="text-base text-red-400">Connect your bank to start selling</CardTitle>
             </div>
-          ) : connectStatus.connected && !connectStatus.chargesEnabled ? (
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-600/10">
-                <DollarSign className="h-5 w-5 text-yellow-500" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-yellow-400">Verification in progress</p>
-                <p className="text-xs text-zinc-500">
-                  Stripe is reviewing your account. This usually takes 1-2 business days.
-                </p>
-              </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-sm text-zinc-300">
+              You must connect a bank account to publish courses and receive payments. AIBJJ uses Stripe to send you <strong className="text-zinc-100">85% of every sale</strong> automatically.
+            </p>
+            <Button
+              onClick={handleConnectBank}
+              disabled={connectLoading}
+              className="bg-red-600 hover:bg-red-700 text-white"
+            >
+              {connectLoading ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Connecting...
+                </>
+              ) : (
+                <>
+                  Connect Bank Account <ArrowRight className="h-4 w-4 ml-2" />
+                </>
+              )}
+            </Button>
+            <p className="text-xs text-zinc-500">Powered by Stripe — bank-level security</p>
+          </CardContent>
+        </Card>
+      ) : connectStatus.connected && !connectStatus.chargesEnabled ? (
+        <Card className="border-yellow-600/50 border-2">
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <Clock className="h-5 w-5 text-yellow-500" />
+              <CardTitle className="text-base text-yellow-400">Verification in progress</CardTitle>
             </div>
-          ) : (
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-zinc-400">
+              Stripe is reviewing your account. This usually takes 1-2 business days. You&apos;ll be able to publish courses once verification is complete.
+            </p>
+          </CardContent>
+        </Card>
+      ) : (
+        <Card className="border-green-600/50">
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-green-500" />
+              <CardTitle className="text-base text-green-400">Payouts Active</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-600/10">
-                  <DollarSign className="h-5 w-5 text-green-500" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-green-400">Payouts Active</p>
-                  <p className="text-xs text-zinc-500">
-                    Your earnings are deposited automatically within 2 business days.
-                  </p>
-                </div>
-              </div>
+              <p className="text-sm text-zinc-400">
+                Your earnings are deposited automatically within 2 business days. You receive <strong className="text-zinc-200">85% of every sale</strong>.
+              </p>
               <Badge className="bg-green-600/20 text-green-400 border-green-800 w-fit">
                 Connected
               </Badge>
             </div>
-          )}
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      )}
 
       {!hasCourses ? (
         <Card className="border-zinc-800">

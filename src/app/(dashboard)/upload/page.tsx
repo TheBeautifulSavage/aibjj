@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import {
   Upload,
   Video,
@@ -16,6 +17,8 @@ import {
   Link as LinkIcon,
   Play,
   Eye,
+  AlertCircle,
+  ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,6 +40,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { getVideoEmbed } from "@/lib/video-utils";
+import { useUploadThing } from "@/lib/uploadthing";
 
 const CATEGORIES = [
   "Guard",
@@ -103,7 +107,32 @@ function VideoPreviewPlayer({ url }: { url: string }) {
 export default function UploadCoursePage() {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
+  const [thumbnailUploading, setThumbnailUploading] = useState(false);
+
+  const { startUpload: uploadThumbnail } = useUploadThing("courseThumbnail", {
+    onClientUploadComplete: (res) => {
+      if (res?.[0]?.url) {
+        setThumbnailUrl(res[0].url);
+        setThumbnailPreview(res[0].url);
+      }
+      setThumbnailUploading(false);
+    },
+    onUploadError: () => setThumbnailUploading(false),
+  });
   const [published, setPublished] = useState(false);
+  const [connectStatus, setConnectStatus] = useState<{
+    connected: boolean;
+    chargesEnabled: boolean;
+  } | null>(null);
+  const [connectLoading, setConnectLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/stripe/connect/status")
+      .then((r) => r.json())
+      .then((d) => setConnectStatus(d))
+      .catch(() => {})
+      .finally(() => setConnectLoading(false));
+  }, []);
 
   // Course details
   const [title, setTitle] = useState("");
@@ -117,9 +146,25 @@ export default function UploadCoursePage() {
 
   // Lessons
   const [lessons, setLessons] = useState<LessonDraft[]>([]);
+  const [uploadingLessonId, setUploadingLessonId] = useState<string | null>(null);
 
   // Preview modal
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+  const { startUpload: uploadVideo } = useUploadThing("courseVideo", {
+    onClientUploadComplete: (res) => {
+      if (res?.[0]?.url && uploadingLessonId) {
+        updateLesson(uploadingLessonId, { videoUrl: res[0].url });
+      }
+      setUploadingLessonId(null);
+    },
+    onUploadError: () => setUploadingLessonId(null),
+  });
+
+  const handleVideoFileUpload = (lessonId: string, file: File) => {
+    setUploadingLessonId(lessonId);
+    uploadVideo([file]);
+  };
 
   const addLesson = () => {
     setLessons([
@@ -155,12 +200,13 @@ export default function UploadCoursePage() {
   const handleThumbnailFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    setThumbnailUploading(true);
+    // Show local preview immediately
     const reader = new FileReader();
-    reader.onload = () => {
-      setThumbnailPreview(reader.result as string);
-      setThumbnailUrl("");
-    };
+    reader.onload = () => setThumbnailPreview(reader.result as string);
     reader.readAsDataURL(file);
+    // Upload to UploadThing
+    uploadThumbnail([file]);
   };
 
   const handlePublish = async () => {
@@ -214,6 +260,37 @@ export default function UploadCoursePage() {
   }
 
   const earnings = price ? (parseFloat(price) * 0.85).toFixed(2) : "0.00";
+
+  const bankConnected = connectStatus?.connected && connectStatus?.chargesEnabled;
+
+  if (connectLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
+      </div>
+    );
+  }
+
+  if (!bankConnected) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-6">
+        <div className="h-16 w-16 rounded-full bg-red-600/20 flex items-center justify-center">
+          <AlertCircle className="h-8 w-8 text-red-500" />
+        </div>
+        <div className="space-y-2">
+          <h1 className="text-2xl font-bold text-zinc-100">Connect your bank account first</h1>
+          <p className="text-zinc-400 max-w-md">
+            You need to connect a bank account before you can publish courses. Set up payouts on your Creator Dashboard to get started.
+          </p>
+        </div>
+        <Button className="bg-red-600 hover:bg-red-700 text-white" asChild>
+          <Link href="/creator">
+            Set Up Payouts <ArrowRight className="h-4 w-4 ml-2" />
+          </Link>
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -314,7 +391,7 @@ export default function UploadCoursePage() {
                 />
               </div>
             </div>
-            <label className="flex h-36 w-full cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-zinc-700 bg-zinc-900/50 transition-colors hover:border-zinc-600 overflow-hidden">
+            <label className="flex h-36 w-full cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-zinc-700 bg-zinc-900/50 transition-colors hover:border-zinc-600 overflow-hidden relative">
               {thumbnailPreview || thumbnailUrl ? (
                 <img
                   src={thumbnailPreview || thumbnailUrl}
@@ -328,8 +405,14 @@ export default function UploadCoursePage() {
                     Drop thumbnail or click to upload
                   </p>
                   <p className="text-xs text-zinc-600">
-                    16:9 ratio recommended — PNG, JPG
+                    16:9 ratio recommended — PNG, JPG (max 4MB)
                   </p>
+                </div>
+              )}
+              {thumbnailUploading && (
+                <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                  <Loader2 className="h-6 w-6 animate-spin text-white" />
+                  <span className="ml-2 text-white text-sm">Uploading...</span>
                 </div>
               )}
               <input
@@ -337,6 +420,7 @@ export default function UploadCoursePage() {
                 accept="image/*"
                 className="hidden"
                 onChange={handleThumbnailFile}
+                disabled={thumbnailUploading}
               />
             </label>
           </div>
@@ -488,7 +572,7 @@ export default function UploadCoursePage() {
                     <div className="space-y-2">
                       <Label className="text-xs text-zinc-400 flex items-center gap-1.5">
                         <LinkIcon className="h-3 w-3" />
-                        Video URL
+                        Video
                       </Label>
                       <div className="flex gap-2">
                         <Input
@@ -500,7 +584,37 @@ export default function UploadCoursePage() {
                           }
                           placeholder="Paste YouTube, Vimeo, Google Drive, or direct MP4 URL"
                           className="flex-1"
+                          disabled={uploadingLessonId === lesson.id}
                         />
+                        {/* Upload file directly */}
+                        <label className="flex-shrink-0">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="border-zinc-700 gap-1.5"
+                            disabled={!!uploadingLessonId}
+                            onClick={(e) => e.preventDefault()}
+                            asChild
+                          >
+                            <span>
+                              {uploadingLessonId === lesson.id ? (
+                                <><Loader2 className="h-3.5 w-3.5 animate-spin" /> Uploading...</>
+                              ) : (
+                                <><Upload className="h-3.5 w-3.5" /> Upload</>
+                              )}
+                            </span>
+                          </Button>
+                          <input
+                            type="file"
+                            accept="video/*"
+                            className="hidden"
+                            disabled={!!uploadingLessonId}
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) handleVideoFileUpload(lesson.id, file);
+                            }}
+                          />
+                        </label>
                         {lesson.videoUrl && hasValidVideo && (
                           <Button
                             variant="outline"
@@ -517,8 +631,7 @@ export default function UploadCoursePage() {
                         )}
                       </div>
                       <p className="text-xs text-zinc-600">
-                        Supports: YouTube, Vimeo, Google Drive, Dropbox, or
-                        direct .mp4/.webm links
+                        Paste URL (YouTube, Vimeo, Drive, Dropbox) or upload MP4 directly (max 2GB)
                       </p>
                     </div>
 

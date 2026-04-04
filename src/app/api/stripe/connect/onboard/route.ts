@@ -51,7 +51,7 @@ export async function POST() {
     // Generate an account link for onboarding
     const accountLink = await stripe.accountLinks.create({
       account: connectAccountId,
-      refresh_url: `${process.env.NEXT_PUBLIC_APP_URL}/api/stripe/connect/onboard`,
+      refresh_url: `${process.env.NEXT_PUBLIC_APP_URL}/creator-setup`,
       return_url: `${process.env.NEXT_PUBLIC_APP_URL}/api/stripe/connect/return`,
       type: "account_onboarding",
     });
