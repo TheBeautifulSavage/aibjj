@@ -23,6 +23,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import HomepageSearch from "@/components/HomepageSearch";
 import {
   Card,
   CardHeader,
@@ -303,8 +304,11 @@ export default function HomeClient() {
               built by the community.
             </p>
 
+            {/* AI Search Bar — No login required */}
+            <HomepageSearch />
+
             {/* CTAs */}
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button size="lg" className="w-full sm:w-auto text-base px-8" asChild>
                 <Link href="/auth/signup">
                   Start Free — No Credit Card
