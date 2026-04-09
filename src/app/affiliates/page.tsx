@@ -24,11 +24,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export const metadata = {
-  title: "Affiliate Program – AIBJJ",
-  description:
-    "Earn 30% recurring commission promoting the AI-powered BJJ platform. Share your link, earn every month.",
-};
+
 
 const STEPS = [
   {

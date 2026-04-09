@@ -300,15 +300,13 @@ export default async function CreatorPage({ params }: Props) {
               {creator.socialInstagram && (
                 <a href={`https://instagram.com/${creator.socialInstagram}`} target="_blank" rel="noopener noreferrer"
                   className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${isLight ? "border-gray-200 hover:bg-gray-50 text-zinc-700" : "border-zinc-700 hover:bg-zinc-800 text-zinc-300"}`}>
-                  <Instagram className="h-4 w-4" />
-                  Instagram
+                  📸 Instagram
                 </a>
               )}
               {creator.socialYoutube && (
                 <a href={`https://youtube.com/@${creator.socialYoutube}`} target="_blank" rel="noopener noreferrer"
                   className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${isLight ? "border-gray-200 hover:bg-gray-50 text-zinc-700" : "border-zinc-700 hover:bg-zinc-800 text-zinc-300"}`}>
-                  <Youtube className="h-4 w-4" />
-                  YouTube
+                  ▶️ YouTube
                 </a>
               )}
             </div>

@@ -14,31 +14,34 @@ export async function POST(req: NextRequest) {
 
   const user = await prisma.user.findUnique({
     where: { email: session.user.email },
-    include: {
-      journalEntries: {
-        orderBy: { date: "desc" },
-        take: 100,
-      },
-      competitions: {
-        orderBy: { date: "desc" },
-      },
-    },
   });
 
   if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
-  const totalSessions = user.journalEntries.length;
-  const totalMinutes = user.journalEntries.reduce((s, e) => s + e.duration, 0);
+  const [journalEntries, competitions] = await Promise.all([
+    prisma.journalEntry.findMany({
+      where: { userId: user.id },
+      orderBy: { date: "desc" },
+      take: 100,
+    }),
+    prisma.competition.findMany({
+      where: { userId: user.id },
+      orderBy: { date: "desc" },
+    }),
+  ]);
+
+  const totalSessions = journalEntries.length;
+  const totalMinutes = journalEntries.reduce((s: number, e: { duration: number }) => s + e.duration, 0);
   const totalHours = Math.round(totalMinutes / 60);
 
   const now = new Date();
   const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-  const recentSessions = user.journalEntries.filter(
-    (e) => new Date(e.date) >= thirtyDaysAgo
+  const recentSessions = journalEntries.filter(
+    (e: { date: Date }) => new Date(e.date) >= thirtyDaysAgo
   ).length;
 
-  const compRecord = user.competitions.reduce(
-    (acc, c) => {
+  const compRecord = competitions.reduce(
+    (acc: { wins: number; losses: number; total: number }, c: { wins: number; losses: number }) => {
       acc.wins += c.wins;
       acc.losses += c.losses;
       acc.total++;
@@ -52,7 +55,7 @@ export async function POST(req: NextRequest) {
 
   const prompt = `You are an expert BJJ coach. Write a personalized progress report for a student with the following stats:
 
-Belt: ${belt || user.belt} (${stripes || user.stripes} stripes)
+Belt: ${belt || user.belt} (${stripes ?? user.stripes} stripes)
 Months at current belt: ${monthsAtBelt || "unknown"}
 Total training sessions logged: ${totalSessions}
 Total training hours: ${totalHours}

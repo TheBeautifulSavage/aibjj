@@ -26,11 +26,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export const metadata = {
-  title: "For BJJ Academies – AIBJJ",
-  description:
-    "The all-in-one platform for BJJ academy owners. Track student progress, manage curriculum, log attendance, and communicate with your students — all in one place.",
-};
+// Note: metadata is defined above, removing duplicate
 
 const FEATURES = [
   {
