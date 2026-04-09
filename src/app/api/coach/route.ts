@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { anthropic, BJJ_SYSTEM_PROMPT } from "@/lib/anthropic";
+import { anthropic } from "@/lib/anthropic";
+import { buildTrainingContext } from "@/lib/training-context";
 
 // Best model for real-time BJJ coaching chat:
 // claude-3-5-haiku-20241022 — fast (<1s), cheap, excellent conversational quality
@@ -85,11 +86,14 @@ export async function POST(req: Request) {
       content: msg.content,
     }));
 
-    // Call Claude — Haiku for speed, Sonnet for depth
+    // Build personalized context from user's training data
+    const { systemPrompt } = await buildTrainingContext(userId);
+
+    // Call Claude with personalized context
     const response = await anthropic.messages.create({
       model: COACH_MODEL,
       max_tokens: 1024,
-      system: BJJ_SYSTEM_PROMPT,
+      system: systemPrompt,
       messages: claudeMessages,
     });
 

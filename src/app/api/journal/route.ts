@@ -154,6 +154,15 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    // Increment permanent session counter (never decrements)
+    await prisma.user.update({
+      where: { id: userId },
+      data: {
+        totalSessions: { increment: 1 },
+        totalMinutes: { increment: data.duration || 60 },
+      } as Record<string, unknown>,
+    });
+
     return NextResponse.json(entry, { status: 201 });
   } catch (error) {
     console.error("Journal POST error:", error);

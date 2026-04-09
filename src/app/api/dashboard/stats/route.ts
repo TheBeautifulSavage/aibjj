@@ -89,14 +89,28 @@ export async function GET() {
       duration,
     }));
 
+    // Get permanent session counter from User record
+    const userRecord = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { totalSessions: true, totalMinutes: true, belt: true, stripes: true },
+    });
+
+    const totalSessions = userRecord?.totalSessions || journalCount; // fallback to count if not set
+    const totalMinutes = userRecord?.totalMinutes || 0;
+    const totalHours = Math.round(totalMinutes / 60);
+
     return NextResponse.json({
       journalCount,
+      totalSessions,      // permanent counter, never goes down
+      totalHours,         // total mat hours
       techniqueCount,
       chatSessionCount,
       courseCount,
       streak,
       recentJournals,
       trainingData,
+      belt: userRecord?.belt || "WHITE",
+      stripes: userRecord?.stripes || 0,
     });
   } catch (error) {
     console.error("Dashboard stats error:", error);
