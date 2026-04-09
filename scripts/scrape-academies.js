@@ -1,6 +1,6 @@
 const https = require('https');
 
-const API_KEY = 'AIzaSyAY-zxxap6z1ZKV7MZLFfvudYPz1ONagsg';
+const API_KEY = process.env.GOOGLE_PLACES_API_KEY || 'AIzaSyAY-zxxap6z1ZKV7MZLFfvudYPz1ONagsg'; // Set GOOGLE_PLACES_API_KEY env var
 const SUPABASE_URL = 'https://vylxyumwdrogzzioxbaj.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ5bHh5dW13ZHJvZ3p6aW94YmFqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDcxOTcyOCwiZXhwIjoyMDkwMjk1NzI4fQ.l4xzoqTpMx2VYvuv_l4hHuBOau-K7-keNmBnz74KuZA';
 

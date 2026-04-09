@@ -143,7 +143,7 @@ export default async function AcademyPage({
         {academy.place_id && (
           <div className="mt-10 overflow-hidden rounded-xl border border-zinc-800">
             <iframe
-              src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAY-zxxap6z1ZKV7MZLFfvudYPz1ONagsg&q=place_id:${academy.place_id}`}
+              src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY}&q=place_id:${academy.place_id}`}
               width="100%"
               height="400"
               style={{ border: 0 }}
