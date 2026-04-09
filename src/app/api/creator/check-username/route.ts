@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { db as prisma } from "@/lib/db";
 import { BJJ_FANATICS_CREATORS } from "@/lib/bjj-fanatics-creators";
 
 const RESERVED = new Set([

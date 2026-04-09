@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { db as prisma } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: 'BJJ Academies Platform | AIBJJ for Gyms',

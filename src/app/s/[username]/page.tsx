@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { db as prisma } from "@/lib/db";
 import { getTemplate } from "@/lib/creator-templates";
 import { BJJ_FANATICS_CREATORS } from "@/lib/bjj-fanatics-creators";
 import { ShoppingCart, Play, Star, BookOpen, MapPin, Mail, ExternalLink } from "lucide-react";

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { db as prisma } from "@/lib/db";
 
 // GET /api/courses/search?q=&category=&beltLevel=&sort=&featured=true
 export async function GET(request: Request) {

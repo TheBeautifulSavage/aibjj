@@ -1,8 +1,15 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import { anthropic, BJJ_SYSTEM_PROMPT } from "@/lib/anthropic";
+
+// Best model for real-time BJJ coaching chat:
+// claude-3-5-haiku-20241022 — fast (<1s), cheap, excellent conversational quality
+// Use claude-sonnet-4-5 for deep analysis (game plan builder, progress reports)
+const COACH_MODEL = "claude-3-5-haiku-20241022";
+
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   try {
@@ -16,30 +23,25 @@ export async function POST(req: Request) {
     const { message, chatSessionId } = await req.json();
 
     if (!message || typeof message !== "string") {
-      return NextResponse.json(
-        { error: "Message is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Message is required" }, { status: 400 });
     }
 
     // Enforce subscription limits: FREE users get 5 messages/day
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: { subscriptionTier: true },
-    });
+    const user = await db.user.findUnique({ where: { id: userId }, select: { subscriptionTier: true } });
+
     if (user?.subscriptionTier === "FREE") {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
-      const messageCount = await prisma.chatMessage.count({
-        where: {
-          userId,
-          role: "user",
-          createdAt: { gte: today },
-        },
+      const todayMessages = await db.chatMessage.findMany({
+        where: { userId, role: "user" },
       });
-      if (messageCount >= 5) {
+      const todayCount = todayMessages.filter(
+        (m: { createdAt: string }) => new Date(m.createdAt) >= today
+      ).length;
+
+      if (todayCount >= 5) {
         return NextResponse.json(
-          { error: "Daily limit reached", upgradeUrl: "/pricing" },
+          { error: "Daily limit reached. Upgrade to Pro for unlimited coaching.", upgradeUrl: "/pricing" },
           { status: 429 }
         );
       }
@@ -49,56 +51,41 @@ export async function POST(req: Request) {
     let sessionId = chatSessionId;
 
     if (!sessionId) {
-      // Create a new chat session with the first message as a truncated title
-      const title =
-        message.length > 50 ? message.substring(0, 50) + "..." : message;
-
-      const chatSession = await prisma.chatSession.create({
-        data: {
-          userId,
-          title,
-        },
+      const title = message.length > 50 ? message.substring(0, 50) + "..." : message;
+      const chatSession = await db.chatSession.create({
+        data: { userId, title },
       });
       sessionId = chatSession.id;
     }
 
-    // Verify the chat session belongs to the user
-    const chatSession = await prisma.chatSession.findFirst({
+    // Verify session belongs to user
+    const chatSession = await db.chatSession.findFirst({
       where: { id: sessionId, userId },
     });
 
     if (!chatSession) {
-      return NextResponse.json(
-        { error: "Chat session not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Chat session not found" }, { status: 404 });
     }
 
     // Save user message
-    await prisma.chatMessage.create({
-      data: {
-        chatSessionId: sessionId,
-        userId,
-        role: "user",
-        content: message,
-      },
+    await db.chatMessage.create({
+      data: { chatSessionId: sessionId, userId, role: "user", content: message },
     });
 
-    // Fetch previous messages for context
-    const previousMessages = await prisma.chatMessage.findMany({
+    // Fetch previous messages for context (last 20 to keep tokens reasonable)
+    const previousMessages = await db.chatMessage.findMany({
       where: { chatSessionId: sessionId },
       orderBy: { createdAt: "asc" },
     });
 
-    // Build messages array for Claude
-    const claudeMessages = previousMessages.map((msg: { role: string; content: string }) => ({
+    const claudeMessages = previousMessages.slice(-20).map((msg: { role: string; content: string }) => ({
       role: msg.role as "user" | "assistant",
       content: msg.content,
     }));
 
-    // Call Claude API
+    // Call Claude — Haiku for speed, Sonnet for depth
     const response = await anthropic.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: COACH_MODEL,
       max_tokens: 1024,
       system: BJJ_SYSTEM_PROMPT,
       messages: claudeMessages,
@@ -108,30 +95,19 @@ export async function POST(req: Request) {
       response.content[0].type === "text" ? response.content[0].text : "";
 
     // Save assistant response
-    await prisma.chatMessage.create({
-      data: {
-        chatSessionId: sessionId,
-        userId,
-        role: "assistant",
-        content: assistantContent,
-      },
+    await db.chatMessage.create({
+      data: { chatSessionId: sessionId, userId, role: "assistant", content: assistantContent },
     });
 
     // Update session timestamp
-    await prisma.chatSession.update({
+    await db.chatSession.update({
       where: { id: sessionId },
       data: { updatedAt: new Date() },
     });
 
-    return NextResponse.json({
-      message: assistantContent,
-      chatSessionId: sessionId,
-    });
+    return NextResponse.json({ message: assistantContent, chatSessionId: sessionId });
   } catch (error) {
     console.error("Coach API error:", error);
-    return NextResponse.json(
-      { error: "Failed to process message" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to process message" }, { status: 500 });
   }
 }

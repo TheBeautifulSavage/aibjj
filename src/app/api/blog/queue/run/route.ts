@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { db as prisma } from "@/lib/db";
 import { anthropic } from "@/lib/anthropic";
 
 const BJJ_BLOG_PROMPT = `You are an expert BJJ black belt and content writer who creates SEO-optimized blog posts about Brazilian Jiu-Jitsu. You write with authority, passion, and deep technical knowledge.

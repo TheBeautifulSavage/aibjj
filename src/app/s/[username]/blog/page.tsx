@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { db as prisma } from "@/lib/db";
 import { getTemplate } from "@/lib/creator-templates";
 import { BJJ_FANATICS_CREATORS } from "@/lib/bjj-fanatics-creators";
 import Link from "next/link";
