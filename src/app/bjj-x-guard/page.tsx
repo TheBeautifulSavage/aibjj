@@ -36,7 +36,7 @@ export default function Page() {
         <p>When you've got a leg in the air (from a failed guard pass or a standing wrestling position), you can shoot into X-guard by sitting under the opponent and inserting both legs into the X configuration. This entry is particularly useful in no-gi when guard openings create brief single-leg opportunities.</p>
 
         <h3>Entry from De La Riva Guard</h3>
-        <p>From De La Riva guard, when the opponent tries to clear your DLR hook by stepping their leg through, you can transition into X-guard by following their leg movement with your hip insertion. This makes X-guard a natural landing spot when De La Riva sweeps are defended.</li>
+        <p>From De La Riva guard, when the opponent tries to clear your DLR hook by stepping their leg through, you can transition into X-guard by following their leg movement with your hip insertion. This makes X-guard a natural landing spot when De La Riva sweeps are defended.</p>
 
         <h2>X-Guard Sweeps</h2>
         <h3>Shin Sweep (Primary Sweep)</h3>
