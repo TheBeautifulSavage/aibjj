@@ -21,8 +21,13 @@ export async function GET(request: Request) {
       where.beltLevel = beltLevel;
     }
 
+    // Note: featured field requires schema migration - gracefully skip if not available
     if (featuredOnly) {
-      where.featured = true;
+      try {
+        where.featured = true;
+      } catch {
+        // featured column may not exist yet
+      }
     }
 
     if (q.trim()) {

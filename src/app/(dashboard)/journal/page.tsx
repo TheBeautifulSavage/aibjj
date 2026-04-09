@@ -14,6 +14,7 @@ import {
   Trash2,
   Pencil,
   TrendingUp,
+  Brain,
 } from "lucide-react";
 import {
   BarChart,
@@ -173,6 +174,8 @@ export default function JournalPage() {
   const [calMonth, setCalMonth] = useState(today.getMonth());
 
   // Slide-over form
+  const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
+  const [analyzingAI, setAnalyzingAI] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [editingEntry, setEditingEntry] = useState<JournalEntry | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -465,13 +468,40 @@ export default function JournalPage() {
             Track every session. See your growth.
           </p>
         </div>
-        <Button
-          className="bg-red-600 hover:bg-red-700 text-white"
-          onClick={openNewForm}
-        >
-          <Plus className="mr-2 h-4 w-4" />
-          Log Session
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 gap-1.5"
+            onClick={async () => {
+              setAnalyzingAI(true);
+              setAiAnalysis(null);
+              try {
+                const res = await fetch("/api/journal/analyze", { method: "POST" });
+                if (res.ok) {
+                  const data = await res.json();
+                  setAiAnalysis(data.analysis);
+                }
+              } catch { /* ignore */ } finally {
+                setAnalyzingAI(false);
+              }
+            }}
+            disabled={analyzingAI || allEntries.length === 0}
+          >
+            {analyzingAI ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Brain className="h-4 w-4 text-purple-400" />
+            )}
+            Analyze Training
+          </Button>
+          <Button
+            className="bg-red-600 hover:bg-red-700 text-white"
+            onClick={openNewForm}
+          >
+            <Plus className="mr-2 h-4 w-4" />
+            Log Session
+          </Button>
+        </div>
       </div>
 
       {/* Stats Strip */}
@@ -532,6 +562,29 @@ export default function JournalPage() {
           </Card>
         ))}
       </div>
+
+      {/* AI Analysis Result */}
+      {aiAnalysis && (
+        <Card className="border-purple-800/40 bg-purple-900/10">
+          <CardContent className="p-4 sm:p-6">
+            <div className="flex items-start justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <Brain className="h-5 w-5 text-purple-400" />
+                <h3 className="text-sm font-semibold text-purple-300">AI Training Analysis</h3>
+              </div>
+              <button
+                onClick={() => setAiAnalysis(null)}
+                className="text-zinc-500 hover:text-zinc-300"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="text-sm text-zinc-300 whitespace-pre-wrap leading-relaxed">
+              {aiAnalysis}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Calendar + Weekly Chart Row */}
       <div className="grid gap-6 lg:grid-cols-5">

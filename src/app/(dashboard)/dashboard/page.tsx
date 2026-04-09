@@ -363,6 +363,8 @@ export default function DashboardPage() {
   const { data: session } = useSession();
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
+  const [suggestion, setSuggestion] = useState<string[] | null>(null);
+  const [loadingSuggestion, setLoadingSuggestion] = useState(false);
 
   const userName = session?.user?.name?.split(" ")[0] || "Practitioner";
   const belt = (session?.user as { belt?: string })?.belt;
@@ -382,6 +384,14 @@ export default function DashboardPage() {
       }
     }
     fetchStats();
+
+    // Fetch AI suggestion
+    setLoadingSuggestion(true);
+    fetch("/api/dashboard/suggestion")
+      .then((r) => r.json())
+      .then((d) => { if (d.bullets) setSuggestion(d.bullets); })
+      .catch(() => {})
+      .finally(() => setLoadingSuggestion(false));
   }, []);
 
   if (loading) {
@@ -444,6 +454,34 @@ export default function DashboardPage() {
           </Badge>
         )}
       </div>
+
+      {/* Today's Focus — AI Suggestion */}
+      {(loadingSuggestion || suggestion) && (
+        <Card className="border-red-800/40 bg-gradient-to-r from-red-950/30 to-zinc-900">
+          <CardContent className="p-4 sm:p-5">
+            <div className="flex items-center gap-2 mb-3">
+              <Zap className="h-4 w-4 text-red-400" />
+              <span className="text-sm font-semibold text-red-300">Today&apos;s Focus</span>
+              <span className="text-xs text-zinc-600 ml-auto">Powered by AI Coach</span>
+            </div>
+            {loadingSuggestion ? (
+              <div className="flex items-center gap-2 text-zinc-500 text-sm">
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Generating your daily training plan...
+              </div>
+            ) : (
+              <ul className="space-y-1.5">
+                {suggestion?.map((bullet, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-zinc-300">
+                    <Check className="h-4 w-4 text-red-400 flex-shrink-0 mt-0.5" />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">

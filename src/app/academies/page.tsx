@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from "next/link";
+import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
   title: 'BJJ Academies Platform | AIBJJ for Gyms',
@@ -117,7 +118,44 @@ const TESTIMONIALS = [
   },
 ];
 
-export default function AcademiesPage() {
+async function getAcademies() {
+  try {
+    const academies = await prisma.user.findMany({
+      where: {
+        role: "CREATOR",
+        academyName: { not: null },
+        username: { not: null },
+      },
+      select: {
+        username: true,
+        name: true,
+        academyName: true,
+        profilePhoto: true,
+        bio: true,
+        belt: true,
+        verified: true,
+        _count: { select: { courses: true } },
+      },
+      orderBy: { createdAt: "desc" },
+      take: 20,
+    });
+    return academies;
+  } catch {
+    return [];
+  }
+}
+
+const BELT_COLORS: Record<string, string> = {
+  WHITE: "bg-white text-black",
+  BLUE: "bg-blue-600 text-white",
+  PURPLE: "bg-purple-600 text-white",
+  BROWN: "bg-amber-800 text-white",
+  BLACK: "bg-zinc-800 text-white border border-zinc-600",
+};
+
+export default async function AcademiesPage() {
+  const academies = await getAcademies();
+
   return (
     <div className="min-h-screen bg-black text-zinc-100">
       {/* Nav */}
@@ -370,6 +408,55 @@ export default function AcademiesPage() {
           </Button>
         </div>
       </section>
+
+      {/* Academy Directory */}
+      {academies.length > 0 && (
+        <section className="border-t border-zinc-800/60 py-20 bg-zinc-950/40">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <p className="text-sm font-semibold uppercase tracking-widest text-red-500">Directory</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight">Academies on AIBJJ</h2>
+              <p className="mt-4 text-zinc-400">BJJ academies already using AIBJJ to train smarter.</p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {academies.map((academy) => (
+                <Link
+                  key={academy.username}
+                  href={`/s/${academy.username}`}
+                  className="group rounded-xl border border-zinc-800/60 bg-zinc-900/50 p-5 hover:border-red-900/40 hover:bg-zinc-900 transition-all"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-800 text-lg font-bold text-zinc-300 shrink-0">
+                      {academy.profilePhoto ? (
+                        <img src={academy.profilePhoto} alt={academy.name || ""} className="h-12 w-12 rounded-xl object-cover" />
+                      ) : (
+                        (academy.name?.charAt(0) || "A")
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-zinc-100 truncate group-hover:text-red-400 transition-colors">
+                        {academy.academyName}
+                      </p>
+                      <p className="text-sm text-zinc-500 truncate">{academy.name}</p>
+                      <div className="flex items-center gap-2 mt-2">
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold ${BELT_COLORS[academy.belt] || BELT_COLORS.WHITE}`}>
+                          {academy.belt.charAt(0) + academy.belt.slice(1).toLowerCase()} Belt
+                        </span>
+                        {academy._count.courses > 0 && (
+                          <span className="text-xs text-zinc-500">{academy._count.courses} courses</span>
+                        )}
+                        {academy.verified && (
+                          <span className="text-xs text-red-400">✓ Verified</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Footer */}
       <footer className="border-t border-zinc-800/60 bg-zinc-950 py-8">

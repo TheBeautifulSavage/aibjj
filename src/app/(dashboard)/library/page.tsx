@@ -9,7 +9,9 @@ import {
   Play,
   ChevronRight,
   X,
+  MessageSquare,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -77,6 +79,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 };
 
 export default function TechniqueLibraryPage() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [position, setPosition] = useState("All");
   const [category, setCategory] = useState("All");
@@ -526,6 +529,21 @@ export default function TechniqueLibraryPage() {
                     </ul>
                   </div>
                 )}
+
+                {/* Learn this button */}
+                <div className="flex gap-2">
+                  <Button
+                    className="bg-red-600 hover:bg-red-700 text-white gap-2 flex-1"
+                    onClick={() => {
+                      const msg = encodeURIComponent(`Teach me ${selectedTechnique.name} step by step`);
+                      router.push(`/coach?prompt=${msg}`);
+                      setDialogOpen(false);
+                    }}
+                  >
+                    <MessageSquare className="h-4 w-4" />
+                    Learn this with AI Coach
+                  </Button>
+                </div>
 
                 {/* Related */}
                 {relatedTechniques.length > 0 && (

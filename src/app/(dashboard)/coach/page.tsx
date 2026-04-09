@@ -73,9 +73,20 @@ export default function CoachPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Load sessions on mount
+  // Load sessions on mount + handle prefilled prompt from URL
   useEffect(() => {
     fetchSessions();
+    // Check for prefilled prompt from URL (e.g., from technique library "Learn this" button)
+    const params = new URLSearchParams(window.location.search);
+    const prefill = params.get("prompt");
+    if (prefill) {
+      setInput(decodeURIComponent(prefill));
+      textareaRef.current?.focus();
+      // Clean URL without reload
+      const url = new URL(window.location.href);
+      url.searchParams.delete("prompt");
+      window.history.replaceState({}, "", url.toString());
+    }
   }, []);
 
   // Auto-scroll to bottom on new messages

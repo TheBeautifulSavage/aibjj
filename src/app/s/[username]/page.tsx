@@ -4,7 +4,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { getTemplate } from "@/lib/creator-templates";
 import { BJJ_FANATICS_CREATORS } from "@/lib/bjj-fanatics-creators";
-import { ShoppingCart, Play, Star, BookOpen, MapPin, Mail, Instagram, Youtube, Twitter } from "lucide-react";
+import { ShoppingCart, Play, Star, BookOpen, MapPin, Mail, ExternalLink } from "lucide-react";
 
 interface Props {
   params: Promise<{ username: string }>;
@@ -51,6 +51,12 @@ async function getCreatorData(username: string) {
         },
         orderBy: { createdAt: "desc" },
       },
+      blogPosts: {
+        where: { published: true },
+        orderBy: { publishedAt: "desc" },
+        take: 3,
+        select: { id: true, title: true, slug: true, excerpt: true, publishedAt: true, coverImage: true },
+      },
     },
   });
 
@@ -58,6 +64,7 @@ async function getCreatorData(username: string) {
     return {
       source: "db" as const,
       name: dbUser.name || username,
+      email: dbUser.email,
       academyName: dbUser.academyName,
       bio: dbUser.bio,
       belt: dbUser.belt,
@@ -85,6 +92,7 @@ async function getCreatorData(username: string) {
             : 0,
         studentCount: c.purchases.length,
       })),
+      blogPosts: dbUser.blogPosts,
     };
   }
 
@@ -103,6 +111,7 @@ async function getCreatorData(username: string) {
       socialInstagram: prebuilt.socialInstagram || null,
       socialYoutube: prebuilt.socialYoutube || null,
       socialTwitter: prebuilt.socialTwitter || null,
+      email: null,
       verified: false,
       courses: [] as Array<{
         id: string;
@@ -117,6 +126,14 @@ async function getCreatorData(username: string) {
         totalDuration: number;
         avgRating: number;
         studentCount: number;
+      }>,
+      blogPosts: [] as Array<{
+        id: string;
+        title: string;
+        slug: string;
+        excerpt: string | null;
+        publishedAt: Date | null;
+        coverImage: string | null;
       }>,
       specialties: prebuilt.specialties,
     };
@@ -192,18 +209,18 @@ export default async function CreatorPage({ params }: Props) {
               Blog
             </a>
             {creator.socialInstagram && (
-              <a href={`https://instagram.com/${creator.socialInstagram}`} target="_blank" rel="noopener noreferrer" className={`${mutedText} hover:opacity-80`}>
-                📸
+              <a href={`https://instagram.com/${creator.socialInstagram}`} target="_blank" rel="noopener noreferrer" className={`${mutedText} hover:opacity-80 text-sm font-medium`} title="Instagram">
+                📸 Instagram
               </a>
             )}
             {creator.socialYoutube && (
-              <a href={`https://youtube.com/@${creator.socialYoutube}`} target="_blank" rel="noopener noreferrer" className={`${mutedText} hover:opacity-80`}>
-                ▶️
+              <a href={`https://youtube.com/@${creator.socialYoutube}`} target="_blank" rel="noopener noreferrer" className={`${mutedText} hover:opacity-80 text-sm font-medium`} title="YouTube">
+                ▶️ YouTube
               </a>
             )}
             {creator.socialTwitter && (
-              <a href={`https://x.com/${creator.socialTwitter}`} target="_blank" rel="noopener noreferrer" className={`${mutedText} hover:opacity-80`}>
-                𝕏
+              <a href={`https://x.com/${creator.socialTwitter}`} target="_blank" rel="noopener noreferrer" className={`${mutedText} hover:opacity-80 text-sm font-medium`} title="X / Twitter">
+                𝕏 Twitter
               </a>
             )}
           </div>
@@ -252,6 +269,49 @@ export default async function CreatorPage({ params }: Props) {
                 ))}
               </div>
             )}
+
+            {/* Academy Info */}
+            {creator.academyName && (
+              <div className={`flex flex-col items-center gap-2 rounded-xl border px-6 py-4 ${isLight ? "border-gray-200 bg-gray-50" : "border-zinc-800 bg-zinc-900/60"}`}>
+                <p className={`text-sm font-semibold ${accentText}`}>{creator.academyName}</p>
+                <a
+                  href={`https://www.google.com/maps/search/${encodeURIComponent(creator.academyName)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center gap-1.5 text-sm ${mutedText} hover:opacity-80`}
+                >
+                  <MapPin className="h-4 w-4" />
+                  Find us on Google Maps
+                </a>
+              </div>
+            )}
+
+            {/* Contact + Stats */}
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {creator.email && (
+                <a
+                  href={`mailto:${creator.email}`}
+                  className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${isLight ? "border-gray-200 hover:bg-gray-50 text-zinc-700" : "border-zinc-700 hover:bg-zinc-800 text-zinc-300"}`}
+                >
+                  <Mail className="h-4 w-4" />
+                  Message Creator
+                </a>
+              )}
+              {creator.socialInstagram && (
+                <a href={`https://instagram.com/${creator.socialInstagram}`} target="_blank" rel="noopener noreferrer"
+                  className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${isLight ? "border-gray-200 hover:bg-gray-50 text-zinc-700" : "border-zinc-700 hover:bg-zinc-800 text-zinc-300"}`}>
+                  <Instagram className="h-4 w-4" />
+                  Instagram
+                </a>
+              )}
+              {creator.socialYoutube && (
+                <a href={`https://youtube.com/@${creator.socialYoutube}`} target="_blank" rel="noopener noreferrer"
+                  className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${isLight ? "border-gray-200 hover:bg-gray-50 text-zinc-700" : "border-zinc-700 hover:bg-zinc-800 text-zinc-300"}`}>
+                  <Youtube className="h-4 w-4" />
+                  YouTube
+                </a>
+              )}
+            </div>
 
             {creator.courses.length > 0 && (
               <div className="flex items-center gap-6 mt-2">
@@ -319,10 +379,15 @@ export default async function CreatorPage({ params }: Props) {
                       <span className="text-2xl font-black">
                         {course.price === 0 ? "Free" : `$${course.price}`}
                       </span>
-                      <button className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${accentBg}`}>
-                        <ShoppingCart className="h-4 w-4 inline mr-1.5 -mt-0.5" />
+                      <Link
+                        href={course.price === 0
+                          ? `/dashboard/courses/${course.id}`
+                          : `/checkout/${course.id}`}
+                        className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${accentBg} inline-flex items-center`}
+                      >
+                        <ShoppingCart className="h-4 w-4 mr-1.5" />
                         {course.price === 0 ? "Enroll Free" : "Buy Now"}
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -341,6 +406,46 @@ export default async function CreatorPage({ params }: Props) {
           </div>
         )}
       </section>
+
+      {/* Blog Posts */}
+      {"blogPosts" in creator && creator.blogPosts && creator.blogPosts.length > 0 && (
+        <section className={`border-t ${isLight ? "border-gray-200" : "border-zinc-800"} mx-auto max-w-6xl px-4 py-16 sm:px-6`}>
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold">Latest Posts</h2>
+            <Link href={`/s/${username}/blog`} className={`text-sm font-medium ${accentText} hover:opacity-80`}>
+              View all →
+            </Link>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {creator.blogPosts.map((post) => (
+              <Link
+                key={post.id}
+                href={`/s/${username}/blog/${post.slug}`}
+                className={`rounded-xl overflow-hidden ${cardBg} ${cardBorder} transition-transform hover:scale-[1.02] block`}
+              >
+                {post.coverImage && (
+                  <div className="aspect-video overflow-hidden">
+                    <img src={post.coverImage} alt={post.title} className="h-full w-full object-cover" />
+                  </div>
+                )}
+                <div className="p-5">
+                  <h3 className="font-bold leading-snug mb-2">{post.title}</h3>
+                  {post.excerpt && (
+                    <p className={`text-sm ${mutedText} line-clamp-2`}>{post.excerpt}</p>
+                  )}
+                  {post.publishedAt && (
+                    <p className={`text-xs ${mutedText} mt-3`}>
+                      {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                        month: "short", day: "numeric", year: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Footer */}
       <footer className={`border-t ${isLight ? "border-gray-200 bg-gray-50" : isBold ? "border-yellow-500/10 bg-black" : "border-zinc-800 bg-[#0a0a0a]"}`}>
