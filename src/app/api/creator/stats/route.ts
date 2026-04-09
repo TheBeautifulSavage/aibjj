@@ -21,13 +21,13 @@ export async function GET() {
   })
 
   // Calculate stats
-  const totalRevenue = courses.reduce((sum, c) =>
-    sum + c.purchases.reduce((s, p) => s + p.amount, 0), 0)
-  const totalStudents = courses.reduce((sum, c) => sum + c.purchases.length, 0)
+  const totalRevenue = courses.reduce((sum: number, c: { purchases: { amount: number }[] }) =>
+    sum + c.purchases.reduce((s: number, p: { amount: number }) => s + p.amount, 0), 0)
+  const totalStudents = courses.reduce((sum: number, c: { purchases: unknown[] }) => sum + c.purchases.length, 0)
   const totalCourses = courses.length
   const publishedCourses = courses.filter(c => c.published).length
 
-  const allRatings = courses.flatMap(c => c.reviews.map(r => r.rating))
+  const allRatings = courses.flatMap((c: { reviews: { rating: number }[] }) => c.reviews.map((r: { rating: number }) => r.rating))
   const averageRating = allRatings.length > 0
     ? allRatings.reduce((a, b) => a + b, 0) / allRatings.length
     : 0
@@ -68,10 +68,10 @@ export async function GET() {
       title: c.title,
       price: c.price,
       students: c.purchases.length,
-      revenue: c.purchases.reduce((s, p) => s + p.amount, 0),
+      revenue: c.purchases.reduce((s: number, p: { amount: number }) => s + p.amount, 0),
       published: c.published,
       rating: c.reviews.length > 0
-        ? c.reviews.reduce((s, r) => s + r.rating, 0) / c.reviews.length
+        ? c.reviews.reduce((s: number, r: { rating: number }) => s + r.rating, 0) / c.reviews.length
         : null,
       lessonCount: c.lessons.length,
       category: c.category,

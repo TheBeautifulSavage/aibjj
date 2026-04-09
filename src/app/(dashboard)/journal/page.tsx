@@ -347,7 +347,7 @@ export default function JournalPage() {
   const weeklyData = useMemo(() => {
     const now = new Date();
     const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const data = [];
+    const data: { day: string; minutes: number }[] = [];
 
     for (let i = 6; i >= 0; i--) {
       const d = new Date(now);

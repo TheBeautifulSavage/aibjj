@@ -149,7 +149,7 @@ export default function ProgressPage() {
 
   // --- 12-week frequency chart ---
   const weeklyFrequency = useMemo(() => {
-    const data = [];
+    const data: Record<string, unknown>[] = [];
     const now = new Date();
     for (let w = 11; w >= 0; w--) {
       const weekStart = new Date(now);

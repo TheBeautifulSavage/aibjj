@@ -81,7 +81,7 @@ export async function GET(request: Request) {
     const coursesWithStats = courses.map((course) => {
       const avgRating =
         course.reviews.length > 0
-          ? course.reviews.reduce((sum, r) => sum + r.rating, 0) / course.reviews.length
+          ? course.reviews.reduce((sum: number, r: { rating: number }) => sum + r.rating, 0) / course.reviews.length
           : 0;
       const isNew =
         new Date(course.createdAt).getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000;
