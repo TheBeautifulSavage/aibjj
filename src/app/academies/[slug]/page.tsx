@@ -20,7 +20,7 @@ export async function generateMetadata({
 
   return {
     title: `${academy.name} — BJJ Academy in ${academy.city} | AIBJJ`,
-    description: `${academy.name} is a Brazilian jiu-jitsu academy in ${academy.city}, ${academy.country}.${academy.rating ? ` Rated ${academy.rating}/5 from ${academy.reviewCount} reviews.` : ""} Find directions, contact info, and more.`,
+    description: `${academy.name} is a Brazilian jiu-jitsu academy in ${academy.city}, ${academy.country}.${academy.rating ? ` Rated ${academy.rating}/5 from ${academy.review_count} reviews.` : ""} Find directions, contact info, and more.`,
     openGraph: {
       title: `${academy.name} — BJJ Academy in ${academy.city}`,
       description: `Find ${academy.name} in ${academy.city}, ${academy.country}. Brazilian jiu-jitsu training near you.`,
@@ -44,7 +44,7 @@ export default async function AcademyPage({
   // Nearby academies (same city)
   const { data: nearby } = await supabase
     .from("Academy")
-    .select("id, name, slug, city, country, rating, reviewCount")
+    .select("id, name, slug, city, country, rating, review_count")
     .eq("city", academy.city)
     .neq("slug", academy.slug)
     .limit(6);
@@ -87,14 +87,14 @@ export default async function AcademyPage({
         {academy.rating && (
           <div className="mt-3 flex items-center gap-2">
             <span className="text-yellow-400 text-xl">★</span>
-            <span className="text-xl font-bold">{academy.rating.toFixed(1)}</span>
+            <span className="text-xl font-bold">{Number(academy.rating).toFixed(1)}</span>
             <span className="text-zinc-500">
-              ({academy.reviewCount?.toLocaleString()} reviews)
+              ({academy.review_count?.toLocaleString()} reviews)
             </span>
           </div>
         )}
 
-        {/* Details */}
+        {/* Details chips */}
         <div className="mt-6 flex flex-wrap gap-3">
           {academy.city && (
             <span className="rounded-full border border-zinc-700 bg-zinc-800 px-3 py-1 text-sm text-zinc-300">
@@ -124,7 +124,7 @@ export default async function AcademyPage({
         {/* CTA buttons */}
         <div className="mt-8 flex flex-wrap gap-4">
           <a
-            href={academy.googleMapsUrl}
+            href={academy.google_maps_url}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-lg bg-red-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-red-700"
@@ -140,10 +140,10 @@ export default async function AcademyPage({
         </div>
 
         {/* Map embed */}
-        {academy.placeId && (
+        {academy.place_id && (
           <div className="mt-10 overflow-hidden rounded-xl border border-zinc-800">
             <iframe
-              src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAY-zxxap6z1ZKV7MZLFfvudYPz1ONagsg&q=place_id:${academy.placeId}`}
+              src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAY-zxxap6z1ZKV7MZLFfvudYPz1ONagsg&q=place_id:${academy.place_id}`}
               width="100%"
               height="400"
               style={{ border: 0 }}
@@ -154,13 +154,14 @@ export default async function AcademyPage({
           </div>
         )}
 
-        {/* SEO description */}
+        {/* SEO description block */}
         <div className="mt-10 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
           <h2 className="text-lg font-bold mb-3">About {academy.name}</h2>
           <p className="text-zinc-400 text-sm leading-relaxed">
             {academy.name} is a Brazilian jiu-jitsu academy located in {academy.city},{" "}
-            {academy.country}. {academy.rating
-              ? `The academy holds a ${academy.rating.toFixed(1)}-star rating based on ${academy.reviewCount?.toLocaleString()} Google reviews.`
+            {academy.country}.{" "}
+            {academy.rating
+              ? `The academy holds a ${Number(academy.rating).toFixed(1)}-star rating based on ${academy.review_count?.toLocaleString()} Google reviews.`
               : ""}{" "}
             Use AIBJJ to track your training sessions, log techniques learned, and monitor your
             progress as a student at {academy.name}.
@@ -186,7 +187,7 @@ export default async function AcademyPage({
                   </p>
                   {a.rating && (
                     <p className="text-sm text-zinc-400 mt-1">
-                      ★ {a.rating.toFixed(1)} ({a.reviewCount} reviews)
+                      ★ {Number(a.rating).toFixed(1)} ({a.review_count} reviews)
                     </p>
                   )}
                 </Link>

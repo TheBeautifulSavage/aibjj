@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
 
   let query = supabase
     .from("Academy")
-    .select("id, name, slug, city, state, country, rating, reviewCount, lat, lng, address", {
+    .select("id, name, slug, city, state, country, rating, review_count, lat, lng, address", {
       count: "exact",
     })
     .order("rating", { ascending: false })
