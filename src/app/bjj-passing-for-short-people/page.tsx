@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ Guard Passing for Short People: Compact Passing Systems | AIBJJ", description: "BJJ guard passing for short people — pressure passing, knee slice, and smash pass systems that leverage a compact frame to dominate taller guard players effectively." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ Guard Passing for Short People: Compact Passing Systems", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ Guard Passing for Short People: Compact Passing Systems</h1>
+        <p className="mt-4 text-xl text-zinc-400">Short practitioners can be exceptional guard passers — their compact frame generates excellent pressure and their lower center of gravity creates passing advantages that taller passers cannot replicate.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Pressure Passing with a Compact Frame</h2><p>Short practitioners generate excellent pressure relative to their body weight because their compact mass is distributed more efficiently. The over-under pass, smash pass, and stack pass all benefit from a shorter passer whose hips and chest stay close to the opponent during the pass. Short passers can generate chest pressure from tighter angles than tall practitioners, making it difficult for guard players to create frames — when a short passer&apos;s chest is on your thighs and their head is into your hip, there is no space to insert a frame. The leg drag is also effective for shorter passers who can maintain a tight connection through the drag motion. Knee on belly as a follow-up after passing is natural for shorter practitioners who can quickly establish the position. Building a pressure-based passing game around these compact mechanics is the most efficient approach for shorter practitioners, making use of the natural mechanical advantages rather than attempting longer-range passing approaches that favor taller grapplers.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Knee Slice and Low Passing Game</h2><p>The knee slice pass suits shorter practitioners particularly well because it operates in a low, compact range where their body mechanics are strongest. The knee drives through the opponent&apos;s thigh from close range, and the short passer can maintain head and chest control during the pass more easily than a taller practitioner who is working from further above. The double under pass (both arms under the legs) is also excellent for compact passers — lifting and stacking opponents uses the leg and hip strength of shorter practitioners effectively. Short passers should avoid long-range standing passes like torreando where the height disadvantage is most apparent and where longer-legged guard players can extend their legs to push the shorter passer away. If standing passing is used, the headquarters position — kneeling between the legs with one foot up — is a better starting point for shorter practitioners than fully standing, as it maintains the compact mechanics that generate their best passing pressure.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Managing Long-Legged Guard Players</h2><p>The primary challenge for short passers is dealing with long-legged guard players who can maintain distance effectively with spider guard, de la Riva hooks, and long-range triangles. The strategic response is to close the distance aggressively using grip fighting — controlling the opponent&apos;s sleeves and preventing them from establishing long-range guard grips before the pass begins. Short passers should also use knee cut and smash pass approaches that go through the guard rather than around it — shorter practitioners cannot go over long legs easily, but they can go through them with proper grip and pressure. Developing excellent grip fighting skills as a prerequisite to passing is essential for shorter practitioners who face taller guard players regularly. When the right grips are established and the distance is closed, the short passer&apos;s compact mechanics create genuine passing advantages that longer-range guard players struggle to counter effectively.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Train Smarter with AI</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique tracker, training journal.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}

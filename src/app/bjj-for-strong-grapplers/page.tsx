@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ for Strong Grapplers: Channel Your Strength Correctly | AIBJJ", description: "BJJ for strong grapplers — channel your strength into effective grappling rather than muscling techniques. Learn how strength enhances correct BJJ mechanics and timing." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ for Strong Grapplers: Channel Your Strength Correctly", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ for Strong Grapplers: Channel Your Strength Correctly</h1>
+        <p className="mt-4 text-xl text-zinc-400">Strength is a legitimate BJJ asset when channeled through correct technique. Strong grapplers who learn proper mechanics become nearly unstoppable — their techniques work AND their physical attributes amplify them.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Strength as a Technical Amplifier</h2><p>The common BJJ advice to never use strength is partially misleading — strength applied through correct mechanics is exceptionally powerful. The problem is strength applied instead of mechanics, compensating for poor technique rather than amplifying good technique. Strong grapplers who understand this distinction are formidable: their grips are harder to break, their posture is more resistant to manipulation, their takedowns are more explosive, and their submissions once established are harder to survive. The training approach for strong practitioners should be to first learn the technique correctly with minimal effort, then gradually add physical input once the mechanics are correct. This prevents the habit of muscling bad positions into okay positions — which works until you face someone equally strong who also has better technique. Building technical skill with light effort and then amplifying with strength creates a far more reliable game than building a strength-dependent game that collapses against stronger opponents.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Best Positions for Strong Grapplers</h2><p>Strong grapplers naturally excel in wrestling-based top positions where their strength translates directly to control. Takedowns, particularly double legs and body locks, benefit enormously from strength. Top turtle control, guard passing with pressure, and maintaining side control all benefit from superior grip and pushing strength. Strong practitioners also excel in clinch work: the underhook battle, hip-to-hip connections, and body lock fighting all reward strength when combined with proper mechanics. Wrestling shots and sprawl-based defensive wrestling are also natural fits. On the ground, strong grapplers should focus on positions where they can generate the most useful mechanical output — pressure passing, guard retention using strength to prevent hip escapes, and submission finishing once position is established. Back attacks are excellent for strong grapplers because the strength of the body triangle and arm control dramatically increases finishing percentage once the back is taken and controlled.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Avoiding the Strength Trap</h2><p>The strength trap occurs when strong practitioners become dependent on their physical attribute and stop developing technical skill. This leads to plateaus when training with equally strong partners and significant frustration when meeting practitioners whose technique exceeds their own strength. Strong grapplers should regularly train with partners who are equally strong but more technically skilled — this forces technical development rather than physical dominance. Drilling techniques slowly with control rather than explosively builds correct habits. Also, training with significantly lighter partners who cannot be muscled forces technique — a 140-pound skilled practitioner teaching a 220-pound strong beginner their technique quickly reveals what is actually mechanical skill versus compensated strength. The long-term goal is to be both technically sound and physically strong, creating a combination that rewards the investment in strength training with compound returns on every technique rather than experiencing diminishing returns as the competition level rises.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Train Smarter with AI</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique tracker, training journal.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}

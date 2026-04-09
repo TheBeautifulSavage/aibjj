@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ for Tall People: Use Your Height Advantage | AIBJJ", description: "BJJ for tall people — leverage your long limbs, long guard, and rangy frame to dominate with triangles, long-range guards, and guard passing advantages." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ for Tall People: Use Your Height Advantage", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ for Tall People: Use Your Height Advantage</h1>
+        <p className="mt-4 text-xl text-zinc-400">Being tall in BJJ comes with unique advantages — long limbs for triangles and arm bars, a rangy guard that shorter opponents struggle to pass, and guard passing leverage that shorter grapplers cannot match.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Guard Game: Triangles and Long-Range Control</h2><p>Tall practitioners have a natural advantage in triangle chokes — longer legs wrap around opponents more easily and the angle of attack is more direct. Closed guard is effective for tall grapplers because the longer legs create more control over the opponent&apos;s posture and movement. Open guard positions like spider guard are excellent for tall practitioners because their long legs can maintain distance control while threatening with kicks and triangles. The long guard — maintaining active feet on hips or biceps — works exceptionally well for tall grapplers because they can control distance that shorter opponents cannot close through. Developing a strong closed guard game built around triangle and armbar threats is a natural starting point for tall BJJ practitioners. The geometry of a tall person&apos;s closed guard creates natural submission angles that shorter practitioners must work much harder to achieve. Understanding this advantage and building your guard around these natural threats accelerates skill development.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Guard Passing for the Tall Grappler</h2><p>Tall practitioners have excellent leverage for standing guard passes because their height creates a mechanical advantage over shorter guard players. The torreando and headquarters passing positions benefit tall grapplers whose long arms can reach across the opponent&apos;s legs easily. However, tall grapplers must be careful about getting pulled into closed guard — their longer torso makes guard breaks more difficult and they are often at a mechanical disadvantage in closed guard compared to shorter opponents. The optimal strategy for tall passers is to maintain standing and use long-range passing options. The leg drag and knee slice also work well for tall practitioners once they establish grip control. Back stepping and floating passes that use the tall grappler&apos;s reach and mobility are effective. The key challenge is avoiding situations where the opponent can close the range and eliminate the height advantage, making distance management a crucial skill for tall BJJ practitioners.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Common Challenges and How to Overcome Them</h2><p>Tall grapplers face specific challenges: getting pulled into deep closed guard where the height advantage disappears, difficulty with takedowns against lower opponents, and sometimes slower initial learning because the long limbs require different timing than most technique demonstrations show. For takedowns, learning to snap down opponents and use high-crotch and body lock techniques works better than traditional double leg shots for tall practitioners. Developing guard retention as a priority helps because taller grapplers moving into and out of positions sometimes have gaps that shorter, more compact opponents can exploit. Also investing in flexibility training specifically for hips and hamstrings improves the guard game significantly for tall practitioners. Use your height — do not try to be a compact grappler. Many tall practitioners make the mistake of trying to mimic techniques designed for shorter body types instead of adapting and building on the real advantages their frame provides.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Train Smarter with AI</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique tracker, training journal.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}

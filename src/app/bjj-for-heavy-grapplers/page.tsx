@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ for Heavy Grapplers: Use Your Weight Intelligently | AIBJJ", description: "BJJ for heavy grapplers — use your weight advantage with pressure passing, top control, and body lock attacks that make your mass a tool rather than a liability." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ for Heavy Grapplers: Use Your Weight Intelligently", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ for Heavy Grapplers: Use Your Weight Intelligently</h1>
+        <p className="mt-4 text-xl text-zinc-400">Heavy grapplers have a significant advantage in BJJ when they learn to use their weight correctly — not just sitting on opponents, but applying precise pressure at key points to limit movement and drain energy.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Pressure Passing for Heavy Grapplers</h2><p>Heavy grapplers excel at pressure-based guard passing because their mass can neutralize active guards when applied correctly. The over-under pass, smash pass, and leg drag are natural fits because they allow heavy practitioners to use their weight to pin legs and pass in stages. The key is learning to apply weight at the right points — on the opponent&apos;s hips and legs during the pass rather than simply leaning on them. Stack passing also works exceptionally well for heavy grapplers: folding the opponent in half with their weight supported by the heavy grappler&apos;s chest and shoulder creates enormous pressure that lightweight opponents cannot sustain. Heavy grapplers should avoid fast, athleticism-based passing like torreando and instead develop methodical pressure passing that grinds opponents down over the course of a match. Building cardio specifically for sustained pressure passing — maintaining weight and posture for extended periods — is a key fitness priority for heavy practitioners who want to leverage their physical advantage most effectively.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Top Control and Positional Domination</h2><p>From top positions, heavy grapplers have natural advantages that should be cultivated deliberately. Side control for a heavy grappler can be suffocating — placing weight on the opponent&apos;s chest and ribs while controlling the hip and head limits movement significantly. Mount for heavy practitioners is particularly powerful: the weight of a heavy grappler in mount makes survival extremely difficult for most opponents. Learning to consolidate mount and maintain it patiently before attacking submissions is the ideal approach — often the submission attempts can be slower and more deliberate because the opponent&apos;s escape options are severely limited by the weight being managed. Knee on belly is also a valuable position for heavy grapplers because the knee pressure on the midsection is significantly more effective at the higher weight. Developing excellent top control in all dominant positions before focusing on submissions builds a foundation that works regardless of technical sophistication of opponents.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Guard Game and Cardio Considerations</h2><p>Heavy grapplers should also develop guard games to be complete practitioners. Closed guard suits heavy practitioners well because their weight makes it difficult for opponents to posture up and pass. Half guard with active under-hook seeking is another strong option. The primary challenge for heavy grapplers is cardio — larger bodies consume more oxygen, and many heavy practitioners gas out before their technical game can shine. Investing seriously in cardio training: aerobic base building, then grappling-specific interval training, dramatically improves the heavy grappler&apos;s performance. Weight management and body composition also matter — a heavy grappler who is muscular and conditioned is far more effective than one carrying significant body fat. The goal is to make your weight a tool that you control rather than a burden that limits your movement, endurance, and explosiveness during training and competition rounds.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Train Smarter with AI</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique tracker, training journal.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}

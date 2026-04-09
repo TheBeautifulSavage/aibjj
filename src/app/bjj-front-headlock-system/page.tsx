@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ Front Headlock System: Guillotine, Darce & Anaconda Chokes | AIBJJ", description: "Master the front headlock system in no-gi BJJ. Learn guillotine setups, arm-in guillotine, Darce choke, and anaconda from the front headlock position." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ Front Headlock System: Guillotine, Darce & Anaconda Chokes", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ Front Headlock System: Guillotine, Darce & Anaconda Chokes</h1>
+        <p className="mt-4 text-xl text-zinc-400">The front headlock is one of the most dangerous positions in no-gi grappling. When you control an opponent's head from the front, you access the guillotine, Darce choke, anaconda, and a complete takedown system — all from a single controlling position.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Establishing the Front Headlock</h2><p>The front headlock occurs when the opponent's head is below yours and their neck is accessible from the front. Common entries: after a failed shot, after a snap down, after defending a takedown, or when an opponent dives for a leg. To establish it, reach one arm under their chin (the choking arm) and the other hand on the back of their head (the control arm). Your forearm presses against their neck while your other hand prevents them from lifting. The front headlock is a transitional position — you must act quickly before they clear their head. The three primary attack families from here are guillotine chokes, arm-in chokes (Darce/anaconda), and rolling takedowns. Understanding which attack to select depends on their arm position: arm outside = guillotine; arm inside = Darce or anaconda. This is the fundamental decision that determines your attack path.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Guillotine Choke: High Elbow and Arm-In Variations</h2><p>The guillotine is the signature front headlock submission. The high elbow guillotine (10th Planet and DDS style) keeps your choking elbow above the opponent's shoulder line, creating a throat crush. The arm-in guillotine (or arm-in version) traps their arm inside your guard along with their head — this version is harder to defend but requires closing guard to finish. Finish mechanics: squeeze your elbows together, arch back, and drive your hips forward to create the crush across the throat and back of the neck. The guillotine from guard is the classic closed-guard finish: pull guard with the guillotine grip already established, close guard high on their back, and arc into the choke. Standing guillotines require more timing — arch backward as you lift their head. Study the grip details carefully: a guillotine with a loose grip or wrong forearm angle often stalls even against non-resistant opponents.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Darce Choke and Anaconda from Front Headlock</h2><p>When the opponent's arm is inside the front headlock (between your bodies), the Darce choke becomes available. Shoot your choking arm under their armpit and then over their neck, creating a figure-four lock with your other arm. The Darce is a blood choke — when finished with your arms pressing both carotid arteries, it works extremely fast. The key detail: your arm must go deep under the armpit before coming over the neck. A shallow Darce just creates pressure without finishing. The anaconda choke is the reverse: your arm goes over the neck first, then under the armpit. Rolling forward (anaconda roll) finishes the choke. Both chokes are devastating and require only moderate arm strength because of their mechanical leverage. These submissions catch practitioners who shoot for legs carelessly — any time a head dips below your hips, a front headlock and subsequent Darce becomes available. Drill front headlock systems regularly to make these reactions automatic.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Level Up Your BJJ</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique library, training journal — all in one place.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}

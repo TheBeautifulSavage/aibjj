@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "Gordon Ryan BJJ Style: Systematic Dominance Explained | AIBJJ", description: "Break down Gordon Ryan's BJJ style — back attacks, leg locks, pressure passing, and the systematic approach that made him the greatest no-gi grappler alive." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "Gordon Ryan BJJ Style: Systematic Dominance Explained", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">Gordon Ryan BJJ Style: Systematic Dominance Explained</h1>
+        <p className="mt-4 text-xl text-zinc-400">Gordon Ryan is the most dominant no-gi grappler in history. His game is a masterclass in systematic thinking — building complete systems around back control, leg locks, and guard passing that leave opponents with no good options.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Back Control and the Seat Belt System</h2><p>Gordon Ryan has the most complete back attack system in grappling. Built under John Danaher at Renzo Gracie Academy, his back control methodology focuses on maintaining the seat belt grip, controlling the hips with hooks or body triangles, and attacking the neck with a comprehensive arsenal of rear naked chokes, bow-and-arrow variations, and arm attacks. What separates Gordon&apos;s back game is his ability to maintain back control when opponents attempt to escape — he has counters to every defensive maneuver. His back takes come from everywhere: turtle position, leg lock exchanges, guard passing situations, and standing. The system was designed so that every failed submission attempt either resets to back control or transitions to another dominant position. Gordon&apos;s back game teaches the value of learning a position as a system rather than a collection of isolated submissions or escapes.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Leg Lock Integration and Lower Body Attacks</h2><p>Gordon Ryan brought leg locks into the mainstream of high-level competition, demonstrating that heel hooks and knee bars could be used systematically rather than as gambling attacks. His leg lock game operates through the Ashi Garami positions — single leg X, saddle (inside heel hook), outside heel hook entries — creating a web of lower body attacks that opponents cannot easily escape. More importantly, his leg lock game connects seamlessly to his passing game: failed leg lock attempts become guard passes, and guard passing pressure creates leg lock entries. This integration made his game nearly impossible to shut down because defending one threat created another. Gordon&apos;s approach to leg locks is clinical and methodical — he controls position first, then applies mechanical force. For practitioners, his game demonstrates that leg locks are not shortcuts but legitimate positional weapons requiring the same systematic development as any other aspect of BJJ.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">What You Can Learn from Gordon Ryan&apos;s Style</h2><p>Gordon Ryan&apos;s most important contribution to BJJ is demonstrating the power of systematic thinking over technique collection. He and John Danaher approached grappling like engineers: identifying the most dominant positions, building complete systems around them, and drilling the connections until they were automatic. Practitioners can learn from his emphasis on positional hierarchy — he always seeks the highest percentage dominant position before hunting submissions. His legendary work ethic and analytical approach to training are equally instructive. Gordon studies opponents, identifies weaknesses, and builds specific game plans. He also demonstrates how physical development supports technical skill — his athleticism amplifies his technique without replacing it. The key takeaway is to pick two or three positions you want to truly master, build complete systems around them including attacks and defensive responses, and drill them until they function automatically under pressure.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Train Smarter with AI</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique tracker, training journal.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}

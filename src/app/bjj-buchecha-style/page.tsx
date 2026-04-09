@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "Buchecha BJJ Style: Explosive Passing and Top Pressure | AIBJJ", description: "Study Buchecha's BJJ style — explosive guard passing, relentless pressure, and the combination of athleticism and technique that earned 13 World Championships." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "Buchecha BJJ Style: Explosive Passing and Top Pressure", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">Buchecha BJJ Style: Explosive Passing and Top Pressure</h1>
+        <p className="mt-4 text-xl text-zinc-400">Marcus Almeida, known as Buchecha, is one of the most decorated Brazilian jiu-jitsu competitors ever with 13 World Championships. His game combines elite athleticism with sophisticated technique and relentless forward pressure.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Explosive Guard Passing Game</h2><p>Buchecha&apos;s guard passing is defined by explosive athleticism combined with technical precision. He uses a combination of speed passes — torreando, leg drag, and knee slice — with the physical tools to enforce them against the best guard players in the world. His passing transitions are seamless; when one pass is blocked, he immediately flows to the next without resetting or losing his base. What distinguishes Buchecha from purely athletic guard passers is his technical understanding of weight distribution and grip control during transitions. He uses his grips to manage the opponent&apos;s hips and legs rather than just powering through. At the ultra-heavy division, he demonstrated that guard passing at elite levels requires both physical tools and technical sophistication — his passes worked because they were mechanically sound, not because he was simply stronger than opponents who were also elite athletes competing at the same weight class.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Top Pressure and Submission Hunting</h2><p>Once Buchecha passes the guard, he applies crushing top pressure that systematically breaks down defensive structure. His side control and mount are characterized by precise weight placement and constant movement — he never allows opponents to frame effectively or recover guard. His submission hunting flows naturally from his positional pressure: rather than forcing submissions, he waits for them to open as opponents exhaust their defensive resources. His most common finishes are chokes and armlocks from dominant top positions, executed with technical precision after grinding opponents down. Buchecha also demonstrated strong back attack capability, taking the back frequently from turtle and passing situations. His top game is the archetype of what a big man&apos;s BJJ should look like: use the physical advantages intelligently, maintain dominant positions, and let submissions come naturally from positional superiority rather than explosive attacks from neutral positions.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">What You Can Learn from Buchecha&apos;s Style</h2><p>Buchecha&apos;s game teaches the importance of physical development supporting technical skill. His extraordinary athleticism amplified techniques that would be dangerous from any body — with his physical tools, they became unstoppable at the highest levels. For practitioners, the lesson is that fitness and athleticism are legitimate parts of your BJJ game, not separate from it. He also demonstrates how to use your body type intelligently: as a larger, athletic competitor, he built his game around passing and top pressure rather than guard play, maximizing his natural advantages. His mental toughness is also instructive — fighting deep into matches and tournaments against the world&apos;s best consistently requires mental fortitude as much as physical preparation. His transition to ONE Championship MMA also shows the transferability of elite BJJ fundamentals when the practitioner has genuine depth of skill rather than merely stylistic tricks.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Train Smarter with AI</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique tracker, training journal.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}

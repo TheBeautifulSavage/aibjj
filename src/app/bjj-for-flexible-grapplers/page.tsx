@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ for Flexible Grapplers: Maximize Your Range of Motion | AIBJJ", description: "BJJ for flexible grapplers — use your mobility for rubber guard, inverted guard, triangles, and escape techniques that stiff opponents simply cannot replicate." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ for Flexible Grapplers: Maximize Your Range of Motion", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ for Flexible Grapplers: Maximize Your Range of Motion</h1>
+        <p className="mt-4 text-xl text-zinc-400">Exceptional flexibility is a significant advantage in BJJ — flexible grapplers can access positions, execute escapes, and apply submissions from angles that less mobile practitioners simply cannot reach.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Rubber Guard and Advanced Closed Guard</h2><p>Highly flexible practitioners can utilize rubber guard — Eddie Bravo&apos;s closed guard system that requires exceptional hip flexibility to maintain. Rubber guard uses the leg to control the opponent&apos;s posture from closed guard, creating submission and sweep setups that are impossible to achieve without significant hip flexibility. Even practitioners not using full rubber guard can use their flexibility in closed guard to maintain tighter triangles, achieve deeper hip angles for armbar attacks, and maintain closed guard control at unusual angles that prevent standard breaks. Flexible grapplers also have advantages in triangle chokes — the ability to lock the triangle with proper alignment regardless of body position creates finishing opportunities that less flexible practitioners miss. Hip flexibility specifically allows the flexible grappler to maintain guard in positions where stiffer practitioners would be forced to open and switch to other guard variations. This flexibility-based guard retention is a significant defensive and offensive tool.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Inverted Guard and Berimbolo Entries</h2><p>Inverted guard and berimbolo-type movements require significant spinal and hip flexibility that not all practitioners possess. For flexible grapplers, these positions are natural extensions of their guard game — inverting under pressure, creating berimbolo back take entries from de la Riva guard, and maintaining control while inverted are all accessible due to their mobility. Inverting also serves as an excellent escape and guard recovery tool for flexible practitioners: when a guard pass is nearly complete, inverting allows recovery and counter-attacks that stop the pass entirely. Flexible grapplers should invest in understanding inversion mechanics specifically rather than just relying on their flexibility intuitively — understanding how to use the spine and hips together during inversion creates cleaner, more controlled movements that work at higher competition levels. The combination of flexibility with technical understanding of inverted positions creates guard layers that are exceptionally difficult for passing opponents to navigate successfully.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Escape Advantages and Injury Prevention</h2><p>Flexible grapplers have significant escape advantages from bad positions — they can survive and escape from positions that would be submission losses for less mobile practitioners. The ability to take joints to their full range without tapping to joint locks is not always safe, however — flexible practitioners must be careful not to rely on flexibility to avoid tapping to legitimate submission attempts, as this can lead to injury over time. The appropriate use of flexibility in escapes is for body position adjustment — getting hips out, bridging higher, creating space — rather than joint locking defense. Flexible practitioners also have advantages in certain self-defense scenarios where the ability to get to unusual body positions allows escapes and counterattacks. For injury prevention, flexible practitioners should invest in strength training alongside flexibility work to ensure the joints are stable through their full range — hypermobility without supporting strength actually increases injury risk in BJJ training and competition.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Train Smarter with AI</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique tracker, training journal.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}

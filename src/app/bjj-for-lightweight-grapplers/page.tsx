@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ for Lightweight Grapplers: Speed, Technique, and Timing | AIBJJ", description: "BJJ for lightweight grapplers — compensate for size with superior technique, speed, and timing. Learn guard games and transition chains that neutralize heavier opponents." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ for Lightweight Grapplers: Speed, Technique, and Timing", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ for Lightweight Grapplers: Speed, Technique, and Timing</h1>
+        <p className="mt-4 text-xl text-zinc-400">Lightweight grapplers often develop the best technique because they cannot rely on mass — their BJJ must be mechanically sound, well-timed, and efficient to work against heavier training partners.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Guard Game: The Lightweight&apos;s Domain</h2><p>Lightweight grapplers often thrive in guard because good guard technique does not require mass to execute effectively. Active guard play — maintaining frames, managing distance, threatening submissions — works on technique rather than weight. Open guard systems like butterfly, spider, and de la Riva give lightweight practitioners tools to control heavier opponents using leverage rather than strength. The X-guard is particularly effective for lightweights because it gets underneath the heavier opponent, using the leverage of both legs against one of the opponent&apos;s to generate sweep power that overcomes the weight difference. Developing an active, threatening guard that keeps heavier opponents constantly defending is the primary strategic tool for lightweight practitioners. Learning to use grips and connection points to redirect heavier opponents&apos; force rather than blocking it directly is a fundamental skill that separates technical lightweight grapplers from those who simply get smashed by heavier training partners throughout their development.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Movement and Transition Speed</h2><p>Lightweight grapplers have a mobility advantage that should be fully exploited. Faster movement between positions, quicker reaction times, and the ability to change direction rapidly are real physical assets. Training for explosiveness in transitions — hip escapes, guard recoveries, and back takes — amplifies the speed advantage. Lightweight practitioners should also focus on chain wrestling: linking multiple attacks in rapid succession so that defending one creates another. Heavier opponents have more momentum to manage, which means once they commit to a direction they are harder to redirect — lightweight practitioners can use this by baiting reactions and moving before the reaction is complete. Scramble ability is crucial for lightweights: the ability to exploit transition moments and recover positions faster than heavier opponents can adjust is a legitimate competitive advantage. Developing comfort in scrambles through specific training scenarios builds confidence in the chaotic transition moments where speed and reaction time determine outcomes.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Submission Game for Lighter Practitioners</h2><p>Lightweight practitioners should focus on submissions that rely on mechanical efficiency rather than strength — guillotines, triangles, armbars, and kimuras all have mechanical properties that work independently of the practitioner&apos;s size. Chokes in particular work equally well regardless of body size when applied with correct mechanics and timing. The rear naked choke from back control is the great equalizer in grappling: properly applied with hip and leg control, it works on opponents of any size. Lightweight practitioners should prioritize getting to the back as a primary goal because back control neutralizes the weight advantage of heavier opponents most effectively. Leg locks also offer excellent leverage opportunities for lightweights — the mechanical nature of heel hooks and knee bars means that smaller practitioners can threaten and submit much heavier opponents when the position is established correctly and the technique is applied with proper biomechanics and timing throughout the submission sequence.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Train Smarter with AI</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique tracker, training journal.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}
