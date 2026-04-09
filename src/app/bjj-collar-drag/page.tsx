@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ Collar Drag: Back Takes and Takedowns from Collar Control | AIBJJ", description: "Learn the BJJ collar drag for instant back takes and takedowns. Mechanics, setups from standing and guard, and chaining the collar drag into a complete system." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ Collar Drag: Back Takes and Takedowns from Collar Control", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ Collar Drag: Back Takes and Takedowns from Collar Control</h1>
+        <p className="mt-4 text-xl text-zinc-400">The collar drag is one of the fastest back takes in BJJ. By pulling the collar diagonally across the body, you redirect an opponent's momentum and expose their back in a fraction of a second — from standing, guard, or any position where collar access exists.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Collar Drag Mechanics: Why It Works So Fast</h2><p>The collar drag exploits a fundamental principle of human movement: when your upper body is pulled forward, your feet must catch up or you fall. By gripping the collar and dragging it diagonally — across your body and down — you rotate the opponent's shoulder past their centerline. This creates a brief moment where their back is fully exposed and their feet are out of position. The technique works from guard because opponents are often posted forward on their hands. From standing, it works against any forward pressure. The key mechanical details: your collar grip must be above the shoulder line, your drag direction is diagonal (not straight back), and you must move your own body to exploit the back exposure immediately. Hesitating after the drag allows them to recover. The collar drag is a reaction technique — learn to fire it the instant you feel their weight shift forward.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Collar Drag from Guard: Entry and Back Take</h2><p>From open guard or sitting guard, establish a collar grip and a same-side sleeve or wrist grip. As your opponent reaches in or posts a hand, pull the collar across your body while simultaneously sitting up toward their opposite side. Their arm crosses their centerline, their back turns toward you. Post your outside hand, come to your knees behind them, and take the back. In gi, the collar drag from guard transitions seamlessly into a rear collar grip for the back — you already have the collar in hand. The sleeve grip prevents them from posting with that arm, making the drag cleaner. Practice the collar drag with a forward-posting opponent: any time they put a hand on the mat or reach forward, the collar drag window opens. This is why collar drag mastery requires sensitivity training — learning to feel the right moment, not just the mechanical steps.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Standing Collar Drag and Takedown Applications</h2><p>From a standing collar tie position in the gi, the collar drag becomes a powerful takedown and back take tool. Grip the back of the collar with one hand and the same-side sleeve or wrist with the other. Step to the outside of their lead leg, drag the collar toward their outside hip as you lower your level, and drive through behind them. This motion bypasses their defensive structure entirely because they cannot sprawl against a collar drag — their own collar is the handle. After the takedown, you land behind them in back control. The collar drag also works as a follow-up to failed attacks: if a throw attempt stalls, release into a collar drag to salvage the takedown. At a competition level, the collar drag is a high-percentage technique that works across all belt levels because it exploits momentum rather than requiring superior strength or athleticism.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Level Up Your BJJ</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique library, training journal — all in one place.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}

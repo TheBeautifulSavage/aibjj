@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ Gi Guard Passing: Pressure Passing, Speed Passing & Torreando | AIBJJ", description: "Complete guide to gi guard passing in BJJ. Learn pressure passing, leg drag, torreando, over-under pass, and how to defeat spider guard and DLR." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ Gi Guard Passing: Pressure Passing, Speed Passing & Torreando", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ Gi Guard Passing: Pressure Passing, Speed Passing & Torreando</h1>
+        <p className="mt-4 text-xl text-zinc-400">Guard passing in gi BJJ is a chess match. Whether you prefer to crush with pressure or move with speed, understanding the core passing frameworks and how they interact with modern guard systems is essential for competitive success.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Pressure Passing: Over-Under and Leg Drag</h2><p>Pressure passing uses body weight and friction to immobilize the guard player's hips before advancing. The over-under pass (Rodolfo Vieira style) requires one arm over the hips and one arm under the leg, then driving your shoulder into their thigh while stacking their legs. Your chest presses down, your hips drive forward, and you walk around to side control. The leg drag uses a pants grip to pull the top leg across your body, then drag it to the mat — your knee pins it there. Both passing styles benefit from the gi because you can grab pants and collars to amplify pressure. Pressure passing is especially effective against guard players who rely on mobility and inversions — constant body weight makes inverting extremely difficult. Develop both over-under and leg drag to chain them together when individual defenses work.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Speed Passing: Torreando and Bullfighter</h2><p>Speed passing avoids the guard player's frames entirely by moving faster than they can react. The torreando (bullfighter pass) grabs both pants at the knees, shoves the legs one direction, and steps to the other side — like a bullfighter evading a bull. Speed, angle, and the instant you release the legs determines success. Against spider guard, the torreando is particularly effective: take the pants grips, bull-rush one direction as you release the sleeve grips, and step through before they reset. The headquarters position (knee-cut passing) is a speed-pressure hybrid — establish a knee cut with good posture and either drive through for the pass or use the threat to open a leg drag. Speed passing requires explosive first steps and the ability to read the guard player's weight distribution. Train passing with a timing mindset: identify the exact moment the guard player's hips are flat and commit immediately.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Defeating Spider Guard, DLR, and Lasso</h2><p>Modern gi guard passing must address specific guard systems. Against spider guard: strip one foot by circling your arm under their ankle, then immediately step into torreando position before they reset. Against DLR: the knee cut is the classic answer — drive your inside knee across their thigh to flatten the hook, then finish the pass. The headquarters position gives you a central passing hub to access both torreando and knee cut. Against lasso guard: the key is arm extraction before attempting to pass. Reach under your arm to grip their thigh and lift — this creates space to pull your arm free from the lasso. After extraction, immediately transition to a leg drag or pressure pass before they re-establish grips. General passing principle: address the grips before addressing the legs. Passers who fight the legs while ignoring active sleeve and collar grips will always struggle.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Level Up Your BJJ</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique library, training journal — all in one place.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}
