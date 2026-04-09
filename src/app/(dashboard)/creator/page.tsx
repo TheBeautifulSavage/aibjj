@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import {
   Video,
@@ -21,6 +21,7 @@ import {
   Loader2,
   CheckCircle,
   Clock,
+  Globe,
 } from "lucide-react";
 import {
   Card,
@@ -44,97 +45,72 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Mock data
-const mockStats = {
-  totalCourses: 5,
-  totalStudents: 1247,
-  totalRevenue: 34580,
-  conversionRate: 4.2,
-  averageRating: 4.7,
-};
+interface CourseData {
+  id: string;
+  title: string;
+  price: number;
+  students: number;
+  revenue: number;
+  published: boolean;
+  rating: number | null;
+  lessonCount: number;
+  category: string | null;
+  beltLevel: string | null;
+  createdAt: string;
+}
 
-const mockCourses = [
-  {
-    id: "1",
-    title: "Complete Guard System",
-    price: 79,
-    students: 423,
-    revenue: 12870,
-    status: "published" as const,
-    rating: 4.8,
-    category: "Guard",
-    beltLevel: "BLUE",
-  },
-  {
-    id: "2",
-    title: "Pressure Passing Masterclass",
-    price: 89,
-    students: 312,
-    revenue: 9640,
-    status: "published" as const,
-    rating: 4.9,
-    category: "Passing",
-    beltLevel: "PURPLE",
-  },
-  {
-    id: "3",
-    title: "Submission Chain Attacks",
-    price: 59,
-    students: 289,
-    revenue: 7210,
-    status: "published" as const,
-    rating: 4.6,
-    category: "Submissions",
-    beltLevel: "BLUE",
-  },
-  {
-    id: "4",
-    title: "No-Gi Fundamentals",
-    price: 49,
-    students: 223,
-    revenue: 4860,
-    status: "published" as const,
-    rating: 4.7,
-    category: "Fundamentals",
-    beltLevel: "WHITE",
-  },
-  {
-    id: "5",
-    title: "Advanced Leg Lock Systems",
-    price: 99,
-    students: 0,
-    revenue: 0,
-    status: "draft" as const,
-    rating: 0,
-    category: "Submissions",
-    beltLevel: "BROWN",
-  },
-];
+interface StatsData {
+  totalRevenue: number;
+  totalStudents: number;
+  totalCourses: number;
+  publishedCourses: number;
+  averageRating: number;
+  revenueData: Array<{ month: string; revenue: number }>;
+  courses: CourseData[];
+}
 
-const mockRevenueData = [
-  { month: "Sep", revenue: 2100 },
-  { month: "Oct", revenue: 3400 },
-  { month: "Nov", revenue: 2800 },
-  { month: "Dec", revenue: 4200 },
-  { month: "Jan", revenue: 5100 },
-  { month: "Feb", revenue: 4800 },
-  { month: "Mar", revenue: 6200 },
-  { month: "Apr", revenue: 5900 },
-  { month: "May", revenue: 7300 },
-  { month: "Jun", revenue: 6800 },
-  { month: "Jul", revenue: 8100 },
-  { month: "Aug", revenue: 7900 },
-];
+function StatsSkeleton() {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {[...Array(4)].map((_, i) => (
+        <Card key={i} className="border-zinc-800">
+          <CardHeader className="pb-2">
+            <div className="h-4 w-24 bg-zinc-800 rounded animate-pulse" />
+          </CardHeader>
+          <CardContent>
+            <div className="h-8 w-20 bg-zinc-800 rounded animate-pulse mb-2" />
+            <div className="h-3 w-16 bg-zinc-800 rounded animate-pulse" />
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}
 
-const mockRecentSales = [
-  { buyer: "Alex M.", course: "Complete Guard System", amount: 79, time: "2 min ago" },
-  { buyer: "Sarah K.", course: "Pressure Passing Masterclass", amount: 89, time: "18 min ago" },
-  { buyer: "Jake T.", course: "No-Gi Fundamentals", amount: 49, time: "1 hr ago" },
-  { buyer: "Maria L.", course: "Submission Chain Attacks", amount: 59, time: "3 hrs ago" },
-  { buyer: "Chris B.", course: "Complete Guard System", amount: 79, time: "5 hrs ago" },
-];
+function CoursesSkeleton() {
+  return (
+    <div className="grid gap-4">
+      {[...Array(3)].map((_, i) => (
+        <Card key={i} className="border-zinc-800">
+          <CardContent className="p-4">
+            <div className="flex gap-4">
+              <div className="h-16 w-24 bg-zinc-800 rounded animate-pulse hidden sm:block" />
+              <div className="flex-1 space-y-2">
+                <div className="h-5 w-48 bg-zinc-800 rounded animate-pulse" />
+                <div className="h-4 w-64 bg-zinc-800 rounded animate-pulse" />
+                <div className="h-3 w-32 bg-zinc-800 rounded animate-pulse" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}
 
 export default function CreatorDashboard() {
+  const [stats, setStats] = useState<StatsData | null>(null);
+  const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState<string | null>(null);
   const [connectStatus, setConnectStatus] = useState<{
     connected: boolean;
@@ -143,6 +119,36 @@ export default function CreatorDashboard() {
     accountId: string | null;
   } | null>(null);
   const [connectLoading, setConnectLoading] = useState(false);
+  const [deletingCourse, setDeletingCourse] = useState<string | null>(null);
+  const [togglingCourse, setTogglingCourse] = useState<string | null>(null);
+
+  const fetchStats = useCallback(async () => {
+    try {
+      const res = await fetch("/api/creator/stats");
+      if (res.ok) {
+        const data = await res.json();
+        setStats(data);
+      }
+    } catch {
+      // silently fail
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchStats();
+
+    fetch("/api/creator/profile")
+      .then((r) => r.json())
+      .then((d) => setUsername(d.username))
+      .catch(() => {});
+
+    fetch("/api/stripe/connect/status")
+      .then((r) => r.json())
+      .then((d) => setConnectStatus(d))
+      .catch(() => {});
+  }, [fetchStats]);
 
   const handleConnectBank = async () => {
     setConnectLoading(true);
@@ -155,21 +161,33 @@ export default function CreatorDashboard() {
     }
   };
 
-  useEffect(() => {
-    fetch("/api/creator/profile")
-      .then((r) => r.json())
-      .then((d) => setUsername(d.username))
-      .catch(() => {});
+  const handleDeleteCourse = async (courseId: string) => {
+    if (!confirm("Delete this course? This cannot be undone.")) return;
+    setDeletingCourse(courseId);
+    try {
+      await fetch(`/api/courses/${courseId}`, { method: "DELETE" });
+      await fetchStats();
+    } finally {
+      setDeletingCourse(null);
+    }
+  };
 
-    fetch("/api/stripe/connect/status")
-      .then((r) => r.json())
-      .then((d) => setConnectStatus(d))
-      .catch(() => {});
-  }, []);
+  const handleTogglePublish = async (courseId: string, currentPublished: boolean) => {
+    setTogglingCourse(courseId);
+    try {
+      await fetch(`/api/courses/${courseId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ published: !currentPublished }),
+      });
+      await fetchStats();
+    } finally {
+      setTogglingCourse(null);
+    }
+  };
 
-
-
-  const hasCourses = mockCourses.length > 0;
+  const courses = stats?.courses ?? [];
+  const hasCourses = courses.length > 0;
 
   const CustomTooltip = ({
     active,
@@ -192,6 +210,11 @@ export default function CreatorDashboard() {
     }
     return null;
   };
+
+  const revenueData = stats?.revenueData.map(d => ({
+    ...d,
+    month: d.month.slice(5), // show "04" instead of "2026-04"
+  })) ?? [];
 
   return (
     <div className="space-y-6">
@@ -340,7 +363,12 @@ export default function CreatorDashboard() {
         </Card>
       )}
 
-      {!hasCourses ? (
+      {loading ? (
+        <>
+          <StatsSkeleton />
+          <CoursesSkeleton />
+        </>
+      ) : !hasCourses ? (
         <Card className="border-zinc-800">
           <CardContent className="flex flex-col items-center justify-center py-16">
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-zinc-800">
@@ -376,26 +404,25 @@ export default function CreatorDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-zinc-100">
-                  ${mockStats.totalRevenue.toLocaleString()}
+                  ${stats!.totalRevenue.toLocaleString()}
                 </div>
-                <p className="text-xs text-green-500 mt-1">+8% this month</p>
+                <p className="text-xs text-zinc-500 mt-1">All time</p>
               </CardContent>
             </Card>
 
             <Card className="border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-zinc-400">
-                  Courses Published
+                  Courses
                 </CardTitle>
                 <Video className="h-4 w-4 text-zinc-500" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-zinc-100">
-                  {mockStats.totalCourses}
+                  {stats!.totalCourses}
                 </div>
                 <p className="text-xs text-zinc-500 mt-1">
-                  {mockCourses.filter((c) => c.status === "published").length}{" "}
-                  published
+                  {stats!.publishedCourses} published
                 </p>
               </CardContent>
             </Card>
@@ -409,40 +436,39 @@ export default function CreatorDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-zinc-100">
-                  {mockStats.totalStudents.toLocaleString()}
+                  {stats!.totalStudents.toLocaleString()}
                 </div>
-                <p className="text-xs text-green-500 mt-1">+12% this month</p>
+                <p className="text-xs text-zinc-500 mt-1">Enrolled learners</p>
               </CardContent>
             </Card>
 
             <Card className="border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-zinc-400">
-                  Conversion Rate
+                  Avg Rating
                 </CardTitle>
-                <TrendingUp className="h-4 w-4 text-zinc-500" />
+                <Star className="h-4 w-4 text-zinc-500" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-zinc-100">
-                  {mockStats.conversionRate}%
+                  {stats!.averageRating > 0 ? stats!.averageRating.toFixed(1) : "—"}
                 </div>
-                <p className="text-xs text-green-500 mt-1">+0.5% this month</p>
+                <p className="text-xs text-zinc-500 mt-1">Across all courses</p>
               </CardContent>
             </Card>
           </div>
 
-          {/* Tabs: Courses / Analytics / Sales */}
+          {/* Tabs: Courses / Analytics */}
           <Tabs defaultValue="courses" className="space-y-4">
             <TabsList>
               <TabsTrigger value="courses">Courses</TabsTrigger>
-              <TabsTrigger value="sales">Recent Sales</TabsTrigger>
               <TabsTrigger value="analytics">Analytics</TabsTrigger>
             </TabsList>
 
             {/* Courses Tab */}
             <TabsContent value="courses" className="space-y-4">
               <div className="grid gap-4">
-                {mockCourses.map((course) => (
+                {courses.map((course) => (
                   <Card key={course.id} className="border-zinc-800">
                     <CardContent className="p-4">
                       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -451,80 +477,95 @@ export default function CreatorDashboard() {
                             <Video className="h-6 w-6 text-zinc-600" />
                           </div>
                           <div className="space-y-1">
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 flex-wrap">
                               <h3 className="font-semibold text-zinc-100">
                                 {course.title}
                               </h3>
                               <Badge
-                                variant={
-                                  course.status === "published"
-                                    ? "default"
-                                    : "secondary"
-                                }
                                 className={
-                                  course.status === "published"
+                                  course.published
                                     ? "bg-green-600/20 text-green-400 border-green-800"
-                                    : ""
+                                    : "bg-zinc-700/50 text-zinc-400"
                                 }
                               >
-                                {course.status === "published"
-                                  ? "Published"
-                                  : "Draft"}
+                                {course.published ? "Published" : "Draft"}
                               </Badge>
                             </div>
-                            <div className="flex items-center gap-4 text-sm text-zinc-400">
+                            <div className="flex items-center gap-4 text-sm text-zinc-400 flex-wrap">
                               <span className="flex items-center gap-1">
-                                <DollarSign className="h-3.5 w-3.5" />$
-                                {course.price}
+                                <DollarSign className="h-3.5 w-3.5" />${course.price}
                               </span>
                               <span className="flex items-center gap-1">
                                 <Users className="h-3.5 w-3.5" />
                                 {course.students} students
                               </span>
                               <span className="flex items-center gap-1">
-                                <DollarSign className="h-3.5 w-3.5" />$
-                                {course.revenue.toLocaleString()} earned
+                                <DollarSign className="h-3.5 w-3.5" />${course.revenue.toLocaleString()} earned
                               </span>
-                              {course.rating > 0 && (
+                              {course.rating !== null && course.rating > 0 && (
                                 <span className="flex items-center gap-1">
                                   <Star className="h-3.5 w-3.5 fill-yellow-500 text-yellow-500" />
-                                  {course.rating}
+                                  {course.rating.toFixed(1)}
                                 </span>
                               )}
+                              <span className="flex items-center gap-1">
+                                <Video className="h-3.5 w-3.5" />
+                                {course.lessonCount} lessons
+                              </span>
                             </div>
-                            <div className="flex items-center gap-2">
-                              <Badge variant="outline" className="text-xs">
-                                {course.category}
-                              </Badge>
-                              <Badge variant="outline" className="text-xs">
-                                {course.beltLevel.charAt(0) +
-                                  course.beltLevel.slice(1).toLowerCase()}{" "}
-                                Belt
-                              </Badge>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              {course.category && (
+                                <Badge variant="outline" className="text-xs">
+                                  {course.category}
+                                </Badge>
+                              )}
+                              {course.beltLevel && (
+                                <Badge variant="outline" className="text-xs">
+                                  {course.beltLevel.charAt(0) + course.beltLevel.slice(1).toLowerCase()} Belt
+                                </Badge>
+                              )}
                             </div>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-wrap">
                           <Button
-                            variant="ghost"
+                            variant="outline"
                             size="sm"
-                            className="text-zinc-400 hover:text-zinc-200"
+                            className="border-zinc-700 text-zinc-300 text-xs"
+                            onClick={() => handleTogglePublish(course.id, course.published)}
+                            disabled={togglingCourse === course.id}
                           >
-                            <Eye className="h-4 w-4" />
+                            {togglingCourse === course.id ? (
+                              <Loader2 className="h-3 w-3 animate-spin mr-1" />
+                            ) : course.published ? (
+                              <Eye className="h-3 w-3 mr-1" />
+                            ) : (
+                              <Globe className="h-3 w-3 mr-1" />
+                            )}
+                            {course.published ? "Unpublish" : "Publish"}
                           </Button>
                           <Button
                             variant="ghost"
                             size="sm"
                             className="text-zinc-400 hover:text-zinc-200"
+                            asChild
                           >
-                            <Edit className="h-4 w-4" />
+                            <Link href={`/creator/courses/${course.id}/edit`}>
+                              <Edit className="h-4 w-4" />
+                            </Link>
                           </Button>
                           <Button
                             variant="ghost"
                             size="sm"
                             className="text-zinc-400 hover:text-red-400"
+                            onClick={() => handleDeleteCourse(course.id)}
+                            disabled={deletingCourse === course.id}
                           >
-                            <Trash className="h-4 w-4" />
+                            {deletingCourse === course.id ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <Trash className="h-4 w-4" />
+                            )}
                           </Button>
                         </div>
                       </div>
@@ -534,129 +575,81 @@ export default function CreatorDashboard() {
               </div>
             </TabsContent>
 
-            {/* Recent Sales Tab */}
-            <TabsContent value="sales" className="space-y-4">
-              <Card className="border-zinc-800">
-                <CardHeader>
-                  <CardTitle className="text-base">Recent Sales</CardTitle>
-                  <CardDescription>Your latest course purchases</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {mockRecentSales.map((sale, i) => (
-                    <div key={i}>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-800 text-sm font-medium text-zinc-300">
-                            {sale.buyer.charAt(0)}
-                          </div>
-                          <div>
-                            <p className="text-sm font-medium text-zinc-200">
-                              {sale.buyer}
-                            </p>
-                            <p className="text-xs text-zinc-500">
-                              {sale.course}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-sm font-semibold text-green-500">
-                            +${sale.amount}
-                          </p>
-                          <p className="text-xs text-zinc-500">{sale.time}</p>
-                        </div>
-                      </div>
-                      {i < mockRecentSales.length - 1 && (
-                        <Separator className="mt-4 bg-zinc-800/50" />
-                      )}
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </TabsContent>
-
             {/* Analytics Tab */}
             <TabsContent value="analytics" className="space-y-4">
-              <Card className="border-zinc-800">
-                <CardHeader>
-                  <div className="flex items-center gap-2">
-                    <BarChart3 className="h-5 w-5 text-zinc-400" />
-                    <CardTitle className="text-base">
-                      Monthly Revenue
-                    </CardTitle>
-                  </div>
-                  <CardDescription>
-                    Your earnings over the past 12 months
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-[300px] w-full">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={mockRevenueData}>
-                        <CartesianGrid
-                          strokeDasharray="3 3"
-                          stroke="#27272a"
-                        />
-                        <XAxis
-                          dataKey="month"
-                          stroke="#71717a"
-                          fontSize={12}
-                        />
-                        <YAxis
-                          stroke="#71717a"
-                          fontSize={12}
-                          tickFormatter={(value) => `$${value}`}
-                        />
-                        <Tooltip content={<CustomTooltip />} />
-                        <Line
-                          type="monotone"
-                          dataKey="revenue"
-                          stroke="#dc2626"
-                          strokeWidth={2}
-                          dot={{ fill: "#dc2626", strokeWidth: 0, r: 4 }}
-                          activeDot={{
-                            r: 6,
-                            fill: "#dc2626",
-                            stroke: "#fca5a5",
-                            strokeWidth: 2,
-                          }}
-                        />
-                      </LineChart>
-                    </ResponsiveContainer>
-                  </div>
-                </CardContent>
-              </Card>
+              {revenueData.length > 0 ? (
+                <Card className="border-zinc-800">
+                  <CardHeader>
+                    <div className="flex items-center gap-2">
+                      <BarChart3 className="h-5 w-5 text-zinc-400" />
+                      <CardTitle className="text-base">Monthly Revenue</CardTitle>
+                    </div>
+                    <CardDescription>
+                      Your earnings over the past 6 months
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="h-[300px] w-full">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <LineChart data={revenueData}>
+                          <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
+                          <XAxis dataKey="month" stroke="#71717a" fontSize={12} />
+                          <YAxis
+                            stroke="#71717a"
+                            fontSize={12}
+                            tickFormatter={(value) => `$${value}`}
+                          />
+                          <Tooltip content={<CustomTooltip />} />
+                          <Line
+                            type="monotone"
+                            dataKey="revenue"
+                            stroke="#dc2626"
+                            strokeWidth={2}
+                            dot={{ fill: "#dc2626", strokeWidth: 0, r: 4 }}
+                            activeDot={{ r: 6, fill: "#dc2626", stroke: "#fca5a5", strokeWidth: 2 }}
+                          />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </CardContent>
+                </Card>
+              ) : (
+                <Card className="border-zinc-800">
+                  <CardContent className="flex flex-col items-center justify-center py-12">
+                    <TrendingUp className="h-10 w-10 text-zinc-600 mb-3" />
+                    <p className="text-zinc-400">No revenue data yet</p>
+                    <p className="text-sm text-zinc-500 mt-1">Sales will appear here once you start making them</p>
+                  </CardContent>
+                </Card>
+              )}
 
-              <Card className="border-zinc-800">
-                <CardHeader>
-                  <CardTitle className="text-base">
-                    Course Performance
-                  </CardTitle>
-                  <CardDescription>
-                    Revenue breakdown by course
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {mockCourses
-                    .filter((c) => c.status === "published")
-                    .sort((a, b) => b.revenue - a.revenue)
-                    .map((course) => (
-                      <div key={course.id} className="space-y-2">
-                        <div className="flex items-center justify-between text-sm">
-                          <span className="text-zinc-200">{course.title}</span>
-                          <span className="font-medium text-zinc-100">
-                            ${course.revenue.toLocaleString()}
-                          </span>
+              {courses.filter(c => c.published && c.revenue > 0).length > 0 && (
+                <Card className="border-zinc-800">
+                  <CardHeader>
+                    <CardTitle className="text-base">Course Performance</CardTitle>
+                    <CardDescription>Revenue breakdown by course</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {courses
+                      .filter(c => c.published)
+                      .sort((a, b) => b.revenue - a.revenue)
+                      .map((course) => (
+                        <div key={course.id} className="space-y-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-zinc-200">{course.title}</span>
+                            <span className="font-medium text-zinc-100">
+                              ${course.revenue.toLocaleString()}
+                            </span>
+                          </div>
+                          <Progress
+                            value={stats!.totalRevenue > 0 ? (course.revenue / stats!.totalRevenue) * 100 : 0}
+                            className="h-2"
+                          />
                         </div>
-                        <Progress
-                          value={
-                            (course.revenue / mockStats.totalRevenue) * 100
-                          }
-                          className="h-2"
-                        />
-                      </div>
-                    ))}
-                </CardContent>
-              </Card>
+                      ))}
+                  </CardContent>
+                </Card>
+              )}
             </TabsContent>
           </Tabs>
         </>

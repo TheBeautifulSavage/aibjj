@@ -22,6 +22,29 @@ export async function POST(req: Request) {
       );
     }
 
+    // Enforce subscription limits: FREE users get 5 messages/day
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { subscriptionTier: true },
+    });
+    if (user?.subscriptionTier === "FREE") {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const messageCount = await prisma.chatMessage.count({
+        where: {
+          userId,
+          role: "user",
+          createdAt: { gte: today },
+        },
+      });
+      if (messageCount >= 5) {
+        return NextResponse.json(
+          { error: "Daily limit reached", upgradeUrl: "/pricing" },
+          { status: 429 }
+        );
+      }
+    }
+
     // Get or create chat session
     let sessionId = chatSessionId;
 

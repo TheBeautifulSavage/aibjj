@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import {
   Send,
   Bot,
@@ -14,6 +15,7 @@ import {
   Plus,
   MessageSquare,
   Sparkles,
+  Zap,
 } from "lucide-react";
 
 interface Message {
@@ -67,6 +69,7 @@ export default function CoachPage() {
   const [chatSessionId, setChatSessionId] = useState<string | null>(null);
   const [sessions, setSessions] = useState<ChatSession[]>([]);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [rateLimitHit, setRateLimitHit] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -138,6 +141,19 @@ export default function CoachPage() {
             chatSessionId,
           }),
         });
+
+        if (res.status === 429) {
+          setRateLimitHit(true);
+          const errorMessage: Message = {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            content: "You've used all 5 free messages for today. Upgrade to Pro for unlimited coaching.",
+            createdAt: new Date().toISOString(),
+          };
+          setMessages((prev) => [...prev, errorMessage]);
+          setIsLoading(false);
+          return;
+        }
 
         if (!res.ok) throw new Error("Failed to send message");
 
@@ -337,6 +353,24 @@ export default function CoachPage() {
           )}
         </div>
 
+        {/* Rate limit banner */}
+        {rateLimitHit && (
+          <div className="border-t border-amber-800/50 bg-amber-950/30 px-4 py-3">
+            <div className="mx-auto max-w-3xl flex items-center justify-between gap-4">
+              <p className="text-sm text-amber-300">
+                <Zap className="inline h-4 w-4 mr-1" />
+                You&apos;ve used 5/5 free messages today. Upgrade to Pro for unlimited coaching.
+              </p>
+              <Link
+                href="/pricing"
+                className="shrink-0 rounded-lg bg-amber-600 hover:bg-amber-500 px-4 py-1.5 text-sm font-semibold text-white transition-colors"
+              >
+                Upgrade →
+              </Link>
+            </div>
+          </div>
+        )}
+
         {/* Input Area */}
         <div className="border-t border-zinc-800 bg-zinc-900/80 px-4 py-3">
           <div className="mx-auto flex max-w-3xl items-end gap-2">
@@ -345,13 +379,14 @@ export default function CoachPage() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask your BJJ coach..."
-              className="min-h-[44px] max-h-[160px] resize-none border-zinc-700 bg-zinc-800/50 text-zinc-100 placeholder:text-zinc-500 focus-visible:ring-red-600/50"
+              placeholder={rateLimitHit ? "Upgrade to Pro to continue chatting..." : "Ask your BJJ coach..."}
+              disabled={rateLimitHit}
+              className="min-h-[44px] max-h-[160px] resize-none border-zinc-700 bg-zinc-800/50 text-zinc-100 placeholder:text-zinc-500 focus-visible:ring-red-600/50 disabled:opacity-50"
               rows={1}
             />
             <Button
               onClick={() => sendMessage(input)}
-              disabled={!input.trim() || isLoading}
+              disabled={!input.trim() || isLoading || rateLimitHit}
               size="icon"
               className="h-[44px] w-[44px] shrink-0 bg-red-600 hover:bg-red-700 disabled:opacity-40"
             >

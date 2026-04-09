@@ -118,6 +118,7 @@ model User {
   blogQueues      BlogQueue[]
   bookmarks       TechniqueBookmark[]
   lessonProgress  LessonProgress[]
+  competitions    Competition[]
 }
 
 model JournalEntry {
@@ -218,6 +219,7 @@ model Course {
   price       Float     @default(0)
   coverImage  String?
   published   Boolean   @default(false)
+  featured    Boolean   @default(false)
   category    String?
   beltLevel   Belt?
   createdAt   DateTime  @default(now())
@@ -318,6 +320,25 @@ model BlogQueue {
   active      Boolean  @default(true)
   lastRunAt   DateTime?
   createdAt   DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Competition {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  date        DateTime
+  location    String?
+  division    String?
+  weightClass String?
+  result      String?  // first, second, third, gold, silver, bronze, did-not-place
+  wins        Int      @default(0)
+  losses      Int      @default(0)
+  notes       String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@index([userId])
 }

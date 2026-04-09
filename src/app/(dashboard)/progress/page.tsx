@@ -19,9 +19,14 @@ import {
   Award,
   Loader2,
   Zap,
+  Sparkles,
+  Target,
+  CheckCircle2,
+  Star,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 interface JournalEntry {
   id: string;
@@ -72,20 +77,48 @@ function ChartTooltip({
   );
 }
 
+// Belt promotion timeline estimates (in months)
+const BELT_MONTHS_RANGE: Record<string, [number, number]> = {
+  WHITE: [12, 18],   // White → Blue
+  BLUE: [18, 30],    // Blue → Purple
+  PURPLE: [24, 36],  // Purple → Brown
+  BROWN: [36, 60],   // Brown → Black
+};
+
+interface Competition {
+  id: string;
+  wins: number;
+  losses: number;
+  result: string | null;
+  date: string;
+}
+
 export default function ProgressPage() {
   const { data: session } = useSession();
   const [entries, setEntries] = useState<JournalEntry[]>([]);
+  const [competitions, setCompetitions] = useState<Competition[]>([]);
   const [loading, setLoading] = useState(true);
+  const [aiReport, setAiReport] = useState<string | null>(null);
+  const [reportLoading, setReportLoading] = useState(false);
+  const [techniqueRatings, setTechniqueRatings] = useState<Record<string, number>>({});
 
   const belt = ((session?.user as Record<string, unknown>)?.belt as string) || "WHITE";
+  const stripes = ((session?.user as Record<string, unknown>)?.stripes as number) || 0;
 
   useEffect(() => {
     async function fetchAll() {
       try {
-        const res = await fetch("/api/journal?all=true");
-        if (res.ok) {
-          const data = await res.json();
+        const [journalRes, compRes] = await Promise.all([
+          fetch("/api/journal?all=true"),
+          fetch("/api/competitions"),
+        ]);
+        if (journalRes.ok) {
+          const data = await journalRes.json();
           setEntries(data.entries);
+        }
+        if (compRes.ok) {
+          const data = await compRes.json();
+          setCompetitions(data.competitions || []);
         }
       } catch {
         // silent
@@ -95,6 +128,24 @@ export default function ProgressPage() {
     }
     fetchAll();
   }, []);
+
+  async function generateAIReport() {
+    setReportLoading(true);
+    setAiReport(null);
+    try {
+      const res = await fetch("/api/progress/report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ belt, stripes, monthsAtBelt: monthsAtBelt }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setAiReport(data.report);
+      }
+    } finally {
+      setReportLoading(false);
+    }
+  }
 
   // --- 12-week frequency chart ---
   const weeklyFrequency = useMemo(() => {
@@ -243,6 +294,60 @@ export default function ProgressPage() {
   const trainedToday = entries.some(
     (e) => toDateStr(new Date(e.date)) === toDateStr(new Date())
   );
+
+  // --- Belt Promotion Estimator ---
+  const sessionsPerMonth = useMemo(() => {
+    if (entries.length === 0) return 0;
+    const oldest = new Date(entries[entries.length - 1].date);
+    const monthsTotal = Math.max(
+      1,
+      (Date.now() - oldest.getTime()) / (1000 * 60 * 60 * 24 * 30)
+    );
+    return Math.round(entries.length / monthsTotal);
+  }, [entries]);
+
+  // Months since first entry (rough proxy for time at current belt)
+  const monthsAtBelt = useMemo(() => {
+    if (entries.length === 0) return 0;
+    const oldest = new Date(entries[entries.length - 1].date);
+    return Math.round((Date.now() - oldest.getTime()) / (1000 * 60 * 60 * 24 * 30));
+  }, [entries]);
+
+  const beltEstimate = useMemo(() => {
+    if (beltIdx >= 4) return null; // Black belt
+    const [minMonths, maxMonths] = BELT_MONTHS_RANGE[belt.toUpperCase()] || [12, 24];
+    const avgTarget = (minMonths + maxMonths) / 2;
+    const remaining = Math.max(0, avgTarget - monthsAtBelt);
+    // Adjust for training frequency (target: 3x/week = 12 sessions/month)
+    const freqMultiplier = sessionsPerMonth >= 12 ? 0.8 : sessionsPerMonth >= 8 ? 1.0 : 1.3;
+    const estimatedMonths = Math.round(remaining * freqMultiplier);
+    return { estimatedMonths, minMonths, maxMonths, avgTarget };
+  }, [belt, beltIdx, monthsAtBelt, sessionsPerMonth]);
+
+  // --- Training Consistency Score ---
+  const consistencyScore30 = useMemo(() => {
+    const uniqueDays = new Set(
+      entries
+        .filter((e) => {
+          const d = new Date(e.date);
+          return d >= new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+        })
+        .map((e) => toDateStr(new Date(e.date)))
+    ).size;
+    return Math.min(100, Math.round((uniqueDays / 30) * 100));
+  }, [entries]);
+
+  const consistencyScore90 = useMemo(() => {
+    const uniqueDays = new Set(
+      entries
+        .filter((e) => {
+          const d = new Date(e.date);
+          return d >= new Date(Date.now() - 90 * 24 * 60 * 60 * 1000);
+        })
+        .map((e) => toDateStr(new Date(e.date)))
+    ).size;
+    return Math.min(100, Math.round((uniqueDays / 90) * 100));
+  }, [entries]);
 
   if (loading) {
     return (
@@ -473,6 +578,163 @@ export default function ProgressPage() {
                 BELT_ORDER[beltIdx + 1].slice(1).toLowerCase()}{" "}
               belt: {BELT_YEARS[belt.toUpperCase()]} of consistent training
             </p>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Belt Promotion Estimator */}
+      {beltIdx < 4 && (
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base flex items-center gap-2">
+              <Target className="h-4 w-4 text-red-500" />
+              Belt Promotion Estimator
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="flex-1">
+                {beltEstimate && (
+                  <>
+                    <p className="text-sm text-zinc-300">
+                      At your current pace (
+                      <span className="text-red-400 font-medium">{sessionsPerMonth} sessions/mo</span>
+                      ), you&apos;re approximately
+                    </p>
+                    <p className="text-2xl font-bold text-zinc-100 mt-1">
+                      {beltEstimate.estimatedMonths <= 0 ? (
+                        <span className="text-emerald-400">You may be ready! 🎉</span>
+                      ) : (
+                        <>
+                          ~{beltEstimate.estimatedMonths} months{" "}
+                          <span className="text-sm font-normal text-zinc-400">
+                            from your{" "}
+                            {BELT_ORDER[beltIdx + 1].charAt(0) +
+                              BELT_ORDER[beltIdx + 1].slice(1).toLowerCase()}{" "}
+                            belt
+                          </span>
+                        </>
+                      )}
+                    </p>
+                    <p className="text-xs text-zinc-500 mt-1">
+                      Average time range:{" "}
+                      {beltEstimate.minMonths}–{beltEstimate.maxMonths} months
+                      (you&apos;ve been training {monthsAtBelt} months)
+                    </p>
+                  </>
+                )}
+                {entries.length === 0 && (
+                  <p className="text-sm text-zinc-500">
+                    Start logging training sessions to get your promotion estimate.
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col gap-2 text-center shrink-0">
+                <div className="text-xs text-zinc-500">Train faster?</div>
+                <div className="text-xs text-zinc-400">
+                  3× per week = fastest path
+                </div>
+              </div>
+            </div>
+
+            {/* Tips based on frequency */}
+            {sessionsPerMonth > 0 && (
+              <div className={`rounded-lg p-3 text-sm ${
+                sessionsPerMonth >= 12
+                  ? "bg-emerald-950/30 border border-emerald-800/30 text-emerald-400"
+                  : sessionsPerMonth >= 8
+                  ? "bg-yellow-950/30 border border-yellow-800/30 text-yellow-400"
+                  : "bg-red-950/30 border border-red-800/30 text-red-400"
+              }`}>
+                {sessionsPerMonth >= 12
+                  ? "🔥 Excellent training frequency! You're on track for a fast promotion."
+                  : sessionsPerMonth >= 8
+                  ? "⚡ Good frequency. Add 1-2 more sessions per month to accelerate."
+                  : "💡 Try to get on the mat more consistently — aim for 3× per week."}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Training Consistency */}
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base flex items-center gap-2">
+            <CheckCircle2 className="h-4 w-4 text-red-500" />
+            Training Consistency
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm text-zinc-400">Last 30 days</span>
+                <span className="text-sm font-bold text-zinc-100">{consistencyScore30}%</span>
+              </div>
+              <div className="h-2.5 rounded-full bg-zinc-800">
+                <div
+                  className={`h-2.5 rounded-full transition-all ${
+                    consistencyScore30 >= 50 ? "bg-emerald-500" : consistencyScore30 >= 25 ? "bg-yellow-500" : "bg-red-500"
+                  }`}
+                  style={{ width: `${consistencyScore30}%` }}
+                />
+              </div>
+              <p className="text-xs text-zinc-500 mt-1">days trained out of 30</p>
+            </div>
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm text-zinc-400">Last 90 days</span>
+                <span className="text-sm font-bold text-zinc-100">{consistencyScore90}%</span>
+              </div>
+              <div className="h-2.5 rounded-full bg-zinc-800">
+                <div
+                  className={`h-2.5 rounded-full transition-all ${
+                    consistencyScore90 >= 50 ? "bg-emerald-500" : consistencyScore90 >= 25 ? "bg-yellow-500" : "bg-red-500"
+                  }`}
+                  style={{ width: `${consistencyScore90}%` }}
+                />
+              </div>
+              <p className="text-xs text-zinc-500 mt-1">days trained out of 90</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* AI Progress Report */}
+      <Card className="border-red-600/20">
+        <CardHeader className="pb-2">
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-base flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-red-500" />
+              AI Progress Report
+            </CardTitle>
+            <Button
+              size="sm"
+              onClick={generateAIReport}
+              disabled={reportLoading}
+              className="bg-red-600 hover:bg-red-700 text-white"
+            >
+              {reportLoading ? (
+                <><Loader2 className="h-3.5 w-3.5 mr-1.5 animate-spin" />Generating...</>
+              ) : (
+                <><Sparkles className="h-3.5 w-3.5 mr-1.5" />Generate Report</>
+              )}
+            </Button>
+          </div>
+          <p className="text-xs text-zinc-500">
+            Claude analyzes your journal stats, competition record, and belt to give you a personalized progress assessment.
+          </p>
+        </CardHeader>
+        <CardContent>
+          {aiReport ? (
+            <div className="rounded-lg bg-zinc-800/40 border border-zinc-700/50 p-4">
+              <p className="text-sm text-zinc-200 leading-relaxed whitespace-pre-wrap">{aiReport}</p>
+            </div>
+          ) : (
+            <div className="text-center py-8 text-zinc-500 text-sm">
+              Click &ldquo;Generate Report&rdquo; to get your personalized AI progress assessment.
+            </div>
           )}
         </CardContent>
       </Card>

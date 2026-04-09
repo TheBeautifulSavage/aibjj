@@ -1,4 +1,15 @@
+import type { Metadata } from 'next'
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'BJJ Affiliate Program | Earn with AIBJJ',
+  description: 'Join the AIBJJ affiliate program. Earn recurring commissions by referring BJJ athletes to the platform. High-converting offer, real-time tracking, monthly payouts.',
+  openGraph: {
+    title: 'BJJ Affiliate Program | Earn with AIBJJ',
+    description: 'Earn recurring commissions promoting the AI-powered BJJ platform. Built for BJJ coaches, creators, and enthusiasts.',
+    url: 'https://aibjj.com/affiliates',
+  },
+}
 import {
   DollarSign,
   Users,

@@ -1,11 +1,40 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { getTemplate } from "@/lib/creator-templates";
 import { BJJ_FANATICS_CREATORS } from "@/lib/bjj-fanatics-creators";
-import { ShoppingCart, Play, Star, BookOpen } from "lucide-react";
+import { ShoppingCart, Play, Star, BookOpen, MapPin, Mail, Instagram, Youtube, Twitter } from "lucide-react";
 
 interface Props {
   params: Promise<{ username: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { username } = await params;
+
+  const dbUser = await prisma.user.findUnique({
+    where: { username },
+    select: { name: true, bio: true, belt: true },
+  });
+
+  const prebuilt = !dbUser
+    ? BJJ_FANATICS_CREATORS.find((c) => c.username === username)
+    : null;
+
+  const name = dbUser?.name || prebuilt?.name || username;
+  const belt = dbUser?.belt || prebuilt?.belt || 'Black Belt';
+  const bio = dbUser?.bio || prebuilt?.bio || `BJJ instructionals and content by ${name}.`;
+
+  return {
+    title: `${name} — BJJ Instructionals`,
+    description: `${name} (${belt}) on AIBJJ. ${bio?.slice(0, 120) ?? ''}`,
+    openGraph: {
+      title: `${name} | AIBJJ Creator`,
+      description: `${name} (${belt}) on AIBJJ. Browse instructionals, game plans, and more.`,
+      url: `https://aibjj.com/s/${username}`,
+    },
+  };
 }
 
 async function getCreatorData(username: string) {

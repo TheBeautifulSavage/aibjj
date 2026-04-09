@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { sendCreatorVerificationEmail } from "@/lib/email";
 
 export async function POST(request: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -51,6 +52,18 @@ export async function POST(request: NextRequest) {
       role: "CREATOR",
     },
   });
+
+  // Send admin notification email for new creator signups
+  try {
+    await sendCreatorVerificationEmail(
+      updatedUser.name || session.user.email || "Unknown",
+      session.user.email || "",
+      updatedUser.academyName || "",
+      updatedUser.username || username
+    );
+  } catch (err) {
+    console.error("Failed to send creator verification email:", err);
+  }
 
   return NextResponse.json({
     success: true,

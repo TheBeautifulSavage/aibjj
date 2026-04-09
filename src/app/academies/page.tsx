@@ -1,4 +1,15 @@
+import type { Metadata } from 'next'
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: 'BJJ Academies Platform | AIBJJ for Gyms',
+  description: 'AIBJJ for BJJ academies. Give your students AI coaching, a training journal, and a technique library. Manage curriculum, track student progress, and grow your gym.',
+  openGraph: {
+    title: 'BJJ Academies Platform | AIBJJ for Gyms',
+    description: 'Power your BJJ academy with AI. Student tracking, curriculum tools, and the full AIBJJ platform under your brand.',
+    url: 'https://aibjj.com/academies',
+  },
+}
 import {
   BarChart3,
   BookOpen,

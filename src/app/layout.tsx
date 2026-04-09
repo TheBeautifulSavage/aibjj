@@ -16,17 +16,26 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "AIBJJ - AI-Powered Jiu-Jitsu Coach & Marketplace",
-  description:
-    "Your AI-powered Brazilian Jiu-Jitsu platform. Get personalized coaching, track your training, master techniques, and access world-class instructional content.",
-  keywords: [
-    "BJJ",
-    "Brazilian Jiu-Jitsu",
-    "AI Coach",
-    "Martial Arts",
-    "Training",
-    "Techniques",
-  ],
+  metadataBase: new URL('https://aibjj.com'),
+  title: {
+    default: 'AIBJJ — AI-Powered Brazilian Jiu-Jitsu Platform',
+    template: '%s | AIBJJ',
+  },
+  description: 'The AI-powered BJJ platform. AI coach, training journal, technique library, game plans, and a marketplace for BJJ instructionals. Built by a black belt.',
+  keywords: ['bjj', 'brazilian jiu jitsu', 'ai coach', 'bjj training', 'jiu jitsu techniques', 'bjj instructionals', 'grappling'],
+  openGraph: {
+    type: 'website',
+    siteName: 'AIBJJ',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@aibjj',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

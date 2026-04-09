@@ -14,6 +14,9 @@ import {
   Clock,
   Loader2,
   Trash2,
+  Share2,
+  Copy,
+  Check,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -163,12 +166,53 @@ function parseSection(data: string | string[]): string[] {
   return [];
 }
 
+// BJJ Position flow map
+const BJJ_POSITIONS = [
+  { id: "standing", label: "Standing", x: 50, y: 8, color: "#3b82f6" },
+  { id: "takedown", label: "Takedown", x: 50, y: 22, color: "#8b5cf6" },
+  { id: "guard", label: "Guard", x: 20, y: 42, color: "#10b981" },
+  { id: "half-guard", label: "Half Guard", x: 50, y: 42, color: "#14b8a6" },
+  { id: "top-control", label: "Side / Mount", x: 80, y: 42, color: "#f97316" },
+  { id: "sweep", label: "Sweep", x: 20, y: 62, color: "#22c55e" },
+  { id: "back", label: "Back", x: 50, y: 62, color: "#ef4444" },
+  { id: "submission", label: "Submission 🏆", x: 50, y: 80, color: "#eab308" },
+];
+
+const POSITION_EDGES = [
+  ["standing", "takedown"],
+  ["takedown", "guard"],
+  ["takedown", "half-guard"],
+  ["takedown", "top-control"],
+  ["guard", "sweep"],
+  ["guard", "back"],
+  ["guard", "submission"],
+  ["half-guard", "sweep"],
+  ["half-guard", "top-control"],
+  ["top-control", "submission"],
+  ["top-control", "back"],
+  ["sweep", "top-control"],
+  ["back", "submission"],
+];
+
+const POSITION_TO_SECTION: Record<string, keyof GamePlanData> = {
+  standing: "standingGame",
+  takedown: "standingGame",
+  guard: "bottomGame",
+  "half-guard": "bottomGame",
+  "top-control": "topGame",
+  sweep: "bottomGame",
+  back: "submissions",
+  submission: "submissions",
+};
+
 export default function GamePlanPage() {
   const [viewMode, setViewMode] = useState<ViewMode>("list");
   const [savedPlans, setSavedPlans] = useState<GamePlanData[]>([]);
   const [activePlan, setActivePlan] = useState<GamePlanData | null>(null);
   const [generating, setGenerating] = useState(false);
   const [plansLoading, setPlansLoading] = useState(true);
+  const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
+  const [shareCopied, setShareCopied] = useState(false);
 
   // Form state
   const [belt, setBelt] = useState("");
@@ -271,6 +315,19 @@ export default function GamePlanPage() {
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const handleShare = async () => {
+    if (!activePlan) return;
+    const url = `${window.location.origin}/gameplan/share/${activePlan.id}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setShareCopied(true);
+      setTimeout(() => setShareCopied(false), 2000);
+    } catch {
+      // fallback
+      prompt("Copy this link to share:", url);
+    }
   };
 
   const openPlan = (plan: GamePlanData) => {
@@ -577,7 +634,7 @@ export default function GamePlanPage() {
                   </Badge>
                 </div>
               </div>
-              <div className="flex gap-2 print:hidden">
+              <div className="flex flex-wrap gap-2 print:hidden">
                 <Button variant="outline" size="sm" onClick={() => { setViewMode("form"); }}>
                   <Sparkles className="mr-2 h-4 w-4" />
                   Regenerate
@@ -585,6 +642,10 @@ export default function GamePlanPage() {
                 <Button variant="outline" size="sm" onClick={handlePrint}>
                   <Printer className="mr-2 h-4 w-4" />
                   Print
+                </Button>
+                <Button variant="outline" size="sm" onClick={handleShare}>
+                  {shareCopied ? <Check className="mr-2 h-4 w-4 text-emerald-400" /> : <Share2 className="mr-2 h-4 w-4" />}
+                  {shareCopied ? "Copied!" : "Share"}
                 </Button>
                 <Button
                   variant="outline"
@@ -596,6 +657,96 @@ export default function GamePlanPage() {
                   Delete
                 </Button>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Visual Position Map */}
+          <Card className="border-zinc-800 bg-zinc-900/50 print:hidden">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base flex items-center gap-2">
+                <Target className="h-4 w-4 text-red-500" />
+                Position Flow Map
+              </CardTitle>
+              <p className="text-xs text-zinc-500">Click a position to jump to that section of your game plan</p>
+            </CardHeader>
+            <CardContent>
+              <div className="relative w-full" style={{ paddingBottom: "55%" }}>
+                <svg
+                  className="absolute inset-0 w-full h-full"
+                  viewBox="0 0 100 90"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  {/* Edges */}
+                  {POSITION_EDGES.map(([from, to]) => {
+                    const fromNode = BJJ_POSITIONS.find((p) => p.id === from);
+                    const toNode = BJJ_POSITIONS.find((p) => p.id === to);
+                    if (!fromNode || !toNode) return null;
+                    return (
+                      <line
+                        key={`${from}-${to}`}
+                        x1={fromNode.x}
+                        y1={fromNode.y}
+                        x2={toNode.x}
+                        y2={toNode.y}
+                        stroke="#3f3f46"
+                        strokeWidth="0.5"
+                        strokeDasharray="1,1"
+                      />
+                    );
+                  })}
+                  {/* Nodes */}
+                  {BJJ_POSITIONS.map((pos) => {
+                    const isSelected = selectedPosition === pos.id;
+                    return (
+                      <g
+                        key={pos.id}
+                        onClick={() => setSelectedPosition(isSelected ? null : pos.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <circle
+                          cx={pos.x}
+                          cy={pos.y}
+                          r={isSelected ? 7 : 5.5}
+                          fill={pos.color}
+                          fillOpacity={isSelected ? 1 : 0.7}
+                          stroke={isSelected ? "#fff" : "transparent"}
+                          strokeWidth="0.8"
+                        />
+                        <text
+                          x={pos.x}
+                          y={pos.y + 10}
+                          textAnchor="middle"
+                          fill="#a1a1aa"
+                          fontSize="3.5"
+                          fontFamily="sans-serif"
+                        >
+                          {pos.label}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </svg>
+              </div>
+              {/* Show section content for selected position */}
+              {selectedPosition && (() => {
+                const sectionKey = POSITION_TO_SECTION[selectedPosition];
+                const items = sectionKey ? (activePlan[sectionKey] as string[]) : [];
+                return items && items.length > 0 ? (
+                  <div className="mt-2 rounded-lg border border-zinc-700/50 bg-zinc-800/40 p-3">
+                    <p className="text-xs font-semibold text-zinc-300 mb-2">
+                      {BJJ_POSITIONS.find(p => p.id === selectedPosition)?.label} — Your Game Plan:
+                    </p>
+                    <ul className="space-y-1">
+                      {items.slice(0, 4).map((item: string, i: number) => (
+                        <li key={i} className="text-xs text-zinc-400 flex items-start gap-1.5">
+                          <span className="text-red-500 mt-0.5">•</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null;
+              })()}
             </CardContent>
           </Card>
 
