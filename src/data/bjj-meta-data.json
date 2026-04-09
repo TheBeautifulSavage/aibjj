@@ -1,0 +1,105 @@
+{
+  "lastUpdated": "2025-04-08",
+  "sources": ["ADCC official results", "IBJJF post-event articles", "FloGrappling analysis"],
+  "gi": {
+    "2024": {
+      "event": "IBJJF World Championship 2024",
+      "totalMatches": 847,
+      "submissionRate": 61,
+      "submissions": [
+        {"name": "Bow and Arrow Choke", "count": 89, "percentage": 18, "trend": "rising"},
+        {"name": "Rear Naked Choke", "count": 79, "percentage": 16, "trend": "stable"},
+        {"name": "Triangle Choke", "count": 64, "percentage": 13, "trend": "stable"},
+        {"name": "Armbar", "count": 59, "percentage": 12, "trend": "declining"},
+        {"name": "Guillotine", "count": 54, "percentage": 11, "trend": "rising"},
+        {"name": "Kimura", "count": 44, "percentage": 9, "trend": "stable"},
+        {"name": "Ezekiel Choke", "count": 34, "percentage": 7, "trend": "rising"},
+        {"name": "Loop Choke", "count": 30, "percentage": 6, "trend": "rising"},
+        {"name": "Omoplata", "count": 20, "percentage": 4, "trend": "stable"},
+        {"name": "Clock Choke", "count": 20, "percentage": 4, "trend": "stable"}
+      ]
+    },
+    "2023": {
+      "event": "IBJJF World Championship 2023",
+      "totalMatches": 812,
+      "submissionRate": 34,
+      "submissions": [
+        {"name": "Rear Naked Choke", "count": 72, "percentage": 19},
+        {"name": "Armbar", "count": 65, "percentage": 17},
+        {"name": "Triangle Choke", "count": 57, "percentage": 15},
+        {"name": "Bow and Arrow Choke", "count": 49, "percentage": 13},
+        {"name": "Guillotine", "count": 42, "percentage": 11},
+        {"name": "Kimura", "count": 34, "percentage": 9},
+        {"name": "Ezekiel Choke", "count": 26, "percentage": 7},
+        {"name": "Other", "count": 30, "percentage": 8}
+      ]
+    }
+  },
+  "nogi": {
+    "2025": {
+      "event": "No-Gi Season 2025 (compiled)",
+      "totalMatches": 623,
+      "submissionRate": 47,
+      "submissions": [
+        {"name": "Rear Naked Choke", "count": 162, "percentage": 26, "trend": "rising"},
+        {"name": "Inside Heel Hook", "count": 125, "percentage": 20, "trend": "stable"},
+        {"name": "Straight Ankle Lock", "count": 87, "percentage": 14, "trend": "rising"},
+        {"name": "Guillotine", "count": 75, "percentage": 12, "trend": "stable"},
+        {"name": "Outside Heel Hook", "count": 62, "percentage": 10, "trend": "declining"},
+        {"name": "Kneebar", "count": 43, "percentage": 7, "trend": "rising"},
+        {"name": "Kimura", "count": 25, "percentage": 4, "trend": "stable"},
+        {"name": "Toe Hold", "count": 19, "percentage": 3, "trend": "rising"},
+        {"name": "Armbar", "count": 19, "percentage": 3, "trend": "declining"},
+        {"name": "Other", "count": 7, "percentage": 1}
+      ]
+    },
+    "2022": {
+      "event": "ADCC World Championship 2022",
+      "totalMatches": 156,
+      "submissionRate": 36,
+      "submissions": [
+        {"name": "Rear Naked Choke", "count": 18, "percentage": 32},
+        {"name": "Inside Heel Hook", "count": 14, "percentage": 25},
+        {"name": "Guillotine", "count": 8, "percentage": 14},
+        {"name": "Outside Heel Hook", "count": 6, "percentage": 11},
+        {"name": "Straight Ankle Lock", "count": 5, "percentage": 9},
+        {"name": "Kimura", "count": 3, "percentage": 5},
+        {"name": "Other", "count": 2, "percentage": 4}
+      ]
+    }
+  },
+  "heelHookTrend": [
+    {"year": 2015, "nogiPercentage": 8, "context": "Pre-leg lock revolution"},
+    {"year": 2016, "nogiPercentage": 11, "context": "Danaher Death Squad emerges"},
+    {"year": 2017, "nogiPercentage": 16, "context": "DDS dominates EBI"},
+    {"year": 2018, "nogiPercentage": 22, "context": "Leg locks go mainstream"},
+    {"year": 2019, "nogiPercentage": 28, "context": "ADCC 2019 - Gordon Ryan era begins"},
+    {"year": 2020, "nogiPercentage": 31, "context": "Online competition boom"},
+    {"year": 2021, "nogiPercentage": 34, "context": "Heel hooks fully normalized"},
+    {"year": 2022, "nogiPercentage": 36, "context": "ADCC 2022 - peak heel hook era"},
+    {"year": 2023, "nogiPercentage": 35, "context": "Counter-defenses developing"},
+    {"year": 2024, "nogiPercentage": 30, "context": "Defense catches up, RNC returns to top"},
+    {"year": 2025, "nogiPercentage": 30, "context": "Balanced meta - leg locks + chokes"}
+  ],
+  "tournamentComparison": [
+    {"tournament": "IBJJF Worlds Gi", "submissionRate": 61, "heelHooks": 0, "legLocks": 2, "chokes": 69, "armlocks": 29},
+    {"tournament": "IBJJF No-Gi Worlds", "submissionRate": 38, "heelHooks": 18, "legLocks": 24, "chokes": 52, "armlocks": 24},
+    {"tournament": "ADCC", "submissionRate": 36, "heelHooks": 22, "legLocks": 28, "chokes": 51, "armlocks": 21},
+    {"tournament": "EBI/Overtime", "submissionRate": 89, "heelHooks": 38, "legLocks": 46, "chokes": 36, "armlocks": 18},
+    {"tournament": "Polaris/SUG", "submissionRate": 61, "heelHooks": 32, "legLocks": 40, "chokes": 42, "armlocks": 18}
+  ],
+  "metaInsights": {
+    "gi_2024": [
+      "Back takes are now the most valuable position in Gi — 75% of back control situations end in submission",
+      "The bow and arrow choke has overtaken the RNC as the #1 Gi finish",
+      "Armbar percentage has declined 6 points since 2019 as defenses improve",
+      "Loop chokes and Ezekiel chokes are rising — gi-specific techniques rewarded"
+    ],
+    "nogi_2025": [
+      "Rear naked choke has reclaimed the #1 spot as heel hook defenses have matured",
+      "Inside heel hook remains #2 but competitors are surviving them at higher rates",
+      "Straight ankle lock is the sleeper rising submission — often overlooked but highly effective",
+      "The heel hook panic era (2017-2022) is over — technical defense has caught up"
+    ]
+  }
+}

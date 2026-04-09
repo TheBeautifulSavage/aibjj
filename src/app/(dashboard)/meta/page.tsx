@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   BarChart,
@@ -21,9 +21,9 @@ import {
   Minus,
   BarChart2,
   Brain,
-  AlertTriangle,
   ChevronRight,
   ArrowUpRight,
+  Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,84 +35,49 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-// ─── Data ────────────────────────────────────────────────────────────────────
+// ─── Types ────────────────────────────────────────────────────────────────────
 
-const GI_SUBMISSION_STATS = {
-  year: 2024,
-  total_matches_analyzed: 2847,
-  source: "IBJJF World Championship (compiled)",
-  submission_rate: 31,
-  submissions: [
-    { name: "Rear Naked Choke", percentage: 18, trend: "stable" },
-    { name: "Armbar", percentage: 16, trend: "declining" },
-    { name: "Triangle Choke", percentage: 14, trend: "stable" },
-    { name: "Guillotine", percentage: 11, trend: "rising" },
-    { name: "Bow & Arrow Choke", percentage: 10, trend: "rising" },
-    { name: "Kimura", percentage: 8, trend: "stable" },
-    { name: "Ezekiel Choke", percentage: 6, trend: "rising" },
-    { name: "Loop Choke", percentage: 5, trend: "rising" },
-    { name: "Omoplata", percentage: 4, trend: "stable" },
-    { name: "Clock Choke", percentage: 4, trend: "stable" },
-    { name: "Other", percentage: 4, trend: "stable" },
-  ],
-};
+interface Submission {
+  name: string;
+  count?: number;
+  percentage: number;
+  trend?: string;
+}
 
-const NOGI_SUBMISSION_STATS = {
-  year: 2024,
-  total_matches_analyzed: 1923,
-  source: "ADCC, EBI, Polaris (compiled)",
-  submission_rate: 43,
-  submissions: [
-    { name: "Heel Hook (Inside)", percentage: 28, trend: "rising_fast" },
-    { name: "Heel Hook (Outside)", percentage: 12, trend: "rising_fast" },
-    { name: "Rear Naked Choke", percentage: 14, trend: "declining" },
-    { name: "Guillotine", percentage: 11, trend: "stable" },
-    { name: "Kneebar", percentage: 7, trend: "rising" },
-    { name: "Armbar", percentage: 6, trend: "declining" },
-    { name: "Triangle", percentage: 5, trend: "declining" },
-    { name: "Toe Hold", percentage: 5, trend: "rising" },
-    { name: "Calf Slicer", percentage: 4, trend: "rising" },
-    { name: "Kimura", percentage: 4, trend: "stable" },
-    { name: "Other", percentage: 4, trend: "stable" },
-  ],
-};
+interface YearData {
+  event: string;
+  totalMatches: number;
+  submissionRate: number;
+  submissions: Submission[];
+}
 
-const HEEL_HOOK_TREND = [
-  { year: 2015, percentage: 8, context: "Pre-leg lock era" },
-  { year: 2016, percentage: 11, context: "John Danaher system emerges" },
-  { year: 2017, percentage: 16, context: "DDS dominates" },
-  { year: 2018, percentage: 22, context: "Leg locks mainstream" },
-  { year: 2019, percentage: 28, context: "ADCC 2019 — Gordon Ryan era" },
-  { year: 2020, percentage: 32, context: "Pandemic year, online competition boom" },
-  { year: 2021, percentage: 34, context: "Heel hooks normalized" },
-  { year: 2022, percentage: 37, context: "ADCC 2022 — heel hooks everywhere" },
-  { year: 2023, percentage: 39, context: "Counter systems developing" },
-  { year: 2024, percentage: 40, context: "Current — heel hook defense improving" },
-];
+interface HeelHookTrendEntry {
+  year: number;
+  nogiPercentage: number;
+  context: string;
+}
 
-const TOURNAMENT_COMPARISON = [
-  { tournament: "IBJJF Worlds (Gi)", submission_rate: 31, heel_hooks: 0, leg_locks: 2, chokes: 67, armlocks: 31 },
-  { tournament: "IBJJF No-Gi Worlds", submission_rate: 38, heel_hooks: 18, leg_locks: 24, chokes: 52, armlocks: 24 },
-  { tournament: "ADCC", submission_rate: 52, heel_hooks: 35, leg_locks: 42, chokes: 41, armlocks: 17 },
-  { tournament: "EBI/Overtime Format", submission_rate: 89, heel_hooks: 44, leg_locks: 52, chokes: 33, armlocks: 15 },
-  { tournament: "Polaris/SUG", submission_rate: 61, heel_hooks: 38, leg_locks: 45, chokes: 38, armlocks: 17 },
-];
+interface TournamentEntry {
+  tournament: string;
+  submissionRate: number;
+  heelHooks: number;
+  legLocks: number;
+  chokes: number;
+  armlocks: number;
+}
 
-const GI_INSIGHTS = [
-  "The bow & arrow choke is rapidly climbing — mastering back control is non-negotiable for Gi competitors in 2024.",
-  "Armbars are declining as competitors become better at defending. Combinations and setups matter more than ever.",
-  "Guillotines are rising in Gi as athletes bring their No-Gi offense into the kimono game.",
-  "Ezekiel and Loop chokes are producing upsets — understand unusual chokes to avoid being caught by them.",
-  "Only 31% of Gi matches end by submission. Points and advantages still decide most matches — don't neglect your passing game.",
-];
-
-const NOGI_INSIGHTS = [
-  "Leg locks — specifically heel hooks — now account for 40% of No-Gi submissions. This is the biggest shift in competition history.",
-  "If you compete No-Gi without solid leg lock defense, you are walking into danger with almost half the elite field targeting your knees.",
-  "The RNC (rear naked choke) is declining as competitors are better prepared for back takes — finish faster or expect escapes.",
-  "Toe holds and kneebars are rising alongside heel hooks — the entire leg lock system is maturing, not just one technique.",
-  "ADCC sees 52% submission rates compared to 31% in Gi — the ruleset directly shapes what works.",
-];
+interface MetaData {
+  lastUpdated: string;
+  sources: string[];
+  gi: Record<string, YearData>;
+  nogi: Record<string, YearData>;
+  heelHookTrend: HeelHookTrendEntry[];
+  tournamentComparison: TournamentEntry[];
+  metaInsights: {
+    gi_2024: string[];
+    nogi_2025: string[];
+  };
+}
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -145,32 +110,30 @@ function TrendBadge({ trend }: { trend: string }) {
   );
 }
 
-function getBarColor(trend: string) {
+function getBarColor(trend?: string) {
   if (trend === "rising_fast") return "#ef4444";
   if (trend === "rising") return "#22c55e";
   if (trend === "declining") return "#71717a";
   return "#3b82f6";
 }
 
-// ─── Custom Tooltip ───────────────────────────────────────────────────────────
+// ─── Custom Tooltips ──────────────────────────────────────────────────────────
 
 const CustomBarTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 shadow-xl">
         <p className="text-sm font-semibold text-zinc-200">{label}</p>
-        <p className="text-sm text-zinc-400">
-          {payload[0].value}% of submissions
-        </p>
+        <p className="text-sm text-zinc-400">{payload[0].value}% of submissions</p>
       </div>
     );
   }
   return null;
 };
 
-const CustomLineTooltip = ({ active, payload, label }: any) => {
+const CustomLineTooltip = ({ active, payload, label, trendData }: any) => {
   if (active && payload && payload.length) {
-    const data = HEEL_HOOK_TREND.find((d) => d.year === label);
+    const data = trendData?.find((d: HeelHookTrendEntry) => d.year === label);
     return (
       <div className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 shadow-xl max-w-[220px]">
         <p className="text-sm font-semibold text-zinc-200">{label}</p>
@@ -186,19 +149,72 @@ const CustomLineTooltip = ({ active, payload, label }: any) => {
 
 export default function MetaBreakdownPage() {
   const [activeTab, setActiveTab] = useState<"gi" | "nogi">("gi");
-  const stats = activeTab === "gi" ? GI_SUBMISSION_STATS : NOGI_SUBMISSION_STATS;
-  const insights = activeTab === "gi" ? GI_INSIGHTS : NOGI_INSIGHTS;
+  const [metaData, setMetaData] = useState<MetaData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const aiPrompt =
-    "Based on the current BJJ meta where heel hooks account for 40% of No-Gi submissions, what should I prioritize in my training?";
+  useEffect(() => {
+    fetch("/api/meta/stats")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch meta stats");
+        return res.json();
+      })
+      .then((data: MetaData) => {
+        setMetaData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
 
-  // Build bar chart data with colors
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <Loader2 className="h-8 w-8 animate-spin text-red-500" />
+      </div>
+    );
+  }
+
+  if (error || !metaData) {
+    return (
+      <div className="flex items-center justify-center h-64 text-zinc-400">
+        Failed to load meta data. Please try again.
+      </div>
+    );
+  }
+
+  // Resolve current year data
+  const giYears = Object.keys(metaData.gi).sort((a, b) => Number(b) - Number(a));
+  const nogiYears = Object.keys(metaData.nogi).sort((a, b) => Number(b) - Number(a));
+  const currentGiYear = giYears[0];
+  const currentNogiYear = nogiYears[0];
+
+  const giStats = metaData.gi[currentGiYear];
+  const nogiStats = metaData.nogi[currentNogiYear];
+
+  const stats = activeTab === "gi" ? giStats : nogiStats;
+  const currentYear = activeTab === "gi" ? currentGiYear : currentNogiYear;
+  const insights =
+    activeTab === "gi" ? metaData.metaInsights.gi_2024 : metaData.metaInsights.nogi_2025;
+
   const barData = stats.submissions.map((s) => ({
     name: s.name,
     percentage: s.percentage,
     trend: s.trend,
     fill: getBarColor(s.trend),
   }));
+
+  // Normalize heel hook trend data for chart
+  const heelHookChartData = metaData.heelHookTrend.map((d) => ({
+    year: d.year,
+    percentage: d.nogiPercentage,
+    context: d.context,
+  }));
+
+  const aiPrompt =
+    "Based on the current BJJ meta where heel hooks account for 30% of No-Gi submissions, what should I prioritize in my training?";
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
@@ -207,12 +223,10 @@ export default function MetaBreakdownPage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <BarChart2 className="h-6 w-6 text-red-500" />
-            <h1 className="text-2xl font-black text-zinc-100">
-              BJJ Meta Breakdown
-            </h1>
+            <h1 className="text-2xl font-black text-zinc-100">BJJ Meta Breakdown</h1>
           </div>
           <p className="text-zinc-400 text-sm">
-            What&apos;s actually winning in competition — updated analysis · 2024
+            What&apos;s actually winning in competition — updated {metaData.lastUpdated}
           </p>
         </div>
         <Link
@@ -230,20 +244,16 @@ export default function MetaBreakdownPage() {
           <CardContent className="pt-4 pb-4">
             <p className="text-xs text-zinc-500 mb-1">Matches Analyzed</p>
             <p className="text-2xl font-black text-zinc-100">
-              {stats.total_matches_analyzed.toLocaleString()}
+              {stats.totalMatches.toLocaleString()}
             </p>
-            <p className="text-[10px] text-zinc-600 mt-1">{stats.source}</p>
+            <p className="text-[10px] text-zinc-600 mt-1">{stats.event}</p>
           </CardContent>
         </Card>
         <Card className="bg-zinc-900 border-zinc-800">
           <CardContent className="pt-4 pb-4">
             <p className="text-xs text-zinc-500 mb-1">Submission Rate</p>
-            <p className="text-2xl font-black text-red-400">
-              {stats.submission_rate}%
-            </p>
-            <p className="text-[10px] text-zinc-600 mt-1">
-              matches ending by sub
-            </p>
+            <p className="text-2xl font-black text-red-400">{stats.submissionRate}%</p>
+            <p className="text-[10px] text-zinc-600 mt-1">matches ending by sub</p>
           </CardContent>
         </Card>
         <Card className="bg-zinc-900 border-zinc-800">
@@ -260,7 +270,7 @@ export default function MetaBreakdownPage() {
         <Card className="bg-zinc-900 border-zinc-800">
           <CardContent className="pt-4 pb-4">
             <p className="text-xs text-zinc-500 mb-1">Year</p>
-            <p className="text-2xl font-black text-zinc-100">{stats.year}</p>
+            <p className="text-2xl font-black text-zinc-100">{currentYear}</p>
             <p className="text-[10px] text-zinc-600 mt-1">competition data</p>
           </CardContent>
         </Card>
@@ -287,7 +297,7 @@ export default function MetaBreakdownPage() {
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader>
           <CardTitle className="text-zinc-100 text-lg">
-            Submission Breakdown — {activeTab === "gi" ? "Gi" : "No-Gi"} 2024
+            Submission Breakdown — {activeTab === "gi" ? "Gi" : "No-Gi"} {currentYear}
           </CardTitle>
           <CardDescription>
             % of total submissions in analyzed matches ·{" "}
@@ -321,7 +331,10 @@ export default function MetaBreakdownPage() {
                 tickLine={false}
                 axisLine={false}
               />
-              <Tooltip content={<CustomBarTooltip />} cursor={{ fill: "rgba(255,255,255,0.04)" }} />
+              <Tooltip
+                content={<CustomBarTooltip />}
+                cursor={{ fill: "rgba(255,255,255,0.04)" }}
+              />
               <Bar dataKey="percentage" radius={[0, 4, 4, 0]}>
                 {barData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.fill} />
@@ -337,14 +350,10 @@ export default function MetaBreakdownPage() {
                 key={sub.name}
                 className="flex items-center justify-between py-1.5 px-3 rounded-md bg-zinc-800/40 border border-zinc-800/60"
               >
-                <span className="text-sm text-zinc-300 font-medium">
-                  {sub.name}
-                </span>
+                <span className="text-sm text-zinc-300 font-medium">{sub.name}</span>
                 <div className="flex items-center gap-3">
-                  <span className="text-sm font-bold text-zinc-200">
-                    {sub.percentage}%
-                  </span>
-                  <TrendBadge trend={sub.trend} />
+                  <span className="text-sm font-bold text-zinc-200">{sub.percentage}%</span>
+                  {sub.trend && <TrendBadge trend={sub.trend} />}
                 </div>
               </div>
             ))}
@@ -358,7 +367,7 @@ export default function MetaBreakdownPage() {
           <CardHeader>
             <CardTitle className="text-zinc-100 text-lg flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-red-400" />
-              The Heel Hook Revolution: 2015 → 2024
+              The Heel Hook Revolution: 2015 → {heelHookChartData[heelHookChartData.length - 1]?.year}
             </CardTitle>
             <CardDescription>
               No-Gi submission share accounted for by heel hooks over time
@@ -367,7 +376,7 @@ export default function MetaBreakdownPage() {
           <CardContent>
             <ResponsiveContainer width="100%" height={280}>
               <LineChart
-                data={HEEL_HOOK_TREND}
+                data={heelHookChartData}
                 margin={{ left: 0, right: 16, top: 8, bottom: 8 }}
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
@@ -384,7 +393,11 @@ export default function MetaBreakdownPage() {
                   axisLine={false}
                   tickFormatter={(v) => `${v}%`}
                 />
-                <Tooltip content={<CustomLineTooltip />} />
+                <Tooltip
+                  content={(props) => (
+                    <CustomLineTooltip {...props} trendData={metaData.heelHookTrend} />
+                  )}
+                />
                 <ReferenceLine
                   x={2016}
                   stroke="#71717a"
@@ -409,14 +422,14 @@ export default function MetaBreakdownPage() {
             </ResponsiveContainer>
             <div className="mt-3 p-3 rounded-lg bg-red-950/30 border border-red-900/40">
               <p className="text-sm text-red-300">
-                <strong>Key takeaway:</strong> Heel hooks grew from 8% → 40% of No-Gi submissions in just 9 years — a 400% increase driven by the Danaher system and Gordon Ryan&apos;s dominance at ADCC.
+                <strong>Key takeaway:</strong> Heel hooks grew from 8% → 36% of No-Gi submissions at peak — driven by the Danaher system and Gordon Ryan&apos;s ADCC dominance. Defense has since matured, bringing rates back to 30%.
               </p>
             </div>
           </CardContent>
         </Card>
       )}
 
-      {/* Heel Hook Trend (Gi tab — collapsed teaser) */}
+      {/* Heel Hook Trend (Gi tab — teaser) */}
       {activeTab === "gi" && (
         <Card className="bg-zinc-900 border-zinc-800">
           <CardHeader>
@@ -424,7 +437,7 @@ export default function MetaBreakdownPage() {
               No-Gi Heel Hook Trend (Preview)
             </CardTitle>
             <CardDescription>
-              Heel hooks now dominate No-Gi at 40% — switch to the No-Gi tab to see the full chart
+              Heel hooks peaked at 36% in No-Gi — switch to the No-Gi tab to see the full chart
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -441,9 +454,7 @@ export default function MetaBreakdownPage() {
       {/* Tournament Comparison Table */}
       <Card className="bg-zinc-900 border-zinc-800">
         <CardHeader>
-          <CardTitle className="text-zinc-100 text-lg">
-            Tournament Comparison
-          </CardTitle>
+          <CardTitle className="text-zinc-100 text-lg">Tournament Comparison</CardTitle>
           <CardDescription>
             How different rulesets change what wins — % of submissions by category
           </CardDescription>
@@ -461,29 +472,31 @@ export default function MetaBreakdownPage() {
               </tr>
             </thead>
             <tbody>
-              {TOURNAMENT_COMPARISON.map((row, i) => (
+              {metaData.tournamentComparison.map((row, i) => (
                 <tr
                   key={row.tournament}
                   className={`border-b border-zinc-800/50 ${i % 2 === 0 ? "bg-zinc-800/20" : ""}`}
                 >
-                  <td className="py-2.5 px-3 text-zinc-200 font-medium">
-                    {row.tournament}
-                  </td>
+                  <td className="py-2.5 px-3 text-zinc-200 font-medium">{row.tournament}</td>
                   <td className="py-2.5 px-3 text-center">
                     <span
-                      className={`font-bold ${row.submission_rate >= 60 ? "text-red-400" : row.submission_rate >= 40 ? "text-amber-400" : "text-zinc-300"}`}
+                      className={`font-bold ${
+                        row.submissionRate >= 60
+                          ? "text-red-400"
+                          : row.submissionRate >= 40
+                          ? "text-amber-400"
+                          : "text-zinc-300"
+                      }`}
                     >
-                      {row.submission_rate}%
+                      {row.submissionRate}%
                     </span>
                   </td>
                   <td className="py-2.5 px-3 text-center">
-                    <span
-                      className={row.heel_hooks > 0 ? "text-red-400 font-semibold" : "text-zinc-500"}
-                    >
-                      {row.heel_hooks}%
+                    <span className={row.heelHooks > 0 ? "text-red-400 font-semibold" : "text-zinc-500"}>
+                      {row.heelHooks}%
                     </span>
                   </td>
-                  <td className="py-2.5 px-3 text-center text-zinc-300">{row.leg_locks}%</td>
+                  <td className="py-2.5 px-3 text-center text-zinc-300">{row.legLocks}%</td>
                   <td className="py-2.5 px-3 text-center text-zinc-300">{row.chokes}%</td>
                   <td className="py-2.5 px-3 text-center text-zinc-300">{row.armlocks}%</td>
                 </tr>
@@ -540,7 +553,7 @@ export default function MetaBreakdownPage() {
                 <li>• Leg lock defense is mandatory — no exceptions</li>
                 <li>• Learn inside heel hook and toe hold offense</li>
                 <li>• Study the ashi garami system before competing</li>
-                <li>• Heel hook counters: hip escape entries, knee position, footwork</li>
+                <li>• Straight ankle lock is the underrated finisher — learn to set it up</li>
               </ul>
             </div>
           </div>
@@ -565,9 +578,7 @@ export default function MetaBreakdownPage() {
 
       {/* Data disclaimer */}
       <p className="text-xs text-zinc-600 text-center pb-4">
-        Data compiled from IBJJF World Championship, ADCC, EBI, and Polaris results ·{" "}
-        {GI_SUBMISSION_STATS.total_matches_analyzed + NOGI_SUBMISSION_STATS.total_matches_analyzed} total matches analyzed ·{" "}
-        Percentages rounded to nearest whole number
+        Data compiled from {metaData.sources.join(", ")} · Percentages rounded to nearest whole number
       </p>
     </div>
   );
