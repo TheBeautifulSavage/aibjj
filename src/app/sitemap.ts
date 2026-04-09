@@ -3,6 +3,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://aibjj.com'
   const now = new Date()
   return [
+    { url: `${base}/brazilian-jiu-jitsu`, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
     { url: base, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
     { url: `${base}/academies`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/adcc-statistics`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
