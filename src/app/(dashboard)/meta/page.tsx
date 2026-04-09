@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   BarChart,
   Bar,
+  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -323,7 +324,7 @@ export default function MetaBreakdownPage() {
               <Tooltip content={<CustomBarTooltip />} cursor={{ fill: "rgba(255,255,255,0.04)" }} />
               <Bar dataKey="percentage" radius={[0, 4, 4, 0]}>
                 {barData.map((entry, index) => (
-                  <rect key={`rect-${index}`} fill={entry.fill} />
+                  <Cell key={`cell-${index}`} fill={entry.fill} />
                 ))}
               </Bar>
             </BarChart>

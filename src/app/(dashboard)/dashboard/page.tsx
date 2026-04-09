@@ -29,6 +29,8 @@ import {
   ChevronDown,
   ChevronUp,
   GraduationCap,
+  X,
+  BarChart2,
 } from "lucide-react";
 import {
   Card,
@@ -180,6 +182,37 @@ function ChartTooltip({
       <p className="text-sm font-semibold text-zinc-100">
         {payload[0].value} min
       </p>
+    </div>
+  );
+}
+
+// ---------- Meta Alert Card ----------
+
+function MetaAlertCard() {
+  const [dismissed, setDismissed] = useState(false);
+  if (dismissed) return null;
+  return (
+    <div className="flex items-start gap-3 rounded-xl border border-amber-800/40 bg-amber-950/20 p-4">
+      <BarChart2 className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-semibold text-amber-300 mb-0.5">
+          🏆 Trending in No-Gi: Inside Heel Hooks
+        </p>
+        <p className="text-sm text-zinc-400">
+          Inside heel hooks account for <strong className="text-amber-400">40%</strong> of No-Gi
+          submissions in 2024. Study your leg lock defense.{" "}
+          <Link href="/meta" className="text-amber-400 hover:text-amber-300 underline underline-offset-2">
+            See full meta breakdown →
+          </Link>
+        </p>
+      </div>
+      <button
+        onClick={() => setDismissed(true)}
+        className="flex-shrink-0 text-zinc-500 hover:text-zinc-300 transition-colors"
+        aria-label="Dismiss"
+      >
+        <X className="h-4 w-4" />
+      </button>
     </div>
   );
 }
@@ -704,6 +737,9 @@ export default function DashboardPage() {
 
       {/* Study Plan */}
       <StudyPlanCard />
+
+      {/* Meta Alert */}
+      <MetaAlertCard />
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
