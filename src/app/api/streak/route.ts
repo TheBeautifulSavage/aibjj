@@ -8,7 +8,7 @@ function calcStreak(dates: string[]): { streak: number; longestStreak: number } 
 
   // Sort descending
   const sorted = [...dates].sort((a, b) => (a > b ? -1 : 1));
-  const unique = [...new Set(sorted)];
+  const unique = Array.from(new Set(sorted));
 
   const today = new Date().toISOString().split("T")[0];
   const yesterday = new Date(Date.now() - 86400000).toISOString().split("T")[0];

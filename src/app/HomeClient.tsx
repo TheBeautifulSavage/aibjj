@@ -39,6 +39,7 @@ import {
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
   { label: "For Academies", href: "/academies" },
+  { label: "Teach", href: "/instructor-marketplace" },
   { label: "Pricing", href: "#pricing" },
   { label: "Affiliates", href: "/affiliates" },
 ];
