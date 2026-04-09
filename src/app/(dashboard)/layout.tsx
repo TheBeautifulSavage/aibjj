@@ -26,6 +26,7 @@ import {
   Home,
   PlusCircle,
   GraduationCap,
+  BarChart2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GlobalAIPrompt from "@/components/GlobalAIPrompt";
@@ -42,6 +43,7 @@ const navigation = [
   { name: "Progress", href: "/progress", icon: TrendingUp },
   { name: "My Courses", href: "/my-courses", icon: PlayCircle },
   { name: "Competitions", href: "/competitions", icon: Trophy },
+  { name: "Meta", href: "/meta", icon: BarChart2 },
   { name: "Marketplace", href: "/marketplace", icon: ShoppingBag },
   { name: "Import", href: "/import", icon: Download },
 ];
