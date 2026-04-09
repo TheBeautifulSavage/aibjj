@@ -41,6 +41,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import TrainingStreak from "@/components/TrainingStreak";
 
 // ---------- Types ----------
 
@@ -706,6 +707,9 @@ export default function DashboardPage() {
           </Badge>
         )}
       </div>
+
+      {/* Training Streak */}
+      <TrainingStreak />
 
       {/* Today's Focus — AI Suggestion */}
       {(loadingSuggestion || suggestion) && (
