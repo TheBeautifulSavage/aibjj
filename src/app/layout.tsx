@@ -44,6 +44,49 @@ export const metadata: Metadata = {
   },
 };
 
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'AIBJJ',
+  url: 'https://aibjj.com',
+  description: 'The AI-powered BJJ platform. AI coach, training journal, technique library, game plans, and a marketplace for BJJ instructionals.',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://aibjj.com/bjj-techniques?q={search_term_string}',
+    },
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'AIBJJ',
+  url: 'https://aibjj.com',
+  logo: 'https://aibjj.com/og-image.jpg',
+  sameAs: [
+    'https://twitter.com/aibjj',
+  ],
+};
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'AIBJJ',
+  applicationCategory: 'SportsApplication',
+  operatingSystem: 'Web',
+  url: 'https://aibjj.com',
+  description: 'AI-powered Brazilian Jiu-Jitsu training platform with AI coach, technique library, training journal, and game plan builder.',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    description: 'Free plan available',
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -51,6 +94,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
