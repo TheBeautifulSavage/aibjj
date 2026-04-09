@@ -26,22 +26,24 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Message is required" }, { status: 400 });
     }
 
-    // Enforce subscription limits: FREE users get 5 messages/day
+    // Enforce subscription limits: FREE users get 5 messages/month
     const user = await db.user.findUnique({ where: { id: userId }, select: { subscriptionTier: true } });
 
     if (user?.subscriptionTier === "FREE") {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const todayMessages = await db.chatMessage.findMany({
+      const startOfMonth = new Date();
+      startOfMonth.setDate(1);
+      startOfMonth.setHours(0, 0, 0, 0);
+
+      const allMessages = await db.chatMessage.findMany({
         where: { userId, role: "user" },
       });
-      const todayCount = todayMessages.filter(
-        (m: { createdAt: string }) => new Date(m.createdAt) >= today
+      const monthCount = allMessages.filter(
+        (m: { createdAt: string }) => new Date(m.createdAt) >= startOfMonth
       ).length;
 
-      if (todayCount >= 5) {
+      if (monthCount >= 5) {
         return NextResponse.json(
-          { error: "Daily limit reached. Upgrade to Pro for unlimited coaching.", upgradeUrl: "/pricing" },
+          { error: "You've used your 5 free AI messages this month. Upgrade to Pro for unlimited coaching.", upgradeUrl: "/pricing" },
           { status: 429 }
         );
       }
