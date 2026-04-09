@@ -24,6 +24,11 @@ import {
   ShoppingBag,
   Check,
   Loader2,
+  Brain,
+  RefreshCw,
+  ChevronDown,
+  ChevronUp,
+  GraduationCap,
 } from "lucide-react";
 import {
   Card,
@@ -36,6 +41,32 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 // ---------- Types ----------
+
+interface StudyFocusArea {
+  area: string;
+  reason: string;
+  position: string;
+  category: string;
+  drills: string[];
+}
+
+interface StudyPlan {
+  summary: string;
+  weaknesses: string[];
+  focusAreas: StudyFocusArea[];
+  weeklyGoal: string;
+  searchTerms: string[];
+}
+
+interface RelatedCourse {
+  id: string;
+  title: string;
+  slug: string;
+  price: number;
+  coverImage: string | null;
+  creator: { name: string | null; username: string | null; belt: string | null };
+  reviews: { rating: number }[];
+}
 
 interface JournalEntry {
   id: string;
@@ -151,6 +182,194 @@ function ChartTooltip({
       </p>
     </div>
   );
+}
+
+// ---------- Study Plan Card ----------
+
+const STUDY_PLAN_CACHE_KEY = 'aibjj_study_plan_cache'
+const STUDY_PLAN_TTL_MS = 24 * 60 * 60 * 1000 // 24 hours
+
+function StudyPlanCard() {
+  const [plan, setPlan] = useState<StudyPlan | null>(null)
+  const [relatedCourses, setRelatedCourses] = useState<RelatedCourse[]>([])
+  const [loading, setLoading] = useState(false)
+  const [expandedArea, setExpandedArea] = useState<number | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  function loadFromCache(): { plan: StudyPlan; courses: RelatedCourse[] } | null {
+    try {
+      const raw = localStorage.getItem(STUDY_PLAN_CACHE_KEY)
+      if (!raw) return null
+      const { data, timestamp } = JSON.parse(raw)
+      if (Date.now() - timestamp > STUDY_PLAN_TTL_MS) return null
+      return data
+    } catch {
+      return null
+    }
+  }
+
+  function saveToCache(data: { plan: StudyPlan; courses: RelatedCourse[] }) {
+    try {
+      localStorage.setItem(STUDY_PLAN_CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }))
+    } catch { /* ignore */ }
+  }
+
+  async function fetchPlan(force = false) {
+    if (!force) {
+      const cached = loadFromCache()
+      if (cached) {
+        setPlan(cached.plan)
+        setRelatedCourses(cached.courses)
+        return
+      }
+    }
+    setLoading(true)
+    setError(null)
+    try {
+      const res = await fetch('/api/dashboard/study-plan')
+      if (!res.ok) throw new Error('Failed to fetch')
+      const data = await res.json()
+      if (data.plan) {
+        setPlan(data.plan)
+        setRelatedCourses(data.relatedCourses || [])
+        saveToCache({ plan: data.plan, courses: data.relatedCourses || [] })
+      }
+    } catch {
+      setError('Could not load study plan. Try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => { fetchPlan() }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!plan && !loading && !error) return null
+
+  return (
+    <Card className="border-amber-700/30 bg-gradient-to-br from-amber-950/20 to-zinc-900">
+      <CardHeader className="pb-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Brain className="h-5 w-5 text-amber-400" />
+            <CardTitle className="text-base text-amber-300">Your Study Plan</CardTitle>
+            <span className="text-xs text-zinc-600">AI-powered · Updated daily</span>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-7 px-2 text-zinc-500 hover:text-zinc-300"
+            onClick={() => fetchPlan(true)}
+            disabled={loading}
+          >
+            <RefreshCw className={`h-3.5 w-3.5 mr-1 ${loading ? 'animate-spin' : ''}`} />
+            Refresh
+          </Button>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {loading && (
+          <div className="flex items-center gap-2 text-zinc-500 text-sm py-4">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            Analyzing your training data...
+          </div>
+        )}
+        {error && (
+          <p className="text-sm text-red-400">{error}</p>
+        )}
+        {plan && !loading && (
+          <>
+            {/* Weekly Goal */}
+            <div className="rounded-lg border border-amber-600/20 bg-amber-600/10 p-3">
+              <p className="text-xs font-semibold uppercase tracking-wider text-amber-500 mb-1">This Week&apos;s Goal</p>
+              <p className="text-sm text-zinc-200 font-medium">{plan.weeklyGoal}</p>
+            </div>
+
+            {/* Summary */}
+            <p className="text-sm text-zinc-400">{plan.summary}</p>
+
+            {/* Focus Areas */}
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Focus Areas</p>
+              {plan.focusAreas?.map((area, i) => (
+                <div key={i} className="rounded-lg border border-zinc-800/60 bg-zinc-800/20">
+                  <button
+                    className="w-full flex items-center justify-between p-3 text-left"
+                    onClick={() => setExpandedArea(expandedArea === i ? null : i)}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600/20 text-xs font-bold text-amber-400">{i + 1}</span>
+                      <div>
+                        <p className="text-sm font-medium text-zinc-200">{area.area}</p>
+                        <p className="text-xs text-zinc-500">{area.reason}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <Link
+                        href={`/library?position=${encodeURIComponent(area.position)}&category=${encodeURIComponent(area.category)}`}
+                        className="text-xs text-amber-500 hover:text-amber-400 mr-1"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        View techniques
+                      </Link>
+                      {expandedArea === i ? <ChevronUp className="h-4 w-4 text-zinc-500" /> : <ChevronDown className="h-4 w-4 text-zinc-500" />}
+                    </div>
+                  </button>
+                  {expandedArea === i && area.drills?.length > 0 && (
+                    <div className="border-t border-zinc-800/60 px-3 pb-3 pt-2">
+                      <p className="text-xs font-semibold text-zinc-500 mb-2 uppercase tracking-wider">Drills to practice:</p>
+                      <ul className="space-y-1">
+                        {area.drills.map((drill, di) => (
+                          <li key={di} className="flex items-start gap-2 text-xs text-zinc-400">
+                            <Check className="h-3 w-3 text-amber-500 flex-shrink-0 mt-0.5" />
+                            {drill}
+                          </li>
+                        ))}
+                      </ul>
+                      <Link
+                        href={`/coach?q=${encodeURIComponent(`Teach me about ${area.area}`)}`}
+                        className="mt-2 inline-flex items-center gap-1 text-xs text-red-400 hover:text-red-300"
+                      >
+                        <MessageSquare className="h-3 w-3" />
+                        Ask AI Coach about this
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Recommended Courses */}
+            {relatedCourses.length > 0 && (
+              <div className="space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Recommended Courses</p>
+                {relatedCourses.slice(0, 2).map((course) => {
+                  const avgRating = course.reviews.length > 0
+                    ? (course.reviews.reduce((s, r) => s + r.rating, 0) / course.reviews.length).toFixed(1)
+                    : null
+                  return (
+                    <Link key={course.id} href={`/courses/${course.slug || course.id}`}>
+                      <div className="flex items-center gap-3 rounded-lg border border-zinc-800/50 bg-zinc-800/20 p-3 hover:border-zinc-700 transition-colors">
+                        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-zinc-800">
+                          <GraduationCap className="h-5 w-5 text-zinc-400" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-sm font-medium text-zinc-200 truncate">{course.title}</p>
+                          <p className="text-xs text-zinc-500">by {course.creator?.name || 'Instructor'} {avgRating ? `· ⭐ ${avgRating}` : ''}</p>
+                        </div>
+                        <span className="text-sm font-semibold text-zinc-300 flex-shrink-0">
+                          {course.price === 0 ? 'Free' : `$${course.price}`}
+                        </span>
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+            )}
+          </>
+        )}
+      </CardContent>
+    </Card>
+  )
 }
 
 // ---------- Loading Skeleton ----------
@@ -482,6 +701,9 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       )}
+
+      {/* Study Plan */}
+      <StudyPlanCard />
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">

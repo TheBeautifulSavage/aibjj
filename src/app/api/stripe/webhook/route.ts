@@ -69,6 +69,19 @@ export async function POST(req: NextRequest) {
           break;
         }
 
+        // Handle lifetime one-time payment
+        if (planType === "LIFETIME") {
+          await prisma.user.update({
+            where: { id: userId },
+            data: {
+              subscriptionTier: "PRO",
+              isLifetime: true,
+              stripeCustomerId: session.customer as string,
+            },
+          });
+          break;
+        }
+
         // Handle course purchase (one-time payment, no subscription)
         if (planType === "COURSE_PURCHASE") {
           const courseId = session.metadata?.courseId;

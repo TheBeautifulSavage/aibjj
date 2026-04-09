@@ -25,6 +25,7 @@ import {
   Trophy,
   Home,
   PlusCircle,
+  GraduationCap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GlobalAIPrompt from "@/components/GlobalAIPrompt";
@@ -34,6 +35,7 @@ import { Upload, Palette, PenLine } from "lucide-react";
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "AI Coach", href: "/coach", icon: MessageSquare },
+  { name: "Learning Paths", href: "/learn", icon: GraduationCap },
   { name: "Journal", href: "/journal", icon: BookOpen },
   { name: "Techniques", href: "/library", icon: Library },
   { name: "Game Plan", href: "/gameplan", icon: Target },

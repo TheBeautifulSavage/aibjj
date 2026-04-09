@@ -16,6 +16,8 @@ import {
   AtSign,
   Rss,
   MessageCircle,
+  Infinity,
+  Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -64,11 +66,12 @@ const PRICING_TIERS = [
     ctaHref: "/auth/signup",
     featured: false,
     variant: "outline" as const,
+    isLifetime: false,
   },
   {
     key: "pro",
     name: "Pro",
-    price: "$14.99",
+    price: "$19.99",
     period: "/month",
     description: "Everything you need to accelerate your game",
     icon: Zap,
@@ -84,18 +87,19 @@ const PRICING_TIERS = [
     ctaHref: "/auth/signup?plan=pro",
     featured: true,
     variant: "default" as const,
+    isLifetime: false,
   },
   {
     key: "annual",
     name: "Annual",
-    price: "$99",
+    price: "$149",
     period: "/year",
-    savings: "Save $80!",
+    savings: "Save $91!",
     description: "Best value for committed grapplers",
     icon: Crown,
     features: [
       "Everything in Pro",
-      "Save $80 vs monthly",
+      "Save $91 vs monthly",
       "Exclusive creator content",
       "Early access to new features",
     ],
@@ -103,6 +107,29 @@ const PRICING_TIERS = [
     ctaHref: "/auth/signup?plan=annual",
     featured: false,
     variant: "outline" as const,
+    isLifetime: false,
+  },
+  {
+    key: "lifetime",
+    name: "Lifetime",
+    price: "$249",
+    period: "one-time",
+    savings: "Only 500 spots!",
+    description: "Pay once, train forever. Founding member status.",
+    icon: Infinity,
+    features: [
+      "Everything in Pro, forever",
+      "No subscription — ever",
+      "Founding member badge on profile",
+      "Priority support (front of the line)",
+      "All future features included",
+      "Lock in before price increases",
+    ],
+    cta: "Claim Lifetime Access",
+    ctaHref: "#lifetime-checkout",
+    featured: false,
+    variant: "outline" as const,
+    isLifetime: true,
   },
 ];
 
@@ -112,43 +139,74 @@ const COMPARISON_FEATURES = [
     free: "5/day",
     pro: "Unlimited",
     annual: "Unlimited",
+    lifetime: "Unlimited",
   },
   {
     name: "Training Journal",
     free: "Basic",
     pro: "Full + Analytics",
     annual: "Full + Analytics",
+    lifetime: "Full + Analytics",
   },
   {
     name: "Technique Library",
     free: "White belt only",
     pro: "All belts",
     annual: "All belts",
+    lifetime: "All belts",
   },
   {
     name: "Game Plan Builder",
     free: false,
     pro: true,
     annual: true,
+    lifetime: true,
   },
   {
     name: "Progress Dashboard",
     free: false,
     pro: true,
     annual: true,
+    lifetime: true,
   },
   {
     name: "Creator Content Access",
     free: false,
     pro: false,
     annual: true,
+    lifetime: true,
   },
   {
     name: "Priority Support",
     free: false,
     pro: true,
     annual: true,
+    lifetime: "Priority",
   },
+  {
+    name: "Founding Member Badge",
+    free: false,
+    pro: false,
+    annual: false,
+    lifetime: true,
+  },
+  {
+    name: "Monthly Fee",
+    free: "$0",
+    pro: "$19.99/mo",
+    annual: "$12.42/mo",
+    lifetime: "Never",
+  },
+];
+
+const PLATFORM_COMPARISON = [
+  { feature: "AI Coach", aibjjFree: "5/day", aibjjPro: "Unlimited", others: "❌ None" },
+  { feature: "Training Journal", aibjjFree: "✅", aibjjPro: "✅", others: "❌ Manual only" },
+  { feature: "Cancel Anytime", aibjjFree: "✅", aibjjPro: "✅", others: "⚠️ Complicated" },
+  { feature: "Ads", aibjjFree: "Never", aibjjPro: "Never", others: "Some inject ads" },
+  { feature: "Progress Tracking", aibjjFree: "✅", aibjjPro: "✅", others: "❌" },
+  { feature: "Structured Curriculum", aibjjFree: "✅", aibjjPro: "✅", others: "❌ Browse only" },
+  { feature: "Lifetime Option", aibjjFree: "—", aibjjPro: "$249", others: "❌ Never" },
 ];
 
 const FAQ_ITEMS = [
@@ -194,6 +252,8 @@ const FAQ_ITEMS = [
 // ---------------------------------------------------------------------------
 function ComparisonCell({ value }: { value: boolean | string }) {
   if (typeof value === "string") {
+    if (value === "✅") return <Check className="mx-auto h-5 w-5 text-red-500" />;
+    if (value === "❌") return <X className="mx-auto h-5 w-5 text-zinc-700" />;
     return <span className="text-sm text-zinc-300">{value}</span>;
   }
   return value ? (
@@ -209,6 +269,29 @@ function ComparisonCell({ value }: { value: boolean | string }) {
 
 export default function PricingPageClient() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [lifetimeLoading, setLifetimeLoading] = useState(false);
+
+  async function handleLifetimeCheckout() {
+    setLifetimeLoading(true);
+    try {
+      const res = await fetch("/api/stripe/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ planType: "LIFETIME" }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else if (data.error) {
+        // If not signed in, redirect to signup
+        window.location.href = "/auth/signup?plan=lifetime";
+      }
+    } catch {
+      window.location.href = "/auth/signup?plan=lifetime";
+    } finally {
+      setLifetimeLoading(false);
+    }
+  }
 
   return (
     <div className="min-h-screen bg-black text-zinc-100">
@@ -306,14 +389,32 @@ export default function PricingPageClient() {
               <ChevronRight className="h-3 w-3 text-zinc-500" />
             </div>
             <h1 className="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
-              Choose Your{" "}
+              No BS.{" "}
               <span className="bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
-                Plan
+                Just BJJ.
               </span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400 sm:text-xl">
-              Start free and upgrade when you are ready. Every plan includes
-              access to our AI-powered BJJ coaching platform.
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-300 sm:text-xl">
+              AIBJJ pricing is simple. No tricks, no predatory annual billing, no ads injected into paid content.
+            </p>
+
+            {/* Trust badges */}
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 max-w-2xl mx-auto">
+              {[
+                { icon: Check, text: "Cancel anytime in 2 clicks" },
+                { icon: Check, text: "No auto-renew surprises" },
+                { icon: Check, text: "Your data is yours" },
+                { icon: Check, text: "Built by a black belt, not a tech company" },
+              ].map((item) => (
+                <div key={item.text} className="flex items-start gap-2 rounded-lg border border-zinc-800/60 bg-zinc-900/50 p-3 text-left">
+                  <item.icon className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-xs text-zinc-300">{item.text}</span>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-6 text-sm text-zinc-500">
+              Other platforms hide cancellation, inject ads into paid content, and lock you into annual contracts. We don&apos;t. Every plan can be cancelled in 2 clicks from your account settings.
             </p>
           </div>
         </div>
@@ -324,7 +425,7 @@ export default function PricingPageClient() {
       {/* ----------------------------------------------------------------- */}
       <section className="relative pb-24">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-6 lg:grid-cols-3">
+          <div className="grid items-center gap-6 lg:grid-cols-4">
             {PRICING_TIERS.map((tier) => (
               <Card
                 key={tier.key}
@@ -332,6 +433,8 @@ export default function PricingPageClient() {
                   "relative flex flex-col overflow-hidden transition-all duration-300",
                   tier.featured
                     ? "border-red-600/50 bg-zinc-900 shadow-2xl shadow-red-950/30 lg:scale-[1.05] lg:py-4 z-10"
+                    : tier.isLifetime
+                    ? "border-amber-500/50 bg-gradient-to-b from-amber-950/30 to-zinc-900 shadow-xl shadow-amber-950/20"
                     : "border-zinc-800/60 bg-zinc-900/50 hover:border-zinc-700"
                 )}
               >
@@ -340,16 +443,24 @@ export default function PricingPageClient() {
                     Most Popular
                   </Badge>
                 )}
+                {tier.isLifetime && (
+                  <Badge className="absolute right-4 top-4 border-0 bg-amber-500 text-black font-bold hover:bg-amber-500">
+                    🔥 Limited
+                  </Badge>
+                )}
 
                 <CardHeader className="pb-4">
-                  <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-lg bg-red-600/10 text-red-500">
+                  <div className={cn(
+                    "mb-3 flex h-11 w-11 items-center justify-center rounded-lg",
+                    tier.isLifetime ? "bg-amber-500/20 text-amber-400" : "bg-red-600/10 text-red-500"
+                  )}>
                     <tier.icon className="h-5 w-5" />
                   </div>
-                  <CardTitle className="text-xl font-bold">
+                  <CardTitle className={cn("text-xl font-bold", tier.isLifetime && "text-amber-300")}>
                     {tier.name}
                   </CardTitle>
                   <div className="mt-3 flex items-baseline gap-1">
-                    <span className="text-5xl font-black text-white">
+                    <span className={cn("text-5xl font-black", tier.isLifetime ? "text-amber-300" : "text-white")}>
                       {tier.price}
                     </span>
                     <span className="text-zinc-500">{tier.period}</span>
@@ -357,7 +468,12 @@ export default function PricingPageClient() {
                   {tier.savings && (
                     <Badge
                       variant="outline"
-                      className="mt-2 w-fit border-green-600/40 bg-green-600/10 text-green-400"
+                      className={cn(
+                        "mt-2 w-fit",
+                        tier.isLifetime
+                          ? "border-amber-500/40 bg-amber-500/10 text-amber-400"
+                          : "border-green-600/40 bg-green-600/10 text-green-400"
+                      )}
                     >
                       {tier.savings}
                     </Badge>
@@ -367,7 +483,7 @@ export default function PricingPageClient() {
                   </CardDescription>
                 </CardHeader>
 
-                <Separator className="bg-zinc-800/60" />
+                <Separator className={tier.isLifetime ? "bg-amber-800/40" : "bg-zinc-800/60"} />
 
                 <CardContent className="flex-1 pt-6">
                   <ul className="space-y-3">
@@ -376,7 +492,7 @@ export default function PricingPageClient() {
                         key={feature}
                         className="flex items-start gap-3 text-sm text-zinc-300"
                       >
-                        <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-500" />
+                        <Check className={cn("mt-0.5 h-4 w-4 flex-shrink-0", tier.isLifetime ? "text-amber-500" : "text-red-500")} />
                         {feature}
                       </li>
                     ))}
@@ -384,28 +500,43 @@ export default function PricingPageClient() {
                 </CardContent>
 
                 <CardFooter className="pt-2">
-                  <Button
-                    className={cn(
-                      "w-full text-base font-semibold",
-                      tier.featured &&
-                        "bg-red-600 text-white shadow-lg shadow-red-900/30 hover:bg-red-700"
-                    )}
-                    variant={tier.variant}
-                    size="lg"
-                    asChild
-                  >
-                    <Link href={tier.ctaHref}>
+                  {tier.isLifetime ? (
+                    <Button
+                      className="w-full text-base font-semibold bg-amber-500 text-black shadow-lg shadow-amber-900/30 hover:bg-amber-400"
+                      size="lg"
+                      onClick={handleLifetimeCheckout}
+                      disabled={lifetimeLoading}
+                    >
+                      {lifetimeLoading ? (
+                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      ) : null}
                       {tier.cta}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
+                      {!lifetimeLoading && <ArrowRight className="ml-2 h-4 w-4" />}
+                    </Button>
+                  ) : (
+                    <Button
+                      className={cn(
+                        "w-full text-base font-semibold",
+                        tier.featured &&
+                          "bg-red-600 text-white shadow-lg shadow-red-900/30 hover:bg-red-700"
+                      )}
+                      variant={tier.variant}
+                      size="lg"
+                      asChild
+                    >
+                      <Link href={tier.ctaHref}>
+                        {tier.cta}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  )}
                 </CardFooter>
               </Card>
             ))}
           </div>
 
           <p className="mt-8 text-center text-sm text-zinc-500">
-            All plans include a 7-day money-back guarantee. No questions asked.
+            All plans include a 7-day money-back guarantee. No questions asked. Cancel in 2 clicks anytime.
           </p>
         </div>
       </section>
@@ -428,19 +559,12 @@ export default function PricingPageClient() {
           <div className="mt-16 hidden md:block">
             <div className="overflow-hidden rounded-xl border border-zinc-800/60">
               {/* Header */}
-              <div className="grid grid-cols-4 border-b border-zinc-800/60 bg-zinc-900/80">
-                <div className="p-4 text-sm font-semibold text-zinc-400">
-                  Feature
-                </div>
-                <div className="p-4 text-center text-sm font-semibold text-zinc-300">
-                  Free
-                </div>
-                <div className="p-4 text-center text-sm font-semibold text-red-400">
-                  Pro
-                </div>
-                <div className="p-4 text-center text-sm font-semibold text-zinc-300">
-                  Annual
-                </div>
+              <div className="grid grid-cols-5 border-b border-zinc-800/60 bg-zinc-900/80">
+                <div className="p-4 text-sm font-semibold text-zinc-400">Feature</div>
+                <div className="p-4 text-center text-sm font-semibold text-zinc-300">Free</div>
+                <div className="p-4 text-center text-sm font-semibold text-red-400">Pro</div>
+                <div className="p-4 text-center text-sm font-semibold text-zinc-300">Annual</div>
+                <div className="p-4 text-center text-sm font-semibold text-amber-400">Lifetime</div>
               </div>
 
               {/* Rows */}
@@ -448,24 +572,16 @@ export default function PricingPageClient() {
                 <div
                   key={feature.name}
                   className={cn(
-                    "grid grid-cols-4",
-                    idx < COMPARISON_FEATURES.length - 1 &&
-                      "border-b border-zinc-800/40",
+                    "grid grid-cols-5",
+                    idx < COMPARISON_FEATURES.length - 1 && "border-b border-zinc-800/40",
                     idx % 2 === 0 ? "bg-zinc-950/50" : "bg-zinc-900/30"
                   )}
                 >
-                  <div className="flex items-center p-4 text-sm font-medium text-zinc-300">
-                    {feature.name}
-                  </div>
-                  <div className="flex items-center justify-center p-4">
-                    <ComparisonCell value={feature.free} />
-                  </div>
-                  <div className="flex items-center justify-center p-4">
-                    <ComparisonCell value={feature.pro} />
-                  </div>
-                  <div className="flex items-center justify-center p-4">
-                    <ComparisonCell value={feature.annual} />
-                  </div>
+                  <div className="flex items-center p-4 text-sm font-medium text-zinc-300">{feature.name}</div>
+                  <div className="flex items-center justify-center p-4"><ComparisonCell value={feature.free} /></div>
+                  <div className="flex items-center justify-center p-4"><ComparisonCell value={feature.pro} /></div>
+                  <div className="flex items-center justify-center p-4"><ComparisonCell value={feature.annual} /></div>
+                  <div className="flex items-center justify-center p-4"><ComparisonCell value={feature.lifetime} /></div>
                 </div>
               ))}
             </div>
@@ -480,23 +596,17 @@ export default function PricingPageClient() {
                   value={feature.name}
                   className="rounded-lg border border-zinc-800/60 bg-zinc-900/50 px-4"
                 >
-                  <AccordionTrigger className="text-sm font-medium">
-                    {feature.name}
-                  </AccordionTrigger>
+                  <AccordionTrigger className="text-sm font-medium">{feature.name}</AccordionTrigger>
                   <AccordionContent>
                     <div className="space-y-2">
-                      {(
-                        [
-                          { label: "Free", value: feature.free },
-                          { label: "Pro", value: feature.pro },
-                          { label: "Annual", value: feature.annual },
-                        ] as const
-                      ).map((plan) => (
-                        <div
-                          key={plan.label}
-                          className="flex items-center justify-between text-sm"
-                        >
-                          <span className="text-zinc-500">{plan.label}</span>
+                      {[
+                        { label: "Free", value: feature.free },
+                        { label: "Pro", value: feature.pro },
+                        { label: "Annual", value: feature.annual },
+                        { label: "Lifetime", value: feature.lifetime },
+                      ].map((plan) => (
+                        <div key={plan.label} className="flex items-center justify-between text-sm">
+                          <span className={cn("text-zinc-500", plan.label === "Lifetime" && "text-amber-600")}>{plan.label}</span>
                           <ComparisonCell value={plan.value} />
                         </div>
                       ))}
@@ -505,6 +615,49 @@ export default function PricingPageClient() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+
+          {/* Platform comparison (No BS table) */}
+          <div className="mt-16">
+            <h3 className="text-xl font-bold text-center mb-2">AIBJJ vs Other Platforms</h3>
+            <p className="text-center text-sm text-zinc-500 mb-8">We don&apos;t name names — but you know who they are.</p>
+            <div className="hidden md:block overflow-hidden rounded-xl border border-zinc-800/60">
+              <div className="grid grid-cols-4 border-b border-zinc-800/60 bg-zinc-900/80">
+                <div className="p-4 text-sm font-semibold text-zinc-400">Feature</div>
+                <div className="p-4 text-center text-sm font-semibold text-zinc-300">AIBJJ Free</div>
+                <div className="p-4 text-center text-sm font-semibold text-red-400">AIBJJ Pro</div>
+                <div className="p-4 text-center text-sm font-semibold text-zinc-500">Other Platforms</div>
+              </div>
+              {PLATFORM_COMPARISON.map((row, idx) => (
+                <div key={row.feature} className={cn("grid grid-cols-4", idx % 2 === 0 ? "bg-zinc-950/50" : "bg-zinc-900/30")}>
+                  <div className="flex items-center p-4 text-sm font-medium text-zinc-300">{row.feature}</div>
+                  <div className="flex items-center justify-center p-4"><span className="text-sm text-zinc-300">{row.aibjjFree}</span></div>
+                  <div className="flex items-center justify-center p-4"><span className="text-sm text-zinc-300">{row.aibjjPro}</span></div>
+                  <div className="flex items-center justify-center p-4"><span className="text-sm text-zinc-500">{row.others}</span></div>
+                </div>
+              ))}
+            </div>
+            {/* Mobile */}
+            <div className="md:hidden space-y-3">
+              {PLATFORM_COMPARISON.map((row) => (
+                <div key={row.feature} className="rounded-lg border border-zinc-800/60 bg-zinc-900/50 p-4">
+                  <p className="text-sm font-medium text-zinc-300 mb-2">{row.feature}</p>
+                  <div className="grid grid-cols-3 gap-2 text-xs text-center">
+                    <div><p className="text-zinc-500 mb-1">AIBJJ Free</p><p className="text-zinc-300">{row.aibjjFree}</p></div>
+                    <div><p className="text-red-500 mb-1">AIBJJ Pro</p><p className="text-zinc-300">{row.aibjjPro}</p></div>
+                    <div><p className="text-zinc-600 mb-1">Others</p><p className="text-zinc-500">{row.others}</p></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 rounded-xl border border-emerald-600/20 bg-emerald-600/5 p-6 text-center">
+              <p className="text-lg font-semibold text-zinc-100">
+                The difference is simple: we&apos;re built <span className="text-emerald-400">for athletes</span>, not for ad revenue.
+              </p>
+              <p className="mt-1 text-zinc-400 text-sm">
+                No dark patterns. No ads in paid content. No making it hard to cancel. Just BJJ.
+              </p>
+            </div>
           </div>
         </div>
       </section>
