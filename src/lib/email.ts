@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM = "AIBJJ <noreply@aibjj.com>";
+const FROM = "AIBJJ <onboarding@resend.dev>";
 const ADMIN_EMAIL = "hulljessej@gmail.com";
 
 const baseStyle = `font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #09090b; color: #e4e4e7; margin: 0; padding: 0;`;

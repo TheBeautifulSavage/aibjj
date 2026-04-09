@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     // Notify admin
     await resend.emails.send({
-      from: 'noreply@aibjj.com',
+      from: 'onboarding@resend.dev',
       to: 'hulljessej@gmail.com',
       subject: `New Affiliate Application: ${name}`,
       text: `New affiliate application received.\n\nName: ${name}\nEmail: ${email}\nWebsite: ${website || 'Not provided'}\nAudience size: ${audience || 'Not provided'}\nHow they'll promote: ${howPromote}`,
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
     // Confirm to applicant
     await resend.emails.send({
-      from: 'noreply@aibjj.com',
+      from: 'onboarding@resend.dev',
       to: email,
       subject: 'AIBJJ Affiliate Application Received',
       text: `Hi ${name},\n\nThanks for applying to the AIBJJ affiliate program!\n\nWe've received your application and will review it within 2–3 business days. If approved, you'll receive your unique affiliate link and access to your dashboard.\n\nThe AIBJJ affiliate program pays 30% recurring commission on every Pro subscription you refer — so we're excited to have you on board.\n\nTrain hard,\nThe AIBJJ Team\nhttps://aibjj.com`,
