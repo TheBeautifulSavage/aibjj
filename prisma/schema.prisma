@@ -369,3 +369,36 @@ model MetaSnapshot {
 
   @@index([category, year])
 }
+
+// ── Editorial Content System ──────────────────────────────────────────────
+model Article {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  excerpt     String?   @db.Text
+  content     String    @db.Text
+  coverImage  String?   // Wikimedia Commons URL
+  tags        String[]  // ["athlete", "gordon-ryan", "leg-locks", "adcc"]
+  category    String    // "athlete" | "tournament" | "technique" | "history" | "academy" | "gear"
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  author      String    @default("AIBJJ Editorial")
+  readingTime Int       @default(5) // minutes
+  wordCount   Int       @default(0)
+  featured    Boolean   @default(false)
+  relatedSlugs String[] // slugs of related articles for interlinking
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([category])
+  @@index([published, publishedAt])
+}
+
+model Tag {
+  id          String   @id @default(cuid())
+  name        String   @unique // "gordon-ryan"
+  label       String            // "Gordon Ryan"
+  category    String            // "athlete" | "tournament" | "technique" | "position"
+  count       Int      @default(0) // article count - denormalized for perf
+  createdAt   DateTime @default(now())
+}
