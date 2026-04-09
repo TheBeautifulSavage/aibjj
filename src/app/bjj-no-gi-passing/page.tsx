@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ No-Gi Passing: Guard Passing Without Collar or Sleeve Grips | AIBJJ", description: "Master no-gi guard passing in BJJ. Learn body lock passing, knee slice, smash passing, and how to deal with leg entanglements and butterfly guard." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ No-Gi Passing: Guard Passing Without Collar or Sleeve Grips", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ No-Gi Passing: Guard Passing Without Collar or Sleeve Grips</h1>
+        <p className="mt-4 text-xl text-zinc-400">No-gi guard passing demands different tools than gi passing. Without collar and sleeve control, passers must rely on underhooks, overhooks, body locks, and explosive athletic movement to navigate modern no-gi guard systems.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Body Lock Passing: The No-Gi Pressure Pass</h2><p>The body lock pass is the no-gi equivalent of the over-under pressure pass. Reach one arm over the hips and one arm under the far leg, clasp your hands, and apply chest pressure while walking around. Without the gi fabric, the body lock must be tighter and your chest must work harder to maintain pressure. The key grip detail: your top hand clasps your bottom wrist — not fingers interlocked — to keep the grip secure under movement. Body lock passing works especially well against butterfly guard: when they try to hook inside your thighs, step over one hook with your lead leg while maintaining the body lock. The Bernardo Faria-style over-under pass translates remarkably well to no-gi. Combine body lock with head control — a crossface or a collar tie — to compound the pressure and prevent hip escapes. This is one of the most reliable passing strategies in no-gi competition.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Knee Slice and Smash Passing in No-Gi</h2><p>The knee slice remains effective in no-gi but requires grip adaptation. Instead of collar and pants grips, use a head-and-arm control (underhook on one side, crossface on the other) as you drive your knee through. The smash pass from top half guard works by flattening the opponent, establishing an underhook, and driving your weight through their half guard barrier. In no-gi, the lack of fabric friction means you must compensate with tighter body position and more active hip driving. Head position is critical in no-gi passing — keeping your head on the chest prevents the opponent from using their arms to create frames. The double underhook pass grabs under both legs and drives forward, walking around to side control. When an opponent is flat on their back with no frames, these direct passing lines work efficiently. Develop a passing game that can both speed-pass and pressure-pass to handle different guard players.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Dealing with Leg Entanglements While Passing</h2><p>Modern no-gi guard players aggressively seek leg entanglements — ashi garami, single leg X, and outside heel hook positions — as you attempt to pass. Safe passing in no-gi requires constant awareness of your leg positioning. When passing, never allow your near leg to be inside both of their legs simultaneously — this is the standard outside heel hook entry. Keep your passing knee as a wedge and maintain straight-leg awareness. Against leg lock guard players, a standing torreando-style passing game is safer than kneeling passes. Jump to your feet, keep your legs moving, and use speed rather than pressure to neutralize leg lock attempts. Against seated guard, step in with your lead foot to the outside — not the inside — of their leg. Study leg lock entries from the top perspective so you recognize danger in real-time during sparring. Understanding what you're defending against is as important as the passing mechanics themselves.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Level Up Your BJJ</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique library, training journal — all in one place.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}

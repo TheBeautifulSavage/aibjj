@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "Collar Tie No-Gi BJJ: Head Control, Snap Downs & Takedown Setups | AIBJJ", description: "Learn the collar tie in no-gi BJJ. Use neck control for snap downs, level changes, and takedown setups that work in grappling competitions and MMA." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "Collar Tie No-Gi BJJ: Head Control, Snap Downs & Takedown Setups", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">Collar Tie No-Gi BJJ: Head Control, Snap Downs & Takedown Setups</h1>
+        <p className="mt-4 text-xl text-zinc-400">The collar tie is the wrestling world's equivalent of the gi collar grip — a head-and-neck control position that creates snap downs, level changes, and takedown opportunities whenever the opponent's head is up and posture is extended.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Collar Tie Mechanics and Positioning</h2><p>The collar tie is established by placing the hand on the back of the opponent's neck at the base of the skull — fingers on one side, thumb on the other. This position controls the head's direction: wherever the head goes, the body follows. The collar tie is most powerful when combined with an underhook or wrist control on the opposite side, creating a two-direction control. Your elbow should be inside and low to prevent the opponent from ducking under. The collar tie from a squared stance is fundamentally different from a collar tie from an angle — the angled collar tie creates an immediate lowering reaction that opens shots. Practice single collar tie and double collar tie (both hands on the neck, Muay Thai plum position) separately because they have different attack sets. The collar tie is a prerequisite skill for all standing head-control-based takedowns.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Snap Downs and Level Changes from Collar Tie</h2><p>The snap down uses the collar tie to explosively pull the opponent's head toward the mat. When they're standing tall with head up, a sharp diagonal pull toward the mat breaks their posture violently. As they shoot their head down to resist, their hips naturally elevate — creating a shot opening on either leg. The snap down is often used as a takedown setup rather than a takedown itself. The follow-up to a successful snap down: as their head goes down, step to the side and either complete a front headlock or come up for a double leg from the angle. The collar tie also creates a natural flinch reaction when you feint a snap — opponents brace and drive their head up, which opens a level-change and shot underneath. Alternate between snap attempts and takedown attempts to keep opponents guessing and reactionary rather than proactive.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Collar Tie Takedowns: Fireman's Carry and Throws</h2><p>The fireman's carry is the classic collar-tie takedown. From a collar tie and opposite wrist control, drop to the near knee, pull the wrist across your body, and use your shoulder to flip them over your back. The technique requires timing and a lowering motion that goes under their arm, but when executed correctly, it's a spectacular and highly effective takedown. The hip throw from collar tie uses the neck control to pull their upper body into a hip throw rotation. Step across their front foot, turn your hips into them, and use the collar tie to keep their upper body connected as you throw. These takedowns require drilling to build the muscle memory for timing and level changes. From the collar tie, also work for neck crank setups and guillotine positions when they posture their head down into your chest — the collar tie creates natural guillotine entries as the head naturally comes forward.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Level Up Your BJJ</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique library, training journal — all in one place.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}

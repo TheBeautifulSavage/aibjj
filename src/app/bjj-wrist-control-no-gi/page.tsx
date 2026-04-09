@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ Wrist Control No-Gi: Dominate with Wrist Grips in Grappling | AIBJJ", description: "Learn wrist control in no-gi BJJ and grappling. Control your opponent's hands to set up arm drags, takedowns, back takes and submissions without a gi." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ Wrist Control No-Gi: Dominate with Wrist Grips in Grappling", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ Wrist Control No-Gi: Dominate with Wrist Grips in Grappling</h1>
+        <p className="mt-4 text-xl text-zinc-400">Without a gi to grip, wrist control becomes one of the most important tools in no-gi BJJ. Controlling the wrist nullifies the opponent's ability to post, push, or attack — creating the same mechanical advantages that sleeve grips provide in the gi.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Fundamentals of Wrist Control in No-Gi</h2><p>Wrist control in no-gi requires grabbing near the thumb side of the wrist — not at the palm. Gripping at the wrist bone gives you maximum mechanical control with the least strength required. Once you have a wrist, you control their hand: they cannot punch, post, frame, or grab. The two-on-one (Russian tie variant from guard) uses both hands on one wrist, creating overwhelming leverage. From standing, wrist control prevents hand fighting and sets up the arm drag. A Marcelo Garcia principle: whenever you control a wrist, your next move should be an arm drag or takedown. The hand-fighting phase of no-gi BJJ is won by those who establish wrist control first. Train wrist control pummeling drills — constant fighting for wrist dominance — as part of your no-gi warm-up routine to build the reflexive habit of always seeking the wrist.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Arm Drag and Back Takes from Wrist Control</h2><p>The arm drag is the highest-percentage back take in no-gi BJJ, and it starts with wrist control. Grip the wrist with your same-side hand, then reach your opposite hand to the back of their tricep or elbow. Pull their arm across your centerline as you step or sit to the outside. Their arm crosses their body, exposing their back. From here, come up behind them for back control or secure a seat belt grip. The arm drag works from standing, sitting, and bottom guard positions — it is universal. From butterfly guard, wrist control into arm drag is the setup for Marcelo Garcia's legendary back take system. From standing, the arm drag forces a rotation that can be finished as a takedown or directly to back control. Practice the arm drag entry until the wrist grip, pulling motion, and body movement are simultaneous — timing is everything.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Wrist Control for Submissions and Guard Retention</h2><p>Wrist control is not just for back takes — it directly enables submissions. An armbar setup becomes cleaner when you already control the wrist: your grip guides the arm to the correct angle as you swing your leg over. The kimura setup from wrist control is immediate: grab the wrist with one hand, then reach your other arm over their elbow to lock the figure-four. From guard bottom, wrist control prevents the opponent from posting to stop sweeps. A controlled wrist means they cannot base out during a sweep attempt, making your sweeps dramatically more successful. For guard retention, wrist control prevents the opponent from posting their hand on your hip to flatten you — a critical defensive tool. Elite no-gi guard players like Gordon Ryan establish wrist control as their first priority whenever threatened with a pass. Wrist control is the no-gi equivalent of sleeve control — master it and your entire game improves.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Level Up Your BJJ</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique library, training journal — all in one place.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}

@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ Overhook and Underhook: Clinch Control for No-Gi Success | AIBJJ", description: "Master overhooks and underhooks in no-gi BJJ. Learn to win the clinch battle, use the 2-on-1, and dominate the underhook war for takedowns and sweeps." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ Overhook and Underhook: Clinch Control for No-Gi Success", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ Overhook and Underhook: Clinch Control for No-Gi Success</h1>
+        <p className="mt-4 text-xl text-zinc-400">The underhook and overhook are the fundamental clinch positions of no-gi grappling. Whoever wins the underhook battle typically controls the entire engagement — from takedowns to guard play to positional control.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Winning the Underhook Battle</h2><p>An underhook is when your arm goes under the opponent's arm at the armpit, with your hand on their back. The underhook player has dominant position — they control the opponent's upper body direction and can attack with throws, trips, and guard transitions. To win the underhook, shoot your arm through before they can establish theirs. If they have the underhook, keep your elbow tight to deny deepening and work for a whizzer (overhook counter) or a duck under. The double underhook position is the gold standard of clinch control — from here, a body lock pass or a throw is almost inevitable. Fighting for the underhook should be practiced as drilling: pummeling (continuous arm exchange) develops the automatic reflexes needed to win clinch battles in live situations. An underhook combined with a head control creates the dominant no-gi clinch position from which most effective takedowns flow.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Overhook Applications: Whizzer and Kimura Traps</h2><p>The overhook — your arm over the opponent's arm — is used both defensively and offensively. Defensively, the whizzer (overhook with hip pressure) counters a single leg by blocking their arm from under-controlling your leg. Offensively, the overhook from guard creates powerful submission setups. From closed guard, a strong overhook with hip control sets up the hip bump sweep, the omoplata, and the kimura. The overhook kimura is one of the most powerful submissions in no-gi: your overhook controls their arm, your free hand grabs their wrist, and the figure-four lock creates immediate shoulder pressure. From half guard, an overhook on the top player's underhook arm neutralizes their pressure and sets up the same kimura chain. Overhook from butterfly guard creates the overhead sweep — pull their arm down and roll them over your shoulder using your butterfly hook for elevation.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Two-on-One (Russian Tie): The Hybrid Control</h2><p>The two-on-one, or Russian tie, is a dominant clinch position where you control one of their arms with both of yours. It functions like a single underhook but with twice the control. From the Russian tie, you can attack a single leg (their controlled arm side), take the back with an arm drag motion, or throw with a lateral hip throw. The Russian tie prevents the opponent from underhooking on the controlled side — they have no free arm to attack. From this position, circling to the back is natural: step to the outside of their controlled arm while pulling, and they spin directly into back exposure. For guard players, a Russian tie from the guard position (seated) prevents the opponent from posturing and sets up arm drags and back takes. Incorporate Russian tie drilling into your no-gi warm-up alongside pummeling to develop a complete clinch repertoire that controls both the underhook and two-on-one scenarios.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Level Up Your BJJ</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique library, training journal — all in one place.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}
