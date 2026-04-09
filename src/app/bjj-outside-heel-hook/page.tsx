@@ -32,7 +32,7 @@ export default function Page() {
 
         <div className="mt-10 space-y-8 text-zinc-300 leading-relaxed">
           <section>
-            <h2 className="text-2xl font-bold text-white mb-3">Outside Ashi Garami: The Foundation</html>
+            <h2 className="text-2xl font-bold text-white mb-3">Outside Ashi Garami: The Foundation</h2>
             <p>The outside heel hook is taken from outside ashi garami — you are on the outside of their trapped leg, with your outside leg hooked across their hip from the outside and your inside leg posted against their inner thigh or knee. This "411" or "saddle" position gives you control of the knee from the outside. Your arm cups around their heel from the inside of the leg — this is the outside heel hook because you're rotating the heel toward the outside (externally rotating the lower leg while the knee is locked). The devastation comes from the fact that external rotation stresses the ACL and LCL simultaneously.</p>
           </section>
           <section>

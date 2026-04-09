@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "How Long to Get a BJJ Blue Belt? Timeline, Requirements & Tips | AIBJJ", description: "How long does it take to get a BJJ blue belt? Average timeline is 1-3 years. Learn what instructors look for, how to train smart, and accelerate your progress." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "How Long to Get a BJJ Blue Belt? Timeline, Requirements & Tips", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">How Long to Get a BJJ Blue Belt? Timeline, Requirements & Tips</h1>
+        <p className="mt-4 text-xl text-zinc-400">The blue belt is the first major milestone in Brazilian jiu-jitsu — and one of the most meaningful. Most practitioners earn their blue belt in 1 to 3 years, but the real question isn't just time — it's consistency, quality of training, and what you've actually learned.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">Average Timeline: What to Realistically Expect</h2><p>The most common blue belt timeline is 12 to 24 months of consistent training, typically defined as 3-4 classes per week. Practitioners training 5+ days per week in a high-level academy sometimes earn their blue belt in under a year. Those training once or twice a week may take 3+ years. The IBJJF (International Brazilian Jiu-Jitsu Federation) requires a minimum of 1 year at white belt before promoting to blue — most legitimate academies follow this standard. What matters more than months is hours of mat time and quality of rolling. A practitioner who has trained seriously for 200+ hours, sparred regularly against higher belts, and developed a functional game is typically ready for blue belt regardless of exact calendar time. Avoid academies that promote rapidly to blue belt without genuine technical development — a blue belt should represent real competence, not just attendance.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">What Instructors Look for Before Promoting</h2><p>Different instructors weigh different factors, but the common blue belt requirements include: functional guard play (ability to retain guard and threaten submissions), fundamental position escapes (mount escape, back escape, side control escape), and at least one reliable submission from top position. Additionally, most instructors want to see that you can handle yourself against other white belts with relatively consistent success — not that you can tap blue belts, but that you're not getting tapped constantly by raw beginners. Knowledge and technical vocabulary matter too: understanding what positions are and why they're advantageous demonstrates learning beyond just physical execution. Character also factors in — showing up consistently, training with good attitude, helping newer students, and demonstrating that you've integrated into the academy culture are informal criteria that matter to many instructors. Belt promotions in BJJ are not formulaic; instructor relationships and trust are significant.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Tips to Accelerate Your Path to Blue Belt</h2><p>Train consistently above everything else. Three times per week, every week, beats sporadic intensive training periods. Study technique outside of class — watch instructional videos, visualize positions, drill at home. Ask questions during class; engaged learning accelerates development. Compete early — even in-academy tournaments sharpen your skills faster than regular rolling because the pressure is different. Track your training: use AIBJJ to journal sessions, note techniques you drilled, and track what positions are giving you trouble. Review your notes before each session to build on previous learning rather than starting from zero each time. Get comfortable being uncomfortable — the blue belt phase requires regularly rolling with people who beat you, which teaches more than rolling with easier partners. Finally, be patient with the process. The point of BJJ is not just the blue belt — the journey from white to blue is building a foundation that will support your entire grappling career.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Level Up Your BJJ</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique library, training journal — all in one place.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}
