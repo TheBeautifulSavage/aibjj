@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "Find the best BJJ academies and Brazilian jiu-jitsu schools near you. Search thousands of academies worldwide with ratings, reviews, and contact info.",
 };
 
-export const revalidate = 86400;
+export const revalidate = 0; // Always fresh
 
 export default async function AcademiesPage({
   searchParams,
