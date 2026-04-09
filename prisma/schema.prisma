@@ -351,3 +351,18 @@ model PasswordResetToken {
   expires   DateTime
   createdAt DateTime @default(now())
 }
+
+model MetaSnapshot {
+  id             String   @id @default(cuid())
+  date           DateTime @default(now())
+  category       String   // "gi" or "nogi"
+  tournament     String?
+  year           Int
+  submissionType String
+  percentage     Float
+  matchCount     Int?
+  source         String?
+  createdAt      DateTime @default(now())
+
+  @@index([category, year])
+}
