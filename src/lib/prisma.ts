@@ -1,19 +1,19 @@
 import { PrismaClient } from "@/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
-import dns from "dns";
-
-// Force IPv6 resolution - Supabase free tier only has IPv6 for direct connections
-dns.setDefaultResultOrder("ipv6first");
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
 function createPrismaClient() {
-  const connectionString = process.env.DATABASE_URL!;
+  // Supabase free tier: IPv6 only, no IPv4. Must connect directly to IPv6 address.
   const pool = new Pool({
-    connectionString,
+    host: "2600:1f16:1cd0:3340:2393:a66b:86c3:ff54",
+    port: 5432,
+    database: "postgres",
+    user: "postgres",
+    password: "2121@MASONalex",
     ssl: { rejectUnauthorized: false },
     max: 1,
     connectionTimeoutMillis: 10000,
