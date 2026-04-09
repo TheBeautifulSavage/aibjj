@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sparkles, Send, X, Maximize2, ChevronRight } from "lucide-react";
+import VoiceInput from "@/components/VoiceInput";
 import { Button } from "@/components/ui/button";
 
 interface Message {
@@ -210,10 +211,11 @@ export default function GlobalAIPrompt() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Type a message..."
+            placeholder="Type or speak..."
             rows={1}
             className="flex-1 resize-none rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:border-zinc-600 focus:outline-none"
           />
+          <VoiceInput onTranscript={(text) => setInput((prev) => prev ? prev + " " + text : text)} />
           <Button
             size="icon"
             onClick={() => sendMessage()}

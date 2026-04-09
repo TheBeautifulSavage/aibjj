@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback, KeyboardEvent } from "react";
+import VoiceInput from "@/components/VoiceInput";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import {
@@ -381,6 +382,10 @@ export default function CoachPage() {
               disabled={rateLimitHit}
               className="flex-1 min-h-[36px] max-h-[160px] resize-none bg-transparent text-sm text-zinc-100 placeholder:text-zinc-500 focus:outline-none disabled:opacity-50 py-1.5"
               rows={1}
+            />
+            <VoiceInput
+              onTranscript={(text) => setInput((prev) => prev ? prev + " " + text : text)}
+              disabled={rateLimitHit}
             />
             <button
               onClick={() => sendMessage(input)}
