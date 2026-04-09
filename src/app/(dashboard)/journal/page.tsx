@@ -15,6 +15,7 @@ import {
   Pencil,
   TrendingUp,
   Brain,
+  Wand2,
 } from "lucide-react";
 import {
   BarChart,
@@ -192,6 +193,8 @@ export default function JournalPage() {
   const [formEnergy, setFormEnergy] = useState(0);
   const [formRating, setFormRating] = useState(0);
   const [formInjury, setFormInjury] = useState("");
+  const [isRewriting, setIsRewriting] = useState(false);
+  const [rewriteError, setRewriteError] = useState("");
 
   // Fetch paginated entries for the list
   const fetchEntries = useCallback(async () => {
@@ -1021,6 +1024,67 @@ export default function JournalPage() {
                     onChange={(e) => setFormToImprove(e.target.value)}
                     className="bg-zinc-900 border-zinc-700 text-zinc-100"
                   />
+                </div>
+
+                {/* AI Rewriter */}
+                <div className="rounded-lg border border-zinc-700/50 bg-zinc-800/30 p-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Wand2 className="h-4 w-4 text-red-500" />
+                      <span className="text-sm font-medium text-zinc-200">AI Rewriter</span>
+                      <span className="rounded-full bg-red-600/20 px-2 py-0.5 text-[10px] font-semibold text-red-400">PRO</span>
+                    </div>
+                    <button
+                      type="button"
+                      disabled={isRewriting || (!formWorkedOn && !formWentWell && !formToImprove)}
+                      onClick={async () => {
+                        setIsRewriting(true);
+                        setRewriteError("");
+                        try {
+                          const res = await fetch("/api/journal/rewrite", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                              workedOn: formWorkedOn,
+                              wentWell: formWentWell,
+                              toImprove: formToImprove,
+                              trainingType: formType,
+                              duration: formDuration,
+                            }),
+                          });
+                          const data = await res.json();
+                          if (!res.ok) {
+                            if (res.status === 403) {
+                              setRewriteError("Upgrade to Pro to use the AI Rewriter ✨");
+                            } else {
+                              setRewriteError(data.error || "Rewrite failed");
+                            }
+                            return;
+                          }
+                          if (data.rewritten) {
+                            if (data.rewritten.workedOn) setFormWorkedOn(data.rewritten.workedOn);
+                            if (data.rewritten.wentWell) setFormWentWell(data.rewritten.wentWell);
+                            if (data.rewritten.toImprove) setFormToImprove(data.rewritten.toImprove);
+                          }
+                        } catch {
+                          setRewriteError("Something went wrong");
+                        } finally {
+                          setIsRewriting(false);
+                        }
+                      }}
+                      className="flex items-center gap-1.5 rounded-lg bg-red-600/10 border border-red-600/20 px-3 py-1.5 text-xs font-medium text-red-400 hover:bg-red-600/20 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      {isRewriting ? (
+                        <><Loader2 className="h-3 w-3 animate-spin" /> Rewriting...</>
+                      ) : (
+                        <><Wand2 className="h-3 w-3" /> Polish with AI</>
+                      )}
+                    </button>
+                  </div>
+                  <p className="mt-1.5 text-xs text-zinc-500">Turns your raw notes into structured, insightful entries</p>
+                  {rewriteError && (
+                    <p className="mt-2 text-xs text-red-400">{rewriteError} {rewriteError.includes("Pro") && <a href="/pricing" className="underline">Upgrade →</a>}</p>
+                  )}
                 </div>
 
                 {/* Energy Level */}

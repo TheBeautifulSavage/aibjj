@@ -99,6 +99,33 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    // Anti-spam: Free users limited to 10 journal entries/month
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { subscriptionTier: true, isLifetime: true },
+    });
+    const isPro = user && (["PRO", "ANNUAL"].includes(user.subscriptionTier) || user.isLifetime);
+    if (!isPro) {
+      const startOfMonth = new Date();
+      startOfMonth.setDate(1);
+      startOfMonth.setHours(0, 0, 0, 0);
+      const monthEntries = await prisma.journalEntry.findMany({
+        where: { userId },
+      });
+      const thisMonthCount = monthEntries.filter(
+        (e: { createdAt: string }) => new Date(e.createdAt) >= startOfMonth
+      ).length;
+      if (thisMonthCount >= 10) {
+        return NextResponse.json(
+          {
+            error: "Free accounts are limited to 10 journal entries per month. Upgrade to Pro for unlimited logging.",
+            upgradeUrl: "/pricing",
+          },
+          { status: 429 }
+        );
+      }
+    }
+
     const body = await req.json();
     const parsed = createEntrySchema.safeParse(body);
 
