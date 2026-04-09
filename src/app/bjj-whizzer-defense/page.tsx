@@ -1,0 +1,28 @@
+import { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = { title: "BJJ Whizzer Defense: Counter the Single Leg and Underhook with Whizzer | AIBJJ", description: "Learn the whizzer in BJJ and wrestling. Use overhook defense to stop single leg shots, counter underhooks, and set up your own takedowns from bad positions." };
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ Whizzer Defense: Counter the Single Leg and Underhook with Whizzer", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
+      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
+        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
+      </nav>
+      <article className="mx-auto max-w-4xl px-6 py-12">
+        <h1 className="text-4xl font-black">BJJ Whizzer Defense: Counter the Single Leg and Underhook with Whizzer</h1>
+        <p className="mt-4 text-xl text-zinc-400">The whizzer (overhook) is one of the most important defensive tools in no-gi BJJ. When an opponent has your leg or your underhook, the whizzer creates a counterattacking position that turns their offense into your scoring opportunity.</p>
+        <div className="mt-10 space-y-8 text-zinc-300">
+          <section><h2 className="text-2xl font-bold text-white mb-3">What Is the Whizzer and When to Use It</h2><p>The whizzer is an overhook — your arm goes over the top of the opponent's arm, hooking under with hip pressure against their shoulder. It is primarily used as a single-leg defense: when they grab your leg, shoot your arm over their attacking arm and drive your hip into their shoulder. This compromises their lifting mechanics and their driving angle. The whizzer is also used to counter an underhook: if they establish an underhook, throw your arm over the top to create an overhook and neutralize their position. An important principle: the whizzer is not just defense — it is an offensive counter. A tight whizzer with a hip-in creates a shrug and trip opportunity. The whizzer must be established with your hip driving into their shoulder to create maximum rotational force. A whizzer with no hip pressure is just an arm hook with limited effectiveness.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Whizzer to Takedown: Turning Defense into Offense</h2><p>From a single leg defense whizzer, you have several offensive options. The Peterson roll uses the whizzer to roll them to their back while they're attached to your leg. Sit toward the side of your whizzer, pull their head toward your hip, and roll. They either release the leg or roll to their back. The ankle pick counter: when they have a high single leg and are driving forward, use the whizzer to stall them, then reach down and grab their near ankle, pulling it toward you as you push their shoulder — trip them to the mat. The whizzer hip throw: pull them into a hip rotation using the overhook as your throwing arm, step your hip across, and throw. Each of these creates direct scoring from a position where most practitioners only think about defense. Train whizzer counters as standard drilling following single leg defense to build automatic offensive responses to leg attacks.</p></section>
+          <section><h2 className="text-2xl font-bold text-white mb-3">Whizzer from Guard and Bottom Positions</h2><p>The whizzer is equally powerful from the bottom position. From bottom half guard, if the top player has an underhook, establish a whizzer on that same arm. This neutralizes their smashing ability and creates the power half guard sit-up sweep. From butterfly guard, a whizzer on their underhook arm, combined with the butterfly hook, loads a butterfly sweep toward the whizzer side. The opponent cannot post their whizzered arm to stop the sweep. From guard bottom against a posturing opponent, shooting a whizzer as they try to stand creates a powerful off-balancing effect. In back take defense — when someone tries to take your back — a defensive whizzer on their top arm prevents them from establishing the seat belt, buying time to come to your knees or extract. Study whizzer mechanics from multiple bottom positions and you'll find it becomes one of your most versatile defensive and offensive tools in no-gi BJJ.</p></section>
+        </div>
+        <div className="mt-12 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">
+          <h2 className="text-2xl font-black">Level Up Your BJJ</h2>
+          <p className="mt-2 text-zinc-400">AI coaching, technique library, training journal — all in one place.</p>
+          <Link href="/auth/signup" className="mt-5 inline-block rounded-xl bg-red-600 px-8 py-3 font-semibold text-white hover:bg-red-700">Start Free</Link>
+        </div>
+      </article>
+    </div>
+  );
+}
