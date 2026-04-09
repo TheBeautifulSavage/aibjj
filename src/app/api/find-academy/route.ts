@@ -6,18 +6,17 @@ export const dynamic = "force-dynamic";
 /**
  * POST /api/find-academy
  * No auth required — public endpoint for the homepage search
- * Body: { query: string }
- * Returns: { type: "academies" | "ai", academies?: [], reply?: string }
+ * Body: { query: string, lat?: number, lng?: number }
  */
 export async function POST(req: Request) {
   try {
-    const { query } = await req.json();
+    const { query, lat, lng } = await req.json();
     if (!query?.trim()) return NextResponse.json({ error: "Query required" }, { status: 400 });
 
     const q = query.toLowerCase().trim();
 
     // Detect if it's an academy/location search
-    const isLocationSearch = 
+    const isLocationSearch =
       q.includes("near me") || q.includes("near ") ||
       q.includes("academ") || q.includes("gym") || q.includes("school") ||
       q.includes("class") || q.includes("find") || q.includes("where") ||
@@ -25,13 +24,59 @@ export async function POST(req: Request) {
       /in [a-z\s]+$/.test(q);
 
     if (isLocationSearch) {
-      // Extract location from query
+      // If we have coordinates, find nearest academies by distance
+      if (lat && lng) {
+        // Use PostGIS-style distance via Supabase RPC or just filter by nearby coords
+        // Simple approach: fetch all with lat/lng and sort by distance in JS
+        const { data: allAcademies } = await supabase
+          .from("Academy")
+          .select("id, name, city, country, rating, review_count, slug, google_maps_url, address, lat, lng")
+          .not("lat", "is", null)
+          .not("lng", "is", null);
+
+        if (allAcademies && allAcademies.length > 0) {
+          // Calculate distance (Haversine formula)
+          const withDistance = allAcademies.map((a) => {
+            const R = 6371; // km
+            const dLat = ((a.lat - lat) * Math.PI) / 180;
+            const dLng = ((a.lng - lng) * Math.PI) / 180;
+            const aa =
+              Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos((lat * Math.PI) / 180) *
+                Math.cos((a.lat * Math.PI) / 180) *
+                Math.sin(dLng / 2) *
+                Math.sin(dLng / 2);
+            const distance = R * 2 * Math.atan2(Math.sqrt(aa), Math.sqrt(1 - aa));
+            return { ...a, distance };
+          });
+
+          withDistance.sort((a, b) => a.distance - b.distance);
+          const nearest = withDistance.slice(0, 8);
+
+          return NextResponse.json({
+            type: "academies",
+            academies: nearest,
+            location: "your location",
+            locationDetected: true,
+            count: nearest.length,
+          });
+        }
+      }
+
+      // No coordinates — extract location text from query
       const location = q
         .replace(/bjj|jiu.?jitsu|brazilian|academy|academies|gym|school|classes|near me|near|find|where|in |the best|top/gi, "")
         .trim();
 
       if (!location || location.length < 2) {
-        // No location — return top rated globally
+        // No location — ask for it or show top rated
+        if (q.includes("near me")) {
+          return NextResponse.json({
+            type: "location_required",
+            message: "Please allow location access to find academies near you, or type your city name.",
+          });
+        }
+
         const { data: academies } = await supabase
           .from("Academy")
           .select("id, name, city, country, rating, review_count, slug, google_maps_url, address")
@@ -48,11 +93,11 @@ export async function POST(req: Request) {
         .order("rating", { ascending: false })
         .limit(8);
 
-      return NextResponse.json({ 
-        type: "academies", 
-        academies: academies || [], 
-        location: location,
-        count: academies?.length || 0
+      return NextResponse.json({
+        type: "academies",
+        academies: academies || [],
+        location,
+        count: academies?.length || 0,
       });
     }
 

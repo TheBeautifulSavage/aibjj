@@ -14,6 +14,7 @@ interface Academy {
   slug: string;
   google_maps_url: string;
   address: string;
+  distance?: number;
 }
 
 const SUGGESTIONS = [
@@ -28,7 +29,7 @@ const SUGGESTIONS = [
 export default function HomepageSearch() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState<{ type: "academies" | "ai"; academies?: Academy[]; reply?: string; location?: string } | null>(null);
+  const [result, setResult] = useState<{ type: "academies" | "ai" | "location_required"; academies?: Academy[]; reply?: string; location?: string; locationDetected?: boolean; message?: string } | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -40,11 +41,29 @@ export default function HomepageSearch() {
     setHasSearched(true);
     if (query) setInput(query);
 
+    const isNearMe = /near me/i.test(q);
+
     try {
+      let lat: number | null = null;
+      let lng: number | null = null;
+
+      // If "near me" — request geolocation first
+      if (isNearMe && navigator.geolocation) {
+        try {
+          const position = await new Promise<GeolocationPosition>((resolve, reject) =>
+            navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 8000 })
+          );
+          lat = position.coords.latitude;
+          lng = position.coords.longitude;
+        } catch {
+          // Permission denied or timeout — fall back to IP-based or show message
+        }
+      }
+
       const res = await fetch("/api/find-academy", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: q }),
+        body: JSON.stringify({ query: q, lat, lng }),
       });
       const data = await res.json();
       setResult(data);
@@ -101,12 +120,36 @@ export default function HomepageSearch() {
       {/* Results */}
       {result && (
         <div className="mt-4 rounded-2xl border border-zinc-700 bg-zinc-900/90 backdrop-blur shadow-xl">
+          {result.type === "location_required" && (
+            <div className="p-5 text-center">
+              <MapPin className="h-8 w-8 text-red-500 mx-auto mb-3" />
+              <p className="text-sm font-semibold text-white">Location access needed</p>
+              <p className="mt-1 text-xs text-zinc-400">{result.message}</p>
+              <div className="mt-3 flex gap-2 justify-center">
+                <button
+                  onClick={() => handleSearch("bjj academies near me")}
+                  className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700"
+                >
+                  Allow Location
+                </button>
+                <button
+                  onClick={() => { setInput("BJJ academies in "); inputRef.current?.focus(); setResult(null); setHasSearched(false); }}
+                  className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-300 hover:border-zinc-500"
+                >
+                  Type my city
+                </button>
+              </div>
+            </div>
+          )}
+
           {result.type === "academies" && (
             <div className="p-4">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2 text-sm font-semibold text-white">
                   <MapPin className="h-4 w-4 text-red-500" />
-                  {result.location && result.location !== "worldwide"
+                  {result.locationDetected
+                    ? "Nearest BJJ Academies to You"
+                    : result.location && result.location !== "worldwide"
                     ? `BJJ Academies near "${result.location}"`
                     : "Top-Rated BJJ Academies"}
                 </div>
@@ -129,7 +172,12 @@ export default function HomepageSearch() {
                     <div key={academy.id} className="flex items-start justify-between gap-3 rounded-xl border border-zinc-800 bg-zinc-800/40 p-3 hover:border-zinc-600 transition-colors">
                       <div className="flex-1 min-w-0">
                         <p className="font-semibold text-white text-sm truncate">{academy.name}</p>
-                        <p className="text-xs text-zinc-400 truncate">{academy.city}, {academy.country}</p>
+                        <p className="text-xs text-zinc-400 truncate">
+                          {academy.city}, {academy.country}
+                          {academy.distance !== undefined && (
+                            <span className="ml-1 text-red-400">· {academy.distance < 1 ? `${Math.round(academy.distance * 1000)}m` : `${academy.distance.toFixed(1)}km`} away</span>
+                          )}
+                        </p>
                         {academy.rating && (
                           <div className="flex items-center gap-1 mt-0.5">
                             <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
