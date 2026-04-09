@@ -99,6 +99,7 @@ model User {
   creatorStripeSubscriptionId String? @unique
   subscriptionTier SubscriptionTier @default(FREE)
   isLifetime       Boolean          @default(false)
+  apiKey           String?          @unique
   stripeCustomerId String?         @unique
   stripeSubscriptionId String?     @unique
   stripeConnectId  String?         @unique
