@@ -36,14 +36,14 @@ export default function BJJGamePlanPage() {
             How to Build a BJJ Game Plan (With AI)
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            Rolling without a game plan is like competing without warming up. Your most dangerous opponents don&apos;t just know more techniques — they know their game cold. Every position, every transition, every response is mapped out before they ever step on the mat.
+            Rolling without a game plan is like competing without warming up. Your most dangerous opponents don't just know more techniques — they know their game cold. Every position, every transition, every response is mapped out before they ever step on the mat.
           </p>
         </div>
 
         {/* CTA Banner */}
         <div className="mb-12 p-6 rounded-xl bg-red-950/30 border border-red-900/40">
           <p className="font-semibold text-white mb-1">🗺️ Build Your Game Plan with AI</p>
-          <p className="text-zinc-400 text-sm mb-4">AIBJJ&apos;s AI coach helps you map your A-game, identify gaps, and create complete position chains. Start building yours free.</p>
+          <p className="text-zinc-400 text-sm mb-4">AIBJJ's AI coach helps you map your A-game, identify gaps, and create complete position chains. Start building yours free.</p>
           <Link href="/auth/signup" className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors">
             Build My Game Plan →
           </Link>
@@ -60,7 +60,7 @@ export default function BJJGamePlanPage() {
               The best game plans are not rigid — they are decision trees. If X happens, I do Y. If my opponent defends Y, I pivot to Z. Elite grapplers like Gordon Ryan, Mikey Musumeci, and Craig Jones are famous for having clearly defined games that they execute with ruthless efficiency, regardless of opponent.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              A game plan isn&apos;t just for competition — it&apos;s a training philosophy. Knowing your game means you train intentionally, drill purposefully, and evolve systematically rather than collecting random techniques.
+              A game plan isn't just for competition — it's a training philosophy. Knowing your game means you train intentionally, drill purposefully, and evolve systematically rather than collecting random techniques.
             </p>
           </section>
 
@@ -126,12 +126,12 @@ export default function BJJGamePlanPage() {
 
             <h3 className="text-xl font-semibold text-white mb-3">Step 3: Map Your Attack Chains</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              For each primary position, map at least 3 attacks. For each attack, map 2 defensive responses you&apos;ll encounter and your counter to each. This creates a decision tree rather than a single-move plan. This is where AI coaching shines — you can describe your position to AIBJJ&apos;s AI coach and ask it to map attack chains specific to your level and style.
+              For each primary position, map at least 3 attacks. For each attack, map 2 defensive responses you'll encounter and your counter to each. This creates a decision tree rather than a single-move plan. This is where AI coaching shines — you can describe your position to AIBJJ's AI coach and ask it to map attack chains specific to your level and style.
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-3">Step 4: Identify Gaps</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Every game has holes. If you love playing guard but have no takedown defense, that&apos;s a gap. If you&apos;re a top player but have no back attack system, that&apos;s a gap. Identifying gaps doesn&apos;t mean fixing them all immediately — it means knowing where your plan has weaknesses so you can account for them.
+              Every game has holes. If you love playing guard but have no takedown defense, that's a gap. If you're a top player but have no back attack system, that's a gap. Identifying gaps doesn't mean fixing them all immediately — it means knowing where your plan has weaknesses so you can account for them.
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-3">Step 5: Competition-Specific Adjustments</h3>
@@ -146,7 +146,7 @@ export default function BJJGamePlanPage() {
               Building a game plan used to require either elite coaching or years of self-study. AIBJJ changes this. The AI coach understands BJJ positions, attack chains, ruleset nuances, and can help you think through your game plan the way a knowledgeable coach would.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              You can describe your current game to AIBJJ and ask things like: &ldquo;What attacks connect from the single leg X position?&rdquo; or &ldquo;My opponent keeps posturing out of my closed guard — what are my best options?&rdquo; or &ldquo;Build me a leg lock game plan for no-gi competition at brown belt.&rdquo;
+              You can describe your current game to AIBJJ and ask things like: "What attacks connect from the single leg X position?" or "My opponent keeps posturing out of my closed guard — what are my best options?" or "Build me a leg lock game plan for no-gi competition at brown belt."
             </p>
             <p className="text-zinc-400 leading-relaxed">
               The AIBJJ Game Plan Builder takes this further — it provides structured tools to visually map your positions, attacks, and transitions in a format you can review before competition, share with coaches, and update as your game evolves.
@@ -163,7 +163,7 @@ export default function BJJGamePlanPage() {
 
             <h3 className="text-xl font-semibold text-white mb-2">The Pressure Wrestler</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Entry: Double leg or snap-down to front headlock. Primary positions: side control, north-south, mount. Guard passing: over-under, knee slice, leg drag. Submission focus: D&apos;arce, arm triangle, mounted armbar. When defending: takedown defense, guard recovery to half guard.
+              Entry: Double leg or snap-down to front headlock. Primary positions: side control, north-south, mount. Guard passing: over-under, knee slice, leg drag. Submission focus: D'arce, arm triangle, mounted armbar. When defending: takedown defense, guard recovery to half guard.
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-2">The Leg Lock Specialist</h3>
@@ -176,7 +176,7 @@ export default function BJJGamePlanPage() {
           <section className="p-8 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Build Your Game Plan with AIBJJ</h2>
             <p className="text-zinc-400 mb-6 max-w-xl mx-auto">
-              Use AIBJJ&apos;s AI coach and game plan builder to map your A-game, attack chains, and competition strategy. Start free.
+              Use AIBJJ's AI coach and game plan builder to map your A-game, attack chains, and competition strategy. Start free.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/auth/signup" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">

@@ -16,7 +16,7 @@ export default function Page() {
         </div>
       </nav>
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ for Women: Getting Started &amp; Thriving on the Mat</h1>
+        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ for Women: Getting Started & Thriving on the Mat</h1>
         <p className="text-xl text-zinc-400 mb-8">BJJ is one of the best things a woman can invest in — for self-defense, fitness, community, and mental strength. This guide covers everything you need to know about getting started and building a thriving BJJ practice.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>

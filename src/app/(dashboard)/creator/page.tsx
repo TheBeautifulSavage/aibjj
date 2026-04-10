@@ -295,7 +295,7 @@ export default function CreatorDashboard() {
                 +${advantage.toLocaleString(undefined, { maximumFractionDigits: 0 })}
               </p>
               <p className="text-xs text-zinc-500 mt-0.5">
-                On Fanatics you&apos;d have kept only ${fanaticsEquivalent.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                On Fanatics you'd have kept only ${fanaticsEquivalent.toLocaleString(undefined, { maximumFractionDigits: 0 })}
               </p>
             </div>
           </div>
@@ -401,7 +401,7 @@ export default function CreatorDashboard() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-zinc-400">
-              Stripe is reviewing your account. This usually takes 1-2 business days. You&apos;ll be able to publish courses once verification is complete.
+              Stripe is reviewing your account. This usually takes 1-2 business days. You'll be able to publish courses once verification is complete.
             </p>
           </CardContent>
         </Card>

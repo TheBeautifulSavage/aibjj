@@ -25,7 +25,7 @@ export default function TermsPage() {
           {/* Intro */}
           <section>
             <p className="text-zinc-400 leading-relaxed">
-              These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and use of AIBJJ (&ldquo;we,&rdquo; &ldquo;us,&rdquo; &ldquo;our&rdquo;), operated by AIBJJ LLC. By creating an account or using the platform, you agree to be bound by these Terms. If you do not agree, do not use the platform.
+              These Terms of Service ("Terms") govern your access to and use of AIBJJ ("we," "us," "our"), operated by AIBJJ LLC. By creating an account or using the platform, you agree to be bound by these Terms. If you do not agree, do not use the platform.
             </p>
           </section>
 
@@ -33,7 +33,7 @@ export default function TermsPage() {
 
           {/* 1. Accounts */}
           <section>
-            <h2 className="text-xl font-bold text-white mb-4">1. User Accounts &amp; Eligibility</h2>
+            <h2 className="text-xl font-bold text-white mb-4">1. User Accounts & Eligibility</h2>
             <p className="text-zinc-400 leading-relaxed mb-3">
               To use AIBJJ, you must be at least 13 years old (or the minimum age of digital consent in your jurisdiction). Users under 18 must have parental or guardian consent. By registering, you represent that you meet these requirements.
             </p>
@@ -49,7 +49,7 @@ export default function TermsPage() {
 
           {/* 2. Subscriptions */}
           <section>
-            <h2 className="text-xl font-bold text-white mb-4">2. Subscription Plans &amp; Billing</h2>
+            <h2 className="text-xl font-bold text-white mb-4">2. Subscription Plans & Billing</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
               AIBJJ offers the following subscription tiers:
             </p>
@@ -108,7 +108,7 @@ export default function TermsPage() {
 
           {/* 4. Content Ownership */}
           <section>
-            <h2 className="text-xl font-bold text-white mb-4">4. Content Ownership &amp; License</h2>
+            <h2 className="text-xl font-bold text-white mb-4">4. Content Ownership & License</h2>
             <p className="text-zinc-400 leading-relaxed mb-3">
               You retain full ownership of all content you create and upload to AIBJJ. By uploading content, you grant AIBJJ a non-exclusive, worldwide, royalty-free license to host, display, store, and transmit your content as necessary to operate the platform and provide services to you and your customers.
             </p>
@@ -116,7 +116,7 @@ export default function TermsPage() {
               This license does not permit AIBJJ to sell, sublicense, or commercially exploit your content outside of the platform without your explicit written consent. We will not use your content for AI training without your opt-in consent.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              AIBJJ&apos;s own content (platform design, codebase, technique library structure, AI systems, brand assets) remains the sole property of AIBJJ LLC and is protected by applicable intellectual property law.
+              AIBJJ's own content (platform design, codebase, technique library structure, AI systems, brand assets) remains the sole property of AIBJJ LLC and is protected by applicable intellectual property law.
             </p>
           </section>
 
@@ -124,7 +124,7 @@ export default function TermsPage() {
 
           {/* 5. Prohibited */}
           <section>
-            <h2 className="text-xl font-bold text-white mb-4">5. Prohibited Content &amp; Conduct</h2>
+            <h2 className="text-xl font-bold text-white mb-4">5. Prohibited Content & Conduct</h2>
             <p className="text-zinc-400 leading-relaxed mb-3">You agree not to:</p>
             <ul className="space-y-2 text-zinc-400 list-disc pl-5">
               <li>Upload or distribute content you do not have the rights to</li>
@@ -159,15 +159,15 @@ export default function TermsPage() {
 
           {/* 7. Disclaimers */}
           <section>
-            <h2 className="text-xl font-bold text-white mb-4">7. Disclaimers &amp; Limitation of Liability</h2>
+            <h2 className="text-xl font-bold text-white mb-4">7. Disclaimers & Limitation of Liability</h2>
             <p className="text-zinc-400 leading-relaxed mb-3">
-              AIBJJ is provided &ldquo;as is&rdquo; without warranties of any kind, express or implied. We do not guarantee uninterrupted service, error-free performance, or that the AI coach will produce perfectly accurate information.
+              AIBJJ is provided "as is" without warranties of any kind, express or implied. We do not guarantee uninterrupted service, error-free performance, or that the AI coach will produce perfectly accurate information.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-3">
               BJJ training involves inherent physical risk. AIBJJ is a software platform — not a physical instructor. Always train with qualified in-person supervision. We are not liable for injuries sustained during training, regardless of advice received through the platform.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              To the maximum extent permitted by law, AIBJJ&apos;s total liability to you for any claims arising under these Terms shall not exceed the greater of (a) $100 or (b) the total amount you paid to AIBJJ in the 3 months preceding the claim.
+              To the maximum extent permitted by law, AIBJJ's total liability to you for any claims arising under these Terms shall not exceed the greater of (a) $100 or (b) the total amount you paid to AIBJJ in the 3 months preceding the claim.
             </p>
           </section>
 
@@ -175,7 +175,7 @@ export default function TermsPage() {
 
           {/* 8. Governing Law */}
           <section>
-            <h2 className="text-xl font-bold text-white mb-4">8. Governing Law &amp; Disputes</h2>
+            <h2 className="text-xl font-bold text-white mb-4">8. Governing Law & Disputes</h2>
             <p className="text-zinc-400 leading-relaxed mb-3">
               These Terms are governed by the laws of the State of Alaska, United States, without regard to conflict of law principles. Any disputes arising from these Terms shall be resolved through binding arbitration in Anchorage, Alaska, except where prohibited by applicable law.
             </p>

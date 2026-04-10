@@ -25,7 +25,7 @@ export default function BJJMiamiPage() {
           <p className="text-sm font-semibold uppercase tracking-widest text-red-500 mb-3">BJJ in Florida</p>
           <h1 className="text-4xl font-black text-white sm:text-5xl mb-6">BJJ in Miami: Find the Best Jiu-Jitsu Gyms & Training</h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            Miami is one of the most vibrant BJJ cities in the United States — and given South Florida&apos;s deep Brazilian and Latin American community, the cultural connection to jiu-jitsu runs especially deep here.
+            Miami is one of the most vibrant BJJ cities in the United States — and given South Florida's deep Brazilian and Latin American community, the cultural connection to jiu-jitsu runs especially deep here.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export default function BJJMiamiPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">The Miami BJJ Scene</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Miami&apos;s BJJ scene benefits enormously from its large Brazilian-American population and proximity to Brazil. The city has attracted high-level Brazilian coaches who have built strong programs here, and the competition scene is robust — South Florida runs major IBJJF events regularly, drawing competitors from across the Southeast and Latin America.
+              Miami's BJJ scene benefits enormously from its large Brazilian-American population and proximity to Brazil. The city has attracted high-level Brazilian coaches who have built strong programs here, and the competition scene is robust — South Florida runs major IBJJF events regularly, drawing competitors from across the Southeast and Latin America.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
               American Top Team (ATT), headquartered in Coconut Creek just north of Miami, is one of the most famous MMA and BJJ gyms in the world. ATT has produced world champions across multiple combat sports and has a significant BJJ program. The South Florida area generally has excellent MMA crossover with its BJJ training.
@@ -86,7 +86,7 @@ export default function BJJMiamiPage() {
 
           <section className="p-8 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Start Learning BJJ Fundamentals Today</h2>
-            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">While you find the perfect Miami gym, start building your BJJ foundation with AIBJJ&apos;s AI coach and 10,000+ technique library.</p>
+            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">While you find the perfect Miami gym, start building your BJJ foundation with AIBJJ's AI coach and 10,000+ technique library.</p>
             <Link href="/auth/signup" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">Start with AIBJJ Free →</Link>
           </section>
         </div>

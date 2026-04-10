@@ -599,7 +599,7 @@ export default function ProgressPage() {
                     <p className="text-sm text-zinc-300">
                       At your current pace (
                       <span className="text-red-400 font-medium">{sessionsPerMonth} sessions/mo</span>
-                      ), you&apos;re approximately
+                      ), you're approximately
                     </p>
                     <p className="text-2xl font-bold text-zinc-100 mt-1">
                       {beltEstimate.estimatedMonths <= 0 ? (
@@ -619,7 +619,7 @@ export default function ProgressPage() {
                     <p className="text-xs text-zinc-500 mt-1">
                       Average time range:{" "}
                       {beltEstimate.minMonths}–{beltEstimate.maxMonths} months
-                      (you&apos;ve been training {monthsAtBelt} months)
+                      (you've been training {monthsAtBelt} months)
                     </p>
                   </>
                 )}
@@ -733,7 +733,7 @@ export default function ProgressPage() {
             </div>
           ) : (
             <div className="text-center py-8 text-zinc-500 text-sm">
-              Click &ldquo;Generate Report&rdquo; to get your personalized AI progress assessment.
+              Click "Generate Report" to get your personalized AI progress assessment.
             </div>
           )}
         </CardContent>

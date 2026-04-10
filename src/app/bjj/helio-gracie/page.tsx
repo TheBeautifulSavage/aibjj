@@ -34,7 +34,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Developing the BJJ System</h2>
-            <p>Helio developed closed guard as an offensive weapon, refined escapes from inferior positions, and created a complete system for fighting from the back. He modified and expanded the ground fighting elements of Maeda&apos;s judo curriculum into a comprehensive self-defense and fighting system that genuinely worked for physically disadvantaged practitioners.</p>
+            <p>Helio developed closed guard as an offensive weapon, refined escapes from inferior positions, and created a complete system for fighting from the back. He modified and expanded the ground fighting elements of Maeda's judo curriculum into a comprehensive self-defense and fighting system that genuinely worked for physically disadvantaged practitioners.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">The Challenge Matches</h2>
@@ -42,7 +42,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Legacy</h2>
-            <p>Helio Gracie lived to 95 and trained until the end of his life. His sons Rickson, Royce, Relson, and Royler became world champions and spread BJJ globally. Royce&apos;s victories at UFC 1, 2, and 4 validated the entire system internationally. Helio&apos;s approach to jiu-jitsu as a self-defense system for the disadvantaged remains the philosophical foundation of the art.</p>
+            <p>Helio Gracie lived to 95 and trained until the end of his life. His sons Rickson, Royce, Relson, and Royler became world champions and spread BJJ globally. Royce's victories at UFC 1, 2, and 4 validated the entire system internationally. Helio's approach to jiu-jitsu as a self-defense system for the disadvantaged remains the philosophical foundation of the art.</p>
           </section>
         </div>
         <div className="mt-16 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">

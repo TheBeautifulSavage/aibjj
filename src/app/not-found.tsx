@@ -19,15 +19,15 @@ export default function NotFound() {
         <div className="text-8xl font-black text-red-600 mb-2">404</div>
 
         <h1 className="text-3xl font-black text-white mb-4">
-          You&apos;ve Been Submitted
+          You've Been Submitted
         </h1>
 
         <p className="text-lg text-zinc-400 mb-3 leading-relaxed">
-          This page tapped out. It doesn&apos;t exist — or it did and got swept away like a careless guard pass.
+          This page tapped out. It doesn't exist — or it did and got swept away like a careless guard pass.
         </p>
 
         <p className="text-sm text-zinc-600 mb-10 italic">
-          &ldquo;Position before submission.&rdquo; — Find your way back first.
+          "Position before submission." — Find your way back first.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">

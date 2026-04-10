@@ -16,7 +16,7 @@ export default function Page() {
         </div>
       </nav>
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Recovery: How to Train More &amp; Get Hurt Less</h1>
+        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Recovery: How to Train More & Get Hurt Less</h1>
         <p className="text-xl text-zinc-400 mb-8">The best BJJ athletes train consistently for years without breaking down. Recovery is what makes that possible. This guide covers every practical recovery tool — from sleep to mobility work to cold therapy.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>

@@ -25,7 +25,7 @@ export default function BJJPhoenixPage() {
           <p className="text-sm font-semibold uppercase tracking-widest text-red-500 mb-3">BJJ in Arizona</p>
           <h1 className="text-4xl font-black text-white sm:text-5xl mb-6">BJJ in Phoenix: Find the Best Jiu-Jitsu Gyms & Training</h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            Phoenix and the greater Scottsdale/Tempe/Mesa area has developed into a serious BJJ market. Arizona&apos;s warm climate, growing population, and MMA culture have made the Valley of the Sun a strong hub for grappling.
+            Phoenix and the greater Scottsdale/Tempe/Mesa area has developed into a serious BJJ market. Arizona's warm climate, growing population, and MMA culture have made the Valley of the Sun a strong hub for grappling.
           </p>
         </div>
 
@@ -42,7 +42,7 @@ export default function BJJPhoenixPage() {
               Arizona has been a significant MMA state since the early UFC days, and BJJ grew alongside that culture. Phoenix is home to several notable academies — including the original home base of Ryan Bader and other notable fighters who trained in the area.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              The Valley&apos;s spread-out geography means you&apos;ll find gyms across Phoenix, Scottsdale, Tempe, Mesa, Chandler, and Gilbert — different neighborhoods have different options. Scottsdale tends to have higher-end facilities, while Tempe (ASU area) often has more value-priced options with a younger competitive crowd.
+              The Valley's spread-out geography means you'll find gyms across Phoenix, Scottsdale, Tempe, Mesa, Chandler, and Gilbert — different neighborhoods have different options. Scottsdale tends to have higher-end facilities, while Tempe (ASU area) often has more value-priced options with a younger competitive crowd.
             </p>
             <p className="text-zinc-400 leading-relaxed">
               Phoenix summers are brutal — training in a non-air-conditioned gym in July is genuinely dangerous. AC is not optional here. The flip side: Phoenix winters are mild, making it a great year-round training city outside of summer.
@@ -86,7 +86,7 @@ export default function BJJPhoenixPage() {
 
           <section className="p-8 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Start Your BJJ Journey Today</h2>
-            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">While you find the right Phoenix gym, start with AIBJJ&apos;s AI coach and 10,000+ technique library.</p>
+            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">While you find the right Phoenix gym, start with AIBJJ's AI coach and 10,000+ technique library.</p>
             <Link href="/auth/signup" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">Start with AIBJJ Free →</Link>
           </section>
         </div>

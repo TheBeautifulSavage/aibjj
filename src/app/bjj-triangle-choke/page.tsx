@@ -26,7 +26,7 @@ export default function TriangleChokePage() {
         <div>
           <h2 className="text-3xl font-black mb-4">Triangle Mechanics: The Blood Choke</h2>
           <p className="text-zinc-300 mb-4">The triangle is a blood choke — it compresses the carotid arteries on both sides of the neck, cutting off blood flow to the brain. This is distinct from an air choke, which compresses the windpipe. Blood chokes are faster and more reliable than air chokes.</p>
-          <p className="text-zinc-300 mb-4">The key mechanic: one arm must be inside the triangle and one arm must be outside. Your knee crease locks behind their neck while your other knee locks behind that knee. The trapped arm pushes against the carotid, so your leg doesn&apos;t have to do all the work.</p>
+          <p className="text-zinc-300 mb-4">The key mechanic: one arm must be inside the triangle and one arm must be outside. Your knee crease locks behind their neck while your other knee locks behind that knee. The trapped arm pushes against the carotid, so your leg doesn't have to do all the work.</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2">
             <li>One arm in, one arm out — this is non-negotiable</li>
             <li>Lock the knee-on-knee position tightly before squeezing</li>
@@ -60,7 +60,7 @@ export default function TriangleChokePage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Reverse Triangle</h2>
-          <p className="text-zinc-300 mb-4">The reverse triangle faces the opposite direction — you lock around the arm and neck from behind or from a side angle. This appears in leg lock battles when opponents reach for your legs, and in scrambles when a standard triangle setup isn&apos;t available.</p>
+          <p className="text-zinc-300 mb-4">The reverse triangle faces the opposite direction — you lock around the arm and neck from behind or from a side angle. This appears in leg lock battles when opponents reach for your legs, and in scrambles when a standard triangle setup isn't available.</p>
         </div>
 
         <div>
@@ -73,7 +73,7 @@ export default function TriangleChokePage() {
             <li><strong>Elbow squeeze:</strong> Press your elbows into your thighs to amplify the squeeze force</li>
             <li><strong>Hip extension:</strong> Push your hips up slightly while squeezing to tighten the lock</li>
           </ul>
-          <p className="text-zinc-300">If you&apos;ve had the triangle for 10+ seconds and they haven&apos;t tapped, you&apos;re probably missing one of the above details. Check your angle first — that&apos;s the most common error.</p>
+          <p className="text-zinc-300">If you've had the triangle for 10+ seconds and they haven't tapped, you're probably missing one of the above details. Check your angle first — that's the most common error.</p>
         </div>
 
         <div>
@@ -83,9 +83,9 @@ export default function TriangleChokePage() {
           <h3 className="text-xl font-bold mb-2 text-red-400">Posture Up</h3>
           <p className="text-zinc-300 mb-4">The triangle requires their head to be pulled down. Posturing up before the triangle is locked prevents this. Chin on chest helps resist the pull.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Grip Defense</h3>
-          <p className="text-zinc-300 mb-4">Fight to keep both arms inside (or both outside). The moment one arm is isolated inside the triangle with one outside, you&apos;re in trouble. Early grip fighting prevents triangle entries.</p>
+          <p className="text-zinc-300 mb-4">Fight to keep both arms inside (or both outside). The moment one arm is isolated inside the triangle with one outside, you're in trouble. Early grip fighting prevents triangle entries.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Escape from a Locked Triangle</h3>
-          <p className="text-zinc-300 mb-4">If you&apos;re already locked in a triangle, your options narrow quickly. Posture up before they get the angle. Stack them. Try to create frames with your arms to prevent the angle adjustment. Against an expert triangle, these defenses are difficult — prevention is the better strategy.</p>
+          <p className="text-zinc-300 mb-4">If you're already locked in a triangle, your options narrow quickly. Posture up before they get the angle. Stack them. Try to create frames with your arms to prevent the angle adjustment. Against an expert triangle, these defenses are difficult — prevention is the better strategy.</p>
         </div>
 
         <div>
@@ -102,7 +102,7 @@ export default function TriangleChokePage() {
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Sharpen Your Triangle Game</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your triangle choke. Whether your setups aren&apos;t landing or your finishes aren&apos;t tight, the AI coach identifies the specific gap.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your triangle choke. Whether your setups aren't landing or your finishes aren't tight, the AI coach identifies the specific gap.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your Triangle Breakdown →</Link>
         </div>
 
@@ -113,14 +113,14 @@ export default function TriangleChokePage() {
             <li>Shorter legs: tighten the lock as much as possible, angle more aggressively</li>
             <li>Thick-necked opponents: the arm pull becomes even more critical</li>
             <li>Longer-legged practitioners have a natural advantage — use it</li>
-            <li>In no-gi, you can&apos;t use collar grips to pull — use head control or wrist control instead</li>
+            <li>In no-gi, you can't use collar grips to pull — use head control or wrist control instead</li>
           </ul>
         </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">Build a complete submission game starting with the triangle. AIBJJ&apos;s AI coaching makes your training focused and effective.</p>
+        <p className="text-zinc-400 mb-6">Build a complete submission game starting with the triangle. AIBJJ's AI coaching makes your training focused and effective.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

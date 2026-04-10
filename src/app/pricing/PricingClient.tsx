@@ -414,7 +414,7 @@ export default function PricingPageClient() {
             </div>
 
             <p className="mt-6 text-sm text-zinc-500">
-              Other platforms hide cancellation, inject ads into paid content, and lock you into annual contracts. We don&apos;t. Every plan can be cancelled in 2 clicks from your account settings.
+              Other platforms hide cancellation, inject ads into paid content, and lock you into annual contracts. We don't. Every plan can be cancelled in 2 clicks from your account settings.
             </p>
           </div>
         </div>
@@ -620,7 +620,7 @@ export default function PricingPageClient() {
           {/* Platform comparison (No BS table) */}
           <div className="mt-16">
             <h3 className="text-xl font-bold text-center mb-2">AIBJJ vs Other Platforms</h3>
-            <p className="text-center text-sm text-zinc-500 mb-8">We don&apos;t name names — but you know who they are.</p>
+            <p className="text-center text-sm text-zinc-500 mb-8">We don't name names — but you know who they are.</p>
             <div className="hidden md:block overflow-hidden rounded-xl border border-zinc-800/60">
               <div className="grid grid-cols-4 border-b border-zinc-800/60 bg-zinc-900/80">
                 <div className="p-4 text-sm font-semibold text-zinc-400">Feature</div>
@@ -652,7 +652,7 @@ export default function PricingPageClient() {
             </div>
             <div className="mt-8 rounded-xl border border-emerald-600/20 bg-emerald-600/5 p-6 text-center">
               <p className="text-lg font-semibold text-zinc-100">
-                The difference is simple: we&apos;re built <span className="text-emerald-400">for athletes</span>, not for ad revenue.
+                The difference is simple: we're built <span className="text-emerald-400">for athletes</span>, not for ad revenue.
               </p>
               <p className="mt-1 text-zinc-400 text-sm">
                 No dark patterns. No ads in paid content. No making it hard to cancel. Just BJJ.

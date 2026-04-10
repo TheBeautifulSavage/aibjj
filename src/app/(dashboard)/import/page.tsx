@@ -364,7 +364,7 @@ export default function ImportPage() {
                 onClick={handleUseImported}
                 className="bg-red-600 px-8 py-6 text-base font-semibold text-white hover:bg-red-700"
               >
-                Import &amp; Create My Page
+                Import & Create My Page
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
@@ -518,7 +518,7 @@ export default function ImportPage() {
                 disabled={!manualName.trim()}
                 className="bg-red-600 px-8 text-white hover:bg-red-700 disabled:opacity-50"
               >
-                Save &amp; Continue
+                Save & Continue
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>

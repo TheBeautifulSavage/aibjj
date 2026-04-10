@@ -39,7 +39,7 @@ export default function BJJOnlineCoachingPage() {
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
             The geography of BJJ coaching has changed permanently. Your best potential students might be in another state — or another country. 
-            Here&apos;s how to build a real online coaching business that generates income beyond your mat.
+            Here's how to build a real online coaching business that generates income beyond your mat.
           </p>
         </div>
 
@@ -115,7 +115,7 @@ export default function BJJOnlineCoachingPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">Using AIBJJ + Zoom: The Complete Stack</h2>
             <p className="text-zinc-400 leading-relaxed mb-6">
-              Here&apos;s how to set up a complete BJJ online coaching business using AIBJJ for your course content and Zoom for live sessions:
+              Here's how to set up a complete BJJ online coaching business using AIBJJ for your course content and Zoom for live sessions:
             </p>
             <div className="space-y-4">
               {[
@@ -189,7 +189,7 @@ export default function BJJOnlineCoachingPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">Pricing Your Online BJJ Coaching</h2>
             <p className="text-zinc-400 leading-relaxed mb-6">
-              Underpricing is the most common mistake new online coaches make. Here&apos;s what the market supports:
+              Underpricing is the most common mistake new online coaches make. Here's what the market supports:
             </p>
             <div className="overflow-hidden rounded-xl border border-zinc-800">
               <table className="w-full text-sm">
@@ -219,7 +219,7 @@ export default function BJJOnlineCoachingPage() {
               </table>
             </div>
             <p className="mt-4 text-sm text-zinc-500">
-              Note: Prices reflect the US/global market. Adjust based on your credentials and current reputation. Don&apos;t start at zero — it signals low value.
+              Note: Prices reflect the US/global market. Adjust based on your credentials and current reputation. Don't start at zero — it signals low value.
             </p>
           </section>
 
@@ -227,7 +227,7 @@ export default function BJJOnlineCoachingPage() {
           <section className="p-8 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Start Your BJJ Online Coaching Business</h2>
             <p className="text-zinc-400 mb-6 max-w-xl mx-auto">
-              Create your AIBJJ creator account. Launch your first instructional. Build your coaching business — your knowledge shouldn&apos;t be limited by your zip code.
+              Create your AIBJJ creator account. Launch your first instructional. Build your coaching business — your knowledge shouldn't be limited by your zip code.
             </p>
             <Link href="/auth/signup?role=creator" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
               Become a Creator — Free →

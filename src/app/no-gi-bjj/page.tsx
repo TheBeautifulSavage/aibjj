@@ -44,7 +44,7 @@ export default function NoGiBJJPage() {
             <li><strong>Belt grip → Body lock or underhook</strong></li>
             <li><strong>Lapel guard → Leg pummeling or butterfly hooks</strong></li>
           </ul>
-          <p className="text-zinc-300">The grip changes require deliberate practice — a gi player who transitions to no-gi often finds their game collapses because they&apos;ve been relying on gi grips without realizing it. The solution is intentional no-gi drilling to rebuild the grip vocabulary.</p>
+          <p className="text-zinc-300">The grip changes require deliberate practice — a gi player who transitions to no-gi often finds their game collapses because they've been relying on gi grips without realizing it. The solution is intentional no-gi drilling to rebuild the grip vocabulary.</p>
         </div>
 
         <div>
@@ -58,7 +58,7 @@ export default function NoGiBJJPage() {
             <li>Mount and side control principles are identical</li>
             <li>Hip escapes, bridges, and fundamental movements are universal</li>
           </ul>
-          <p className="text-zinc-300 mb-4">What doesn&apos;t translate as directly: spider guard, lasso guard, DLR entries that rely on collar grips, cross collar chokes, and collar-based passing systems. These require adaptation.</p>
+          <p className="text-zinc-300 mb-4">What doesn't translate as directly: spider guard, lasso guard, DLR entries that rely on collar grips, cross collar chokes, and collar-based passing systems. These require adaptation.</p>
         </div>
 
         <div>
@@ -68,7 +68,7 @@ export default function NoGiBJJPage() {
           <h3 className="text-xl font-bold mb-2 text-red-400">Closed Guard</h3>
           <p className="text-zinc-300 mb-4">Closed guard in no-gi relies on body grips — neck ties, overhooks, wrist control. The submissions and sweeps work identically, but the setups require more explosive hip movement without the friction of gi grips to hold posture down.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Leg Lock Guards (Ashi Garami, Single Leg X, 50/50)</h3>
-          <p className="text-zinc-300 mb-4">No-gi has increasingly become a leg lock game. Ashi garami systems, K-guard, and 50/50 set up heel hooks and knee bars. Understanding the leg lock game in no-gi is no longer optional for serious competitors — it&apos;s required to compete at intermediate levels and above.</p>
+          <p className="text-zinc-300 mb-4">No-gi has increasingly become a leg lock game. Ashi garami systems, K-guard, and 50/50 set up heel hooks and knee bars. Understanding the leg lock game in no-gi is no longer optional for serious competitors — it's required to compete at intermediate levels and above.</p>
           <Link href="/bjj-heel-hook" className="text-red-400 hover:text-red-300 font-semibold">→ Complete heel hook guide</Link>
         </div>
 
@@ -98,7 +98,7 @@ export default function NoGiBJJPage() {
         </div>
 
         <div>
-          <h2 className="text-3xl font-black mb-4">The Modern No-Gi Game: John Danaher&apos;s Influence</h2>
+          <h2 className="text-3xl font-black mb-4">The Modern No-Gi Game: John Danaher's Influence</h2>
           <p className="text-zinc-300 mb-4">John Danaher and the Danaher Death Squad (Gordon Ryan, Garry Tonon, Craig Jones) have arguably had the biggest influence on modern no-gi competition. Their system emphasizes:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Back control as the highest-value position</li>
@@ -111,14 +111,14 @@ export default function NoGiBJJPage() {
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Build Your No-Gi Game with AI</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your no-gi game. Whether you&apos;re transitioning from gi or building your no-gi from scratch, the AI coach creates your complete curriculum.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your no-gi game. Whether you're transitioning from gi or building your no-gi from scratch, the AI coach creates your complete curriculum.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your No-Gi Game Plan →</Link>
         </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">Build a complete no-gi game with AIBJJ&apos;s AI coaching system.</p>
+        <p className="text-zinc-400 mb-6">Build a complete no-gi game with AIBJJ's AI coaching system.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

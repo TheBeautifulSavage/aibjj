@@ -31,7 +31,7 @@ export default function GrapplersGuideAlternativePage() {
             Best Grapplers Guide Alternative in 2025
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            If you&apos;re looking for a Grapplers Guide alternative — whether you&apos;re looking for something with AI coaching, a different content approach, or a more comprehensive training ecosystem — here&apos;s what&apos;s available in 2025.
+            If you're looking for a Grapplers Guide alternative — whether you're looking for something with AI coaching, a different content approach, or a more comprehensive training ecosystem — here's what's available in 2025.
           </p>
         </div>
 

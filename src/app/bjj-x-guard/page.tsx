@@ -16,7 +16,7 @@ export default function Page() {
         </div>
       </nav>
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-4xl md:text-5xl font-black mb-6">X-Guard BJJ: Marcelo Garcia&apos;s System Explained</h1>
+        <h1 className="text-4xl md:text-5xl font-black mb-6">X-Guard BJJ: Marcelo Garcia's System Explained</h1>
         <p className="text-xl text-zinc-400 mb-8">X-guard is one of the most reliable sweeping positions in all of grappling. Marcelo Garcia used it to dominate opponents twice his size. Here's the complete breakdown of X-guard mechanics, entries, and sweeps.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>

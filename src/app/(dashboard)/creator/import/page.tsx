@@ -42,7 +42,7 @@ function EarningsCalculator({ price, title }: { price: number; title: string }) 
         </h3>
       </div>
       <p className="text-gray-300 mb-4">
-        <strong className="text-white">&ldquo;{title}&rdquo;</strong> has been imported and is ready to publish.
+        <strong className="text-white">"{title}"</strong> has been imported and is ready to publish.
       </p>
 
       <div className="bg-black/30 rounded-xl p-4 mb-4">
@@ -504,7 +504,7 @@ function FanaticsImportTab() {
                 className="rounded border-zinc-600 bg-zinc-800"
               />
               <span className="text-sm text-zinc-300">
-                I&apos;ll add lessons manually after import
+                I'll add lessons manually after import
               </span>
             </label>
 
@@ -580,8 +580,8 @@ function YouTubeImportTab() {
         <PlayCircle className="h-10 w-10 text-blue-400 mx-auto mb-3" />
         <h3 className="font-bold text-blue-300 text-lg mb-2">Import Queued!</h3>
         <p className="text-gray-300 mb-4">
-          We&apos;ll process your YouTube content within 24 hours and set up your course automatically.
-          You&apos;ll receive an email when it&apos;s ready to review.
+          We'll process your YouTube content within 24 hours and set up your course automatically.
+          You'll receive an email when it's ready to review.
         </p>
         <div className="bg-black/30 rounded-xl p-3 mb-4">
           <p className="text-xs text-gray-500 break-all">{youtubeUrl}</p>
@@ -607,7 +607,7 @@ function YouTubeImportTab() {
           YouTube Import
         </h3>
         <p className="text-gray-400 text-sm">
-          Paste a YouTube playlist URL or individual video URL. We&apos;ll extract the title,
+          Paste a YouTube playlist URL or individual video URL. We'll extract the title,
           description, and create a course structure from your content.
         </p>
       </div>

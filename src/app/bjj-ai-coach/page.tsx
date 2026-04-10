@@ -36,7 +36,7 @@ export default function BJJAICoachPage() {
             The AI BJJ Coach That Actually Knows Jiu-Jitsu
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            Most BJJ athletes only get coaching during class — a few hours a week, shared with 20 other students. The best athletes get private coaching, custom game plans, and on-demand answers to their questions. AIBJJ&apos;s AI coach makes that accessible to everyone.
+            Most BJJ athletes only get coaching during class — a few hours a week, shared with 20 other students. The best athletes get private coaching, custom game plans, and on-demand answers to their questions. AIBJJ's AI coach makes that accessible to everyone.
           </p>
         </div>
 
@@ -60,14 +60,14 @@ export default function BJJAICoachPage() {
               The challenge has always been access. High-quality coaching is expensive and geographically limited. Most BJJ practitioners train in academies where the instructor is spread thin across 30 students. Private lessons are $100-200/hr for a good black belt. The knowledge gap between well-coached and self-coached athletes is enormous.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              AIBJJ&apos;s AI coach changes this equation. It has deep knowledge of BJJ technique, positions, and strategy — and it&apos;s available to answer your specific question, about your specific situation, at 11pm when you&apos;re watching competition footage in bed. That&apos;s a new kind of access.
+              AIBJJ's AI coach changes this equation. It has deep knowledge of BJJ technique, positions, and strategy — and it's available to answer your specific question, about your specific situation, at 11pm when you're watching competition footage in bed. That's a new kind of access.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">What You Can Ask Your AI BJJ Coach</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              The AI coach isn&apos;t a search engine — it&apos;s a conversation. You can ask complex, contextual questions and get coaching-quality responses:
+              The AI coach isn't a search engine — it's a conversation. You can ask complex, contextual questions and get coaching-quality responses:
             </p>
 
             <div className="space-y-4">
@@ -123,7 +123,7 @@ export default function BJJAICoachPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">How the AI Coach Learns Your Game</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Unlike generic AI tools, AIBJJ&apos;s coach is personalized to you. When you set up your profile — belt level, weight class, preferred style, training goals — the AI coach adapts its responses accordingly. A blue belt beginner and a brown belt competitor might ask the same technique question and get different levels of depth and context.
+              Unlike generic AI tools, AIBJJ's coach is personalized to you. When you set up your profile — belt level, weight class, preferred style, training goals — the AI coach adapts its responses accordingly. A blue belt beginner and a brown belt competitor might ask the same technique question and get different levels of depth and context.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
               As you use the training journal and game plan builder, the AI coach learns more about your game — your tendencies, your problem areas, your competitive history. Over time, your coaching becomes increasingly personalized and specific to how you actually roll.
@@ -139,7 +139,7 @@ export default function BJJAICoachPage() {
               We want to be honest: an AI coach does not replace a human coach. Period. Physical correction, live demonstration, drilling supervision, and the human relationship element of coaching are irreplaceable. You should train with a human instructor.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              What an AI coach does is fill the massive gaps that exist between your training sessions. When you have a question at 10pm, when you want to review technique concepts before drilling, when you need help thinking through your game plan before competition — your human coach isn&apos;t available. The AI coach is.
+              What an AI coach does is fill the massive gaps that exist between your training sessions. When you have a question at 10pm, when you want to review technique concepts before drilling, when you need help thinking through your game plan before competition — your human coach isn't available. The AI coach is.
             </p>
             <p className="text-zinc-400 leading-relaxed">
               Think of the AI coach as the knowledgeable training partner you can ask anything — without ego, without judgment, and without scheduling.
@@ -195,13 +195,13 @@ export default function BJJAICoachPage() {
               <div className="flex gap-3">
                 <div className="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center text-xs font-bold shrink-0">You</div>
                 <div className="bg-zinc-800/80 rounded-lg px-4 py-3 text-sm text-zinc-300 max-w-lg">
-                  I keep getting heel hooked from outside ashi. I can tell it&apos;s coming but I don&apos;t know how to bail out fast enough. I train no-gi, brown belt.
+                  I keep getting heel hooked from outside ashi. I can tell it's coming but I don't know how to bail out fast enough. I train no-gi, brown belt.
                 </div>
               </div>
               <div className="flex gap-3 justify-end">
                 <div className="bg-red-950/60 border border-red-900/40 rounded-lg px-4 py-3 text-sm text-zinc-300 max-w-lg">
                   <p className="text-red-400 font-semibold text-xs mb-1">AI Coach</p>
-                  Good awareness — recognizing the entry is the first step. For outside heel hook defense from ashi garami: your priority is the hip escape before the finish develops. The moment you feel them sit to outside ashi, start your hip escape away from the trapped leg while keeping your free foot active. The &ldquo;knee shield&rdquo; with your free leg creates separation. Avoid the common mistake of reaching for their leg — that often locks your own position. Want me to walk through the specific mechanics of the hip escape or the early warning signs to look for in the setup?
+                  Good awareness — recognizing the entry is the first step. For outside heel hook defense from ashi garami: your priority is the hip escape before the finish develops. The moment you feel them sit to outside ashi, start your hip escape away from the trapped leg while keeping your free foot active. The "knee shield" with your free leg creates separation. Avoid the common mistake of reaching for their leg — that often locks your own position. Want me to walk through the specific mechanics of the hip escape or the early warning signs to look for in the setup?
                 </div>
                 <div className="w-8 h-8 rounded-full bg-red-600/20 border border-red-600/30 flex items-center justify-center text-xs font-bold shrink-0 text-red-500">AI</div>
               </div>

@@ -31,7 +31,7 @@ export default function AIBJJvsFanaticsPage() {
             AIBJJ vs BJJ Fanatics: Which is Better for Your Training?
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            The honest answer: it depends what you&apos;re looking for. BJJ Fanatics and AIBJJ are fundamentally different products. 
+            The honest answer: it depends what you're looking for. BJJ Fanatics and AIBJJ are fundamentally different products. 
             This comparison breaks down what each actually does so you can choose the right tool for your goals.
           </p>
         </div>
@@ -45,17 +45,17 @@ export default function AIBJJvsFanaticsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">What BJJ Fanatics Does Well</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              BJJ Fanatics has built a massive catalog of instructionals from some of the biggest names in BJJ — Gordon Ryan, John Danaher, Craig Jones, Bernardo Faria, and hundreds more. Their volume and brand roster are genuine strengths. If you want to buy an instructional from a world champion you&apos;ve followed for years, Fanatics likely has it.
+              BJJ Fanatics has built a massive catalog of instructionals from some of the biggest names in BJJ — Gordon Ryan, John Danaher, Craig Jones, Bernardo Faria, and hundreds more. Their volume and brand roster are genuine strengths. If you want to buy an instructional from a world champion you've followed for years, Fanatics likely has it.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              They run frequent sales (often 50–70% off) that make individual instructionals very affordable. Their catalog breadth is hard to match — they&apos;ve spent years signing exclusives with top-level instructors across every position and specialization.
+              They run frequent sales (often 50–70% off) that make individual instructionals very affordable. Their catalog breadth is hard to match — they've spent years signing exclusives with top-level instructors across every position and specialization.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">What AIBJJ Does Differently</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              AIBJJ isn&apos;t trying to out-catalog Fanatics. The goal is different: building a complete training ecosystem around the BJJ student. That means:
+              AIBJJ isn't trying to out-catalog Fanatics. The goal is different: building a complete training ecosystem around the BJJ student. That means:
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
@@ -146,7 +146,7 @@ export default function AIBJJvsFanaticsPage() {
               </div>
             </div>
             <p className="mt-5 text-zinc-400">
-              <strong className="text-white">The honest take:</strong> Many serious BJJ students use both. Fanatics for specific premium instructionals from big names. AIBJJ for the ongoing training tools, AI coaching, and emerging creator content. They&apos;re not really competing — they&apos;re different layers of the same training stack.
+              <strong className="text-white">The honest take:</strong> Many serious BJJ students use both. Fanatics for specific premium instructionals from big names. AIBJJ for the ongoing training tools, AI coaching, and emerging creator content. They're not really competing — they're different layers of the same training stack.
             </p>
           </section>
 

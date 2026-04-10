@@ -73,7 +73,7 @@ export default function IJBJJFStatisticsPage() {
         </h1>
         <p className="text-xl text-zinc-400 mb-4">
           What actually wins at IBJJF World Championship? We analyzed 2,847 matches to find out.
-          The answer might surprise you — only 31% end by submission. Here&apos;s everything you
+          The answer might surprise you — only 31% end by submission. Here's everything you
           need to know.
         </p>
         <div className="flex items-center gap-4 text-xs text-zinc-500 mb-8">
@@ -175,12 +175,12 @@ export default function IJBJJFStatisticsPage() {
       <article className="max-w-4xl mx-auto px-4 pb-16 space-y-10">
         <section>
           <h2 className="text-3xl font-black mb-4">
-            The 31% Rule: Why Most IBJJF Matches Don&apos;t End by Submission
+            The 31% Rule: Why Most IBJJF Matches Don't End by Submission
           </h2>
           <p className="text-zinc-300 mb-4">
             At the black belt level, IBJJF Gi matches end by submission just 28-31% of the time.
             The majority — 69% — are decided by points and advantages. This is not a failure of
-            submission grappling. It&apos;s a reflection of elite defense.
+            submission grappling. It's a reflection of elite defense.
           </p>
           <p className="text-zinc-300 mb-4">
             World-class athletes defend submissions with extraordinary skill. The armbar and triangle
@@ -238,9 +238,9 @@ export default function IJBJJFStatisticsPage() {
         </section>
 
         <section>
-          <h2 className="text-3xl font-black mb-4">The Gi Advantage: Techniques You Can&apos;t Do in No-Gi</h2>
+          <h2 className="text-3xl font-black mb-4">The Gi Advantage: Techniques You Can't Do in No-Gi</h2>
           <p className="text-zinc-300 mb-4">
-            The gi creates unique submission opportunities that simply don&apos;t exist in No-Gi.
+            The gi creates unique submission opportunities that simply don't exist in No-Gi.
             The rising trend in bow & arrow, Ezekiel, loop choke, and clock choke reflects smart
             competitors exploiting these Gi-specific tools.
           </p>

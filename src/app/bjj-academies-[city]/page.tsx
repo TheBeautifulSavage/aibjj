@@ -250,7 +250,7 @@ export default async function CityAcademiesPage({ params }: { params: { city: st
             Jiu-Jitsu Academies in {city.name} — What to Look For
           </h2>
           <p>
-            Whether you&apos;re a complete beginner or a seasoned competitor, finding the right BJJ
+            Whether you're a complete beginner or a seasoned competitor, finding the right BJJ
             academy in {city.name} is one of the most important decisions in your training journey.{" "}
             {city.state
               ? `${city.name}, ${city.state} has a thriving grappling scene`
@@ -258,10 +258,10 @@ export default async function CityAcademiesPage({ params }: { params: { city: st
             with academies ranging from competition-focused teams to beginner-friendly schools.
           </p>
           <p>
-            When choosing a jiu-jitsu gym near {city.name}, consider the instructor&apos;s
+            When choosing a jiu-jitsu gym near {city.name}, consider the instructor's
             credentials, class schedule, culture, and whether they offer no-gi in addition to gi
             training. Read reviews, watch trial classes, and trust your gut — the best BJJ academy
-            is the one you&apos;ll actually show up to.
+            is the one you'll actually show up to.
           </p>
           <p>
             AIBJJ helps you track your training no matter which {city.name} academy you train at.

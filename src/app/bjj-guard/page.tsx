@@ -18,7 +18,7 @@ export default function BJJGuardPage() {
 
       <section className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Guard: Complete Guide to All Guard Positions</h1>
-        <p className="text-xl text-zinc-400 mb-8">The guard is the heart of Brazilian Jiu-Jitsu. Whether you&apos;re playing closed guard, half guard, or any of the many open guard variations, mastering guard positions transforms you from a survivor to a threat from your back.</p>
+        <p className="text-xl text-zinc-400 mb-8">The guard is the heart of Brazilian Jiu-Jitsu. Whether you're playing closed guard, half guard, or any of the many open guard variations, mastering guard positions transforms you from a survivor to a threat from your back.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>
 
@@ -26,12 +26,12 @@ export default function BJJGuardPage() {
         <div>
           <h2 className="text-3xl font-black mb-4">Why the Guard Is the Foundation of BJJ</h2>
           <p className="text-zinc-300 mb-4">Unlike most martial arts where being on your back equals losing, BJJ turns the bottom position into a weapon. The guard allows a smaller, weaker person to control, attack, and submit a larger opponent using leverage, hip movement, and technique.</p>
-          <p className="text-zinc-300 mb-4">Understanding guard isn&apos;t just about surviving—it&apos;s about creating the offensive platform. Every guard position has its own set of sweeps, submissions, and transitions. The practitioner who understands all guard families becomes extraordinarily difficult to pass and dangerous to engage.</p>
+          <p className="text-zinc-300 mb-4">Understanding guard isn't just about surviving—it's about creating the offensive platform. Every guard position has its own set of sweeps, submissions, and transitions. The practitioner who understands all guard families becomes extraordinarily difficult to pass and dangerous to engage.</p>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Closed Guard</h2>
-          <p className="text-zinc-300 mb-4">The closed guard is where most BJJ journeys begin. With your legs locked around your opponent&apos;s waist, you control their posture and limit their options. From here the attack tree is enormous: armbars, triangles, omoplatas, kimuras, guillotines, sweeps.</p>
+          <p className="text-zinc-300 mb-4">The closed guard is where most BJJ journeys begin. With your legs locked around your opponent's waist, you control their posture and limit their options. From here the attack tree is enormous: armbars, triangles, omoplatas, kimuras, guillotines, sweeps.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Key Closed Guard Principles</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Break posture before attacking — a posturing opponent is hard to submit</li>
@@ -40,7 +40,7 @@ export default function BJJGuardPage() {
             <li>The cross collar choke is a reliable submission even against experienced opponents</li>
             <li>When they posture, threaten the armbar; when they hunch, go for the choke</li>
           </ul>
-          <p className="text-zinc-300">Closed guard is the testing ground. If you can&apos;t control someone in closed guard, your open guard will fall apart even faster. Spend real time here before chasing flashier positions.</p>
+          <p className="text-zinc-300">Closed guard is the testing ground. If you can't control someone in closed guard, your open guard will fall apart even faster. Spend real time here before chasing flashier positions.</p>
         </div>
 
         <div>
@@ -51,26 +51,26 @@ export default function BJJGuardPage() {
             <li>Underhook battle: getting the underhook from half guard opens the whole offense</li>
             <li>The lockdown controls the leg and creates a framing tool for reversal</li>
             <li>Deep half guard allows sweeps to a dominant top position</li>
-            <li>Half guard is a realistic transitional position — don&apos;t panic when you end up here</li>
+            <li>Half guard is a realistic transitional position — don't panic when you end up here</li>
           </ul>
           <Link href="/bjj-half-guard" className="text-red-400 hover:text-red-300 font-semibold">→ Full half guard guide</Link>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Open Guard Variations</h2>
-          <p className="text-zinc-300 mb-4">Open guard is a broad category covering any guard where the legs aren&apos;t closed. The practitioner must use feet, grips, and angles to control distance and create attacks. Here are the major open guard systems:</p>
+          <p className="text-zinc-300 mb-4">Open guard is a broad category covering any guard where the legs aren't closed. The practitioner must use feet, grips, and angles to control distance and create attacks. Here are the major open guard systems:</p>
 
           <h3 className="text-xl font-bold mb-2 text-red-400">Spider Guard</h3>
-          <p className="text-zinc-300 mb-4">Spider guard uses sleeve grips with feet on the biceps to control both arms. It&apos;s highly effective in the gi and creates excellent leverage for sweeps like the lasso-to-overhead and triangle setups. The foot-on-bicep frame limits your opponent&apos;s ability to pass or posture.</p>
+          <p className="text-zinc-300 mb-4">Spider guard uses sleeve grips with feet on the biceps to control both arms. It's highly effective in the gi and creates excellent leverage for sweeps like the lasso-to-overhead and triangle setups. The foot-on-bicep frame limits your opponent's ability to pass or posture.</p>
 
           <h3 className="text-xl font-bold mb-2 text-red-400">De La Riva Guard</h3>
-          <p className="text-zinc-300 mb-4">DLR hooks around the outside of the lead leg with the other foot on the hip. It&apos;s a dynamic guard that transitions easily to berimbolo, back takes, X-guard, and single legs. DLR became famous through Caio Terra and the Mendes brothers, who used it to dominate competition.</p>
+          <p className="text-zinc-300 mb-4">DLR hooks around the outside of the lead leg with the other foot on the hip. It's a dynamic guard that transitions easily to berimbolo, back takes, X-guard, and single legs. DLR became famous through Caio Terra and the Mendes brothers, who used it to dominate competition.</p>
 
           <h3 className="text-xl font-bold mb-2 text-red-400">Butterfly Guard</h3>
-          <p className="text-zinc-300 mb-4">Butterfly guard uses both hooks inside the opponent&apos;s thighs with your feet inside. Combined with upper body control (underhooks, overhooks, collar), butterfly guard creates powerful sweeps. It&apos;s Marcelo Garcia&apos;s signature position — proof that mastery of fundamentals beats exotic guards.</p>
+          <p className="text-zinc-300 mb-4">Butterfly guard uses both hooks inside the opponent's thighs with your feet inside. Combined with upper body control (underhooks, overhooks, collar), butterfly guard creates powerful sweeps. It's Marcelo Garcia's signature position — proof that mastery of fundamentals beats exotic guards.</p>
 
           <h3 className="text-xl font-bold mb-2 text-red-400">X-Guard</h3>
-          <p className="text-zinc-300 mb-4">X-guard is a deep single-leg control where both legs entangle one of the opponent&apos;s legs. Created by Marcelo Garcia, it&apos;s one of the highest-percentage sweeps in competition grappling. Once you establish X-guard, sweeping is almost mechanical.</p>
+          <p className="text-zinc-300 mb-4">X-guard is a deep single-leg control where both legs entangle one of the opponent's legs. Created by Marcelo Garcia, it's one of the highest-percentage sweeps in competition grappling. Once you establish X-guard, sweeping is almost mechanical.</p>
 
           <h3 className="text-xl font-bold mb-2 text-red-400">Lasso Guard</h3>
           <p className="text-zinc-300 mb-4">Lasso guard wraps one arm through a sleeve grip, creating a coiled control that limits shoulder movement. Highly effective for off-balancing opponents before sweeps or triangles. Common in flexible practitioners and gi-focused competitors.</p>
@@ -78,7 +78,7 @@ export default function BJJGuardPage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Rubber Guard</h2>
-          <p className="text-zinc-300 mb-4">Eddie Bravo&apos;s rubber guard system requires significant flexibility but creates a closed guard variation where the leg is pushed over the opponent&apos;s shoulder. The Meathook, Invisible Collar, and Zombie positions chain into submission attempts that are genuinely difficult to defend. Best for flexible practitioners.</p>
+          <p className="text-zinc-300 mb-4">Eddie Bravo's rubber guard system requires significant flexibility but creates a closed guard variation where the leg is pushed over the opponent's shoulder. The Meathook, Invisible Collar, and Zombie positions chain into submission attempts that are genuinely difficult to defend. Best for flexible practitioners.</p>
           <Link href="/bjj-rubber-guard" className="text-red-400 hover:text-red-300 font-semibold">→ Full rubber guard guide</Link>
         </div>
 
@@ -99,16 +99,16 @@ export default function BJJGuardPage() {
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Hip movement is everything — frame and shrimp before they can establish side control</li>
             <li>Use the knee shield as a defensive frame to buy time to recover</li>
-            <li>Learn to spin to turtle position when guard recovery isn&apos;t available</li>
+            <li>Learn to spin to turtle position when guard recovery isn't available</li>
             <li>Anticipate the pass direction and move pre-emptively</li>
             <li>Grip the pants, sleeve, or collar to slow the pass and create time</li>
           </ul>
-          <p className="text-zinc-300">Guard retention is a cardio problem as much as a technique problem. If you&apos;re too tired to move your hips, your guard will be passed regardless of how good your technique is.</p>
+          <p className="text-zinc-300">Guard retention is a cardio problem as much as a technique problem. If you're too tired to move your hips, your guard will be passed regardless of how good your technique is.</p>
         </div>
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Build Your Guard Game with AI Coaching</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on which guard positions suit your body type, flexibility, and game. Upload your training notes and get a customized guard curriculum.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on which guard positions suit your body type, flexibility, and game. Upload your training notes and get a customized guard curriculum.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your Guard Game Plan →</Link>
         </div>
 
@@ -119,9 +119,9 @@ export default function BJJGuardPage() {
             <li><strong>Body type:</strong> Longer legs favor spider and lasso; shorter, stocky builds may prefer butterfly or half guard</li>
             <li><strong>Flexibility:</strong> Rubber guard and DLR require more flexibility; butterfly and closed guard do not</li>
             <li><strong>Gi vs No-Gi:</strong> Many open guards rely on gi grips; butterfly and closed guard translate well to both</li>
-            <li><strong>Your instructor&apos;s expertise:</strong> Learn what your instructor excels at — you&apos;ll get better feedback</li>
+            <li><strong>Your instructor's expertise:</strong> Learn what your instructor excels at — you'll get better feedback</li>
           </ul>
-          <p className="text-zinc-300">Don&apos;t scatter. Pick one guard family, learn it deeply, then build connecting guards around it. The practitioners who get good fastest are those who go deep rather than wide.</p>
+          <p className="text-zinc-300">Don't scatter. Pick one guard family, learn it deeply, then build connecting guards around it. The practitioners who get good fastest are those who go deep rather than wide.</p>
         </div>
 
         <div>

@@ -25,7 +25,7 @@ export default function Page() {
           ))}
         </div>
         <h1 className="text-4xl font-black sm:text-5xl">How BJJ Changed the UFC: From Royce Gracie to Today</h1>
-        <p className="mt-4 text-xl text-zinc-400">BJJ transformed the UFC and MMA from a fringe spectacle into a legitimate sport. The story of how ground fighting became the foundation of modern mixed martial arts is the story of the Gracie family&apos;s greatest achievement.</p>
+        <p className="mt-4 text-xl text-zinc-400">BJJ transformed the UFC and MMA from a fringe spectacle into a legitimate sport. The story of how ground fighting became the foundation of modern mixed martial arts is the story of the Gracie family's greatest achievement.</p>
         <div className="mt-10 space-y-10 text-zinc-300 leading-relaxed">
 
           <section>
@@ -34,7 +34,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">The First Decade: BJJ Dominance</h2>
-            <p>The first decade of UFC competition was defined by BJJ&apos;s dominance of the ground game. Fighters who could not defend takedowns and submissions were systematically destroyed. The entire martial arts world scrambled to address the ground fighting deficiency that Royce Gracie had exposed. BJJ academies opened everywhere. Wrestling coaches began learning guard defense. The hybrid fighter was born.</p>
+            <p>The first decade of UFC competition was defined by BJJ's dominance of the ground game. Fighters who could not defend takedowns and submissions were systematically destroyed. The entire martial arts world scrambled to address the ground fighting deficiency that Royce Gracie had exposed. BJJ academies opened everywhere. Wrestling coaches began learning guard defense. The hybrid fighter was born.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">BJJ Evolves With MMA</h2>

@@ -389,7 +389,7 @@ export default function MarketplacePage() {
         <section>
           <div className="flex items-center gap-2 mb-4">
             <Sparkles className="h-4 w-4 text-yellow-400" />
-            <h2 className="text-lg font-semibold text-zinc-200">Editor&apos;s Picks</h2>
+            <h2 className="text-lg font-semibold text-zinc-200">Editor's Picks</h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {featuredCourses.map((course) => (

@@ -55,7 +55,7 @@ export default function BJJInstructorPlatformPage() {
               href="/auth/signup?role=creator"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-xl text-lg font-bold transition-colors"
             >
-              Become a Creator — It&apos;s Free →
+              Become a Creator — It's Free →
             </Link>
             <Link
               href="#how-it-works"
@@ -152,7 +152,7 @@ export default function BJJInstructorPlatformPage() {
           <div className="text-center mb-10">
             <p className="text-sm font-semibold uppercase tracking-widest text-red-500 mb-2">Revenue Calculator</p>
             <h2 className="text-3xl font-bold text-white">What Could You Earn?</h2>
-            <p className="mt-3 text-zinc-400">Drag the sliders to see your potential revenue vs. what you&apos;d make on Fanatics.</p>
+            <p className="mt-3 text-zinc-400">Drag the sliders to see your potential revenue vs. what you'd make on Fanatics.</p>
           </div>
           <RevenueCalculator />
         </div>

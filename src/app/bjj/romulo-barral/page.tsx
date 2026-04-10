@@ -20,7 +20,7 @@ export default function Page() {
           <section><h2 className="text-2xl font-bold text-white mb-3">Teaching and Legacy</h2><p>Barral is widely regarded as one of the best teachers in BJJ. His instructional videos and seminar curriculum are known for exceptional conceptual clarity. He focuses on the underlying principles of position and movement rather than just technique demonstration, producing students who understand why techniques work rather than just how to execute them.</p></section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Guard Game</h2>
-            <p>Barral&apos;s guard work — particularly his De La Riva, spider, and X-guard systems — influenced an entire generation of guard players. His approach to guard retention uses active framing and hip movement rather than passive gripping, making it adaptable to both gi and no-gi contexts.</p>
+            <p>Barral's guard work — particularly his De La Riva, spider, and X-guard systems — influenced an entire generation of guard players. His approach to guard retention uses active framing and hip movement rather than passive gripping, making it adaptable to both gi and no-gi contexts.</p>
           </section>
         </div>
         <div className="mt-16 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">

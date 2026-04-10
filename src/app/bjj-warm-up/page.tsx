@@ -34,7 +34,7 @@ export default function WarmUpPage() {
           <p className="text-zinc-300 mb-4">Complete this circuit before every training session. Total time: 10-15 minutes.</p>
 
           <h3 className="text-xl font-bold mb-2 text-red-400">1. Hip Escapes (Shrimping)</h3>
-          <p className="text-zinc-300 mb-4">The fundamental BJJ movement. Lie on your back, shrimp your hips side to side across the mat. 2-3 lengths. This activates hip flexors and replicates the exact movement you&apos;ll use in guard work, escapes, and transitions.</p>
+          <p className="text-zinc-300 mb-4">The fundamental BJJ movement. Lie on your back, shrimp your hips side to side across the mat. 2-3 lengths. This activates hip flexors and replicates the exact movement you'll use in guard work, escapes, and transitions.</p>
 
           <h3 className="text-xl font-bold mb-2 text-red-400">2. Backwards Shrimping</h3>
           <p className="text-zinc-300 mb-4">Reverse hip escape — move backward across the mat on your side. Less common in class but equally important for guard retention and scramble movements.</p>
@@ -55,7 +55,7 @@ export default function WarmUpPage() {
           <p className="text-zinc-300 mb-4">On hands and knees, rotate one leg in large circles (fire hydrant motion). 10 each leg, each direction. This directly warms up the hip mobility used in guard and passing.</p>
 
           <h3 className="text-xl font-bold mb-2 text-red-400">8. Neck Rolls and Bridges</h3>
-          <p className="text-zinc-300 mb-4">Slow neck rolls in each direction, then wrestler&apos;s bridges (neck bridges on the mat). The neck is highly stressed in grappling — warming it up is critical for injury prevention.</p>
+          <p className="text-zinc-300 mb-4">Slow neck rolls in each direction, then wrestler's bridges (neck bridges on the mat). The neck is highly stressed in grappling — warming it up is critical for injury prevention.</p>
 
           <h3 className="text-xl font-bold mb-2 text-red-400">9. Arm Circles and Shoulder Warm-Up</h3>
           <p className="text-zinc-300 mb-4">Large arm circles forward and backward, 10 each direction. Follow with band pull-aparts or resistance band external rotations if available. Shoulders take massive stress in submission defense.</p>
@@ -83,27 +83,27 @@ export default function WarmUpPage() {
             <li>Seated figure-four hip stretch — 60 seconds each side</li>
             <li>Supine spinal twist — 30 seconds each side</li>
             <li>Doorway chest stretch or band shoulder stretch</li>
-            <li>Child&apos;s pose for lower back</li>
+            <li>Child's pose for lower back</li>
           </ul>
-          <p className="text-zinc-300">Static stretching after training (when the muscles are warm) is when you make real flexibility gains. Don&apos;t skip it.</p>
+          <p className="text-zinc-300">Static stretching after training (when the muscles are warm) is when you make real flexibility gains. Don't skip it.</p>
         </div>
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Optimize Your Training with AI Coaching</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your warm-up routine and overall training structure. Tell the AI your injury history and training goals for a customized preparation protocol.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your warm-up routine and overall training structure. Tell the AI your injury history and training goals for a customized preparation protocol.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your Training Protocol →</Link>
         </div>
 
         <div>
-          <h2 className="text-3xl font-black mb-4">Why Class Warm-Ups Aren&apos;t Always Enough</h2>
-          <p className="text-zinc-300 mb-4">Your academy&apos;s class warm-up is designed for the general class, not for your specific needs. If you have chronic injuries, are returning from a layoff, or train first thing in the morning, a personal warm-up before class starts is worthwhile.</p>
+          <h2 className="text-3xl font-black mb-4">Why Class Warm-Ups Aren't Always Enough</h2>
+          <p className="text-zinc-300 mb-4">Your academy's class warm-up is designed for the general class, not for your specific needs. If you have chronic injuries, are returning from a layoff, or train first thing in the morning, a personal warm-up before class starts is worthwhile.</p>
           <p className="text-zinc-300">Arrive 10 minutes early. Do your personal warm-up. Then do the class warm-up. Your body will be significantly better prepared than your classmates, and your technique will show it from the first drill.</p>
         </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">Train smarter with AIBJJ&apos;s personalized coaching — from warm-up to competition prep.</p>
+        <p className="text-zinc-400 mb-6">Train smarter with AIBJJ's personalized coaching — from warm-up to competition prep.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

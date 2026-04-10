@@ -90,7 +90,7 @@ export default function AffiliatesPage() {
               href="#apply"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-xl text-lg font-bold transition-colors"
             >
-              Apply Now — It&apos;s Free →
+              Apply Now — It's Free →
             </a>
             <a
               href="#how-it-works"

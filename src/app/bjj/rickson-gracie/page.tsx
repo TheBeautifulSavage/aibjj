@@ -25,7 +25,7 @@ export default function Page() {
           ))}
         </div>
         <h1 className="text-4xl font-black sm:text-5xl">Rickson Gracie: The Greatest Fighter in Gracie History</h1>
-        <p className="mt-4 text-xl text-zinc-400">Rickson Gracie is widely considered the greatest fighter the Gracie family ever produced. His legendary 400-0 record (disputed but iconic), his vale tudo championship victories, and his documentary &apos;Choke&apos; made him the face of BJJ to an entire generation.</p>
+        <p className="mt-4 text-xl text-zinc-400">Rickson Gracie is widely considered the greatest fighter the Gracie family ever produced. His legendary 400-0 record (disputed but iconic), his vale tudo championship victories, and his documentary 'Choke' made him the face of BJJ to an entire generation.</p>
         <div className="mt-10 space-y-10 text-zinc-300 leading-relaxed">
 
           <section>
@@ -34,7 +34,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Vale Tudo and Competition Record</h2>
-            <p>Rickson competed in vale tudo — no-rules fighting — throughout the 1980s and 1990s, accumulating a record that he and his family claim is 400-0. While the exact number is disputed, what is not disputed is his dominance in Japan&apos;s Colosseum 2000 and Pride FC events, where he defeated top Japanese fighters and submission wrestlers. He was considered the elite standard of what BJJ could do in a real fight.</p>
+            <p>Rickson competed in vale tudo — no-rules fighting — throughout the 1980s and 1990s, accumulating a record that he and his family claim is 400-0. While the exact number is disputed, what is not disputed is his dominance in Japan's Colosseum 2000 and Pride FC events, where he defeated top Japanese fighters and submission wrestlers. He was considered the elite standard of what BJJ could do in a real fight.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">The Documentary Choke</h2>
@@ -42,7 +42,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Philosophy and Legacy</h2>
-            <p>Rickson&apos;s approach to BJJ emphasizes &apos;invisible jiu-jitsu&apos; — the subtle elements of connection, pressure, and timing that cannot be seen but can be felt. He teaches that technical perfection is the goal, not athletic performance. His Rickson Gracie Academy in Los Angeles and his ongoing teaching worldwide continue to influence practitioners who seek the deepest expression of the art.</p>
+            <p>Rickson's approach to BJJ emphasizes 'invisible jiu-jitsu' — the subtle elements of connection, pressure, and timing that cannot be seen but can be felt. He teaches that technical perfection is the goal, not athletic performance. His Rickson Gracie Academy in Los Angeles and his ongoing teaching worldwide continue to influence practitioners who seek the deepest expression of the art.</p>
           </section>
         </div>
         <div className="mt-16 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">

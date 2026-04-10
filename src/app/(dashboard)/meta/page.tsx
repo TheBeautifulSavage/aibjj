@@ -226,7 +226,7 @@ export default function MetaBreakdownPage() {
             <h1 className="text-2xl font-black text-zinc-100">BJJ Meta Breakdown</h1>
           </div>
           <p className="text-zinc-400 text-sm">
-            What&apos;s actually winning in competition — updated {metaData.lastUpdated}
+            What's actually winning in competition — updated {metaData.lastUpdated}
           </p>
         </div>
         <Link
@@ -422,7 +422,7 @@ export default function MetaBreakdownPage() {
             </ResponsiveContainer>
             <div className="mt-3 p-3 rounded-lg bg-red-950/30 border border-red-900/40">
               <p className="text-sm text-red-300">
-                <strong>Key takeaway:</strong> Heel hooks grew from 8% → 36% of No-Gi submissions at peak — driven by the Danaher system and Gordon Ryan&apos;s ADCC dominance. Defense has since matured, bringing rates back to 30%.
+                <strong>Key takeaway:</strong> Heel hooks grew from 8% → 36% of No-Gi submissions at peak — driven by the Danaher system and Gordon Ryan's ADCC dominance. Defense has since matured, bringing rates back to 30%.
               </p>
             </div>
           </CardContent>

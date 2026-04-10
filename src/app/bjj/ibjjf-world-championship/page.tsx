@@ -38,7 +38,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">All-Time Records</h2>
-            <p>Marcus Buchecha Almeida holds the record with 13 world championship gold medals. Roger Gracie won 10. Leandro Lo won 8. Bernardo Faria and Lucas Lepri each won 6. On the women&apos;s side, Beatriz Mesquita has 8 gold medals. These records may never be broken as the depth of international competition increases every year.</p>
+            <p>Marcus Buchecha Almeida holds the record with 13 world championship gold medals. Roger Gracie won 10. Leandro Lo won 8. Bernardo Faria and Lucas Lepri each won 6. On the women's side, Beatriz Mesquita has 8 gold medals. These records may never be broken as the depth of international competition increases every year.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">What It Takes to Win</h2>

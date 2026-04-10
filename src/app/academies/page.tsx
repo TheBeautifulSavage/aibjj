@@ -162,7 +162,7 @@ export default async function AcademiesPage({
             AIBJJ maintains a comprehensive global directory of Brazilian jiu-jitsu academies,
             including Gracie Jiu-Jitsu schools, grappling gyms, and submission wrestling clubs.
             Each listing includes ratings, reviews, location, and contact information sourced from
-            Google Maps. Whether you&apos;re a beginner looking for your first BJJ class or a
+            Google Maps. Whether you're a beginner looking for your first BJJ class or a
             traveling competitor, use this directory to find the best academies near you.
           </p>
         </div>

@@ -37,7 +37,7 @@ export default function BackControlPage() {
         <div>
           <h2 className="text-3xl font-black mb-4">Taking the Back: Primary Entries</h2>
           <h3 className="text-xl font-bold mb-2 text-red-400">From Turtle Position</h3>
-          <p className="text-zinc-300 mb-4">The turtle is the most common back take entry. Approach from the side, insert one hook, establish seatbelt, then insert the second hook. Never cross the opponent&apos;s centerline before establishing seatbelt — they&apos;ll roll you over.</p>
+          <p className="text-zinc-300 mb-4">The turtle is the most common back take entry. Approach from the side, insert one hook, establish seatbelt, then insert the second hook. Never cross the opponent's centerline before establishing seatbelt — they'll roll you over.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">From Guard (Back Take)</h3>
           <p className="text-zinc-300 mb-4">Half guard underhook back takes, DLR back takes, and K-guard back takes all lead to back control. The back take from guard often happens faster than the opponent can react.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">From Mount Escape</h3>
@@ -60,7 +60,7 @@ export default function BackControlPage() {
         <div>
           <h2 className="text-3xl font-black mb-4">Bow and Arrow Choke (Gi)</h2>
           <p className="text-zinc-300 mb-4">The bow and arrow choke is the most powerful gi choke from back control. Grip the collar deep with the top hand (choking hand); reach down and grab the pants at the knee with the other hand. Pull the collar back while extending the pants grip — the choke is devastating and finishes quickly.</p>
-          <p className="text-zinc-300 mb-4">The bow and arrow works because you use your entire body as a lever — it&apos;s not just arm strength. Even a small practitioner can finish much larger opponents with this choke.</p>
+          <p className="text-zinc-300 mb-4">The bow and arrow works because you use your entire body as a lever — it's not just arm strength. Even a small practitioner can finish much larger opponents with this choke.</p>
         </div>
 
         <div>
@@ -87,14 +87,14 @@ export default function BackControlPage() {
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Build Your Back Control Game</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on taking the back and finishing from back control. The AI coach builds a complete back attack system for your game.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on taking the back and finishing from back control. The AI coach builds a complete back attack system for your game.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Start Building Your Back Game →</Link>
         </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">Develop elite back control with AIBJJ&apos;s personalized AI coaching system.</p>
+        <p className="text-zinc-400 mb-6">Develop elite back control with AIBJJ's personalized AI coaching system.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

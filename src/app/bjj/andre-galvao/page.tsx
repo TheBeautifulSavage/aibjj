@@ -30,7 +30,7 @@ export default function Page() {
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Career Overview</h2>
-            <p>Andre Galvao was born in 1984 in Sao Paulo, Brazil. He trained under Fabio Gurgel at Alliance BJJ and became a world champion before founding Atos Jiu-Jitsu in San Diego. Galvao&apos;s technical evolution — from a primarily gi specialist to an all-around submission grappler — mirrors the evolution of the sport itself.</p>
+            <p>Andre Galvao was born in 1984 in Sao Paulo, Brazil. He trained under Fabio Gurgel at Alliance BJJ and became a world champion before founding Atos Jiu-Jitsu in San Diego. Galvao's technical evolution — from a primarily gi specialist to an all-around submission grappler — mirrors the evolution of the sport itself.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">ADCC Championships</h2>
@@ -42,7 +42,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Rivalry with Gordon Ryan</h2>
-            <p>Galvao&apos;s late-career rivalry with Gordon Ryan became one of the most talked-about storylines in submission grappling. The two competed at ADCC 2022 in a highly anticipated match. Regardless of outcome, their rivalry demonstrated that Galvao remained competitive at the elite level well into his late 30s — a testament to his technical foundation.</p>
+            <p>Galvao's late-career rivalry with Gordon Ryan became one of the most talked-about storylines in submission grappling. The two competed at ADCC 2022 in a highly anticipated match. Regardless of outcome, their rivalry demonstrated that Galvao remained competitive at the elite level well into his late 30s — a testament to his technical foundation.</p>
           </section>
         </div>
         <div className="mt-16 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">

@@ -20,7 +20,7 @@ export default function Page() {
           <section><h2 className="text-2xl font-bold text-white mb-3">Training Culture</h2><p>Alliance academies emphasize drilling, positional training, and regular competition. The training culture is serious and competitive without being exclusionary — recreational practitioners train alongside competitors. The technical standards are exceptionally high, and Alliance black belts are among the most sought-after instructors globally.</p></section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Legacy</h2>
-            <p>Alliance&apos;s influence on BJJ technique and culture extends far beyond its direct membership. The competitive standard they set has raised the level of the entire sport. Their approach to technical development — systematic, competition-tested, demanding but respectful — has been adopted and adapted by teams worldwide.</p>
+            <p>Alliance's influence on BJJ technique and culture extends far beyond its direct membership. The competitive standard they set has raised the level of the entire sport. Their approach to technical development — systematic, competition-tested, demanding but respectful — has been adopted and adapted by teams worldwide.</p>
           </section>
         </div>
         <div className="mt-16 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">

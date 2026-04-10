@@ -171,7 +171,7 @@ export default function SwitchFromBJJFanaticsPage() {
             <p className="text-gray-300 text-lg mb-2">AIBJJ advantage per year</p>
             <p className="text-5xl sm:text-6xl font-black text-green-400">+$45,000</p>
             <p className="text-gray-400 mt-3">
-              That&apos;s an extra $45,000 in your pocket every year — just by switching platforms.
+              That's an extra $45,000 in your pocket every year — just by switching platforms.
             </p>
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function SwitchFromBJJFanaticsPage() {
             Why Instructors Are Leaving BJJ Fanatics
           </h2>
           <p className="text-gray-400 text-center mb-12">
-            These aren&apos;t minor complaints. They&apos;re real business problems.
+            These aren't minor complaints. They're real business problems.
           </p>
           <div className="grid sm:grid-cols-2 gap-6">
             {PAIN_POINTS.map((p) => (

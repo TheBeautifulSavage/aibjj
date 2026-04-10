@@ -25,7 +25,7 @@ export default function BJJSeattlePage() {
           <p className="text-sm font-semibold uppercase tracking-widest text-red-500 mb-3">BJJ in Washington State</p>
           <h1 className="text-4xl font-black text-white sm:text-5xl mb-6">BJJ in Seattle: Find the Best Jiu-Jitsu Gyms & Training</h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            Seattle has emerged as one of the Pacific Northwest&apos;s premier BJJ cities. The tech-heavy, fitness-oriented culture of the Puget Sound region has created a strong market for high-quality grappling instruction.
+            Seattle has emerged as one of the Pacific Northwest's premier BJJ cities. The tech-heavy, fitness-oriented culture of the Puget Sound region has created a strong market for high-quality grappling instruction.
           </p>
         </div>
 
@@ -39,13 +39,13 @@ export default function BJJSeattlePage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">The Seattle BJJ Scene</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Seattle&apos;s BJJ community has grown substantially over the past decade, fueled by the city&apos;s tech industry workforce — well-paid professionals who invest seriously in training. The result is a market that supports high-quality instruction at premium price points, and gyms have responded by bringing in excellent coaches.
+              Seattle's BJJ community has grown substantially over the past decade, fueled by the city's tech industry workforce — well-paid professionals who invest seriously in training. The result is a market that supports high-quality instruction at premium price points, and gyms have responded by bringing in excellent coaches.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
               The Pacific Northwest competition scene is active. Seattle-area athletes compete regularly at PNW regional events and travel to IBJJF events in Portland, San Jose, and beyond. Seattle has produced some notable grapplers and the training quality at top gyms is genuinely high.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              Seattle&apos;s rain is a factor for consistency — gray skies and wet commutes can make it harder to maintain motivation for evening classes. The gyms that thrive here tend to build strong communities with dedicated training cultures that keep people coming back even on dark January evenings.
+              Seattle's rain is a factor for consistency — gray skies and wet commutes can make it harder to maintain motivation for evening classes. The gyms that thrive here tend to build strong communities with dedicated training cultures that keep people coming back even on dark January evenings.
             </p>
           </section>
 
@@ -86,7 +86,7 @@ export default function BJJSeattlePage() {
 
           <section className="p-8 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Train Smarter in Seattle</h2>
-            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">AIBJJ&apos;s AI coach, technique library, and training journal supplement your in-person training — even on rainy Seattle days.</p>
+            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">AIBJJ's AI coach, technique library, and training journal supplement your in-person training — even on rainy Seattle days.</p>
             <Link href="/auth/signup" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">Start with AIBJJ Free →</Link>
           </section>
         </div>

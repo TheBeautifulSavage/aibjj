@@ -17,7 +17,7 @@ export default function BJJForMMAPage() {
       </nav>
 
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ for MMA: What Translates & What Doesn&apos;t</h1>
+        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ for MMA: What Translates & What Doesn't</h1>
         <p className="text-xl text-zinc-400 mb-8">BJJ was born in MMA. The Gracies proved its effectiveness in the UFC, and submission grappling remains the primary finishing art in professional fighting. But MMA BJJ and sport BJJ are not the same — understanding the differences makes you dangerous in both.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>
@@ -27,13 +27,13 @@ export default function BJJForMMAPage() {
           <h2 className="text-3xl font-black mb-4">The BJJ Foundation of MMA</h2>
           <p className="text-zinc-300 mb-4">Brazilian Jiu-Jitsu changed combat sports permanently. Royce Gracie demonstrated in the early UFCs that a skilled grappler could defeat strikers, wrestlers, and other martial artists — not through superior athleticism, but through superior ground fighting knowledge.</p>
           <p className="text-zinc-300 mb-4">Today, every elite MMA fighter trains grappling. BJJ provides the submission finishing skills; wrestling provides the takedown and top pressure; both together create the complete ground game required to compete at the highest levels.</p>
-          <p className="text-zinc-300">The question isn&apos;t whether BJJ matters for MMA — it clearly does. The question is which parts of BJJ transfer directly and which require modification.</p>
+          <p className="text-zinc-300">The question isn't whether BJJ matters for MMA — it clearly does. The question is which parts of BJJ transfer directly and which require modification.</p>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">What Translates Directly</h2>
           <h3 className="text-xl font-bold mb-2 text-red-400">Rear Naked Choke</h3>
-          <p className="text-zinc-300 mb-4">The RNC is the single most common finish in MMA history. Back control with hooks and the rear naked choke translates identically from BJJ — the mechanics don&apos;t change. This is why taking the back is so valuable in MMA.</p>
+          <p className="text-zinc-300 mb-4">The RNC is the single most common finish in MMA history. Back control with hooks and the rear naked choke translates identically from BJJ — the mechanics don't change. This is why taking the back is so valuable in MMA.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Armbar</h3>
           <p className="text-zinc-300 mb-4">The armbar translates well, particularly from top positions. Mount armbars, guard armbars (when used selectively), and transition armbars all appear in MMA. The mechanics are identical to sport BJJ.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Triangle Choke</h3>
@@ -50,7 +50,7 @@ export default function BJJForMMAPage() {
           <p className="text-zinc-300 mb-4">The guard game changes dramatically in MMA because your opponent can punch you from inside your guard. The traditional sport BJJ guard — where you work at a relaxed pace to set up armbars and triangles — gets you hit in the face in MMA.</p>
           <p className="text-zinc-300 mb-4">MMA guard adjustments:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
-            <li>Clinch the opponent&apos;s arms to prevent striking</li>
+            <li>Clinch the opponent's arms to prevent striking</li>
             <li>Create tight body control with overhooks</li>
             <li>Get back to your feet when the guard is not immediately threatening</li>
             <li>Rubber guard (leg on shoulder) can prevent posturing and create submission setups</li>
@@ -63,9 +63,9 @@ export default function BJJForMMAPage() {
         </div>
 
         <div>
-          <h2 className="text-3xl font-black mb-4">What Doesn&apos;t Translate Well</h2>
+          <h2 className="text-3xl font-black mb-4">What Doesn't Translate Well</h2>
           <h3 className="text-xl font-bold mb-2 text-red-400">Open Guard Games</h3>
-          <p className="text-zinc-300 mb-4">Spider guard, lasso guard, DLR — these sport BJJ positions don&apos;t work in MMA. The grips don&apos;t exist (no gi), and the open guard positions expose you to strikes. The Worm Guard and other lapel-dependent guards are purely sport techniques.</p>
+          <p className="text-zinc-300 mb-4">Spider guard, lasso guard, DLR — these sport BJJ positions don't work in MMA. The grips don't exist (no gi), and the open guard positions expose you to strikes. The Worm Guard and other lapel-dependent guards are purely sport techniques.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Berimbolo and Inverted Guards</h3>
           <p className="text-zinc-300 mb-4">Inverting and rolling in MMA puts your back to your opponent with your head down — a position where you can be kneed and punched. These guard positions work in sport BJJ but are not applicable to MMA.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Gi-Specific Chokes</h3>
@@ -77,7 +77,7 @@ export default function BJJForMMAPage() {
           <p className="text-zinc-300 mb-4">If your goal is MMA performance, structure your BJJ training accordingly:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Train primarily no-gi — MMA is no-gi grappling</li>
-            <li>Add &quot;BJJ with strikes&quot; sparring — simulate punches (touch, don&apos;t hit) from positions</li>
+            <li>Add "BJJ with strikes" sparring — simulate punches (touch, don't hit) from positions</li>
             <li>Prioritize back control, rear naked choke, and guillotine above all else</li>
             <li>Develop guard that creates immediate submission threats, not positional control</li>
             <li>Add wrestling — takedowns and top pressure are equally important as submissions</li>
@@ -87,20 +87,20 @@ export default function BJJForMMAPage() {
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Build Your MMA-Specific BJJ Game</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your BJJ for MMA. Tell the AI your current BJJ background and MMA goals — it creates a curriculum specifically designed for mixed martial arts application.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your BJJ for MMA. Tell the AI your current BJJ background and MMA goals — it creates a curriculum specifically designed for mixed martial arts application.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your MMA BJJ Plan →</Link>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Historical Evidence: BJJ in MMA</h2>
-          <p className="text-zinc-300 mb-4">The history of MMA shows BJJ&apos;s centrality: nearly every UFC champion has strong BJJ credentials. Demian Maia, Anderson Silva, BJ Penn, Fabricio Werdum, Ronaldo Souza — all black belts who used their grappling to finish fights that their opponents thought they could survive.</p>
-          <p className="text-zinc-300">The pattern is consistent: BJJ black belts in MMA don&apos;t lose to grappling. They may lose to striking, but their ground game is always elite. This reflects the depth of BJJ training — a decade of grappling leaves a signature on how you move on the ground that doesn&apos;t disappear under pressure.</p>
+          <p className="text-zinc-300 mb-4">The history of MMA shows BJJ's centrality: nearly every UFC champion has strong BJJ credentials. Demian Maia, Anderson Silva, BJ Penn, Fabricio Werdum, Ronaldo Souza — all black belts who used their grappling to finish fights that their opponents thought they could survive.</p>
+          <p className="text-zinc-300">The pattern is consistent: BJJ black belts in MMA don't lose to grappling. They may lose to striking, but their ground game is always elite. This reflects the depth of BJJ training — a decade of grappling leaves a signature on how you move on the ground that doesn't disappear under pressure.</p>
         </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">Develop BJJ that works everywhere — in the gym, in competition, and in the cage — with AIBJJ&apos;s AI coaching.</p>
+        <p className="text-zinc-400 mb-6">Develop BJJ that works everywhere — in the gym, in competition, and in the cage — with AIBJJ's AI coaching.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

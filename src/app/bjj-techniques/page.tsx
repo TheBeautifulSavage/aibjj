@@ -36,14 +36,14 @@ export default function BJJTechniquesPage() {
             BJJ Techniques: Everything You Need to Know
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            Brazilian Jiu-Jitsu is built on a library of thousands of interconnected techniques. Whether you&apos;re a white belt learning your first armbar or a brown belt refining your leg lock entries, understanding technique systematically is the fastest path to progress.
+            Brazilian Jiu-Jitsu is built on a library of thousands of interconnected techniques. Whether you're a white belt learning your first armbar or a brown belt refining your leg lock entries, understanding technique systematically is the fastest path to progress.
           </p>
         </div>
 
         {/* CTA Banner */}
         <div className="mb-12 p-6 rounded-xl bg-red-950/30 border border-red-900/40">
           <p className="font-semibold text-white mb-1">🤖 Learn techniques with your AI Coach</p>
-          <p className="text-zinc-400 text-sm mb-4">AIBJJ&apos;s AI coach knows over 10,000 BJJ techniques. Ask it anything — from how to set up a triangle to how to defend a heel hook.</p>
+          <p className="text-zinc-400 text-sm mb-4">AIBJJ's AI coach knows over 10,000 BJJ techniques. Ask it anything — from how to set up a triangle to how to defend a heel hook.</p>
           <Link href="/auth/signup" className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors">
             Start Free — No Credit Card →
           </Link>
@@ -80,7 +80,7 @@ export default function BJJTechniquesPage() {
 
             <h3 className="text-xl font-semibold text-white mb-3">3. Guard Passing</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Guard passing is the art of getting past your opponent&apos;s legs to reach side control, mount, or back position. There are two fundamental philosophies — pressure passing and speed/movement passing — and elite grapplers develop proficiency in both.
+              Guard passing is the art of getting past your opponent's legs to reach side control, mount, or back position. There are two fundamental philosophies — pressure passing and speed/movement passing — and elite grapplers develop proficiency in both.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
               Essential guard passes: torreando, leg drag, over-under, knee slice, smash pass, headquarters passing, and stack pass. The key to effective guard passing is understanding the connection between breaking grips, controlling the hips, and establishing a passing line before committing.
@@ -91,7 +91,7 @@ export default function BJJTechniquesPage() {
               Submissions are the endgame of BJJ. They fall into several categories:
             </p>
             <ul className="space-y-2 text-zinc-400 list-disc pl-5 mb-4">
-              <li><strong className="text-zinc-200">Chokes:</strong> Rear naked choke (RNC), guillotine, triangle choke, arm triangle (anaconda, D&apos;arce), collar chokes, loop choke.</li>
+              <li><strong className="text-zinc-200">Chokes:</strong> Rear naked choke (RNC), guillotine, triangle choke, arm triangle (anaconda, D'arce), collar chokes, loop choke.</li>
               <li><strong className="text-zinc-200">Arm locks:</strong> Armbar, kimura, Americana, omoplata, wristlock, bicep slicer.</li>
               <li><strong className="text-zinc-200">Leg locks:</strong> Straight ankle lock, heel hook (inside and outside), kneebar, calf slicer. The fastest-growing area of modern BJJ.</li>
               <li><strong className="text-zinc-200">Spine/neck locks:</strong> Neck cranks and spinal compression locks (often restricted in competition).</li>
@@ -102,17 +102,17 @@ export default function BJJTechniquesPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">How to Learn BJJ Techniques Effectively</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Raw exposure to techniques isn&apos;t enough — learning methodology matters enormously. Here&apos;s what 20+ years on the mats and thousands of students has taught us:
+              Raw exposure to techniques isn't enough — learning methodology matters enormously. Here's what 20+ years on the mats and thousands of students has taught us:
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-3">Learn in Chains, Not Isolation</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Never learn a technique in isolation. Every technique is part of a chain — an &ldquo;if/then&rdquo; decision tree. If your armbar gets defended, you should already know three follow-ups (triangle, omoplata, back take). Learning technique chains turns individual moves into a system.
+              Never learn a technique in isolation. Every technique is part of a chain — an "if/then" decision tree. If your armbar gets defended, you should already know three follow-ups (triangle, omoplata, back take). Learning technique chains turns individual moves into a system.
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-3">Understand Mechanics, Not Just Motion</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              The difference between a white belt and a black belt performing the same technique isn&apos;t the motion — it&apos;s the understanding of <em>why</em> the technique works. Hip position, base, leverage, timing, and weight distribution are the underlying mechanics that make every technique function. Master these concepts and technique acquisition accelerates dramatically.
+              The difference between a white belt and a black belt performing the same technique isn't the motion — it's the understanding of <em>why</em> the technique works. Hip position, base, leverage, timing, and weight distribution are the underlying mechanics that make every technique function. Master these concepts and technique acquisition accelerates dramatically.
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-3">Drill Deliberately</h3>
@@ -122,7 +122,7 @@ export default function BJJTechniquesPage() {
 
             <h3 className="text-xl font-semibold text-white mb-3">Test Under Pressure</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Techniques must be pressure-tested in sparring. Rolling against resisting training partners exposes the gaps — the parts of the technique you don&apos;t actually understand yet. Embrace the tap. Every submission you take is a lesson.
+              Techniques must be pressure-tested in sparring. Rolling against resisting training partners exposes the gaps — the parts of the technique you don't actually understand yet. Embrace the tap. Every submission you take is a lesson.
             </p>
           </section>
 
@@ -130,13 +130,13 @@ export default function BJJTechniquesPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">Building a Technical Game Plan</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              The most efficient BJJ practitioners don&apos;t know every technique — they know their techniques deeply. A focused game plan built around 3-5 positions with complete chains from each position is more valuable than superficial knowledge of 500 moves.
+              The most efficient BJJ practitioners don't know every technique — they know their techniques deeply. A focused game plan built around 3-5 positions with complete chains from each position is more valuable than superficial knowledge of 500 moves.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
               Your game plan should include: a preferred takedown or guard pull entry, a primary guard system with 2-3 sweeps and 2-3 submissions, a preferred top position with at least one guard pass and one submission, and a back attack system.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              This is exactly what AIBJJ&apos;s Game Plan Builder was designed for — helping you map out your positions, identify gaps, and build a coherent system with AI guidance.
+              This is exactly what AIBJJ's Game Plan Builder was designed for — helping you map out your positions, identify gaps, and build a coherent system with AI guidance.
             </p>
           </section>
 
@@ -146,7 +146,7 @@ export default function BJJTechniquesPage() {
 
             <h3 className="text-xl font-semibold text-white mb-2">White Belt</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Survival first. Learn to escape bad positions (mount escape, side control escape, back defense) before learning attacks. Master closed guard defense and basic guard retention. Tap early and tap often — there&apos;s no shame in survival mode at white belt.
+              Survival first. Learn to escape bad positions (mount escape, side control escape, back defense) before learning attacks. Master closed guard defense and basic guard retention. Tap early and tap often — there's no shame in survival mode at white belt.
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-2">Blue Belt</h3>
@@ -156,12 +156,12 @@ export default function BJJTechniquesPage() {
 
             <h3 className="text-xl font-semibold text-white mb-2">Purple Belt</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Deepen your A-game and start filling gaps. If you&apos;re a guard player, develop your top game. Learn leg locks. Start competing if you haven&apos;t. Purple belt is when most grapplers find their identity — embrace it.
+              Deepen your A-game and start filling gaps. If you're a guard player, develop your top game. Learn leg locks. Start competing if you haven't. Purple belt is when most grapplers find their identity — embrace it.
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-2">Brown & Black Belt</h3>
             <p className="text-zinc-400 leading-relaxed">
-              Refinement and connection. Brown and black belts aren&apos;t learning many new techniques — they&apos;re deepening their understanding of what they already know, finding connections between positions, and developing the intuition to read opponents. Teaching also becomes a major tool for learning.
+              Refinement and connection. Brown and black belts aren't learning many new techniques — they're deepening their understanding of what they already know, finding connections between positions, and developing the intuition to read opponents. Teaching also becomes a major tool for learning.
             </p>
           </section>
 
@@ -169,7 +169,7 @@ export default function BJJTechniquesPage() {
           <section className="p-8 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Train with an AI Coach That Knows BJJ</h2>
             <p className="text-zinc-400 mb-6 max-w-xl mx-auto">
-              AIBJJ&apos;s AI coach understands positions, technique chains, and game plans. Ask it anything — &ldquo;How do I defend the heel hook?&rdquo; &ldquo;What are the best sweeps from butterfly guard?&rdquo; &ldquo;How do I pass the De La Riva?&rdquo;
+              AIBJJ's AI coach understands positions, technique chains, and game plans. Ask it anything — "How do I defend the heel hook?" "What are the best sweeps from butterfly guard?" "How do I pass the De La Riva?"
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/auth/signup" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">

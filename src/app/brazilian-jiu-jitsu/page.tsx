@@ -103,7 +103,7 @@ export default function BrazilianJiuJitsuPage() {
           <span className="text-red-600">The Complete Guide</span>
         </h1>
         <p className="mt-6 text-xl text-zinc-400 leading-relaxed">
-          Everything you need to know about the gentle art — from its origins in Japan to the cutting edge of modern sport BJJ. Whether you&apos;re stepping on the mats for the first time or competing at the world level, this guide covers it all.
+          Everything you need to know about the gentle art — from its origins in Japan to the cutting edge of modern sport BJJ. Whether you're stepping on the mats for the first time or competing at the world level, this guide covers it all.
         </p>
 
         {/* Table of Contents */}
@@ -142,7 +142,7 @@ export default function BrazilianJiuJitsuPage() {
           <h2 className="text-3xl font-black text-white mb-6 border-l-4 border-red-600 pl-4">What Is Brazilian Jiu-Jitsu?</h2>
           <div className="space-y-4 text-zinc-300 leading-relaxed">
             <p>Brazilian jiu-jitsu (BJJ) is a ground-based martial art, combat sport, and self-defense system that centers on grappling — specifically controlling and submitting an opponent through joint locks, chokes, and positional dominance. Unlike striking arts, BJJ resolves conflict by taking fights to the ground and using technique and leverage to neutralize opponents, regardless of size.</p>
-            <p>The foundational premise of BJJ is that a smaller, weaker person can successfully defend against a larger, stronger attacker by using proper technique and leverage. This principle — born in the Gracie family&apos;s challenge matches and refined over a century of competition — has been proven repeatedly across every level of martial arts and MMA competition.</p>
+            <p>The foundational premise of BJJ is that a smaller, weaker person can successfully defend against a larger, stronger attacker by using proper technique and leverage. This principle — born in the Gracie family's challenge matches and refined over a century of competition — has been proven repeatedly across every level of martial arts and MMA competition.</p>
             <p>BJJ is practiced in two primary forms: gi (using the traditional kimono for gripping) and no-gi (in shorts and rash guards, emphasizing body control and leg attacks). Both share the same positional hierarchy — guard, side control, mount, back control — but differ significantly in gripping strategy and technique emphasis.</p>
             <div className="grid grid-cols-2 gap-4 mt-6 sm:grid-cols-4">
               {[["10-15 yrs", "Average to Black Belt"], ["192+", "Countries with BJJ"], ["2M+", "Estimated Practitioners"], ["1993", "UFC 1 Year (BJJ Went Global)"]].map(([stat, label]) => (
@@ -159,10 +159,10 @@ export default function BrazilianJiuJitsuPage() {
         <section id="history">
           <h2 className="text-3xl font-black text-white mb-6 border-l-4 border-red-600 pl-4">History and Origins of BJJ</h2>
           <div className="space-y-4 text-zinc-300 leading-relaxed">
-            <p>Brazilian jiu-jitsu traces its lineage to Japanese judo (Kodokan Judo) through a chain of transmission that is both well-documented and deeply contested within the martial arts world. The story begins with Mitsuyo Maeda, a top student of Judo founder Jigoro Kano, who traveled the world from 1904 onward as part of a campaign to demonstrate judo&apos;s effectiveness.</p>
-            <p>Maeda arrived in Brazil in 1914 and eventually settled in Belém, Pará. There, he befriended Gastão Gracie — a prominent local businessman — and agreed to teach his son Carlos Gracie. Carlos trained diligently, absorbed Maeda&apos;s ground fighting methods, and passed the knowledge to his brothers, most significantly to Hélio Gracie.</p>
-            <p>Hélio was a frail child who couldn&apos;t practice the more physically demanding judo throws. Instead, he refined the ground fighting elements — emphasizing leverage over strength, developing guard as an offensive position, and systematically testing techniques through open challenge matches. The result was a distinct martial art that Hélio and Carlos would spend decades refining and proving against all comers in the famous Gracie Challenge.</p>
-            <p>BJJ exploded onto the global stage on November 12, 1993, when Royce Gracie — a relatively slim 175-pound fighter — entered the first Ultimate Fighting Championship and submitted every opponent he faced, including much larger wrestlers, boxers, and kickboxers. The message was undeniable: ground fighting was the missing piece of almost every martial artist&apos;s training, and BJJ was its most refined expression.</p>
+            <p>Brazilian jiu-jitsu traces its lineage to Japanese judo (Kodokan Judo) through a chain of transmission that is both well-documented and deeply contested within the martial arts world. The story begins with Mitsuyo Maeda, a top student of Judo founder Jigoro Kano, who traveled the world from 1904 onward as part of a campaign to demonstrate judo's effectiveness.</p>
+            <p>Maeda arrived in Brazil in 1914 and eventually settled in Belém, Pará. There, he befriended Gastão Gracie — a prominent local businessman — and agreed to teach his son Carlos Gracie. Carlos trained diligently, absorbed Maeda's ground fighting methods, and passed the knowledge to his brothers, most significantly to Hélio Gracie.</p>
+            <p>Hélio was a frail child who couldn't practice the more physically demanding judo throws. Instead, he refined the ground fighting elements — emphasizing leverage over strength, developing guard as an offensive position, and systematically testing techniques through open challenge matches. The result was a distinct martial art that Hélio and Carlos would spend decades refining and proving against all comers in the famous Gracie Challenge.</p>
+            <p>BJJ exploded onto the global stage on November 12, 1993, when Royce Gracie — a relatively slim 175-pound fighter — entered the first Ultimate Fighting Championship and submitted every opponent he faced, including much larger wrestlers, boxers, and kickboxers. The message was undeniable: ground fighting was the missing piece of almost every martial artist's training, and BJJ was its most refined expression.</p>
           </div>
           <div className="mt-6 rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 text-sm text-zinc-400">
             <strong className="text-zinc-200">Key Lineage:</strong> Jigoro Kano → Mitsuyo Maeda → Carlos Gracie → Hélio Gracie → Rickson, Royce, Relson Gracie → modern BJJ
@@ -176,9 +176,9 @@ export default function BrazilianJiuJitsuPage() {
             {[
               ["🧠", "Mental Toughness", "BJJ constantly puts you in uncomfortable positions and forces you to stay calm and problem-solve. There is no better classroom for composure under pressure."],
               ["💪", "Full-Body Fitness", "A one-hour BJJ session burns 500-700 calories and works every muscle group. The fitness gains are functional — not just aesthetic."],
-              ["🛡️", "Effective Self-Defense", "BJJ&apos;s ground control and submission techniques are among the most field-tested self-defense methods in existence, validated across thousands of real altercations and MMA fights."],
+              ["🛡️", "Effective Self-Defense", "BJJ's ground control and submission techniques are among the most field-tested self-defense methods in existence, validated across thousands of real altercations and MMA fights."],
               ["🤝", "Community", "The BJJ community is uniquely tight-knit. The shared suffering of training creates bonds that last a lifetime. Most practitioners describe their gym as family."],
-              ["⏳", "Lifelong Practice", "BJJ can be practiced well into old age. Unlike striking arts, the ground game doesn&apos;t rely on explosive speed — technique and timing developed over decades remain valuable at 60."],
+              ["⏳", "Lifelong Practice", "BJJ can be practiced well into old age. Unlike striking arts, the ground game doesn't rely on explosive speed — technique and timing developed over decades remain valuable at 60."],
               ["🏆", "Competition Pathway", "From local invitationals to IBJJF Worlds and ADCC, BJJ offers a full competitive pathway for those who want to test themselves."],
               ["🧩", "Problem Solving", "Every roll is a chess match — reading your opponent, setting traps, chaining techniques. BJJ is the most mentally stimulating fitness activity most people ever discover."],
               ["📈", "Measurable Progress", "The belt system, improved rolling performance, and specific technical milestones give clear, tangible markers of growth that most fitness pursuits lack."],
@@ -204,7 +204,7 @@ export default function BrazilianJiuJitsuPage() {
           </div>
           <div className="mt-6 space-y-3">
             {[
-              ["bg-gray-100", "text-gray-900", "White Belt", "The beginning. Survival is the goal. Focus on escapes, basic positions, and not getting hurt. Most tap a lot — that&apos;s normal and how you learn.", "1-2 years"],
+              ["bg-gray-100", "text-gray-900", "White Belt", "The beginning. Survival is the goal. Focus on escapes, basic positions, and not getting hurt. Most tap a lot — that's normal and how you learn.", "1-2 years"],
               ["bg-blue-500", "text-white", "Blue Belt", "Fundamentals are solid. You have a basic guard, know core submissions, and can hold your own with other beginners. The largest attrition point in BJJ.", "2-4 years"],
               ["bg-purple-500", "text-white", "Purple Belt", "The technical period. You develop a game plan and identity. Purple belts are dangerous and creative. Often qualified to teach fundamentals.", "3-5 years"],
               ["bg-amber-700", "text-white", "Brown Belt", "Refining the game. Brown belts iron out weaknesses and develop competition-level technique. One step from the pinnacle.", "2-3 years"],
@@ -231,7 +231,7 @@ export default function BrazilianJiuJitsuPage() {
         <section id="techniques">
           <h2 className="text-3xl font-black text-white mb-6 border-l-4 border-red-600 pl-4">Core BJJ Techniques and Positions</h2>
           <div className="space-y-4 text-zinc-300 leading-relaxed">
-            <p>BJJ&apos;s technical depth is virtually unlimited — practitioners spend entire careers mastering one position. But the architecture of BJJ is built on a clear positional hierarchy and a core set of positions and submissions that every practitioner must understand.</p>
+            <p>BJJ's technical depth is virtually unlimited — practitioners spend entire careers mastering one position. But the architecture of BJJ is built on a clear positional hierarchy and a core set of positions and submissions that every practitioner must understand.</p>
           </div>
 
           <h3 className="text-xl font-bold text-white mt-8 mb-4">The Positional Hierarchy</h3>
@@ -260,8 +260,8 @@ export default function BrazilianJiuJitsuPage() {
               ["/bjj-armbar", "Armbar"], ["/bjj-triangle-choke", "Triangle Choke"],
               ["/bjj-rear-naked-choke", "Rear Naked Choke"], ["/bjj-kimura", "Kimura"],
               ["/bjj-guillotine", "Guillotine"], ["/bjj-omoplata", "Omoplata"],
-              ["/bjj-heel-hook", "Heel Hook"], ["/bjj-darce-choke", "D&apos;Arce Choke"],
-              ["/bjj-bow-and-arrow-choke", "Bow &amp; Arrow"], ["/bjj-leg-locks", "Leg Locks"],
+              ["/bjj-heel-hook", "Heel Hook"], ["/bjj-darce-choke", "D'Arce Choke"],
+              ["/bjj-bow-and-arrow-choke", "Bow & Arrow"], ["/bjj-leg-locks", "Leg Locks"],
             ].map(([href, name]) => (
               <Link key={href} href={href} className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-300 hover:border-red-600/50 hover:text-white transition-colors" dangerouslySetInnerHTML={{ __html: name }} />
             ))}
@@ -272,7 +272,7 @@ export default function BrazilianJiuJitsuPage() {
         <section id="gi-vs-nogi">
           <h2 className="text-3xl font-black text-white mb-6 border-l-4 border-red-600 pl-4">Gi vs No-Gi BJJ</h2>
           <div className="space-y-4 text-zinc-300 leading-relaxed">
-            <p>The gi (kimono) vs no-gi debate is one of BJJ&apos;s most enduring conversations. Both have genuine value, and serious practitioners should train both — but understanding the differences helps you choose where to start.</p>
+            <p>The gi (kimono) vs no-gi debate is one of BJJ's most enduring conversations. Both have genuine value, and serious practitioners should train both — but understanding the differences helps you choose where to start.</p>
           </div>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
@@ -283,7 +283,7 @@ export default function BrazilianJiuJitsuPage() {
                 <li>✓ Traditional training method</li>
                 <li>✓ Larger competition circuit (IBJJF)</li>
                 <li>✓ Wider submission variety (collar chokes)</li>
-                <li>✗ Slower techniques don&apos;t translate directly to MMA/self-defense</li>
+                <li>✗ Slower techniques don't translate directly to MMA/self-defense</li>
               </ul>
             </div>
             <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
@@ -294,7 +294,7 @@ export default function BrazilianJiuJitsuPage() {
                 <li>✓ Leg lock emphasis (heel hooks, etc.)</li>
                 <li>✓ ADCC — most prestigious grappling event</li>
                 <li>✓ Growing fastest in terms of competition growth</li>
-                <li>✗ Easier to &apos;muscle&apos; positions without refined technique</li>
+                <li>✗ Easier to 'muscle' positions without refined technique</li>
               </ul>
             </div>
           </div>
@@ -305,12 +305,12 @@ export default function BrazilianJiuJitsuPage() {
         <section id="training">
           <h2 className="text-3xl font-black text-white mb-6 border-l-4 border-red-600 pl-4">How to Train BJJ Effectively</h2>
           <div className="space-y-4 text-zinc-300 leading-relaxed">
-            <p>Most people who train BJJ don&apos;t train smart. They roll hard, get injured, miss weeks, come back, and repeat. The practitioners who progress fastest take a different approach.</p>
+            <p>Most people who train BJJ don't train smart. They roll hard, get injured, miss weeks, come back, and repeat. The practitioners who progress fastest take a different approach.</p>
           </div>
           <div className="mt-6 space-y-4">
             {[
               ["Log Every Session", "The single biggest accelerator of BJJ progress. Write down what you worked on, what caught you, and what you want to drill. The patterns reveal your blind spots.", "/bjj-journal-app"],
-              ["Drill with Intent", "Drilling isn&apos;t about reps — it&apos;s about perfect reps. 50 correct repetitions of a technique builds more muscle memory than 500 sloppy ones.", "/bjj-drilling-techniques"],
+              ["Drill with Intent", "Drilling isn't about reps — it's about perfect reps. 50 correct repetitions of a technique builds more muscle memory than 500 sloppy ones.", "/bjj-drilling-techniques"],
               ["Have a Game Plan", "Random rolling produces random results. Build a position-by-position game plan and use every roll to test it. Struggle from mount? Spend 3 months focusing only on mount.", "/bjj-game-planning"],
               ["Use an AI Coach", "Between sessions, an AI coach can answer technique questions, build drilling sequences, and help you analyze your game — multiplying your mat time.", "/coach"],
               ["Manage Your Ego", "Tap early, tap often — especially in training. Getting submitted is data, not failure. Ego protection leads to injuries and stunted growth.", "/bjj-mental-game"],
@@ -332,7 +332,7 @@ export default function BrazilianJiuJitsuPage() {
         <section id="competition">
           <h2 className="text-3xl font-black text-white mb-6 border-l-4 border-red-600 pl-4">BJJ Competition</h2>
           <div className="space-y-4 text-zinc-300 leading-relaxed">
-            <p>Competition is the ultimate testing ground for your BJJ. It reveals what actually works under pressure versus what only works in the safety of familiar training partners. You don&apos;t need to compete to practice BJJ, but most practitioners who do compete describe it as transformative.</p>
+            <p>Competition is the ultimate testing ground for your BJJ. It reveals what actually works under pressure versus what only works in the safety of familiar training partners. You don't need to compete to practice BJJ, but most practitioners who do compete describe it as transformative.</p>
           </div>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             {[
@@ -368,10 +368,10 @@ export default function BrazilianJiuJitsuPage() {
         <section id="ai-coaching">
           <h2 className="text-3xl font-black text-white mb-6 border-l-4 border-red-600 pl-4">How AI Is Transforming BJJ Training</h2>
           <div className="space-y-4 text-zinc-300 leading-relaxed">
-            <p>For the first time in BJJ&apos;s history, every practitioner — from white belt in a small-town gym to advanced competitor — has access to personalized coaching quality that previously required expensive private lessons with elite instructors.</p>
-            <p>AI coaching tools like AIBJJ use large language models trained on deep BJJ knowledge to answer technical questions, build personalized game plans, generate drilling sequences, and analyze training patterns. Ask &quot;How do I improve my guard retention against passing pressure?&quot; at midnight and get a detailed, actionable answer immediately.</p>
-            <p>The training journal aspect is equally transformative. Logging sessions consistently, then using AI to identify patterns — &quot;You&apos;ve logged side control escape failures 8 times this month&quot; — accelerates the self-awareness that usually takes years of experienced coaching to develop.</p>
-            <p>The practitioners who will dominate BJJ in the next decade will be those who combine traditional mat time with intelligent use of AI tools for the hours they&apos;re not training.</p>
+            <p>For the first time in BJJ's history, every practitioner — from white belt in a small-town gym to advanced competitor — has access to personalized coaching quality that previously required expensive private lessons with elite instructors.</p>
+            <p>AI coaching tools like AIBJJ use large language models trained on deep BJJ knowledge to answer technical questions, build personalized game plans, generate drilling sequences, and analyze training patterns. Ask "How do I improve my guard retention against passing pressure?" at midnight and get a detailed, actionable answer immediately.</p>
+            <p>The training journal aspect is equally transformative. Logging sessions consistently, then using AI to identify patterns — "You've logged side control escape failures 8 times this month" — accelerates the self-awareness that usually takes years of experienced coaching to develop.</p>
+            <p>The practitioners who will dominate BJJ in the next decade will be those who combine traditional mat time with intelligent use of AI tools for the hours they're not training.</p>
           </div>
           <div className="mt-6 rounded-2xl border border-red-900/30 bg-red-950/20 p-6">
             <div className="flex items-start gap-4">

@@ -38,7 +38,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">No-Gi Dominance</h2>
-            <p>Musumeci became the dominant no-gi competitor at 125-135lbs, winning ONE Championship&apos;s sub-grappling world championship multiple times. His no-gi game is characterized by relentless submission hunting from all positions, exceptional guard retention, and creative leg lock entries. He is known for attempting submissions from positions where most practitioners would focus purely on control.</p>
+            <p>Musumeci became the dominant no-gi competitor at 125-135lbs, winning ONE Championship's sub-grappling world championship multiple times. His no-gi game is characterized by relentless submission hunting from all positions, exceptional guard retention, and creative leg lock entries. He is known for attempting submissions from positions where most practitioners would focus purely on control.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Fighting Philosophy</h2>

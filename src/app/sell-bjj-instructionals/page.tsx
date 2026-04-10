@@ -39,7 +39,7 @@ export default function SellBJJInstructionalsPage() {
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
             The market for BJJ instructionals is real and growing. Established instructors are generating $500–$5,000 per month in passive income from instructionals — and some are doing significantly more. 
-            If you have knowledge worth sharing, here&apos;s exactly how to monetize it.
+            If you have knowledge worth sharing, here's exactly how to monetize it.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function SellBJJInstructionalsPage() {
             <h2 className="text-2xl font-bold text-white mb-4">Platform Comparison: Where Should You Sell?</h2>
             <p className="text-zinc-400 leading-relaxed mb-6">
               There are several platforms you could use to sell BJJ instructionals. They are not equal. 
-              Here&apos;s an honest breakdown:
+              Here's an honest breakdown:
             </p>
 
             <div className="space-y-5">
@@ -125,7 +125,7 @@ export default function SellBJJInstructionalsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">Step-by-Step: How to Sell BJJ Instructionals on AIBJJ</h2>
             <p className="text-zinc-400 leading-relaxed mb-6">
-              The process is straightforward. Here&apos;s exactly what you do:
+              The process is straightforward. Here's exactly what you do:
             </p>
             <div className="space-y-4">
               {[
@@ -173,7 +173,7 @@ export default function SellBJJInstructionalsPage() {
             <h2 className="text-2xl font-bold text-white mb-4">What Sells Well</h2>
             <p className="text-zinc-400 leading-relaxed mb-6">
               The market favors depth over breadth. A focused instructional on one specific area consistently 
-              outperforms a generic &ldquo;complete BJJ&rdquo; series. Here&apos;s what converts:
+              outperforms a generic "complete BJJ" series. Here's what converts:
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
@@ -196,7 +196,7 @@ export default function SellBJJInstructionalsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">Realistic Revenue Expectations</h2>
             <p className="text-zinc-400 leading-relaxed mb-6">
-              Let&apos;s be honest. Here&apos;s what BJJ instructors realistically earn from instructionals:
+              Let's be honest. Here's what BJJ instructors realistically earn from instructionals:
             </p>
             <div className="space-y-4">
               {[

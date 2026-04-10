@@ -33,7 +33,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Key Details and Mechanics</h2>
-            <p>The most common error when attempting the sweep from back control is rushing the finish before the position is fully controlled. Alignment and angle directly affect mechanical advantage. Address your opponent&apos;s likely defenses before they materialize — have a follow-up ready. The small details that differentiate a finished sweep from one that gets defended are usually found in hip position, grip location, and the timing of the finishing pressure.</p>
+            <p>The most common error when attempting the sweep from back control is rushing the finish before the position is fully controlled. Alignment and angle directly affect mechanical advantage. Address your opponent's likely defenses before they materialize — have a follow-up ready. The small details that differentiate a finished sweep from one that gets defended are usually found in hip position, grip location, and the timing of the finishing pressure.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Drilling and Application</h2>

@@ -38,7 +38,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">The Marcelotine</h2>
-            <p>Garcia&apos;s guillotine variation uses a high elbow position creating a direct blood choke. He has finished world champions at heavier weight classes with it, often in seconds. The setup flows naturally from his wrestling-based style and butterfly guard.</p>
+            <p>Garcia's guillotine variation uses a high elbow position creating a direct blood choke. He has finished world champions at heavier weight classes with it, often in seconds. The setup flows naturally from his wrestling-based style and butterfly guard.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">ADCC Legacy</h2>

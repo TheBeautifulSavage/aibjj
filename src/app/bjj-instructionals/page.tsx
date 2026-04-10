@@ -36,7 +36,7 @@ export default function BJJInstructionalsPage() {
             The Best BJJ Instructionals Online
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            BJJ instructionals have transformed how the sport is learned. Decades ago, you needed to move to a world-class academy or know the right people. Today, the best techniques in the world are available to anyone willing to invest the time — if you&apos;re buying from the right platform.
+            BJJ instructionals have transformed how the sport is learned. Decades ago, you needed to move to a world-class academy or know the right people. Today, the best techniques in the world are available to anyone willing to invest the time — if you're buying from the right platform.
           </p>
         </div>
 
@@ -59,27 +59,27 @@ export default function BJJInstructionalsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">What Makes a Great BJJ Instructional?</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Not all BJJ instructionals are created equal. The market is flooded with content — some of it world-class, some of it overpriced fluff. Here&apos;s how to evaluate whether an instructional is worth your money and time:
+              Not all BJJ instructionals are created equal. The market is flooded with content — some of it world-class, some of it overpriced fluff. Here's how to evaluate whether an instructional is worth your money and time:
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-2">Specificity Over Breadth</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              The best instructionals are narrow and deep. A 4-volume series on the D&apos;arce choke that covers every setup, every angle, every defense and counter — that&apos;s valuable. A 10-volume &ldquo;complete BJJ system&rdquo; that covers everything at surface level — that&apos;s usually noise. Look for instructors who go deep on what they actually do at the highest level.
+              The best instructionals are narrow and deep. A 4-volume series on the D'arce choke that covers every setup, every angle, every defense and counter — that's valuable. A 10-volume "complete BJJ system" that covers everything at surface level — that's usually noise. Look for instructors who go deep on what they actually do at the highest level.
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-2">Credibility Matters</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              The instructor should have proven their system works under pressure — competition, high-level training, or both. This doesn&apos;t mean they need to be a world champion, but they should have real-world validation of the techniques they&apos;re teaching.
+              The instructor should have proven their system works under pressure — competition, high-level training, or both. This doesn't mean they need to be a world champion, but they should have real-world validation of the techniques they're teaching.
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-2">Concept Over Just Moves</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              The best instructors teach the &ldquo;why&rdquo; — the underlying principles that make techniques work. An instructor who just shows you the motion of a technique gives you one tool. An instructor who explains the underlying mechanics gives you the ability to troubleshoot, adapt, and invent.
+              The best instructors teach the "why" — the underlying principles that make techniques work. An instructor who just shows you the motion of a technique gives you one tool. An instructor who explains the underlying mechanics gives you the ability to troubleshoot, adapt, and invent.
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-2">Production Quality</h3>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              You shouldn&apos;t need to strain to see the grips or hear the instruction. Good camera angles, clear audio, and clean editing aren&apos;t optional — they&apos;re baseline expectations in 2024. Fortunately, AIBJJ creators use our built-in tools to produce quality content.
+              You shouldn't need to strain to see the grips or hear the instruction. Good camera angles, clear audio, and clean editing aren't optional — they're baseline expectations in 2024. Fortunately, AIBJJ creators use our built-in tools to produce quality content.
             </p>
           </section>
 
@@ -109,7 +109,7 @@ export default function BJJInstructionalsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">Why AIBJJ Is a Better Marketplace Than BJJ Fanatics</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              BJJ Fanatics is the current giant in the instructional market — and they&apos;ve done a lot for the sport. But the economics aren&apos;t creator-friendly, and the platform isn&apos;t built around the student&apos;s learning experience. AIBJJ was built to fix both problems.
+              BJJ Fanatics is the current giant in the instructional market — and they've done a lot for the sport. But the economics aren't creator-friendly, and the platform isn't built around the student's learning experience. AIBJJ was built to fix both problems.
             </p>
 
             <div className="overflow-hidden rounded-xl border border-zinc-800 mb-6">
@@ -142,17 +142,17 @@ export default function BJJInstructionalsPage() {
             </div>
 
             <p className="text-zinc-400 leading-relaxed">
-              For buyers, the advantage is the integration with AIBJJ&apos;s learning tools. After watching an instructional, you can ask the AI coach questions about specific techniques, get drilling sequences, or build a game plan around what you just learned. No other platform offers this.
+              For buyers, the advantage is the integration with AIBJJ's learning tools. After watching an instructional, you can ask the AI coach questions about specific techniques, get drilling sequences, or build a game plan around what you just learned. No other platform offers this.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">For Creators: Sell Your BJJ Instructionals</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              If you&apos;re a coach, athlete, or serious practitioner with knowledge worth sharing, AIBJJ&apos;s creator marketplace is the most profitable place to sell it. With an 85% payout and your own custom creator page, you keep significantly more of every sale.
+              If you're a coach, athlete, or serious practitioner with knowledge worth sharing, AIBJJ's creator marketplace is the most profitable place to sell it. With an 85% payout and your own custom creator page, you keep significantly more of every sale.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              You don&apos;t need a production studio. You need a phone, good lighting, and techniques worth teaching. AIBJJ provides the hosting, the payment processing, the creator page, and access to a growing community of BJJ students actively looking for quality content.
+              You don't need a production studio. You need a phone, good lighting, and techniques worth teaching. AIBJJ provides the hosting, the payment processing, the creator page, and access to a growing community of BJJ students actively looking for quality content.
             </p>
             <p className="text-zinc-400 leading-relaxed">
               Setup takes under 10 minutes. Upload your first instructional and start earning — you keep 85% of every sale from day one.

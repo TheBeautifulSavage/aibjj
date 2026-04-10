@@ -18,21 +18,21 @@ export default function OpenGuardPage() {
 
       <section className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-black mb-6">Open Guard BJJ: Spider, De La Riva, Butterfly & More</h1>
-        <p className="text-xl text-zinc-400 mb-8">Open guard is the modern BJJ practitioner&apos;s domain. Without the legs locked, you use grips, hooks, and angles to control distance and create attacks. Master one open guard system and your whole game transforms.</p>
+        <p className="text-xl text-zinc-400 mb-8">Open guard is the modern BJJ practitioner's domain. Without the legs locked, you use grips, hooks, and angles to control distance and create attacks. Master one open guard system and your whole game transforms.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-12 space-y-10">
         <div>
           <h2 className="text-3xl font-black mb-4">Understanding Open Guard</h2>
-          <p className="text-zinc-300 mb-4">Open guard encompasses any guard position where your legs are not locked. Unlike closed guard — which creates a physical constraint on the opponent&apos;s posture — open guard relies on constant adjustment, grip fighting, and positional awareness.</p>
+          <p className="text-zinc-300 mb-4">Open guard encompasses any guard position where your legs are not locked. Unlike closed guard — which creates a physical constraint on the opponent's posture — open guard relies on constant adjustment, grip fighting, and positional awareness.</p>
           <p className="text-zinc-300 mb-4">Open guard is fundamentally a distance management problem. Too close and you lose your frames; too far and they can pass around your legs. The open guard practitioner must constantly find the right distance while creating threats.</p>
           <p className="text-zinc-300">For gi players, open guard is the dominant competitive position. Many modern championships are won and lost in open guard battles. No-gi players have adapted many of these principles with grip changes.</p>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Spider Guard</h2>
-          <p className="text-zinc-300 mb-4">Spider guard uses sleeve grips with your feet placed on the biceps. You control both arms, creating a web that limits your opponent&apos;s ability to posture, pass, or attack. Spider guard is highly effective for practitioners with long legs and strong gripping.</p>
+          <p className="text-zinc-300 mb-4">Spider guard uses sleeve grips with your feet placed on the biceps. You control both arms, creating a web that limits your opponent's ability to posture, pass, or attack. Spider guard is highly effective for practitioners with long legs and strong gripping.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Spider Guard Fundamentals</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Maintain strong sleeve grips — the guard breaks immediately if you lose them</li>
@@ -53,7 +53,7 @@ export default function OpenGuardPage() {
         <div>
           <h2 className="text-3xl font-black mb-4">De La Riva Guard</h2>
           <p className="text-zinc-300 mb-4">De La Riva guard (DLR) hooks the outside of the lead leg — your outside foot wraps around the back of their lead leg while your inside foot pushes on the hip. Combined with sleeve and collar grips, DLR is one of the most dynamic guard systems in competition BJJ.</p>
-          <p className="text-zinc-300 mb-4">Ricardo De La Riva developed this guard in the 1980s to counter the leg pressure passes being used against him. Today it&apos;s a staple of competition grappling at all levels.</p>
+          <p className="text-zinc-300 mb-4">Ricardo De La Riva developed this guard in the 1980s to counter the leg pressure passes being used against him. Today it's a staple of competition grappling at all levels.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">De La Riva Attacks</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>DLR sweep: control the far leg and sweep them toward the hook side</li>
@@ -68,8 +68,8 @@ export default function OpenGuardPage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Butterfly Guard</h2>
-          <p className="text-zinc-300 mb-4">Butterfly guard is the most fundamental open guard. Your feet are inside the opponent&apos;s thighs (hooks), and you control their upper body with underhooks, overhooks, or collar grips. What it lacks in complexity, it makes up for in effectiveness.</p>
-          <p className="text-zinc-300 mb-4">Marcelo Garcia is the defining practitioner of butterfly guard. His approach: get the double underhook and then elevate and sweep. Simple, but when executed at Marcelo&apos;s level, nearly unstoppable.</p>
+          <p className="text-zinc-300 mb-4">Butterfly guard is the most fundamental open guard. Your feet are inside the opponent's thighs (hooks), and you control their upper body with underhooks, overhooks, or collar grips. What it lacks in complexity, it makes up for in effectiveness.</p>
+          <p className="text-zinc-300 mb-4">Marcelo Garcia is the defining practitioner of butterfly guard. His approach: get the double underhook and then elevate and sweep. Simple, but when executed at Marcelo's level, nearly unstoppable.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Butterfly Guard Sweeps</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Butterfly sweep (hook sweep): underhook, lift the hook, drive forward</li>
@@ -77,7 +77,7 @@ export default function OpenGuardPage() {
             <li>Technical stand: use the hooks to create space and stand up to a wrestling takedown</li>
             <li>X-guard entry: when they stand, slide under to X-guard</li>
           </ul>
-          <p className="text-zinc-300">Butterfly guard is the best open guard for no-gi because it doesn&apos;t rely on sleeve grips. It&apos;s also excellent for grapplers with shorter legs.</p>
+          <p className="text-zinc-300">Butterfly guard is the best open guard for no-gi because it doesn't rely on sleeve grips. It's also excellent for grapplers with shorter legs.</p>
         </div>
 
         <div>
@@ -85,7 +85,7 @@ export default function OpenGuardPage() {
           <p className="text-zinc-300 mb-4">Lasso guard wraps your arm through a sleeve grip in a coiling motion — your leg threads through to create a figure-four-like control on their arm. It limits shoulder mobility dramatically, making it extremely hard for the opponent to pass or posture.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Lasso Guard Principles</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
-            <li>The lasso arm is your primary lever — don&apos;t lose the grip</li>
+            <li>The lasso arm is your primary lever — don't lose the grip</li>
             <li>Off-balance them toward the lasso side before sweeping</li>
             <li>Triangle is the most common submission from lasso — the shoulder is already compromised</li>
             <li>Tilt them forward before shooting the triangle</li>
@@ -105,7 +105,7 @@ export default function OpenGuardPage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Choosing Your Open Guard</h2>
-          <p className="text-zinc-300 mb-4">With so many open guard options, practitioners often make the mistake of sampling too many without mastering any. Here&apos;s a framework for choosing:</p>
+          <p className="text-zinc-300 mb-4">With so many open guard options, practitioners often make the mistake of sampling too many without mastering any. Here's a framework for choosing:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li><strong>Gi-focused competitor:</strong> Spider guard or DLR — both are proven at every level</li>
             <li><strong>No-gi specialist:</strong> Butterfly guard or single-leg X — no grip dependency</li>
@@ -118,7 +118,7 @@ export default function OpenGuardPage() {
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Build Your Open Guard Game with AI</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your open guard. Tell the AI your strengths, body type, and competition goals — it builds a custom open guard curriculum for you.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your open guard. Tell the AI your strengths, body type, and competition goals — it builds a custom open guard curriculum for you.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your Open Guard Plan →</Link>
         </div>
 
@@ -126,18 +126,18 @@ export default function OpenGuardPage() {
           <h2 className="text-3xl font-black mb-4">Open Guard Retention</h2>
           <p className="text-zinc-300 mb-4">Open guard retention is even more critical than in closed guard. Without the lock, your guard can be broken in an instant. The core principles of keeping your open guard:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2">
-            <li>Maintain grips at all costs — when you lose grips, you&apos;re on defense</li>
-            <li>Move your hips constantly — don&apos;t let them pin your hips</li>
+            <li>Maintain grips at all costs — when you lose grips, you're on defense</li>
+            <li>Move your hips constantly — don't let them pin your hips</li>
             <li>Shrimp and re-frame before they can establish side control</li>
             <li>Know your guard recovery positions — what do you do when DLR gets passed?</li>
-            <li>Turtle is a valid last resort — it&apos;s better than giving up back mount</li>
+            <li>Turtle is a valid last resort — it's better than giving up back mount</li>
           </ul>
         </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">AIBJJ&apos;s AI coaching system helps you build a complete open guard game with personalized technique recommendations.</p>
+        <p className="text-zinc-400 mb-6">AIBJJ's AI coaching system helps you build a complete open guard game with personalized technique recommendations.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

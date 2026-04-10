@@ -222,7 +222,7 @@ function SignInForm() {
             </form>
 
             <p className="text-center text-sm text-zinc-500">
-              Don&apos;t have an account?{" "}
+              Don't have an account?{" "}
               <Link
                 href="/auth/signup"
                 className="font-medium text-red-500 hover:text-red-400 transition-colors"

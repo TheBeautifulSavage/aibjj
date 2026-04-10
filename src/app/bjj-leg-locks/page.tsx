@@ -16,7 +16,7 @@ export default function Page() {
         </div>
       </nav>
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Leg Locks: Heel Hooks, Kneebars &amp; More</h1>
+        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Leg Locks: Heel Hooks, Kneebars & More</h1>
         <p className="text-xl text-zinc-400 mb-8">Leg locks have transformed modern no-gi grappling. This complete guide covers every major leg lock — from the straight ankle lock to inside heel hooks — with the mechanics, entries, and safety considerations you need to build a real leg attack game.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>

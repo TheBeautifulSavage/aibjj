@@ -38,7 +38,7 @@ export default function BJJLosAngelesPage() {
 
         <div className="mb-10 p-6 rounded-xl bg-red-950/30 border border-red-900/40">
           <p className="font-semibold text-white mb-1">📱 Train Smarter While You Search</p>
-          <p className="text-zinc-400 text-sm mb-4">Use AIBJJ&apos;s AI coach to learn BJJ fundamentals, build your game plan, and get technique breakdowns — before you even step on the mat.</p>
+          <p className="text-zinc-400 text-sm mb-4">Use AIBJJ's AI coach to learn BJJ fundamentals, build your game plan, and get technique breakdowns — before you even step on the mat.</p>
           <Link href="/auth/signup" className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors">
             Try AI Coach Free →
           </Link>
@@ -48,10 +48,10 @@ export default function BJJLosAngelesPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">The LA BJJ Scene</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Los Angeles has been a major BJJ hub since the early days of the sport in the United States. The city&apos;s diverse martial arts culture and proximity to Brazil helped establish it as one of the premier training destinations in the country.
+              Los Angeles has been a major BJJ hub since the early days of the sport in the United States. The city's diverse martial arts culture and proximity to Brazil helped establish it as one of the premier training destinations in the country.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              The LA competition scene is robust — the IBJJF regularly hosts major tournaments in the region, and local sub-only events draw competitors from across the Western US. Whether you&apos;re training recreationally or competing seriously, LA has infrastructure for both.
+              The LA competition scene is robust — the IBJJF regularly hosts major tournaments in the region, and local sub-only events draw competitors from across the Western US. Whether you're training recreationally or competing seriously, LA has infrastructure for both.
             </p>
             <p className="text-zinc-400 leading-relaxed">
               Notable practitioners who trained in or around LA include Eddie Bravo (10th Planet founder, West Hollywood), and the city has deep roots in both traditional Gracie lineage and modern no-gi grappling. West LA, Culver City, Hollywood, and the Valley all have active training communities.
@@ -116,7 +116,7 @@ export default function BJJLosAngelesPage() {
           <section className="p-8 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Accelerate Your BJJ Learning</h2>
             <p className="text-zinc-400 mb-6 max-w-xl mx-auto">
-              While you&apos;re searching for the right gym in LA, start building your BJJ foundation with AIBJJ. 
+              While you're searching for the right gym in LA, start building your BJJ foundation with AIBJJ. 
               AI coach, 10,000+ techniques, training journal — free to start.
             </p>
             <Link href="/auth/signup" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">

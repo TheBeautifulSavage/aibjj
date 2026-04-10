@@ -86,7 +86,7 @@ export default function BJJDallasPage() {
 
           <section className="p-8 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Accelerate Your BJJ Learning</h2>
-            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">While you search for the right Dallas gym, start with AIBJJ&apos;s AI coach and 10,000+ technique library.</p>
+            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">While you search for the right Dallas gym, start with AIBJJ's AI coach and 10,000+ technique library.</p>
             <Link href="/auth/signup" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">Start with AIBJJ Free →</Link>
           </section>
         </div>

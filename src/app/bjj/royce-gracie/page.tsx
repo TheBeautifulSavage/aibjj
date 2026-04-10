@@ -25,7 +25,7 @@ export default function Page() {
           ))}
         </div>
         <h1 className="text-4xl font-black sm:text-5xl">Royce Gracie: The Man Who Changed Fighting Forever</h1>
-        <p className="mt-4 text-xl text-zinc-400">Royce Gracie&apos;s victories at UFC 1, 2, and 4 single-handedly validated BJJ and ground fighting as essential to any serious martial artist. He is the most historically significant figure in the history of mixed martial arts.</p>
+        <p className="mt-4 text-xl text-zinc-400">Royce Gracie's victories at UFC 1, 2, and 4 single-handedly validated BJJ and ground fighting as essential to any serious martial artist. He is the most historically significant figure in the history of mixed martial arts.</p>
         <div className="mt-10 space-y-10 text-zinc-300 leading-relaxed">
 
           <section>
@@ -34,15 +34,15 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">UFC 2 and UFC 4</h2>
-            <p>Royce repeated his performance at UFC 2, winning the tournament while fighting four matches in one night. At UFC 4, he won again. His record in early UFC competition stands as one of the most dominant in the event&apos;s history. The pattern was the same each time: opponents would engage Royce thinking they could use their striking or wrestling advantage, and he would take them to the ground and submit them.</p>
+            <p>Royce repeated his performance at UFC 2, winning the tournament while fighting four matches in one night. At UFC 4, he won again. His record in early UFC competition stands as one of the most dominant in the event's history. The pattern was the same each time: opponents would engage Royce thinking they could use their striking or wrestling advantage, and he would take them to the ground and submit them.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">The Kimura Match — Ken Shamrock and Dan Severn</h2>
-            <p>Royce&apos;s victories over Ken Shamrock and Dan Severn — two of the most accomplished wrestlers and submission fighters of the era — demonstrated that BJJ worked even against opponents who understood ground fighting. These matches moved the conversation from &apos;does ground fighting work?&apos; to &apos;which ground fighting system is most effective?&apos;</p>
+            <p>Royce's victories over Ken Shamrock and Dan Severn — two of the most accomplished wrestlers and submission fighters of the era — demonstrated that BJJ worked even against opponents who understood ground fighting. These matches moved the conversation from 'does ground fighting work?' to 'which ground fighting system is most effective?'</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Legacy and Impact</h2>
-            <p>Royce Gracie&apos;s impact on martial arts cannot be overstated. Within years of UFC 1, every serious martial artist in the world was cross-training in BJJ. He single-handedly created the market that now sustains thousands of BJJ academies globally. He continues to compete in masters divisions and teach globally, his place in martial arts history permanently secured.</p>
+            <p>Royce Gracie's impact on martial arts cannot be overstated. Within years of UFC 1, every serious martial artist in the world was cross-training in BJJ. He single-handedly created the market that now sustains thousands of BJJ academies globally. He continues to compete in masters divisions and teach globally, his place in martial arts history permanently secured.</p>
           </section>
         </div>
         <div className="mt-16 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">

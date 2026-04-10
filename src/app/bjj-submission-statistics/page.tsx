@@ -49,7 +49,7 @@ export default function SubmissionStatisticsPage() {
         </h1>
         <p className="text-xl text-zinc-400 mb-4">
           What percentage of BJJ matches actually end by submission? Which techniques finish fights
-          most often? We analyzed 4,770+ matches from the world&apos;s top competitions to find out.
+          most often? We analyzed 4,770+ matches from the world's top competitions to find out.
         </p>
         <div className="flex items-center gap-4 text-xs text-zinc-500 mb-8">
           <span className="text-emerald-400 font-semibold">Updated: April 2025</span>
@@ -113,7 +113,7 @@ export default function SubmissionStatisticsPage() {
           <h2 className="text-3xl font-black mb-4">What the Numbers Tell Us</h2>
           <p className="text-zinc-300 mb-4">
             The most striking finding from our analysis: ruleset determines submission rate more than
-            athlete skill. EBI&apos;s overtime format — where a match cannot end in a draw — produces
+            athlete skill. EBI's overtime format — where a match cannot end in a draw — produces
             89% submission rates. IBJJF Gi, where points decide most matches, sees only 31% submission
             finishes.
           </p>
@@ -125,7 +125,7 @@ export default function SubmissionStatisticsPage() {
           <p className="text-zinc-300">
             <strong className="text-zinc-100">Overall average submission rate</strong> across all
             formats: approximately 46% — nearly half of all competitive BJJ matches end by submission
-            at the elite level. That&apos;s why submission training remains central to competitive BJJ,
+            at the elite level. That's why submission training remains central to competitive BJJ,
             regardless of format.
           </p>
         </section>
@@ -197,8 +197,8 @@ export default function SubmissionStatisticsPage() {
           <h2 className="text-3xl font-black mb-4">What This Means for Your Training</h2>
           <p className="text-zinc-300 mb-4">
             Train submissions both offensively and defensively. The data shows that nearly half of
-            elite matches end by submission — if you&apos;re not training to finish and to survive,
-            you&apos;re training for half a fight.
+            elite matches end by submission — if you're not training to finish and to survive,
+            you're training for half a fight.
           </p>
           <p className="text-zinc-300 mb-4">
             Prioritize the techniques most common in your target format. For Gi: back control, triangle,
@@ -206,7 +206,7 @@ export default function SubmissionStatisticsPage() {
             control.
           </p>
           <p className="text-zinc-300">
-            Most importantly: understand what you&apos;re defending against. The data shows your
+            Most importantly: understand what you're defending against. The data shows your
             opponent is most likely attacking a heel hook in No-Gi, or going to your back in Gi.
             Train accordingly.
           </p>

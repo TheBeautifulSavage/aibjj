@@ -554,7 +554,7 @@ export default function CreatorSetupPage() {
                   Preview & Publish
                 </h2>
                 <p className="text-sm text-zinc-400 mt-1">
-                  Here&apos;s what your page will look like. Ready to go live?
+                  Here's what your page will look like. Ready to go live?
                 </p>
               </div>
 

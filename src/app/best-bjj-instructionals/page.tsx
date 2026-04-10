@@ -25,7 +25,7 @@ export default function Page() {
         <p>Drilling at your academy is irreplaceable — but instructionals give you something your coach often can't: focused, in-depth breakdowns of a single system. The best instructionals compress years of trial and error into structured, digestible lessons. Athletes who supplement mat time with quality video study progress measurably faster than those who don't.</p>
         <p>The challenge? There are thousands of instructionals out there, ranging from world-class to complete garbage. Price doesn't always equal quality. Name recognition helps but isn't everything. This guide cuts through the noise.</p>
 
-        <h2>Best Overall: Gordon Ryan — Guard Passing &amp; Back Takes</h2>
+        <h2>Best Overall: Gordon Ryan — Guard Passing & Back Takes</h2>
         <p>Gordon Ryan is arguably the greatest no-gi grappler of all time, and his instructionals reflect that mastery. His series on guard passing — particularly his pressure passing system and leg weave variations — are considered essential viewing for anyone serious about no-gi. His back-take and back-control series are equally exceptional, breaking down the body triangle, seatbelt control, and finishing mechanics with exhaustive detail.</p>
         <p><strong>Best for:</strong> Intermediate to advanced no-gi grapplers looking to dominate positional control.</p>
 
@@ -51,7 +51,7 @@ export default function Page() {
         <p>Stephan Kesting has been creating BJJ instructional content longer than almost anyone. His instructionals on Grapplearts are thorough, well-organized, and significantly more affordable than the big platforms. His "Roadmap for BJJ" and "Guard Retention Blueprint" are particularly strong. For budget-conscious students, Kesting delivers excellent value.</p>
         <p><strong>Best for:</strong> Anyone on a budget who wants quality fundamentals instruction.</p>
 
-        <h2>Best Leg Locks: Craig Jones — Z-Guard &amp; Leg Attacks</h2>
+        <h2>Best Leg Locks: Craig Jones — Z-Guard & Leg Attacks</h2>
         <p>Craig Jones brings an Australian directness to leg lock instruction that makes complex entries feel surprisingly accessible. His Z-guard series is outstanding — explaining how to use the position to set up heel hooks, kneebars, and straight ankle locks with clean transitions. His humor and casual teaching style make dense material easier to absorb.</p>
         <p><strong>Best for:</strong> No-gi grapplers ready to build a serious leg lock game.</p>
 

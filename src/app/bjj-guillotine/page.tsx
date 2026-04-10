@@ -35,15 +35,15 @@ export default function GuillotinePage() {
           <h3 className="text-xl font-bold mb-2 text-red-400">Finishing the Standard Guillotine</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Sit back to guard (closed guard) while maintaining the choke</li>
-            <li>Arch your back to apply pressure — don&apos;t just squeeze</li>
-            <li>Keep the choking arm&apos;s elbow close to your centerline</li>
+            <li>Arch your back to apply pressure — don't just squeeze</li>
+            <li>Keep the choking arm's elbow close to your centerline</li>
             <li>Pull up on the head while arching — creates the leverage</li>
           </ul>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">High Elbow Guillotine (The Marcelo Style)</h2>
-          <p className="text-zinc-300 mb-4">Marcelo Garcia popularized the high-elbow guillotine — arguably the most effective guillotine variation. Instead of clasping hands in front of the throat, you position your choking arm&apos;s elbow high, creating a blood choke rather than an air choke.</p>
+          <p className="text-zinc-300 mb-4">Marcelo Garcia popularized the high-elbow guillotine — arguably the most effective guillotine variation. Instead of clasping hands in front of the throat, you position your choking arm's elbow high, creating a blood choke rather than an air choke.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">High Elbow Setup</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Wrap around the neck, palm of your choking hand facing up</li>
@@ -57,13 +57,13 @@ export default function GuillotinePage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Arm-In Guillotine</h2>
-          <p className="text-zinc-300 mb-4">The arm-in guillotine (also called arm triangle guillotine or 10-finger guillotine) includes the opponent&apos;s arm inside the choke. This prevents the most common defense (posting the arm) but requires proper positioning to avoid a standard guillotine that&apos;s easy to escape.</p>
-          <p className="text-zinc-300 mb-4">For the arm-in to work as a blood choke, you must angle your body to the trapped-arm side. This creates the pressure against the carotid rather than just the windpipe. Many practitioners use it incorrectly — if you&apos;re not at an angle, it&apos;s just an air choke that power athletes can endure.</p>
+          <p className="text-zinc-300 mb-4">The arm-in guillotine (also called arm triangle guillotine or 10-finger guillotine) includes the opponent's arm inside the choke. This prevents the most common defense (posting the arm) but requires proper positioning to avoid a standard guillotine that's easy to escape.</p>
+          <p className="text-zinc-300 mb-4">For the arm-in to work as a blood choke, you must angle your body to the trapped-arm side. This creates the pressure against the carotid rather than just the windpipe. Many practitioners use it incorrectly — if you're not at an angle, it's just an air choke that power athletes can endure.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Arm-In Finishing Details</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Angle your body at least 45 degrees toward the trapped arm side</li>
-            <li>Hip into them (don&apos;t lie flat) — this maintains the angle</li>
-            <li>Wrist grip or &quot;slice grip&quot; (blade of wrist against throat) for maximum pressure</li>
+            <li>Hip into them (don't lie flat) — this maintains the angle</li>
+            <li>Wrist grip or "slice grip" (blade of wrist against throat) for maximum pressure</li>
             <li>Squeeze elbows together while lifting the choking arm wrist up</li>
           </ul>
         </div>
@@ -73,7 +73,7 @@ export default function GuillotinePage() {
           <h3 className="text-xl font-bold mb-2 text-red-400">Sprawl to Guillotine</h3>
           <p className="text-zinc-300 mb-4">When someone shoots a takedown, sprawl back and immediately wrap around their neck. Drive their head down while pulling the neck up. This is the most natural guillotine entry in no-gi grappling and MMA.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Pulling Guard to Guillotine</h3>
-          <p className="text-zinc-300 mb-4">When someone shoots on you and you can&apos;t sprawl effectively, grab the guillotine and pull guard simultaneously. Sit back to closed guard with the guillotine locked — now you&apos;re in a controlled finishing position.</p>
+          <p className="text-zinc-300 mb-4">When someone shoots on you and you can't sprawl effectively, grab the guillotine and pull guard simultaneously. Sit back to closed guard with the guillotine locked — now you're in a controlled finishing position.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Clinch Guillotine</h3>
           <p className="text-zinc-300 mb-4">From a standing clinch, when the opponent lowers their level (preparing for a takedown), snap their head down into the guillotine. Thai boxing practitioners are familiar with neck ties — the guillotine is the submission version of this clinch position.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Guard Guillotine</h3>
@@ -82,19 +82,19 @@ export default function GuillotinePage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Guillotine Defense</h2>
-          <p className="text-zinc-300 mb-4">The best defense against guillotines is prevention — don&apos;t lower your head in a way that exposes your neck. When caught:</p>
+          <p className="text-zinc-300 mb-4">The best defense against guillotines is prevention — don't lower your head in a way that exposes your neck. When caught:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li><strong>Turn into the choke:</strong> When they grab the guillotine, spin to face the choking arm side — this often defeats a standard guillotine</li>
             <li><strong>Posture up:</strong> Drive your hips into them and lift your head — prevents them from locking it tight</li>
             <li><strong>Shoulder in the throat:</strong> Drive your choking-side shoulder into their throat area to create space</li>
-            <li><strong>Stack:</strong> If they&apos;re in guard, stand and stack — compromises their position</li>
-            <li><strong>Arm-in defense:</strong> If you&apos;re arm-in, your main escape is the tuck-and-roll to the non-choking side</li>
+            <li><strong>Stack:</strong> If they're in guard, stand and stack — compromises their position</li>
+            <li><strong>Arm-in defense:</strong> If you're arm-in, your main escape is the tuck-and-roll to the non-choking side</li>
           </ul>
         </div>
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Develop Your Guillotine Game with AI</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your guillotine entries and finishing mechanics. The AI identifies what&apos;s missing from your guillotine game and builds a drill-focused curriculum.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your guillotine entries and finishing mechanics. The AI identifies what's missing from your guillotine game and builds a drill-focused curriculum.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your Guillotine Plan →</Link>
         </div>
 
@@ -107,7 +107,7 @@ export default function GuillotinePage() {
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">Build a devastating guillotine game with AIBJJ&apos;s personalized AI coaching system.</p>
+        <p className="text-zinc-400 mb-6">Build a devastating guillotine game with AIBJJ's personalized AI coaching system.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

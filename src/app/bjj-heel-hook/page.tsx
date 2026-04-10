@@ -32,21 +32,21 @@ export default function HeelHookPage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Inside Heel Hook</h2>
-          <p className="text-zinc-300 mb-4">The inside heel hook rotates the foot inward (toward the body&apos;s center), stressing the lateral structures of the knee — primarily the LCL and posterolateral corner. It&apos;s set up from inside positions: ashi garami (single leg X) and 50/50.</p>
+          <p className="text-zinc-300 mb-4">The inside heel hook rotates the foot inward (toward the body's center), stressing the lateral structures of the knee — primarily the LCL and posterolateral corner. It's set up from inside positions: ashi garami (single leg X) and 50/50.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Inside Heel Hook from Ashi Garami</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Establish ashi garami: inside leg hooks their hip, outside leg hooks their far hip</li>
             <li>Trap the heel in your armpit (not in your hand — use your whole arm)</li>
             <li>Clamp your arm tight — close your elbow to your rib cage</li>
             <li>Rotate your body toward the heel, turning the foot inward</li>
-            <li>Maintain pressure — don&apos;t yank; rotate steadily</li>
+            <li>Maintain pressure — don't yank; rotate steadily</li>
           </ul>
           <p className="text-zinc-300">The inside heel hook is considered less dangerous than the outside heel hook but still requires respect and controlled training methodology.</p>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Outside Heel Hook</h2>
-          <p className="text-zinc-300 mb-4">The outside heel hook rotates the foot outward, stressing the medial structures of the knee — primarily the ACL and MCL. It&apos;s considered the more dangerous heel hook because these structures are both more vulnerable and more commonly injured in sports.</p>
+          <p className="text-zinc-300 mb-4">The outside heel hook rotates the foot outward, stressing the medial structures of the knee — primarily the ACL and MCL. It's considered the more dangerous heel hook because these structures are both more vulnerable and more commonly injured in sports.</p>
           <p className="text-zinc-300 mb-4">The outside heel hook is set up from outside positions: outside ashi garami, 50/50, and the crab ride. Gordon Ryan, Craig Jones, and the Danaher Death Squad brought this technique to mainstream prominence in the late 2010s.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Outside Heel Hook Setup</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
@@ -69,10 +69,10 @@ export default function HeelHookPage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Heel Hook Defenses and Leg Lock Defense Concepts</h2>
-          <p className="text-zinc-300 mb-4">Heel hook defense begins before the submission — it&apos;s positional defense:</p>
+          <p className="text-zinc-300 mb-4">Heel hook defense begins before the submission — it's positional defense:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li><strong>Never cross your feet in their guard:</strong> Crossed feet create leg lock entries</li>
-            <li><strong>Don&apos;t ignore ashi garami:</strong> If they establish the position, escape or counter immediately</li>
+            <li><strong>Don't ignore ashi garami:</strong> If they establish the position, escape or counter immediately</li>
             <li><strong>Heel hook counter (back step):</strong> When they reach for the heel, back step to remove the leg from their control</li>
             <li><strong>Knee alignment:</strong> Keep your knee pointing away from their body — a rotated knee is easier to heel hook</li>
             <li><strong>Engage or disengage:</strong> Either get into leg lock battles with knowledge or disengage — trying to pass through leg lock territory without understanding it leads to injury</li>
@@ -89,7 +89,7 @@ export default function HeelHookPage() {
             <li><strong>EBI/Submission Underground:</strong> All heel hooks legal</li>
             <li><strong>Polaris/Grapplefest:</strong> All heel hooks legal</li>
           </ul>
-          <p className="text-zinc-300">If you train for IBJJF competition, you need to understand heel hooks for defense even if you won&apos;t be attacking with them. At brown/black belt no-gi, inside heel hooks are coming your way.</p>
+          <p className="text-zinc-300">If you train for IBJJF competition, you need to understand heel hooks for defense even if you won't be attacking with them. At brown/black belt no-gi, inside heel hooks are coming your way.</p>
         </div>
 
         <div>
@@ -106,7 +106,7 @@ export default function HeelHookPage() {
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Build Your Leg Lock System with AI Coaching</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your leg lock game. Whether you&apos;re building your first heel hook system or refining your 50/50 strategy, the AI coach creates your curriculum.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your leg lock game. Whether you're building your first heel hook system or refining your 50/50 strategy, the AI coach creates your curriculum.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Start Your Leg Lock Journey →</Link>
         </div>
       </section>

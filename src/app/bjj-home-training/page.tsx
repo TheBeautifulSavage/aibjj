@@ -16,7 +16,7 @@ export default function Page() {
         </div>
       </nav>
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Home Training: Solo Drills &amp; Conditioning</h1>
+        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Home Training: Solo Drills & Conditioning</h1>
         <p className="text-xl text-zinc-400 mb-8">The mat time you get at your academy isn't enough on its own. BJJ home training — solo drills, conditioning, and mobility work — gives you a competitive edge that students who only train in class never develop.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>

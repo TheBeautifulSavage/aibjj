@@ -30,15 +30,15 @@ export default function Page() {
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Early Life and Training</h2>
-            <p>Gordon Ryan was born on July 8, 1995, in Highland Park, New Jersey. He began training BJJ at age 16 under Garry Tonon and later became a core member of John Danaher&apos;s leg lock study group — the Danaher Death Squad. Ryan&apos;s development was rapid: black belt in four years, a timeline that reflected both natural talent and obsessive training methodology.</p>
+            <p>Gordon Ryan was born on July 8, 1995, in Highland Park, New Jersey. He began training BJJ at age 16 under Garry Tonon and later became a core member of John Danaher's leg lock study group — the Danaher Death Squad. Ryan's development was rapid: black belt in four years, a timeline that reflected both natural talent and obsessive training methodology.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">The Danaher Death Squad Era</h2>
-            <p>Ryan&apos;s ascent coincided with the DDS revolutionizing submission grappling with a systematic approach to leg locks and back control. Ryan served as the anchor, winning two consecutive ADCC absolute divisions in 2019 and 2022 — an achievement no one else has ever accomplished. His teammates included Garry Tonon, Craig Jones, and Nicky Ryan.</p>
+            <p>Ryan's ascent coincided with the DDS revolutionizing submission grappling with a systematic approach to leg locks and back control. Ryan served as the anchor, winning two consecutive ADCC absolute divisions in 2019 and 2022 — an achievement no one else has ever accomplished. His teammates included Garry Tonon, Craig Jones, and Nicky Ryan.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Competition Record</h2>
-            <p>Ryan has defeated virtually every top competitor: Buchecha, Keenan Cornelius, Craig Jones, Felipe Pena. His matches are characterized by methodical, systematic positioning. He has said: &apos;The secret is making the right technique impossible to stop, not hard to see.&apos; Ryan trains and teaches at B-Team Jiu-Jitsu in Austin, Texas.</p>
+            <p>Ryan has defeated virtually every top competitor: Buchecha, Keenan Cornelius, Craig Jones, Felipe Pena. His matches are characterized by methodical, systematic positioning. He has said: 'The secret is making the right technique impossible to stop, not hard to see.' Ryan trains and teaches at B-Team Jiu-Jitsu in Austin, Texas.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Philosophy and Methodology</h2>

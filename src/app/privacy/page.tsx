@@ -24,7 +24,7 @@ export default function PrivacyPage() {
 
           <section>
             <p className="text-zinc-400 leading-relaxed">
-              This Privacy Policy describes how AIBJJ (&ldquo;we,&rdquo; &ldquo;us,&rdquo; &ldquo;our&rdquo;) collects, uses, and protects your information when you use our platform at aibjj.com. We are committed to your privacy and handle your data with care.
+              This Privacy Policy describes how AIBJJ ("we," "us," "our") collects, uses, and protects your information when you use our platform at aibjj.com. We are committed to your privacy and handle your data with care.
             </p>
           </section>
 
@@ -154,7 +154,7 @@ export default function PrivacyPage() {
 
           {/* 4. Cookies */}
           <section>
-            <h2 className="text-xl font-bold text-white mb-4">4. Cookies &amp; Tracking</h2>
+            <h2 className="text-xl font-bold text-white mb-4">4. Cookies & Tracking</h2>
             <p className="text-zinc-400 leading-relaxed mb-3">
               We use cookies and similar technologies for the following purposes:
             </p>
@@ -185,7 +185,7 @@ export default function PrivacyPage() {
 
           {/* 6. Your rights */}
           <section>
-            <h2 className="text-xl font-bold text-white mb-4">6. Your Rights (GDPR &amp; CCPA)</h2>
+            <h2 className="text-xl font-bold text-white mb-4">6. Your Rights (GDPR & CCPA)</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
               Depending on your location, you may have the following rights regarding your personal data:
             </p>
@@ -235,7 +235,7 @@ export default function PrivacyPage() {
 
           {/* 8. Children */}
           <section>
-            <h2 className="text-xl font-bold text-white mb-4">8. Children&apos;s Privacy</h2>
+            <h2 className="text-xl font-bold text-white mb-4">8. Children's Privacy</h2>
             <p className="text-zinc-400 leading-relaxed">
               AIBJJ is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided us with personal data, contact us and we will delete it promptly.
             </p>

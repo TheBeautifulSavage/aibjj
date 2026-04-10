@@ -41,7 +41,7 @@ export default function Page() {
           </details>
           <details className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5 open:border-zinc-700">
             <summary className="font-bold text-white cursor-pointer">How do I know what to work on in BJJ?</summary>
-            <p className="mt-3 text-sm text-zinc-400 leading-relaxed">Keep a training journal. After each session, write down what got you, what worked, and what you want to improve. Over time, patterns emerge — you will see the same positions appearing repeatedly as problems. These are your training priorities. AIBJJ&apos;s AI coach can analyze your journal entries and build a personalized study plan based on your actual training data.</p>
+            <p className="mt-3 text-sm text-zinc-400 leading-relaxed">Keep a training journal. After each session, write down what got you, what worked, and what you want to improve. Over time, patterns emerge — you will see the same positions appearing repeatedly as problems. These are your training priorities. AIBJJ's AI coach can analyze your journal entries and build a personalized study plan based on your actual training data.</p>
           </details>
         </div>
         <div className="mt-16 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">

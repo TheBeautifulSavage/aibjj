@@ -31,7 +31,7 @@ export default function Error({
         </h1>
 
         <p className="text-lg text-zinc-400 mb-3 leading-relaxed">
-          Something went wrong on our end. Even the best athletes get taken down sometimes — we&apos;re working on getting back up.
+          Something went wrong on our end. Even the best athletes get taken down sometimes — we're working on getting back up.
         </p>
 
         {error.digest && (

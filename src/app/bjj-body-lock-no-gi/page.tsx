@@ -21,8 +21,8 @@ export default function Page() {
         <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
       </nav>
       <article className="mx-auto max-w-4xl px-6 py-12">
-        <h1 className="text-4xl font-black">Body Lock No-Gi BJJ: Passing, Takedowns &amp; Clinch</h1>
-        <p className="mt-4 text-xl text-zinc-400">The body lock is one of the most dominant control positions in no-gi grappling — whether you&apos;re passing guard, executing takedowns, or controlling the clinch.</p>
+        <h1 className="text-4xl font-black">Body Lock No-Gi BJJ: Passing, Takedowns & Clinch</h1>
+        <p className="mt-4 text-xl text-zinc-400">The body lock is one of the most dominant control positions in no-gi grappling — whether you're passing guard, executing takedowns, or controlling the clinch.</p>
         <div className="mt-10 space-y-8 text-zinc-300 leading-relaxed">
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Body Lock Guard Passing</h2>

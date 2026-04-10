@@ -60,7 +60,7 @@ export default function InstructorMarketplaceClient() {
             <div className="text-4xl mb-3">🥋</div>
             <h3 className="text-xl font-bold text-white mb-2">Application Received!</h3>
             <p className="text-gray-300">
-              We&apos;ll be in touch within 24 hours. In the meantime, you can{" "}
+              We'll be in touch within 24 hours. In the meantime, you can{" "}
               <Link href="/auth/signup?role=creator" className="text-red-400 underline">
                 create your free account
               </Link>{" "}

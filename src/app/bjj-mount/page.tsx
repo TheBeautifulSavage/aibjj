@@ -18,25 +18,25 @@ export default function MountPage() {
 
       <section className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Mount Position: Control, Attacks & How to Escape</h1>
-        <p className="text-xl text-zinc-400 mb-8">Mount is one of the most dominant positions in BJJ — four points in competition, and a launching pad for some of the sport&apos;s most reliable submissions. Mastering both the offensive and defensive side of mount is essential at every level.</p>
+        <p className="text-xl text-zinc-400 mb-8">Mount is one of the most dominant positions in BJJ — four points in competition, and a launching pad for some of the sport's most reliable submissions. Mastering both the offensive and defensive side of mount is essential at every level.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-12 space-y-10">
         <div>
           <h2 className="text-3xl font-black mb-4">Why Mount Is So Valuable</h2>
-          <p className="text-zinc-300 mb-4">Mount places you directly on top of your opponent&apos;s torso. In a self-defense context, you can strike without restriction. In competition, mount earns four points — the highest single-position score — and creates submission opportunities from multiple angles.</p>
+          <p className="text-zinc-300 mb-4">Mount places you directly on top of your opponent's torso. In a self-defense context, you can strike without restriction. In competition, mount earns four points — the highest single-position score — and creates submission opportunities from multiple angles.</p>
           <p className="text-zinc-300 mb-4">The person on the bottom has limited movement options, limited visibility, and limited options for offense. The person on top can see everything, use gravity and body weight, and attack at will. This positional asymmetry is what makes mount so dominant.</p>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Mount Positions</h2>
           <h3 className="text-xl font-bold mb-2 text-red-400">Low Mount</h3>
-          <p className="text-zinc-300 mb-4">Low mount sits on the opponent&apos;s hips or stomach. It&apos;s easier to maintain but provides fewer submission options. Experienced opponents can often use the upa escape from here.</p>
+          <p className="text-zinc-300 mb-4">Low mount sits on the opponent's hips or stomach. It's easier to maintain but provides fewer submission options. Experienced opponents can often use the upa escape from here.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">High Mount</h3>
           <p className="text-zinc-300 mb-4">High mount positions your knees at or above their shoulders. This dramatically limits their ability to upa (bridge escape) and creates excellent armbar and choke access. Walk your knees up whenever possible.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">S-Mount</h3>
-          <p className="text-zinc-300 mb-4">S-mount positions one knee at the shoulder level and the other foot posted outside their hip — creating an &quot;S&quot; shape. This is the ideal position for armbars and creates a natural entry to triangle or mounted triangle.</p>
+          <p className="text-zinc-300 mb-4">S-mount positions one knee at the shoulder level and the other foot posted outside their hip — creating an "S" shape. This is the ideal position for armbars and creates a natural entry to triangle or mounted triangle.</p>
         </div>
 
         <div>
@@ -67,7 +67,7 @@ export default function MountPage() {
         <div>
           <h2 className="text-3xl font-black mb-4">Mount Escapes</h2>
           <h3 className="text-xl font-bold mb-2 text-red-400">Upa (Bridge and Roll)</h3>
-          <p className="text-zinc-300 mb-4">The upa is the fundamental mount escape. Trap one arm and the opposite leg, bridge explosively, and roll them over. It requires catching them off-balance — most effective from low mount when they&apos;re not posting correctly. Against high mount, the upa is much harder.</p>
+          <p className="text-zinc-300 mb-4">The upa is the fundamental mount escape. Trap one arm and the opposite leg, bridge explosively, and roll them over. It requires catching them off-balance — most effective from low mount when they're not posting correctly. Against high mount, the upa is much harder.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Elbow-Knee Escape (Shrimping)</h3>
           <p className="text-zinc-300 mb-4">The elbow-knee escape (also called the shrimp escape or hip escape) creates space under the opponent. Shrimp away while pushing their knee with your elbow, creating enough space to insert your knee guard and recover half guard or closed guard.</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
@@ -82,7 +82,7 @@ export default function MountPage() {
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Improve Your Mount Game</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on mount control and attacks. Whether you struggle to maintain mount or want to add submissions, the AI coach builds your curriculum.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on mount control and attacks. Whether you struggle to maintain mount or want to add submissions, the AI coach builds your curriculum.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your Mount Training Plan →</Link>
         </div>
 
@@ -93,14 +93,14 @@ export default function MountPage() {
             <li>From knee-on-belly: when they push your knee, slip to mount</li>
             <li>From side control: knee slide to mount when they turn away</li>
             <li>When they give their back from mount escape: follow them and take technical mount</li>
-            <li>After a guard pass: don&apos;t stop at side control — progress to mount</li>
+            <li>After a guard pass: don't stop at side control — progress to mount</li>
           </ul>
         </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">Develop dominant mount control and submissions with AIBJJ&apos;s AI coaching system.</p>
+        <p className="text-zinc-400 mb-6">Develop dominant mount control and submissions with AIBJJ's AI coaching system.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

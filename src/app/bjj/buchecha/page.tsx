@@ -25,7 +25,7 @@ export default function Page() {
           ))}
         </div>
         <h1 className="text-4xl font-black sm:text-5xl">Marcus Almeida (Buchecha): 13-Time World Champion</h1>
-        <p className="mt-4 text-xl text-zinc-400">Marcus &apos;Buchecha&apos; Almeida holds the record for most IBJJF World Championship gold medals with 13 titles. His combination of wrestling, physical dominance, and technical jiu-jitsu made him virtually unbeatable in the gi.</p>
+        <p className="mt-4 text-xl text-zinc-400">Marcus 'Buchecha' Almeida holds the record for most IBJJF World Championship gold medals with 13 titles. His combination of wrestling, physical dominance, and technical jiu-jitsu made him virtually unbeatable in the gi.</p>
         <div className="mt-10 space-y-10 text-zinc-300 leading-relaxed">
 
           <section>
@@ -38,7 +38,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Style and Game</h2>
-            <p>Buchecha&apos;s game is built around explosive wrestling entries — particularly the double leg takedown — followed by crushing top pressure and guard passing. Once in top position, his physical power makes him nearly impossible to escape from. His guard is also highly effective when needed, featuring a strong open guard with leg lock threats. In later years, he developed dangerous leg lock attacks to complement his top game.</p>
+            <p>Buchecha's game is built around explosive wrestling entries — particularly the double leg takedown — followed by crushing top pressure and guard passing. Once in top position, his physical power makes him nearly impossible to escape from. His guard is also highly effective when needed, featuring a strong open guard with leg lock threats. In later years, he developed dangerous leg lock attacks to complement his top game.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Transition to MMA</h2>

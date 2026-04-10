@@ -39,13 +39,13 @@ export default function BJJNewYorkPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">The NYC BJJ Scene</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              New York has been a BJJ hotbed since the 1990s. The city is home to Renzo Gracie Academy — one of the most famous BJJ gyms in the world — which has produced a who&apos;s who of champions and notable practitioners including John Danaher (who developed the Death Squad/New Wave system there), Georges St-Pierre, and numerous UFC fighters.
+              New York has been a BJJ hotbed since the 1990s. The city is home to Renzo Gracie Academy — one of the most famous BJJ gyms in the world — which has produced a who's who of champions and notable practitioners including John Danaher (who developed the Death Squad/New Wave system there), Georges St-Pierre, and numerous UFC fighters.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              John Danaher spent years at Renzo&apos;s developing the leg lock and back attack systems that revolutionized modern no-gi grappling. The &ldquo;Danaher Death Squad&rdquo; — Gordon Ryan, Garry Tonon, Eddie Cummings — trained in NYC basements and emerged as the most dominant submission grappling team in history.
+              John Danaher spent years at Renzo's developing the leg lock and back attack systems that revolutionized modern no-gi grappling. The "Danaher Death Squad" — Gordon Ryan, Garry Tonon, Eddie Cummings — trained in NYC basements and emerged as the most dominant submission grappling team in history.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              Beyond Renzo&apos;s, NYC has dozens of high-quality gyms across every borough. The competition scene is active — the IBJJF hosts events at the Javits Center, and smaller local promotions run regularly in Brooklyn and Queens.
+              Beyond Renzo's, NYC has dozens of high-quality gyms across every borough. The competition scene is active — the IBJJF hosts events at the Javits Center, and smaller local promotions run regularly in Brooklyn and Queens.
             </p>
           </section>
 
@@ -86,7 +86,7 @@ export default function BJJNewYorkPage() {
 
           <section className="p-8 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Learn BJJ Fundamentals While You Search</h2>
-            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">AIBJJ&apos;s AI coach, 10,000+ technique library, and training journal help you accelerate your learning — on and off the mat.</p>
+            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">AIBJJ's AI coach, 10,000+ technique library, and training journal help you accelerate your learning — on and off the mat.</p>
             <Link href="/auth/signup" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">Start with AIBJJ Free →</Link>
           </section>
         </div>

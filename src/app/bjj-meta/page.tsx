@@ -64,11 +64,11 @@ export default function BJJMetaPage() {
             📊 Competition Analysis
           </div>
           <h1 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
-            BJJ Competition Meta Breakdown 2025: What&apos;s Winning in Gi &amp; No-Gi
+            BJJ Competition Meta Breakdown 2025: What's Winning in Gi & No-Gi
           </h1>
           <p className="text-xl text-zinc-400 mb-4">
             Data-driven analysis across 4,770 matches from IBJJF Worlds, ADCC, EBI, and Polaris.
-            Here&apos;s exactly what&apos;s finishing fights — and what that means for your training.
+            Here's exactly what's finishing fights — and what that means for your training.
           </p>
           <div className="flex items-center gap-4 text-xs text-zinc-500 mb-8">
             <span>Published: {publishedDate}</span>
@@ -97,7 +97,7 @@ export default function BJJMetaPage() {
               The Big Picture: Submission Rates by Format
             </h2>
             <p className="text-zinc-300 mb-4">
-              The single most important factor determining what technique wins is not skill — it&apos;s
+              The single most important factor determining what technique wins is not skill — it's
               the ruleset. IBJJF Gi matches end by submission just 31% of the time. ADCC, with its
               no-points overtime period, sees submission finishes in 52% of matches. EBI/Overtime
               format pushes that number to a remarkable 89%.
@@ -108,14 +108,14 @@ export default function BJJMetaPage() {
               while competing in IBJJF where points and advantages decide the majority of matches.
             </p>
             <p className="text-zinc-300">
-              <strong className="text-zinc-100">Coach&apos;s takeaway:</strong> Know your format.
+              <strong className="text-zinc-100">Coach's takeaway:</strong> Know your format.
               If you compete IBJJF, positional control and top game are equally important as submissions.
               If you compete ADCC or EBI-style, submission offense and overtime strategies are paramount.
             </p>
           </section>
 
           <section>
-            <h2 className="text-3xl font-black mb-4">Gi Competition: What&apos;s Winning at IBJJF</h2>
+            <h2 className="text-3xl font-black mb-4">Gi Competition: What's Winning at IBJJF</h2>
             <p className="text-zinc-300 mb-4">
               In 2024 IBJJF Gi competition analyzed across 2,847 matches, the rear naked choke leads
               at 18% of all submissions — driven primarily by back take sequences that result in bow
@@ -146,7 +146,7 @@ export default function BJJMetaPage() {
               submissions. By 2024, that number is 40% — a 400% increase in under a decade.
             </p>
             <p className="text-zinc-300 mb-4">
-              This transformation was driven by John Danaher&apos;s systematic leg lock curriculum,
+              This transformation was driven by John Danaher's systematic leg lock curriculum,
               the success of the Danaher Death Squad (Gordon Ryan, Gary Tonon, Garry Tonon, Nicky
               Ryan, Craig Jones), and their dominance at ADCC 2019 where leg locks accounted for
               the majority of their finishes.
@@ -159,7 +159,7 @@ export default function BJJMetaPage() {
             </p>
             <p className="text-zinc-300">
               <strong className="text-zinc-100">The critical implication:</strong> Any No-Gi competitor
-              who doesn&apos;t train leg lock defense is entering competition with a critical vulnerability.
+              who doesn't train leg lock defense is entering competition with a critical vulnerability.
               Heel hook defense — specifically understanding leg entanglement positions, knee alignment,
               and the hip escape — is now baseline competency, not advanced material.
             </p>
@@ -206,10 +206,10 @@ export default function BJJMetaPage() {
 
           <section>
             <h2 className="text-3xl font-black mb-4">
-              Declining Techniques: What&apos;s Being Defended More
+              Declining Techniques: What's Being Defended More
             </h2>
             <p className="text-zinc-300 mb-4">
-              Just as telling as what&apos;s rising is what&apos;s declining. The armbar is falling
+              Just as telling as what's rising is what's declining. The armbar is falling
               in both Gi and No-Gi competition as athletes become better at hiding their elbows,
               defending arm extensions, and escaping the position. The triangle choke faces similar
               pressure as guard passing becomes more developed.
@@ -226,7 +226,7 @@ export default function BJJMetaPage() {
               How to Use This Data in Your Training
             </h2>
             <p className="text-zinc-300 mb-4">
-              Meta analysis is only useful if it changes how you train. Here&apos;s the practical
+              Meta analysis is only useful if it changes how you train. Here's the practical
               application:
             </p>
             <ol className="space-y-3 list-decimal list-inside text-zinc-300">
@@ -240,7 +240,7 @@ export default function BJJMetaPage() {
                 and defend it.
               </li>
               <li>
-                <strong className="text-zinc-100">Don&apos;t neglect fundamentals.</strong> Points
+                <strong className="text-zinc-100">Don't neglect fundamentals.</strong> Points
                 and advantages decide 69% of Gi matches. Takedowns, guard passing, and sweeps are
                 the foundation.
               </li>

@@ -566,7 +566,7 @@ export default function HomeClient() {
               Built for serious grapplers
             </h2>
             <p className="mt-4 text-lg text-zinc-400">
-              We&apos;re early. We&apos;re honest about it. And we&apos;re building something that actually matters for the BJJ community.
+              We're early. We're honest about it. And we're building something that actually matters for the BJJ community.
             </p>
           </div>
 
@@ -598,13 +598,13 @@ export default function HomeClient() {
               <div className="flex flex-col justify-center p-8 sm:p-10">
                 <p className="text-sm font-semibold uppercase tracking-widest text-red-500">Why AIBJJ</p>
                 <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
-                  Built by someone who&apos;s been on the mats for 20 years.
+                  Built by someone who's been on the mats for 20 years.
                 </h2>
                 <p className="mt-5 text-zinc-400 leading-relaxed">
-                  AIBJJ was built by a retired U.S. Army Infantry Paratrooper with combat deployments to Afghanistan, Iraq, and Syria — and a BJJ black belt who&apos;s been running his own academy in Anchorage, Alaska for over two decades.
+                  AIBJJ was built by a retired U.S. Army Infantry Paratrooper with combat deployments to Afghanistan, Iraq, and Syria — and a BJJ black belt who's been running his own academy in Anchorage, Alaska for over two decades.
                 </p>
                 <p className="mt-4 text-zinc-400 leading-relaxed">
-                  This isn&apos;t some tech startup that discovered jiu-jitsu last year. Every feature was designed from the perspective of someone who has bled on the mats, coached hundreds of students, and lived this art at every level.
+                  This isn't some tech startup that discovered jiu-jitsu last year. Every feature was designed from the perspective of someone who has bled on the mats, coached hundreds of students, and lived this art at every level.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   {[
@@ -631,7 +631,7 @@ export default function HomeClient() {
                   ))}
                 </div>
                 <blockquote className="text-lg font-medium leading-relaxed text-zinc-200">
-                  &ldquo;I built the tool I always wished existed. Something that actually thinks about jiu-jitsu the way a coach does — not just a search engine with a chat box.&rdquo;
+                  "I built the tool I always wished existed. Something that actually thinks about jiu-jitsu the way a coach does — not just a search engine with a chat box."
                 </blockquote>
                 <div className="mt-6 flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-red-700 to-red-900 text-sm font-black text-white">

@@ -38,7 +38,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Greatest Champions</h2>
-            <p>The ADCC record books are a Hall of Fame. Marcelo Garcia&apos;s five titles across different weight classes and absolutes set the gold standard. Gordon Ryan won back-to-back absolutes in 2019 and 2022. Andre Galvao won four times. Other legends include Ricco Rodriguez, Pablo Popovitch, and Roberto Abreu. On the women&apos;s side, Gabi Garcia and Ffion Davies have been dominant.</p>
+            <p>The ADCC record books are a Hall of Fame. Marcelo Garcia's five titles across different weight classes and absolutes set the gold standard. Gordon Ryan won back-to-back absolutes in 2019 and 2022. Andre Galvao won four times. Other legends include Ricco Rodriguez, Pablo Popovitch, and Roberto Abreu. On the women's side, Gabi Garcia and Ffion Davies have been dominant.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">ADCC Trials and Qualification</h2>

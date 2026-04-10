@@ -38,11 +38,11 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">The 2009 ADCC Absolute</h2>
-            <p>Roger&apos;s finest performance came at ADCC 2009 in Barcelona, where he submitted every opponent to win the absolute. In the final against Xande Ribeiro — one of the best defensive grapplers alive — Roger choked him out from back control with a rear naked choke. This is frequently cited as the greatest individual grappling performance in history.</p>
+            <p>Roger's finest performance came at ADCC 2009 in Barcelona, where he submitted every opponent to win the absolute. In the final against Xande Ribeiro — one of the best defensive grapplers alive — Roger choked him out from back control with a rear naked choke. This is frequently cited as the greatest individual grappling performance in history.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Legacy</h2>
-            <p>Roger validated classical jiu-jitsu at the highest level at a time when sport-specific specializations were fragmenting the art. He proved that Helio Gracie&apos;s original vision — dominant positions leading to inevitable submissions — remained devastating. Roger has since become an MMA fighter and continues to teach BJJ globally.</p>
+            <p>Roger validated classical jiu-jitsu at the highest level at a time when sport-specific specializations were fragmenting the art. He proved that Helio Gracie's original vision — dominant positions leading to inevitable submissions — remained devastating. Roger has since become an MMA fighter and continues to teach BJJ globally.</p>
           </section>
         </div>
         <div className="mt-16 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">

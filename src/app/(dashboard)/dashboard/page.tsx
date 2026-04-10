@@ -256,7 +256,7 @@ function StudyPlanCard() {
           <>
             <div className="rounded-lg border border-amber-600/15 bg-amber-600/8 p-3">
               <p className="text-xs font-semibold uppercase tracking-wider text-amber-500 mb-1">
-                This Week&apos;s Goal
+                This Week's Goal
               </p>
               <p className="text-sm text-zinc-200 font-medium">{plan.weeklyGoal}</p>
             </div>
@@ -678,7 +678,7 @@ export default function DashboardPage() {
         <div className="rounded-xl border border-red-800/30 bg-red-950/20 p-4">
           <div className="flex items-center gap-2 mb-3">
             <Zap className="h-4 w-4 text-red-400" />
-            <span className="text-sm font-semibold text-red-300">Today&apos;s Focus</span>
+            <span className="text-sm font-semibold text-red-300">Today's Focus</span>
             <span className="text-xs text-zinc-600 ml-auto">AI Coach</span>
           </div>
           {loadingSuggestion ? (

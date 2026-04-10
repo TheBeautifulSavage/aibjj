@@ -18,25 +18,25 @@ export default function HalfGuardPage() {
 
       <section className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-black mb-6">Half Guard BJJ: The Complete Half Guard System</h1>
-        <p className="text-xl text-zinc-400 mb-8">Half guard started as a guard that was being passed. Today it&apos;s one of the deepest positional systems in BJJ — with entire competition careers built around it. From the lockdown to deep half, this position is far from desperate.</p>
+        <p className="text-xl text-zinc-400 mb-8">Half guard started as a guard that was being passed. Today it's one of the deepest positional systems in BJJ — with entire competition careers built around it. From the lockdown to deep half, this position is far from desperate.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-12 space-y-10">
         <div>
           <h2 className="text-3xl font-black mb-4">The Evolution of Half Guard</h2>
-          <p className="text-zinc-300 mb-4">For the first decade of BJJ&apos;s spread in the West, half guard was considered a failed guard. You ended up there when someone passed your closed guard halfway. The goal was simply to recover full guard or escape to your feet.</p>
-          <p className="text-zinc-300 mb-4">Roberto &quot;Gordo&quot; Correa changed everything. After a knee injury forced him to stay in half guard during recovery, he developed an entire attacking system from the position. Today, players like Jeff Glover, Tom DeBlass, and Lucas Leite have built entire championship game plans around half guard variations.</p>
+          <p className="text-zinc-300 mb-4">For the first decade of BJJ's spread in the West, half guard was considered a failed guard. You ended up there when someone passed your closed guard halfway. The goal was simply to recover full guard or escape to your feet.</p>
+          <p className="text-zinc-300 mb-4">Roberto "Gordo" Correa changed everything. After a knee injury forced him to stay in half guard during recovery, he developed an entire attacking system from the position. Today, players like Jeff Glover, Tom DeBlass, and Lucas Leite have built entire championship game plans around half guard variations.</p>
           <p className="text-zinc-300">Half guard is now recognized as one of the most legitimate guard positions in the sport — offensive, creative, and full of surprises.</p>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Half Guard Fundamentals</h2>
-          <p className="text-zinc-300 mb-4">Basic half guard positions one of your legs between both of the opponent&apos;s legs, typically controlling their bottom leg with your inner knee and outer leg. The challenges are:</p>
+          <p className="text-zinc-300 mb-4">Basic half guard positions one of your legs between both of the opponent's legs, typically controlling their bottom leg with your inner knee and outer leg. The challenges are:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Opponent will try to flatten you out — killing your hip movement</li>
-            <li>They&apos;ll fight for the cross-face to break your defensive frame</li>
-            <li>They&apos;ll look to establish the underhook to take your back</li>
+            <li>They'll fight for the cross-face to break your defensive frame</li>
+            <li>They'll look to establish the underhook to take your back</li>
           </ul>
           <h3 className="text-xl font-bold mb-2 text-red-400">Defensive Priorities in Half Guard</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
@@ -56,12 +56,12 @@ export default function HalfGuardPage() {
             <li>Sweep to the top by driving through the underhook</li>
             <li>Transition to knee shield and then to butterfly or closed guard</li>
           </ul>
-          <p className="text-zinc-300">The underhook is so important that some practitioners build their entire half guard strategy around the single goal of achieving it. Once it&apos;s yours, the opponent is in serious trouble.</p>
+          <p className="text-zinc-300">The underhook is so important that some practitioners build their entire half guard strategy around the single goal of achieving it. Once it's yours, the opponent is in serious trouble.</p>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Deep Half Guard</h2>
-          <p className="text-zinc-300 mb-4">Deep half guard occurs when you slide completely under the opponent&apos;s leg, placing their weight on your body while you control their leg. This is an advanced position that Jeff Glover popularized in competition.</p>
+          <p className="text-zinc-300 mb-4">Deep half guard occurs when you slide completely under the opponent's leg, placing their weight on your body while you control their leg. This is an advanced position that Jeff Glover popularized in competition.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Getting to Deep Half</h3>
           <p className="text-zinc-300 mb-4">From standard half guard, you dive under by swimming your outside arm under their far leg, positioning your shoulder under their thigh. Your head is between their legs, their weight sits on your body.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Attacks from Deep Half</h3>
@@ -83,7 +83,7 @@ export default function HalfGuardPage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Z-Guard (Knee Shield Half Guard)</h2>
-          <p className="text-zinc-300 mb-4">Z-guard puts your knee across the opponent&apos;s hip as a frame while your feet control their thigh. This creates distance — preventing them from establishing the cross-face and flattening you. The Z-guard knee shield is an intermediate position that protects you while you work for the underhook or transition to other guards.</p>
+          <p className="text-zinc-300 mb-4">Z-guard puts your knee across the opponent's hip as a frame while your feet control their thigh. This creates distance — preventing them from establishing the cross-face and flattening you. The Z-guard knee shield is an intermediate position that protects you while you work for the underhook or transition to other guards.</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Knee shield blocks cross-face and maintains space</li>
             <li>From here you can transition to butterfly guard or closed guard</li>
@@ -107,12 +107,12 @@ export default function HalfGuardPage() {
             <li>Pressure down to prevent the bottom person from recovering to full guard</li>
             <li>Slide the knee out of the entanglement to achieve side control</li>
           </ul>
-          <p className="text-zinc-300">If you&apos;re the top player and your opponent has the underhook, be careful — they&apos;re about to threaten a back take or sweep. Address the underhook immediately.</p>
+          <p className="text-zinc-300">If you're the top player and your opponent has the underhook, be careful — they're about to threaten a back take or sweep. Address the underhook immediately.</p>
         </div>
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Build Your Half Guard System</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your half guard game. Whether you&apos;re a guard passer who keeps ending up in half guard or a dedicated half guard player looking to add depth, the AI coach builds your curriculum.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your half guard game. Whether you're a guard passer who keeps ending up in half guard or a dedicated half guard player looking to add depth, the AI coach builds your curriculum.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Start Your Half Guard Journey →</Link>
         </div>
 

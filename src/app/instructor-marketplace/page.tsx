@@ -234,7 +234,7 @@ export default async function InstructorMarketplacePage() {
               Already on BJJ Fanatics or YouTube?
             </h2>
             <p className="text-gray-300 mb-8">
-              Don&apos;t start from scratch. Bring your existing content over and start earning more — immediately.
+              Don't start from scratch. Bring your existing content over and start earning more — immediately.
             </p>
 
             <div className="grid sm:grid-cols-3 gap-6 mb-8">
@@ -255,7 +255,7 @@ export default async function InstructorMarketplacePage() {
                   step: "3",
                   icon: "💳",
                   title: "Get paid weekly",
-                  desc: "Automatic Stripe payouts every week. You keep 85%. That&apos;s the highest payout in BJJ.",
+                  desc: "Automatic Stripe payouts every week. You keep 85%. That's the highest payout in BJJ.",
                 },
               ].map((s) => (
                 <div key={s.step} className="flex gap-4">

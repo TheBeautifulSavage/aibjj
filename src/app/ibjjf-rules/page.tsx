@@ -18,7 +18,7 @@ export default function IBJJFRulesPage() {
 
       <section className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-black mb-6">IBJJF Rules Explained: Complete Ruleset Guide</h1>
-        <p className="text-xl text-zinc-400 mb-8">The International Brazilian Jiu-Jitsu Federation (IBJJF) runs the most prestigious BJJ competitions in the world — including the World Championships. Understanding their rules isn&apos;t just for competitors; it&apos;s fundamental knowledge for any serious practitioner.</p>
+        <p className="text-xl text-zinc-400 mb-8">The International Brazilian Jiu-Jitsu Federation (IBJJF) runs the most prestigious BJJ competitions in the world — including the World Championships. Understanding their rules isn't just for competitors; it's fundamental knowledge for any serious practitioner.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>
 
@@ -39,13 +39,13 @@ export default function IBJJFRulesPage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Advantages</h2>
-          <p className="text-zinc-300 mb-4">Advantages are scored for near-scoring situations — a submission attempt that nearly works, a position held briefly, a takedown that doesn&apos;t fully materialize. Advantages are tiebreakers only — they don&apos;t override points.</p>
+          <p className="text-zinc-300 mb-4">Advantages are scored for near-scoring situations — a submission attempt that nearly works, a position held briefly, a takedown that doesn't fully materialize. Advantages are tiebreakers only — they don't override points.</p>
           <p className="text-zinc-300 mb-4">Situations that generate advantages:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2">
             <li>Submission attempt that makes opponent react or defend strongly</li>
             <li>Position held less than 3 seconds</li>
             <li>Takedown that results in the opponent going to guard immediately</li>
-            <li>Near sweep that doesn&apos;t complete</li>
+            <li>Near sweep that doesn't complete</li>
           </ul>
         </div>
 
@@ -94,7 +94,7 @@ export default function IBJJFRulesPage() {
             <li><strong>Third penalty:</strong> 2 more points to opponent</li>
             <li><strong>Fourth penalty:</strong> Disqualification</li>
           </ul>
-          <p className="text-zinc-300 mb-4">Stalling is one of the most common penalty situations. Referees warn practitioners who aren&apos;t working to progress the match — particularly when holding a position without attempting submissions or transitions.</p>
+          <p className="text-zinc-300 mb-4">Stalling is one of the most common penalty situations. Referees warn practitioners who aren't working to progress the match — particularly when holding a position without attempting submissions or transitions.</p>
           <p className="text-zinc-300">Illegal technique application results in immediate disqualification, not just a penalty.</p>
         </div>
 
@@ -135,7 +135,7 @@ export default function IBJJFRulesPage() {
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Compete Smarter with AI Coaching</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your competition game plan. The AI understands IBJJF rules and helps you build a strategy that maximizes your scoring opportunities.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your competition game plan. The AI understands IBJJF rules and helps you build a strategy that maximizes your scoring opportunities.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Build Your Competition Strategy →</Link>
         </div>
 

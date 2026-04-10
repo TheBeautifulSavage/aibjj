@@ -59,7 +59,7 @@ export default function ADCCStatisticsPage() {
           🏆 ADCC Analysis
         </div>
         <h1 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
-          ADCC Statistics: Submission Rates &amp; Meta Analysis
+          ADCC Statistics: Submission Rates & Meta Analysis
         </h1>
         <p className="text-xl text-zinc-400 mb-4">
           ADCC (Abu Dhabi Combat Club) is the most prestigious submission grappling tournament on
@@ -154,7 +154,7 @@ export default function ADCCStatisticsPage() {
         <section>
           <h2 className="text-3xl font-black mb-4">Why ADCC Has the Highest Submission Rates</h2>
           <p className="text-zinc-300 mb-4">
-            The ADCC ruleset is specifically designed to produce submission finishes. Here&apos;s how:
+            The ADCC ruleset is specifically designed to produce submission finishes. Here's how:
           </p>
           <ul className="space-y-3 text-zinc-300">
             <li className="border-l-2 border-red-600 pl-4">

@@ -37,7 +37,7 @@ export default function KimuraPage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Kimura from Closed Guard</h2>
-          <p className="text-zinc-300 mb-4">The most common kimura setup: from the hip bump sweep. Sit up toward the target arm, overhook their arm with your arm, and take the figure-four grip. If they don&apos;t tap to the kimura, you sweep them — the threat of one feeds the other.</p>
+          <p className="text-zinc-300 mb-4">The most common kimura setup: from the hip bump sweep. Sit up toward the target arm, overhook their arm with your arm, and take the figure-four grip. If they don't tap to the kimura, you sweep them — the threat of one feeds the other.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Kimura from Closed Guard Setup</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>From closed guard, sit up to the kimura side (use the hip bump motion)</li>
@@ -112,7 +112,7 @@ export default function KimuraPage() {
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Build Your Kimura System with AI Coaching</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your kimura game. Whether you want to develop the kimura trap system or just make your guard kimura more reliable, the AI coach has your plan.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your kimura game. Whether you want to develop the kimura trap system or just make your guard kimura more reliable, the AI coach has your plan.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your Kimura Curriculum →</Link>
         </div>
       </section>

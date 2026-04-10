@@ -25,7 +25,7 @@ export default function BJJHoustonPage() {
           <p className="text-sm font-semibold uppercase tracking-widest text-red-500 mb-3">BJJ in Texas</p>
           <h1 className="text-4xl font-black text-white sm:text-5xl mb-6">BJJ in Houston: Find the Best Jiu-Jitsu Gyms & Training</h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            Houston is one of Texas&apos;s largest BJJ markets — a city of 2.3 million people with a robust grappling community, active competition scene, and gyms ranging from traditional Brazilian academies to cutting-edge no-gi focused facilities.
+            Houston is one of Texas's largest BJJ markets — a city of 2.3 million people with a robust grappling community, active competition scene, and gyms ranging from traditional Brazilian academies to cutting-edge no-gi focused facilities.
           </p>
         </div>
 
@@ -39,13 +39,13 @@ export default function BJJHoustonPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">The Houston BJJ Scene</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Houston has long been a significant BJJ city, with deep roots in both traditional gi BJJ and the MMA crossover that flourished in Texas during the sport&apos;s growth. The city&apos;s diverse population — including a large Latino community with cultural ties to martial arts — has helped BJJ grow rapidly here.
+              Houston has long been a significant BJJ city, with deep roots in both traditional gi BJJ and the MMA crossover that flourished in Texas during the sport's growth. The city's diverse population — including a large Latino community with cultural ties to martial arts — has helped BJJ grow rapidly here.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
               Houston is home to several well-known academies and has produced notable competitors over the years. The Texas competition circuit (IBJJF Texas Open and various local promotions) gives Houston practitioners regular competition opportunities without traveling to the coasts.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              Like Miami, Houston&apos;s heat and humidity are factors to consider. No-gi training is popular year-round, and many gyms offer both gi and no-gi programs. Houston also has a strong MMA scene — many gyms offer integrated curricula.
+              Like Miami, Houston's heat and humidity are factors to consider. No-gi training is popular year-round, and many gyms offer both gi and no-gi programs. Houston also has a strong MMA scene — many gyms offer integrated curricula.
             </p>
           </section>
 
@@ -86,7 +86,7 @@ export default function BJJHoustonPage() {
 
           <section className="p-8 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Start Learning BJJ Today</h2>
-            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">While you search for the right Houston gym, start building your BJJ foundation with AIBJJ&apos;s AI coach and 10,000+ technique library.</p>
+            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">While you search for the right Houston gym, start building your BJJ foundation with AIBJJ's AI coach and 10,000+ technique library.</p>
             <Link href="/auth/signup" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">Start with AIBJJ Free →</Link>
           </section>
         </div>

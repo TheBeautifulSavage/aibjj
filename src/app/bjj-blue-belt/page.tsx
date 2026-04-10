@@ -18,7 +18,7 @@ export default function BlueBeltPage() {
 
       <section className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Blue Belt Requirements: What You Need to Know</h1>
-        <p className="text-xl text-zinc-400 mb-8">The blue belt is the first major milestone in BJJ — it represents real, functional grappling competence. But what does it actually take to earn one? Here&apos;s what instructors are looking for and what you should be developing.</p>
+        <p className="text-xl text-zinc-400 mb-8">The blue belt is the first major milestone in BJJ — it represents real, functional grappling competence. But what does it actually take to earn one? Here's what instructors are looking for and what you should be developing.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>
 
@@ -26,7 +26,7 @@ export default function BlueBeltPage() {
         <div>
           <h2 className="text-3xl font-black mb-4">What the Blue Belt Represents</h2>
           <p className="text-zinc-300 mb-4">The blue belt in BJJ signifies that you have genuine, functional grappling ability. You understand the major positions, can escape from bad positions, have a real offense, and can make significant resistance from other white belts and give blue belts real work.</p>
-          <p className="text-zinc-300 mb-4">It&apos;s not a beginner belt — it&apos;s the first real belt. The gap between white and blue is enormous; the gap between blue and purple is larger than most people expect.</p>
+          <p className="text-zinc-300 mb-4">It's not a beginner belt — it's the first real belt. The gap between white and blue is enormous; the gap between blue and purple is larger than most people expect.</p>
           <p className="text-zinc-300">In self-defense terms, a blue belt BJJ practitioner can handle themselves against untrained or poorly-trained attackers, and has genuine competence in ground fighting that no other martial art systematically develops at the early belt levels.</p>
         </div>
 
@@ -64,16 +64,16 @@ export default function BlueBeltPage() {
             <li><strong>Private lessons:</strong> Focused instruction closes gaps faster</li>
             <li><strong>Competition experience:</strong> Competing regularly accelerates progress</li>
           </ul>
-          <p className="text-zinc-300">Don&apos;t chase the belt. Chase competence. The belt follows the ability — when you&apos;re ready, a good instructor recognizes it.</p>
+          <p className="text-zinc-300">Don't chase the belt. Chase competence. The belt follows the ability — when you're ready, a good instructor recognizes it.</p>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">The Blue Belt Blues: What Happens After</h2>
-          <p className="text-zinc-300 mb-4">The &quot;blue belt blues&quot; is a well-documented phenomenon — many practitioners quit BJJ shortly after receiving their blue belt. The blue belt sees how much they don&apos;t know. It&apos;s humbling in a different way than white belt humility.</p>
+          <p className="text-zinc-300 mb-4">The "blue belt blues" is a well-documented phenomenon — many practitioners quit BJJ shortly after receiving their blue belt. The blue belt sees how much they don't know. It's humbling in a different way than white belt humility.</p>
           <p className="text-zinc-300 mb-4">What happens: they get tapped by all the other blue belts, they realize purple belt is far away, and they lose motivation. The solution:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
-            <li>Reframe the goal — it&apos;s about mastery, not belt progression</li>
-            <li>Pick specific areas to develop, not general &quot;get better at BJJ&quot;</li>
+            <li>Reframe the goal — it's about mastery, not belt progression</li>
+            <li>Pick specific areas to develop, not general "get better at BJJ"</li>
             <li>Compete — external goals maintain motivation</li>
             <li>Train with a variety of partners — not just the same people each week</li>
           </ul>
@@ -85,28 +85,28 @@ export default function BlueBeltPage() {
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li><strong>Develop a guard system:</strong> Pick one guard to specialize in and go deep</li>
             <li><strong>Develop a passing game:</strong> 2-3 reliable passes that work together</li>
-            <li><strong>Build submission chains:</strong> Don&apos;t just have one submission from guard — build combinations</li>
+            <li><strong>Build submission chains:</strong> Don't just have one submission from guard — build combinations</li>
             <li><strong>Competition:</strong> Compete at blue belt level to calibrate your skills</li>
           </ul>
         </div>
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Build Your Blue Belt Game with AI</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your blue belt development. Whether you&apos;re pursuing blue belt or recently received it, the AI coach creates your next-phase curriculum.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your blue belt development. Whether you're pursuing blue belt or recently received it, the AI coach creates your next-phase curriculum.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your Blue Belt Plan →</Link>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Blue Belt in Competition</h2>
-          <p className="text-zinc-300 mb-4">Blue belt divisions in competition are often the most competitive — many practitioners spend 3-5 years at blue belt before receiving purple. This means you&apos;re competing against experienced, skilled grapplers.</p>
-          <p className="text-zinc-300">Blue belt world champions have often spent years refining their game at this level. Don&apos;t rush past blue belt — extract every lesson from it.</p>
+          <p className="text-zinc-300 mb-4">Blue belt divisions in competition are often the most competitive — many practitioners spend 3-5 years at blue belt before receiving purple. This means you're competing against experienced, skilled grapplers.</p>
+          <p className="text-zinc-300">Blue belt world champions have often spent years refining their game at this level. Don't rush past blue belt — extract every lesson from it.</p>
           <Link href="/bjj-belt-system" className="text-red-400 hover:text-red-300 font-semibold">→ Complete BJJ belt system guide</Link>
         </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">Whether you&apos;re chasing blue belt or developing your blue belt game, AIBJJ&apos;s AI coach has your plan.</p>
+        <p className="text-zinc-400 mb-6">Whether you're chasing blue belt or developing your blue belt game, AIBJJ's AI coach has your plan.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

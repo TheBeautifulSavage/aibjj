@@ -34,7 +34,7 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Leg Lock System</h2>
-            <p>Jones&apos;s leg lock system is built around patience and precision — he creates entanglements methodically and waits for opponents to make the mistake that allows the finish. His heel hook in particular is considered one of the sharpest in the sport. Unlike many leg lock specialists who rely on explosive entries, Jones&apos;s game rewards deep technical understanding of leg mechanics.</p>
+            <p>Jones's leg lock system is built around patience and precision — he creates entanglements methodically and waits for opponents to make the mistake that allows the finish. His heel hook in particular is considered one of the sharpest in the sport. Unlike many leg lock specialists who rely on explosive entries, Jones's game rewards deep technical understanding of leg mechanics.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">B-Team and Gordon Ryan</h2>

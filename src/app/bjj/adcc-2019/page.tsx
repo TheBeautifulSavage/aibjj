@@ -25,7 +25,7 @@ export default function Page() {
           ))}
         </div>
         <h1 className="text-4xl font-black sm:text-5xl">ADCC 2019: Gordon Ryan's Statement Performance</h1>
-        <p className="mt-4 text-xl text-zinc-400">ADCC 2019 in Anaheim, California was one of the greatest grappling events in history. Gordon Ryan&apos;s dominant absolute victory cemented his status as the greatest no-gi grappler alive.</p>
+        <p className="mt-4 text-xl text-zinc-400">ADCC 2019 in Anaheim, California was one of the greatest grappling events in history. Gordon Ryan's dominant absolute victory cemented his status as the greatest no-gi grappler alive.</p>
         <div className="mt-10 space-y-10 text-zinc-300 leading-relaxed">
 
           <section>
@@ -38,11 +38,11 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Other Highlights</h2>
-            <p>Beyond Ryan&apos;s performance, ADCC 2019 featured memorable matches throughout. The women&apos;s divisions saw high-level technical performances. The lighter weight classes delivered explosive, technical grappling. Felipe Pena&apos;s performance, Garry Tonon&apos;s submission hunting, and various upsets kept fans engaged throughout a two-day event that many consider the best grappling event ever held.</p>
+            <p>Beyond Ryan's performance, ADCC 2019 featured memorable matches throughout. The women's divisions saw high-level technical performances. The lighter weight classes delivered explosive, technical grappling. Felipe Pena's performance, Garry Tonon's submission hunting, and various upsets kept fans engaged throughout a two-day event that many consider the best grappling event ever held.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Impact on the Sport</h2>
-            <p>ADCC 2019 accelerated the professionalization of submission grappling. The event&apos;s success demonstrated that there was a viable market for high-level no-gi competition. It helped establish the foundation for the explosion of professional grappling events — WNO, SUBVERSIV, and others — that followed in the years after.</p>
+            <p>ADCC 2019 accelerated the professionalization of submission grappling. The event's success demonstrated that there was a viable market for high-level no-gi competition. It helped establish the foundation for the explosion of professional grappling events — WNO, SUBVERSIV, and others — that followed in the years after.</p>
           </section>
         </div>
         <div className="mt-16 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">

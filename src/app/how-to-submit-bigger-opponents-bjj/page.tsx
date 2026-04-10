@@ -41,7 +41,7 @@ export default function Page() {
           </details>
           <details className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5 open:border-zinc-700">
             <summary className="font-bold text-white cursor-pointer">What positions are best against bigger opponents?</summary>
-            <p className="mt-3 text-sm text-zinc-400 leading-relaxed">Back control removes their strength advantage most completely. Guard from bottom is better than being pinned under mount by a much larger person. The key is staying mobile and avoiding flat on your back under heavy top pressure. Half guard, deep half, and leg entanglements can all work well against larger opponents because they use the opponent&apos;s weight against them.</p>
+            <p className="mt-3 text-sm text-zinc-400 leading-relaxed">Back control removes their strength advantage most completely. Guard from bottom is better than being pinned under mount by a much larger person. The key is staying mobile and avoiding flat on your back under heavy top pressure. Half guard, deep half, and leg entanglements can all work well against larger opponents because they use the opponent's weight against them.</p>
           </details>
         </div>
         <div className="mt-16 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">

@@ -25,7 +25,7 @@ export default function OmoplataPage() {
       <section className="max-w-4xl mx-auto px-4 py-12 space-y-10">
         <div>
           <h2 className="text-3xl font-black mb-4">Omoplata Mechanics</h2>
-          <p className="text-zinc-300 mb-4">The omoplata is a shoulder lock applied with your leg rather than your arm. Your leg wraps around the opponent&apos;s arm from behind their shoulder, and by rotating your body perpendicular and sitting up, you create a rotational force on the shoulder joint — the same joint targeted by the kimura and Americana, but from a completely different direction.</p>
+          <p className="text-zinc-300 mb-4">The omoplata is a shoulder lock applied with your leg rather than your arm. Your leg wraps around the opponent's arm from behind their shoulder, and by rotating your body perpendicular and sitting up, you create a rotational force on the shoulder joint — the same joint targeted by the kimura and Americana, but from a completely different direction.</p>
           <p className="text-zinc-300 mb-4">What makes the omoplata uniquely powerful is that the leg provides more leverage than an arm. Your entire hip and core power goes into the lock, and when you sit up, the leverage multiplies.</p>
         </div>
 
@@ -55,7 +55,7 @@ export default function OmoplataPage() {
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Sit up tall — your weight should be on your sit bones, not leaning back</li>
             <li>Walk your hips away from them to increase the rotation on the shoulder</li>
-            <li>Keep their arm locked against your inner thigh — don&apos;t let it slide out</li>
+            <li>Keep their arm locked against your inner thigh — don't let it slide out</li>
             <li>Their elbow should point toward the ceiling</li>
             <li>Prevent the roll: grip their belt with near hand or post on their back</li>
           </ul>
@@ -68,7 +68,7 @@ export default function OmoplataPage() {
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>When they posture up against the omoplata, grab their far leg (ankle or pants)</li>
             <li>Pull the leg while pushing with your hips — this sweeps them to your top</li>
-            <li>You end up in top side control or in a scramble where you&apos;re ahead</li>
+            <li>You end up in top side control or in a scramble where you're ahead</li>
           </ul>
           <p className="text-zinc-300 mb-4">The omoplata sweep is one of the highest-percentage sweeps in competition BJJ. Many practitioners set up the omoplata specifically for the sweep rather than the submission.</p>
         </div>
@@ -91,19 +91,19 @@ export default function OmoplataPage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Omoplata in Gi vs. No-Gi</h2>
-          <p className="text-zinc-300 mb-4">The omoplata works in both gi and no-gi, but with differences. In the gi, sleeve grips make the setup easier. In no-gi, you rely on wrist control or overhooks to create the entry. The finish is identical — the leg position doesn&apos;t change based on whether gi grips are available.</p>
-          <p className="text-zinc-300">In no-gi, the omoplata is slightly harder to maintain because there&apos;s nothing to grab on their back. Use two hands on their lower back or one hand on the back and one hand blocking their hip.</p>
+          <p className="text-zinc-300 mb-4">The omoplata works in both gi and no-gi, but with differences. In the gi, sleeve grips make the setup easier. In no-gi, you rely on wrist control or overhooks to create the entry. The finish is identical — the leg position doesn't change based on whether gi grips are available.</p>
+          <p className="text-zinc-300">In no-gi, the omoplata is slightly harder to maintain because there's nothing to grab on their back. Use two hands on their lower back or one hand on the back and one hand blocking their hip.</p>
         </div>
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Build Your Omoplata Game</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on developing the omoplata as a primary weapon. The AI coach creates a custom omoplata system curriculum based on your current guard game.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on developing the omoplata as a primary weapon. The AI coach creates a custom omoplata system curriculum based on your current guard game.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your Omoplata Plan →</Link>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Why Every BJJ Practitioner Should Know the Omoplata</h2>
-          <p className="text-zinc-300 mb-4">Even if you don&apos;t specialize in the omoplata, understanding it makes your entire guard game better. It&apos;s the connecting tissue between many attacks — understanding how the omoplata flows into and from other techniques deepens your comprehension of guard as a whole.</p>
+          <p className="text-zinc-300 mb-4">Even if you don't specialize in the omoplata, understanding it makes your entire guard game better. It's the connecting tissue between many attacks — understanding how the omoplata flows into and from other techniques deepens your comprehension of guard as a whole.</p>
           <p className="text-zinc-300">Practitioners who ignore the omoplata have a predictable guard that can be defended by anyone who trains specifically for their submission preference. Adding omoplata threats makes your game multi-dimensional.</p>
           <Link href="/bjj-guard" className="text-red-400 hover:text-red-300 font-semibold">→ Complete BJJ guard guide</Link>
         </div>
@@ -111,7 +111,7 @@ export default function OmoplataPage() {
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">Add the omoplata to your complete submission arsenal with AIBJJ&apos;s AI coaching system.</p>
+        <p className="text-zinc-400 mb-6">Add the omoplata to your complete submission arsenal with AIBJJ's AI coaching system.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

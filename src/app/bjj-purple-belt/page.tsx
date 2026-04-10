@@ -16,7 +16,7 @@ export default function Page() {
         </div>
       </nav>
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Purple Belt: What to Focus On &amp; Expect</h1>
+        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Purple Belt: What to Focus On & Expect</h1>
         <p className="text-xl text-zinc-400 mb-8">Purple belt is when BJJ gets serious. You've survived white and blue belt — now begins the real technical development. Here's what purple belt means, what to work on, and how to make the most of this transformative rank.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>

@@ -31,30 +31,30 @@ export default function ArmbarPage() {
             <li>The arm must be isolated — both legs control one arm</li>
             <li>Hips must be elevated into the elbow crease, not below it</li>
             <li>Pull the arm thumb-up to align the elbow joint properly</li>
-            <li>Knees pinched — don&apos;t let them pull the arm free</li>
+            <li>Knees pinched — don't let them pull the arm free</li>
             <li>Extend the hips slowly and consistently for a controlled finish</li>
           </ul>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Armbar from Closed Guard</h2>
-          <p className="text-zinc-300 mb-4">The guard armbar is the most common entry for beginners and remains effective at all levels when set up correctly. The challenge is the movement required — you need to swing your leg over their head while they&apos;re resisting.</p>
+          <p className="text-zinc-300 mb-4">The guard armbar is the most common entry for beginners and remains effective at all levels when set up correctly. The challenge is the movement required — you need to swing your leg over their head while they're resisting.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Setup and Execution</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Break their posture with a collar grip, pull their head down</li>
             <li>Secure a cross-grip on the target wrist (cross-sleeve grip)</li>
             <li>Place your foot on their same-side hip to create the angle</li>
-            <li>Swing the far leg over their head (don&apos;t cross your ankles)</li>
+            <li>Swing the far leg over their head (don't cross your ankles)</li>
             <li>Pinch your knees, elevate your hips, and pull the arm straight</li>
           </ul>
-          <p className="text-zinc-300">The most common failure: swinging the leg before controlling the arm. If you don&apos;t have the arm, swinging the leg just opens your guard for a pass.</p>
+          <p className="text-zinc-300">The most common failure: swinging the leg before controlling the arm. If you don't have the arm, swinging the leg just opens your guard for a pass.</p>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Armbar from Mount</h2>
           <p className="text-zinc-300 mb-4">The mount armbar is one of the highest-percentage submissions in combat sports. From high mount, the geometry is already in your favor.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">S-Mount Entry</h3>
-          <p className="text-zinc-300 mb-4">The S-mount is the most reliable mount armbar setup. From high mount, slide one knee up near their shoulder on the target arm side, rotating to the &quot;S&quot; position. This isolates the arm naturally and creates the angle to swing your leg over.</p>
+          <p className="text-zinc-300 mb-4">The S-mount is the most reliable mount armbar setup. From high mount, slide one knee up near their shoulder on the target arm side, rotating to the "S" position. This isolates the arm naturally and creates the angle to swing your leg over.</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>From high mount, control the wrist of the target arm</li>
             <li>Post your far foot near their hip for balance</li>
@@ -66,7 +66,7 @@ export default function ArmbarPage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Armbar from Side Control</h2>
-          <p className="text-zinc-300 mb-4">Side control armbars require transitional movement since you aren&apos;t surrounding the arm with your legs yet. The most common is the nearside armbar:</p>
+          <p className="text-zinc-300 mb-4">Side control armbars require transitional movement since you aren't surrounding the arm with your legs yet. The most common is the nearside armbar:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>From side control, isolate the near arm by pulling it across your body</li>
             <li>Step over their head while controlling the wrist</li>
@@ -114,13 +114,13 @@ export default function ArmbarPage() {
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Perfect Your Armbar Technique</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your armbar game. Identify which position your armbars are weakest from and get targeted drills to fix them.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your armbar game. Identify which position your armbars are weakest from and get targeted drills to fix them.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your Armbar Curriculum →</Link>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Armbar in Competition</h2>
-          <p className="text-zinc-300 mb-4">The armbar is consistently one of the most common submissions in BJJ competition at all levels. It&apos;s allowed in all divisions including kids and beginners (though finishing pressure should be controlled). In the IBJJF, the armbar is legal from white belt onward.</p>
+          <p className="text-zinc-300 mb-4">The armbar is consistently one of the most common submissions in BJJ competition at all levels. It's allowed in all divisions including kids and beginners (though finishing pressure should be controlled). In the IBJJF, the armbar is legal from white belt onward.</p>
           <p className="text-zinc-300">Notable armbar specialists include Roger Gracie, who finished many matches with armbar from mount, and Ronda Rousey, who brought mainstream attention to the arm lock in MMA. At the highest level, a well-timed armbar from an unexpected position — like transition armbars during scrambles — is the signature of an elite practitioner.</p>
           <Link href="/bjj-competition" className="text-red-400 hover:text-red-300 font-semibold">→ Complete BJJ competition guide</Link>
         </div>
@@ -128,7 +128,7 @@ export default function ArmbarPage() {
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">Build a complete submission game with AIBJJ&apos;s AI coaching system. Track your progress and drill with purpose.</p>
+        <p className="text-zinc-400 mb-6">Build a complete submission game with AIBJJ's AI coaching system. Track your progress and drill with purpose.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

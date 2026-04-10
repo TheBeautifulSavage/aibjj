@@ -30,7 +30,7 @@ export default function AIBJJvsFloGrapplingPage() {
             AIBJJ vs FloGrappling: Different Products for Different Needs
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            If you&apos;re comparing AIBJJ and FloGrappling, you might be solving two different problems without realizing it. 
+            If you're comparing AIBJJ and FloGrappling, you might be solving two different problems without realizing it. 
             These platforms serve fundamentally different purposes — and most serious BJJ practitioners actually benefit from having both.
           </p>
         </div>
@@ -53,13 +53,13 @@ export default function AIBJJvsFloGrapplingPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">What FloGrappling Does</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              FloGrappling is the premier streaming service for grappling events. They carry ADCC, Who&apos;s Number One (WNO), Eddie Bravo Invitational, Fight to Win, and dozens of other top-level competition events live and on-demand.
+              FloGrappling is the premier streaming service for grappling events. They carry ADCC, Who's Number One (WNO), Eddie Bravo Invitational, Fight to Win, and dozens of other top-level competition events live and on-demand.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
               If you want to watch Gordon Ryan vs. Kade Ruotolo live, you need FloGrappling. If you want to watch ADCC Trials or the absolute bracket at a major IBJJF event, you need FloGrappling. They own the live event streaming market for grappling in a way that no competitor comes close to matching.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              What FloGrappling is not: a training tool. You can watch elite grapplers and absorb technique by observation, but there&apos;s no structured curriculum, no AI coach, no training journal, and no instructional series built around helping you improve. Their content is competition footage, not instruction.
+              What FloGrappling is not: a training tool. You can watch elite grapplers and absorb technique by observation, but there's no structured curriculum, no AI coach, no training journal, and no instructional series built around helping you improve. Their content is competition footage, not instruction.
             </p>
           </section>
 
@@ -69,7 +69,7 @@ export default function AIBJJvsFloGrapplingPage() {
               AIBJJ is built to help you actively improve. The AI coach answers technique questions, builds drilling sequences, and helps you construct your game plan. The 10,000+ technique library gives you searchable, categorized instructional content. The training journal tracks your sessions and progress.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              AIBJJ also has a creator marketplace where coaches sell instructionals — more structured than competition footage, with step-by-step teaching specifically designed to improve your jiu-jitsu. What AIBJJ is not: live event streaming. We don&apos;t carry competition broadcasts.
+              AIBJJ also has a creator marketplace where coaches sell instructionals — more structured than competition footage, with step-by-step teaching specifically designed to improve your jiu-jitsu. What AIBJJ is not: live event streaming. We don't carry competition broadcasts.
             </p>
           </section>
 

@@ -20,7 +20,7 @@ export default function Page() {
           <section><h2 className="text-2xl font-bold text-white mb-3">MMA Transition</h2><p>Dern signed with the UFC and rapidly climbed the strawweight rankings with an aggressive, submission-oriented fighting style. Her ground game in MMA is exceptional, with multiple submission finishes in professional competition. She has also developed her striking to become a more complete fighter, though her competitive advantage remains on the ground.</p></section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Cultural Impact</h2>
-            <p>Dern has become one of the most visible figures in both BJJ and women&apos;s MMA. Her journey from competitive BJJ champion to professional fighter has inspired practitioners worldwide and helped mainstream awareness of both sports.</p>
+            <p>Dern has become one of the most visible figures in both BJJ and women's MMA. Her journey from competitive BJJ champion to professional fighter has inspired practitioners worldwide and helped mainstream awareness of both sports.</p>
           </section>
         </div>
         <div className="mt-16 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">

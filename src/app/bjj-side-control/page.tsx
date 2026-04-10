@@ -18,7 +18,7 @@ export default function SideControlPage() {
 
       <section className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Side Control: Pins, Transitions & Submissions</h1>
-        <p className="text-xl text-zinc-400 mb-8">Side control is the workhorse position of BJJ — it&apos;s where most guard passes end up and where most submission setups begin. Mastering side control means mastering the flow of the match.</p>
+        <p className="text-xl text-zinc-400 mb-8">Side control is the workhorse position of BJJ — it's where most guard passes end up and where most submission setups begin. Mastering side control means mastering the flow of the match.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>
 
@@ -32,9 +32,9 @@ export default function SideControlPage() {
         <div>
           <h2 className="text-3xl font-black mb-4">Side Control Grip Variations</h2>
           <h3 className="text-xl font-bold mb-2 text-red-400">Crossface and Underhook</h3>
-          <p className="text-zinc-300 mb-4">The classic side control position: one arm goes across the face (crossface) pressing on the near cheek and jaw, the other arm goes under their arm to control the far shoulder. This creates a strong pin because they can&apos;t turn into you without fighting both the face pressure and the underhook.</p>
+          <p className="text-zinc-300 mb-4">The classic side control position: one arm goes across the face (crossface) pressing on the near cheek and jaw, the other arm goes under their arm to control the far shoulder. This creates a strong pin because they can't turn into you without fighting both the face pressure and the underhook.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Double Underhook (Kesa Gatame)</h3>
-          <p className="text-zinc-300 mb-4">Both arms go under the opponent&apos;s arms. This creates a tight pin but limits your submission access. Good for beginners who struggle to maintain control.</p>
+          <p className="text-zinc-300 mb-4">Both arms go under the opponent's arms. This creates a tight pin but limits your submission access. Good for beginners who struggle to maintain control.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Reverse Kesa Gatame</h3>
           <p className="text-zinc-300 mb-4">Facing their legs, with one arm under their head and your other arm controlling the near leg. Opens arm lock attacks from a different angle and transitions to north-south easily.</p>
         </div>
@@ -42,7 +42,7 @@ export default function SideControlPage() {
         <div>
           <h2 className="text-3xl font-black mb-4">Side Control to Submissions</h2>
           <h3 className="text-xl font-bold mb-2 text-red-400">Kimura from Side Control</h3>
-          <p className="text-zinc-300 mb-4">When the opponent reaches across their body (grabbing your collar or hip), their far arm is exposed. Step over their head and take the kimura. Drive your weight down on the arm while rotating — this finishes many opponents who don&apos;t see it coming.</p>
+          <p className="text-zinc-300 mb-4">When the opponent reaches across their body (grabbing your collar or hip), their far arm is exposed. Step over their head and take the kimura. Drive your weight down on the arm while rotating — this finishes many opponents who don't see it coming.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Americana from Side Control</h3>
           <p className="text-zinc-300 mb-4">The near arm is often exposed in side control. Pin their wrist to the mat, form the figure-four, and rotate toward their head. The Americana works especially well when they bridge into you.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Armbar from Side Control</h3>
@@ -70,19 +70,19 @@ export default function SideControlPage() {
           <h3 className="text-xl font-bold mb-2 text-red-400">Shrimp to Guard Recovery</h3>
           <p className="text-zinc-300 mb-4">Hip escape (shrimp) toward your head, then use the frame to recover your guard. The most reliable side control escape at all levels — it requires timing and explosiveness, not strength.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Bridge to Return to Guard</h3>
-          <p className="text-zinc-300 mb-4">When they establish side control and you&apos;ve lost your frames, a sharp bridge (upa) can disrupt their weight distribution and create space for the shrimp recovery.</p>
+          <p className="text-zinc-300 mb-4">When they establish side control and you've lost your frames, a sharp bridge (upa) can disrupt their weight distribution and create space for the shrimp recovery.</p>
         </div>
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Develop Your Side Control Game</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your side control game — whether you need to maintain better, attack more effectively, or escape more reliably.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your side control game — whether you need to maintain better, attack more effectively, or escape more reliably.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your Side Control Plan →</Link>
         </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">Build dominant top control and submission chains from side control with AIBJJ&apos;s AI coaching.</p>
+        <p className="text-zinc-400 mb-6">Build dominant top control and submission chains from side control with AIBJJ's AI coaching.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

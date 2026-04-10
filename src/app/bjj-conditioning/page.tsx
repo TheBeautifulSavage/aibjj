@@ -80,12 +80,12 @@ export default function ConditioningPage() {
             <li><strong>Saturday:</strong> BJJ or intervals + Zone 2 combo</li>
             <li><strong>Sunday:</strong> Rest or light mobility</li>
           </ul>
-          <p className="text-zinc-300">Adjust based on your recovery. If you&apos;re consistently sore and fatigued, reduce the conditioning work. More training is not better when you&apos;re not recovering.</p>
+          <p className="text-zinc-300">Adjust based on your recovery. If you're consistently sore and fatigued, reduce the conditioning work. More training is not better when you're not recovering.</p>
         </div>
 
         <div>
           <h2 className="text-3xl font-black mb-4">Flexibility and Mobility for Grapplers</h2>
-          <p className="text-zinc-300 mb-4">Flexibility in BJJ isn&apos;t just about guard positions — it&apos;s about injury prevention and movement quality. Key areas to develop:</p>
+          <p className="text-zinc-300 mb-4">Flexibility in BJJ isn't just about guard positions — it's about injury prevention and movement quality. Key areas to develop:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Hip flexors: sitting in guard and breaking posture</li>
             <li>External hip rotation: guard positions and leg locks</li>
@@ -108,14 +108,14 @@ export default function ConditioningPage() {
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Get a Custom BJJ Conditioning Plan</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on your BJJ conditioning. Tell the AI your current training schedule, fitness level, and goals — it builds a complete supplemental training plan.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on your BJJ conditioning. Tell the AI your current training schedule, fitness level, and goals — it builds a complete supplemental training plan.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Get Your Conditioning Plan →</Link>
         </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
         <h2 className="text-3xl font-black mb-4">Ready to level up your BJJ?</h2>
-        <p className="text-zinc-400 mb-6">Build a body that performs at the highest level with AIBJJ&apos;s complete conditioning guidance.</p>
+        <p className="text-zinc-400 mb-6">Build a body that performs at the highest level with AIBJJ's complete conditioning guidance.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Join AIBJJ Free</Link>
       </section>
 

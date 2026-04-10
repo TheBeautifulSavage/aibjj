@@ -39,13 +39,13 @@ export default function BJJAustinPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">The Austin BJJ Scene</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Austin&apos;s BJJ community has benefited enormously from the city&apos;s population explosion and its connection to the broader Texas and national competition scene. Austin is also deeply intertwined with the MMA world — the Ultimate Fighting Championship (UFC) relocated its performance institute infrastructure to the area, and the city has attracted fighters and coaches who have elevated the training quality.
+              Austin's BJJ community has benefited enormously from the city's population explosion and its connection to the broader Texas and national competition scene. Austin is also deeply intertwined with the MMA world — the Ultimate Fighting Championship (UFC) relocated its performance institute infrastructure to the area, and the city has attracted fighters and coaches who have elevated the training quality.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Joe Rogan, one of BJJ&apos;s most prominent advocates and a black belt himself, relocated to Austin — and his presence has been a net positive for the local BJJ culture and awareness. Austin has several excellent academies with high-level black belt instruction across different lineages.
+              Joe Rogan, one of BJJ's most prominent advocates and a black belt himself, relocated to Austin — and his presence has been a net positive for the local BJJ culture and awareness. Austin has several excellent academies with high-level black belt instruction across different lineages.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              The city&apos;s tech-heavy demographic (similar to Seattle) means Austin gyms attract well-educated, disciplined practitioners who invest seriously in their training. Competition culture is strong — Austin-area competitors regularly attend Texas Opens and sub-only events throughout the state.
+              The city's tech-heavy demographic (similar to Seattle) means Austin gyms attract well-educated, disciplined practitioners who invest seriously in their training. Competition culture is strong — Austin-area competitors regularly attend Texas Opens and sub-only events throughout the state.
             </p>
           </section>
 
@@ -86,7 +86,7 @@ export default function BJJAustinPage() {
 
           <section className="p-8 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Start Your Austin BJJ Journey</h2>
-            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">While you search for the right Austin gym, start building your BJJ foundation with AIBJJ&apos;s AI coach and 10,000+ technique library.</p>
+            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">While you search for the right Austin gym, start building your BJJ foundation with AIBJJ's AI coach and 10,000+ technique library.</p>
             <Link href="/auth/signup" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">Start with AIBJJ Free →</Link>
           </section>
         </div>

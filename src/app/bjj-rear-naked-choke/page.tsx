@@ -18,7 +18,7 @@ export default function RearNakedChokePage() {
 
       <section className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-black mb-6">Rear Naked Choke: The Ultimate BJJ Submission</h1>
-        <p className="text-xl text-zinc-400 mb-8">The rear naked choke is the most reliable submission in combat sports. From back control, it&apos;s a blood choke that shuts off consciousness in seconds when applied correctly. Learning to take the back and finish the RNC is essential for every BJJ practitioner.</p>
+        <p className="text-xl text-zinc-400 mb-8">The rear naked choke is the most reliable submission in combat sports. From back control, it's a blood choke that shuts off consciousness in seconds when applied correctly. Learning to take the back and finish the RNC is essential for every BJJ practitioner.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>
 
@@ -34,7 +34,7 @@ export default function RearNakedChokePage() {
           <p className="text-zinc-300 mb-4">Before the RNC comes back control. Proper back control requires:</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Hooks vs. Seatbelt</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
-            <li>Both heels hooked inside the opponent&apos;s thighs — this is back control with hooks</li>
+            <li>Both heels hooked inside the opponent's thighs — this is back control with hooks</li>
             <li>Hooks prevent them from sitting out or rolling away</li>
             <li>Seat belt grip: one arm over the shoulder, one arm under the armpit, hands clasped at the chest</li>
             <li>The seat belt prevents them from pulling the choking arm down</li>
@@ -42,9 +42,9 @@ export default function RearNakedChokePage() {
           <h3 className="text-xl font-bold mb-2 text-red-400">Back Control Principles</h3>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li>Stay on the top or side of their back — never flat on your own back</li>
-            <li>If on your back, stay on the seatbelt-arm side (don&apos;t give them the roll)</li>
+            <li>If on your back, stay on the seatbelt-arm side (don't give them the roll)</li>
             <li>Control the upper body first — without seatbelt, they escape</li>
-            <li>Don&apos;t rush the choke at the cost of losing back control</li>
+            <li>Don't rush the choke at the cost of losing back control</li>
           </ul>
         </div>
 
@@ -59,9 +59,9 @@ export default function RearNakedChokePage() {
             <li>Place your support-arm hand on the back of their head</li>
             <li>Squeeze your elbows together while pushing the head forward with your hand</li>
           </ul>
-          <p className="text-zinc-300 mb-4">The &quot;push the head forward&quot; detail is critical. Simply squeezing is often not enough — the hand on the back of the head pushing creates the final tightening that finishes the choke.</p>
+          <p className="text-zinc-300 mb-4">The "push the head forward" detail is critical. Simply squeezing is often not enough — the hand on the back of the head pushing creates the final tightening that finishes the choke.</p>
           <h3 className="text-xl font-bold mb-2 text-red-400">Chin Tuck Defense and Counter</h3>
-          <p className="text-zinc-300 mb-4">Your opponent will tuck their chin to prevent the arm from getting under. To counter: use your bottom arm to frame, create a gap, or use the seatbelt to tilt their head to the choking side before sliding the arm under. Patience here — don&apos;t force it.</p>
+          <p className="text-zinc-300 mb-4">Your opponent will tuck their chin to prevent the arm from getting under. To counter: use your bottom arm to frame, create a gap, or use the seatbelt to tilt their head to the choking side before sliding the arm under. Patience here — don't force it.</p>
         </div>
 
         <div>
@@ -78,11 +78,11 @@ export default function RearNakedChokePage() {
 
         <div>
           <h2 className="text-3xl font-black mb-4">Defending the Rear Naked Choke</h2>
-          <p className="text-zinc-300 mb-4">Defense begins before the choke is set — it&apos;s about preventing back control and protecting the neck when the arm reaches:</p>
+          <p className="text-zinc-300 mb-4">Defense begins before the choke is set — it's about preventing back control and protecting the neck when the arm reaches:</p>
           <ul className="list-disc list-inside text-zinc-300 space-y-2 mb-4">
             <li><strong>Chin tuck:</strong> Tuck your chin to your chest the moment they reach for the neck</li>
             <li><strong>Two-hands on the choking arm:</strong> Grab the choking arm with both hands to create space</li>
-            <li><strong>Don&apos;t cross-grip:</strong> Two hands on same arm is better than grabbing both arms</li>
+            <li><strong>Don't cross-grip:</strong> Two hands on same arm is better than grabbing both arms</li>
             <li><strong>Create a frame:</strong> Use your elbow as a frame against their forearm to prevent them getting under the chin</li>
             <li><strong>Escape the back:</strong> Roll toward the hook side while pulling the choking arm down — this is your primary escape route</li>
           </ul>
@@ -101,7 +101,7 @@ export default function RearNakedChokePage() {
 
         <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-6">
           <h2 className="text-2xl font-black mb-3">Improve Your Back Game with AI Coaching</h2>
-          <p className="text-zinc-300 mb-4">Try AIBJJ&apos;s AI Coach to get personalized advice on taking the back and finishing the rear naked choke. The AI builds a complete back control curriculum based on your current game.</p>
+          <p className="text-zinc-300 mb-4">Try AIBJJ's AI Coach to get personalized advice on taking the back and finishing the rear naked choke. The AI builds a complete back control curriculum based on your current game.</p>
           <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Build Your Back Game →</Link>
         </div>
 

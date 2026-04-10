@@ -31,7 +31,7 @@ export default function BJJFanaticsAlternativePage() {
             BJJ Fanatics Alternative: 5 Options Compared in 2025
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            BJJ Fanatics is the dominant force in instructional BJJ content — but it&apos;s not the only option. Whether you&apos;re a buyer looking for better value, a creator looking for better payouts, or someone who needs more than a video library, here are five alternatives worth knowing.
+            BJJ Fanatics is the dominant force in instructional BJJ content — but it's not the only option. Whether you're a buyer looking for better value, a creator looking for better payouts, or someone who needs more than a video library, here are five alternatives worth knowing.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export default function BJJFanaticsAlternativePage() {
               <Link href="/auth/signup" className="flex-shrink-0 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors whitespace-nowrap">Try Free</Link>
             </div>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              AIBJJ is the most comprehensive alternative to BJJ Fanatics for practitioners who want more than a video library. While Fanatics is purely a content store, AIBJJ is a full training ecosystem built around the BJJ student&apos;s learning process.
+              AIBJJ is the most comprehensive alternative to BJJ Fanatics for practitioners who want more than a video library. While Fanatics is purely a content store, AIBJJ is a full training ecosystem built around the BJJ student's learning process.
             </p>
             <div className="grid sm:grid-cols-2 gap-3 mb-4">
               <div>
@@ -88,7 +88,7 @@ export default function BJJFanaticsAlternativePage() {
               <h2 className="text-2xl font-bold text-white mt-1">2. Grapplers Guide</h2>
             </div>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Grapplers Guide (Jason Scully) is a subscription-based platform with a large library of instructional content organized into structured curricula. It&apos;s one of the original subscription BJJ learning platforms and still represents solid value for practitioners who prefer a curated, organized approach.
+              Grapplers Guide (Jason Scully) is a subscription-based platform with a large library of instructional content organized into structured curricula. It's one of the original subscription BJJ learning platforms and still represents solid value for practitioners who prefer a curated, organized approach.
             </p>
             <p className="text-sm text-zinc-400 mb-3"><strong className="text-white">Pros:</strong> Large content library, structured curriculum, reasonable subscription price, single reliable instructor voice.</p>
             <p className="text-sm text-zinc-400 mb-3"><strong className="text-white">Cons:</strong> No AI coaching, no training journal, single instructor perspective, no creator marketplace.</p>
@@ -105,7 +105,7 @@ export default function BJJFanaticsAlternativePage() {
               YouTube has an enormous amount of free BJJ content — from high-level instructors giving away technique breakdowns to comprehensive free instructional series. The quantity of content is extraordinary.
             </p>
             <p className="text-sm text-zinc-400 mb-3"><strong className="text-white">Pros:</strong> Free. Massive content library. Every major instructor has a presence. Easy to find specific techniques.</p>
-            <p className="text-sm text-zinc-400 mb-3"><strong className="text-white">Cons:</strong> No structure or curriculum. Algorithm-driven, not learning-driven. Quality varies wildly. No community or training tools. You can waste hours on content that doesn&apos;t serve your actual game.</p>
+            <p className="text-sm text-zinc-400 mb-3"><strong className="text-white">Cons:</strong> No structure or curriculum. Algorithm-driven, not learning-driven. Quality varies wildly. No community or training tools. You can waste hours on content that doesn't serve your actual game.</p>
             <p className="text-sm text-zinc-400"><strong className="text-white">Best for:</strong> Supplemental learning, finding free content on specific techniques, following instructor channels you already trust.</p>
           </section>
 
@@ -116,10 +116,10 @@ export default function BJJFanaticsAlternativePage() {
               <h2 className="text-2xl font-bold text-white mt-1">4. FloGrappling</h2>
             </div>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              FloGrappling is the premier grappling event streaming service — ADCC, WNO, Fight to Win, EBI. If you want to watch elite competition live, FloGrappling is the product. It&apos;s not really a Fanatics alternative in the instructional sense — it serves a different purpose (watching competition vs. studying technique).
+              FloGrappling is the premier grappling event streaming service — ADCC, WNO, Fight to Win, EBI. If you want to watch elite competition live, FloGrappling is the product. It's not really a Fanatics alternative in the instructional sense — it serves a different purpose (watching competition vs. studying technique).
             </p>
             <p className="text-sm text-zinc-400 mb-3"><strong className="text-white">Pros:</strong> Best live event coverage in grappling. ADCC, WNO and more. Good for inspiration and high-level technique observation.</p>
-            <p className="text-sm text-zinc-400 mb-3"><strong className="text-white">Cons:</strong> Not instructional content. Competition footage ≠ teaching. No training tools. Doesn&apos;t replace structured learning.</p>
+            <p className="text-sm text-zinc-400 mb-3"><strong className="text-white">Cons:</strong> Not instructional content. Competition footage ≠ teaching. No training tools. Doesn't replace structured learning.</p>
             <p className="text-sm text-zinc-400"><strong className="text-white">Best for:</strong> BJJ fans who want to follow competition at the highest level — not a replacement for instructional content.</p>
           </section>
 
@@ -127,7 +127,7 @@ export default function BJJFanaticsAlternativePage() {
           <section className="rounded-xl border border-zinc-700 bg-zinc-900/40 p-6">
             <div className="mb-4">
               <span className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Best for Buying Direct</span>
-              <h2 className="text-2xl font-bold text-white mt-1">5. Buying Direct (Gumroad, Coach&apos;s Own Site)</h2>
+              <h2 className="text-2xl font-bold text-white mt-1">5. Buying Direct (Gumroad, Coach's Own Site)</h2>
             </div>
             <p className="text-zinc-400 leading-relaxed mb-4">
               Many instructors sell directly through Gumroad, Teachable, or their own websites. Buying direct often gets you a better price (the instructor keeps more, and sometimes passes savings to buyers) and supports the instructor directly.

@@ -25,7 +25,7 @@ export default function BJJDenverPage() {
           <p className="text-sm font-semibold uppercase tracking-widest text-red-500 mb-3">BJJ in Colorado</p>
           <h1 className="text-4xl font-black text-white sm:text-5xl mb-6">BJJ in Denver: Find the Best Jiu-Jitsu Gyms & Training</h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            Denver has developed one of the most passionate BJJ communities in the Mountain West. The city&apos;s outdoor-oriented, fitness-focused culture maps well onto the discipline and physicality of jiu-jitsu — and the Denver-Boulder corridor has serious grappling depth.
+            Denver has developed one of the most passionate BJJ communities in the Mountain West. The city's outdoor-oriented, fitness-focused culture maps well onto the discipline and physicality of jiu-jitsu — and the Denver-Boulder corridor has serious grappling depth.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export default function BJJDenverPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">The Denver BJJ Scene</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Denver&apos;s BJJ scene has been growing rapidly alongside the city&apos;s overall population boom. Colorado&apos;s strong wrestling heritage — the state has produced numerous NCAA champions — has created a base of athletically gifted grapplers who transition well to BJJ.
+              Denver's BJJ scene has been growing rapidly alongside the city's overall population boom. Colorado's strong wrestling heritage — the state has produced numerous NCAA champions — has created a base of athletically gifted grapplers who transition well to BJJ.
             </p>
             <p className="text-zincins-400 leading-relaxed mb-4">
               The Denver-Boulder corridor has a concentration of high-quality gyms. Boulder in particular has an interesting scene driven by the university community and outdoor athlete culture. Denver proper has multiple strong academies across the metro — RiNo, Capitol Hill, and the suburbs all have options.
@@ -86,7 +86,7 @@ export default function BJJDenverPage() {
 
           <section className="p-8 rounded-xl bg-zinc-900/60 border border-zinc-800 text-center">
             <h2 className="text-2xl font-bold text-white mb-3">Train Smarter in the Mile High City</h2>
-            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">AIBJJ&apos;s AI coach, technique library, and training journal supplement your Denver gym training — on the mat and off.</p>
+            <p className="text-zinc-400 mb-6 max-w-xl mx-auto">AIBJJ's AI coach, technique library, and training journal supplement your Denver gym training — on the mat and off.</p>
             <Link href="/auth/signup" className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">Start with AIBJJ Free →</Link>
           </section>
         </div>

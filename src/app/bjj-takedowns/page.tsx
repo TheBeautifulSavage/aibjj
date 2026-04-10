@@ -16,7 +16,7 @@ export default function Page() {
         </div>
       </nav>
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Takedowns: Wrestling &amp; Judo for Grapplers</h1>
+        <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Takedowns: Wrestling & Judo for Grapplers</h1>
         <p className="text-xl text-zinc-400 mb-8">Most BJJ practitioners have weak takedown games — and their opponents know it. This guide covers the most effective takedowns for BJJ competition and self-defense, drawn from wrestling and judo traditions.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>
       </section>

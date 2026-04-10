@@ -20,7 +20,7 @@ export default function Page() {
           <section><h2 className="text-2xl font-bold text-white mb-3">ADCC Success</h2><p>Mesquita also performed at the highest levels in no-gi competition, winning ADCC titles and demonstrating that her gi-based skills translate effectively to submission wrestling contexts. The ability to win in both gi and no-gi requires technical depth that transcends gi-specific technique — genuine understanding of body mechanics and positional control.</p></section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Legacy</h2>
-            <p>Mesquita has become an ambassador for women&apos;s BJJ globally. Her teaching, competitive legacy, and persona as an authentic practitioner who loves the art for itself have made her one of the most respected figures in the sport regardless of gender.</p>
+            <p>Mesquita has become an ambassador for women's BJJ globally. Her teaching, competitive legacy, and persona as an authentic practitioner who loves the art for itself have made her one of the most respected figures in the sport regardless of gender.</p>
           </section>
         </div>
         <div className="mt-16 rounded-2xl border border-red-900/30 bg-red-950/20 p-8 text-center">

@@ -36,7 +36,7 @@ export default function BJJTrainingJournalPage() {
             The Best BJJ Training Journal App
           </h1>
           <p className="text-xl text-zinc-400 leading-relaxed">
-            Most BJJ practitioners have no idea how many hours they&apos;ve actually trained, which techniques they hit most, or what patterns are holding them back. A training journal changes everything — and an AI-powered one changes it even more.
+            Most BJJ practitioners have no idea how many hours they've actually trained, which techniques they hit most, or what patterns are holding them back. A training journal changes everything — and an AI-powered one changes it even more.
           </p>
         </div>
 
@@ -54,10 +54,10 @@ export default function BJJTrainingJournalPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">Why Every Serious BJJ Athlete Needs a Training Journal</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              The best BJJ practitioners in the world are deliberate about their training. They know what they worked on, what didn&apos;t go well, and what they need to drill more. This isn&apos;t just organizational discipline — it&apos;s how you accelerate the learning curve that separates a 5-year blue belt from a 5-year purple belt.
+              The best BJJ practitioners in the world are deliberate about their training. They know what they worked on, what didn't go well, and what they need to drill more. This isn't just organizational discipline — it's how you accelerate the learning curve that separates a 5-year blue belt from a 5-year purple belt.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              A training journal is your external memory. Every insight you&apos;ve had on the mat, every technique click, every detail your coach gave you — these are gone within days if not written down. Over months and years, a training journal becomes an irreplaceable record of your evolution as a grappler.
+              A training journal is your external memory. Every insight you've had on the mat, every technique click, every detail your coach gave you — these are gone within days if not written down. Over months and years, a training journal becomes an irreplaceable record of your evolution as a grappler.
             </p>
             <p className="text-zinc-400 leading-relaxed">
               Studies on skill acquisition consistently show that deliberate practice with feedback accelerates learning faster than high-volume unfocused practice. A training journal provides both — it creates the habit of reflecting on your training (deliberate practice) and tracking outcomes over time (feedback loop).
@@ -67,7 +67,7 @@ export default function BJJTrainingJournalPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">What to Log in Your BJJ Journal</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              Not all journal entries are created equal. Here&apos;s what actually matters to track:
+              Not all journal entries are created equal. Here's what actually matters to track:
             </p>
 
             <h3 className="text-xl font-semibold text-white mb-2">Session Basics</h3>
@@ -102,7 +102,7 @@ export default function BJJTrainingJournalPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">Physical Journal vs. App: Why Digital Wins</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              A physical notebook works — but it has serious limitations. You can&apos;t search it. You can&apos;t analyze patterns across 6 months of entries. You can&apos;t ask it &ldquo;how many times have I logged that I got caught in a triangle this month?&rdquo;
+              A physical notebook works — but it has serious limitations. You can't search it. You can't analyze patterns across 6 months of entries. You can't ask it "how many times have I logged that I got caught in a triangle this month?"
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
               A digital BJJ training journal solves all of this. The AIBJJ training journal goes further — your AI coach reads your journal entries and provides contextual coaching based on actual training patterns. If you keep getting submitted with the same position, your AI coach will notice and address it.
@@ -126,13 +126,13 @@ export default function BJJTrainingJournalPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">Building the Journaling Habit</h2>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              The biggest obstacle to journaling isn&apos;t discipline — it&apos;s friction. If it takes more than 2 minutes to log a session, you won&apos;t do it after a hard training. AIBJJ is designed for rapid logging with smart templates that prompt the right information without requiring an essay.
+              The biggest obstacle to journaling isn't discipline — it's friction. If it takes more than 2 minutes to log a session, you won't do it after a hard training. AIBJJ is designed for rapid logging with smart templates that prompt the right information without requiring an essay.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-4">
-              The habit is simple: log before you leave the gym or immediately after. Even five bullet points of notes compounds dramatically over time. Your 6-month-ago self&apos;s notes become gold when you look back at them.
+              The habit is simple: log before you leave the gym or immediately after. Even five bullet points of notes compounds dramatically over time. Your 6-month-ago self's notes become gold when you look back at them.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              Elite competitors journal before major tournaments to review their game plan, their opponent tendencies (if known), and their mental state. It&apos;s not just a training tool — it&apos;s a competition tool.
+              Elite competitors journal before major tournaments to review their game plan, their opponent tendencies (if known), and their mental state. It's not just a training tool — it's a competition tool.
             </p>
           </section>
 

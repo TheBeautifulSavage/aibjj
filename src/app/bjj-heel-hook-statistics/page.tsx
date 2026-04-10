@@ -54,7 +54,7 @@ export default function HeelHookStatisticsPage() {
         </h1>
         <p className="text-xl text-zinc-400 mb-4">
           In 2015, heel hooks accounted for 8% of No-Gi submissions. By 2024: 40%. This is the
-          single largest shift in competitive BJJ history. Here&apos;s the complete data story.
+          single largest shift in competitive BJJ history. Here's the complete data story.
         </p>
         <div className="flex items-center gap-4 text-xs text-zinc-500 mb-8">
           <span className="text-emerald-400 font-semibold">Updated: April 2025</span>
@@ -118,7 +118,7 @@ export default function HeelHookStatisticsPage() {
         <section>
           <h2 className="text-3xl font-black mb-4">Why Did This Happen?</h2>
           <p className="text-zinc-300 mb-4">
-            The heel hook revolution didn&apos;t happen by accident. It was the result of systematic
+            The heel hook revolution didn't happen by accident. It was the result of systematic
             development by a specific team under a specific coach — and it changed the sport forever.
           </p>
 
@@ -131,7 +131,7 @@ export default function HeelHookStatisticsPage() {
             inside and outside heel hooks, kneebars, and toe holds.
           </p>
           <p className="text-zinc-300 mb-4">
-            The system&apos;s genius was treating leg locks the same way top-level players treated arm
+            The system's genius was treating leg locks the same way top-level players treated arm
             locks and chokes — as a complete positional system with defined entry chains, not isolated
             techniques.
           </p>
@@ -154,14 +154,14 @@ export default function HeelHookStatisticsPage() {
             Online Instruction: Democratization of the System
           </h3>
           <p className="text-zinc-300 mb-4">
-            The release of Danaher&apos;s instructional series on platforms like BJJ Fanatics brought
+            The release of Danaher's instructional series on platforms like BJJ Fanatics brought
             the entire system to anyone willing to study. Thousands of gyms worldwide began drilling
             ashi garami entries. The technique that once required training with the DDS was now
             accessible globally.
           </p>
           <p className="text-zinc-300">
-            By 2021, heel hook usage was so widespread that the question shifted from &quot;should I
-            learn heel hooks?&quot; to &quot;how do I defend them?&quot;
+            By 2021, heel hook usage was so widespread that the question shifted from "should I
+            learn heel hooks?" to "how do I defend them?"
           </p>
         </section>
 
@@ -234,7 +234,7 @@ export default function HeelHookStatisticsPage() {
         <section>
           <h2 className="text-3xl font-black mb-4">How to Learn Heel Hooks</h2>
           <p className="text-zinc-300 mb-4">
-            Approach heel hook learning systematically. Don&apos;t start with the finish — start with
+            Approach heel hook learning systematically. Don't start with the finish — start with
             the positions.
           </p>
           <ol className="space-y-3 list-decimal list-inside text-zinc-300">
@@ -253,7 +253,7 @@ export default function HeelHookStatisticsPage() {
             </li>
             <li>
               <strong className="text-zinc-100">Add the outside heel hook</strong> from outside ashi
-              garami. Understand why it&apos;s more dangerous and train it with extreme care.
+              garami. Understand why it's more dangerous and train it with extreme care.
             </li>
             <li>
               <strong className="text-zinc-100">Train positional rounds from leg lock positions</strong>

@@ -31,7 +31,7 @@ export default function AffiliateForm() {
         <div className="text-4xl mb-4">✅</div>
         <h3 className="text-xl font-bold text-white mb-2">Application Received!</h3>
         <p className="text-zinc-400">
-          Thanks for applying to the AIBJJ affiliate program. We&apos;ll review your application and get back to you within 2–3 business days.
+          Thanks for applying to the AIBJJ affiliate program. We'll review your application and get back to you within 2–3 business days.
         </p>
       </div>
     )

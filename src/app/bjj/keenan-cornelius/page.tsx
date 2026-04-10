@@ -34,11 +34,11 @@ export default function Page() {
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">The Lapel Guard Systems</h2>
-            <p>Keenan&apos;s most significant contribution is the lapel guard — a family of positions that use the gi lapel to create complex, near-inescapable entanglements. Worm guard wraps the lapel around the opponent&apos;s leg, creating sweeping and submission opportunities that most practitioners had never seen before. Squid guard and other variations expanded the system into a complete guard framework.</p>
+            <p>Keenan's most significant contribution is the lapel guard — a family of positions that use the gi lapel to create complex, near-inescapable entanglements. Worm guard wraps the lapel around the opponent's leg, creating sweeping and submission opportunities that most practitioners had never seen before. Squid guard and other variations expanded the system into a complete guard framework.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Controversy and Rule Changes</h2>
-            <p>Keenan&apos;s lapel guards were so effective and confusing that multiple organizations changed their rules specifically to limit lapel entanglements. The IBJJF and other organizations placed time limits on lapel wrapping. Rather than seeing this as defeat, Keenan viewed it as validation — when they change the rules for you, you&apos;ve created something genuinely disruptive.</p>
+            <p>Keenan's lapel guards were so effective and confusing that multiple organizations changed their rules specifically to limit lapel entanglements. The IBJJF and other organizations placed time limits on lapel wrapping. Rather than seeing this as defeat, Keenan viewed it as validation — when they change the rules for you, you've created something genuinely disruptive.</p>
           </section>
           <section>
             <h2 className="text-2xl font-bold text-white mb-3">Legion Jiu-Jitsu and Teaching</h2>
