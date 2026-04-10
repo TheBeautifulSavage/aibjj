@@ -64,8 +64,11 @@ export async function POST(req: Request) {
       }
 
       // No coordinates — extract location text from query
+      // Remove BJJ/martial arts keywords as whole words to avoid partial stripping
+      // e.g. "gyms" → don't leave "s", "academies" → don't leave "ies"
       const location = q
-        .replace(/bjj|jiu.?jitsu|brazilian|academy|academies|gym|school|classes|near me|near|find|where|in |the best|top/gi, "")
+        .replace(/\b(bjj|jiu[\s-]?jitsu|brazilian jiu[\s-]?jitsu|brazilian|jiu jitsu|academies|academy|gyms|gym|schools|school|classes|class|studios|studio|dojos|dojo|near me|near|find|where|the best|best|top|in)\b/gi, " ")
+        .replace(/\s+/g, " ")
         .trim();
 
       if (!location || location.length < 2) {
