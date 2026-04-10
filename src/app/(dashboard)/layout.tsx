@@ -115,23 +115,23 @@ export default function DashboardLayout({
       <nav className="flex-1 space-y-0.5 px-2 py-3 overflow-y-auto">
         {navItems.map((item) => {
           const active = isActive(item.href);
+          const isCoach = item.href === "/coach";
           return (
             <Link
               key={item.name}
               href={item.href}
               onClick={() => setSidebarOpen(false)}
-              className={`relative flex items-center gap-3 rounded-lg px-3 h-10 text-sm font-medium transition-colors ${
+              className={`flex items-center gap-3 rounded-lg px-3 h-10 text-sm font-medium transition-colors ${
                 active
-                  ? "bg-red-600/10 text-red-400"
-                  : "text-zinc-400 hover:bg-white/[0.04] hover:text-zinc-200"
+                  ? isCoach
+                    ? "bg-red-600/10 text-red-400"
+                    : "bg-[#2f2f2f] text-white"
+                  : "text-zinc-400 hover:bg-[#2f2f2f] hover:text-zinc-200"
               }`}
             >
-              {active && (
-                <span className="absolute left-0 top-1.5 bottom-1.5 w-0.5 rounded-full bg-red-500" />
-              )}
               <item.icon
                 className={`h-4 w-4 flex-shrink-0 ${
-                  active ? "text-red-400" : "text-zinc-500"
+                  active ? (isCoach ? "text-red-400" : "text-white") : "text-zinc-500"
                 }`}
               />
               {item.name}
@@ -176,7 +176,7 @@ export default function DashboardLayout({
   );
 
   return (
-    <div className="flex h-screen bg-[#0a0a0a]">
+    <div className="flex h-screen bg-[#212121]">
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
@@ -234,7 +234,7 @@ export default function DashboardLayout({
 
       {/* Sidebar - mobile slide-out */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-[#0a0a0a] border-r border-white/[0.06] transition-transform duration-300 lg:hidden ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-[#171717] border-r border-white/[0.06] transition-transform duration-300 lg:hidden ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -252,14 +252,14 @@ export default function DashboardLayout({
       </aside>
 
       {/* Sidebar - desktop permanent */}
-      <aside className="hidden lg:flex w-[260px] flex-shrink-0 flex-col bg-[#0a0a0a] border-r border-white/[0.06]">
+      <aside className="hidden lg:flex w-[260px] flex-shrink-0 flex-col bg-[#171717] border-r border-white/[0.06]">
         <SidebarContent />
       </aside>
 
       {/* Main area */}
       <div className="flex flex-1 flex-col overflow-hidden min-w-0">
         {/* Top header */}
-        <header className="flex h-12 flex-shrink-0 items-center justify-between border-b border-white/[0.06] bg-[#0a0a0a]/95 backdrop-blur-md px-4">
+        <header className="flex h-12 flex-shrink-0 items-center justify-between border-b border-white/[0.06] bg-[#171717]/95 backdrop-blur-md px-4">
           {/* Left */}
           <div className="flex items-center gap-3">
             <Button
@@ -292,7 +292,7 @@ export default function DashboardLayout({
                     className="fixed inset-0 z-30"
                     onClick={() => setSettingsOpen(false)}
                   />
-                  <div className="absolute right-0 top-full z-40 mt-1 w-48 rounded-xl border border-white/[0.08] bg-[#1a1a1a] py-1 shadow-2xl">
+                  <div className="absolute right-0 top-full z-40 mt-1 w-48 rounded-xl border border-white/[0.08] bg-[#2f2f2f] py-1 shadow-2xl">
                     <Link
                       href="/settings"
                       onClick={() => setSettingsOpen(false)}
@@ -340,7 +340,7 @@ export default function DashboardLayout({
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto p-4 pb-20 md:pb-6 lg:p-6">
+        <main className="flex-1 overflow-y-auto bg-[#212121] p-4 pb-20 md:pb-6 lg:p-6">
           {children}
         </main>
       </div>

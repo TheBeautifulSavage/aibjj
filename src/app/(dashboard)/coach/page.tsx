@@ -46,7 +46,7 @@ function TypingIndicator() {
       <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-600/15">
         <Bot className="h-4 w-4 text-red-400" />
       </div>
-      <div className="rounded-2xl rounded-tl-sm border border-white/[0.06] bg-[#1a1a1a] px-4 py-3">
+      <div className="rounded-2xl rounded-tl-sm bg-[#2f2f2f] px-4 py-3">
         <div className="flex items-center gap-1">
           <span className="h-2 w-2 animate-bounce rounded-full bg-zinc-500 [animation-delay:0ms]" />
           <span className="h-2 w-2 animate-bounce rounded-full bg-zinc-500 [animation-delay:150ms]" />
@@ -205,9 +205,9 @@ export default function CoachPage() {
 
   return (
     // Full screen: take over without the layout's padding
-    <div className="fixed inset-0 flex flex-col bg-[#0a0a0a] lg:relative lg:inset-auto lg:h-full" style={{ zIndex: 10 }}>
+    <div className="fixed inset-0 flex flex-col bg-[#212121] lg:relative lg:inset-auto lg:h-full" style={{ zIndex: 10 }}>
       {/* Chat header */}
-      <div className="flex flex-shrink-0 items-center gap-3 border-b border-white/[0.06] bg-[#0a0a0a]/95 backdrop-blur-md px-4 h-12">
+      <div className="flex flex-shrink-0 items-center gap-3 border-b border-white/[0.06] bg-[#212121]/95 backdrop-blur-md px-4 h-12">
         <Link href="/dashboard" className="text-zinc-500 hover:text-zinc-300 transition-colors lg:hidden">
           <ChevronLeft className="h-5 w-5" />
         </Link>
@@ -243,7 +243,7 @@ export default function CoachPage() {
       <div className="flex flex-1 overflow-hidden">
         {/* History sidebar (slide in/out) */}
         {historyOpen && (
-          <div className="w-64 flex-shrink-0 border-r border-white/[0.06] bg-[#0d0d0d] flex flex-col overflow-hidden">
+          <div className="w-64 flex-shrink-0 border-r border-white/[0.06] bg-[#171717] flex flex-col overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.06]">
               <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Chat History</span>
             </div>
@@ -306,39 +306,29 @@ export default function CoachPage() {
                     message.role === "user" ? "ml-auto flex-row-reverse" : "mr-auto"
                   )}
                 >
-                  {/* Avatar */}
-                  <div
-                    className={cn(
-                      "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full",
-                      message.role === "assistant"
-                        ? "bg-red-600/15"
-                        : "bg-zinc-700"
-                    )}
-                  >
-                    {message.role === "assistant" ? (
+                  {/* Avatar - only for AI messages */}
+                  {message.role === "assistant" && (
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-600/15">
                       <Bot className="h-4 w-4 text-red-400" />
-                    ) : (
-                      <User className="h-4 w-4 text-zinc-300" />
-                    )}
-                  </div>
+                    </div>
+                  )}
 
-                  {/* Bubble */}
+                  {/* Content */}
                   <div
                     className={cn(
                       "max-w-[75%] sm:max-w-[80%]",
                       message.role === "user" && "text-right"
                     )}
                   >
-                    <div
-                      className={cn(
-                        "inline-block whitespace-pre-wrap rounded-2xl px-4 py-3 text-sm leading-relaxed",
-                        message.role === "user"
-                          ? "rounded-tr-sm bg-red-600/20 text-zinc-100 border border-red-600/20"
-                          : "rounded-tl-sm border-l-2 border-zinc-700 pl-4 text-zinc-300 bg-transparent"
-                      )}
-                    >
-                      {message.content}
-                    </div>
+                    {message.role === "user" ? (
+                      <div className="inline-block whitespace-pre-wrap rounded-2xl px-4 py-3 text-sm leading-relaxed bg-[#2f2f2f] text-zinc-100">
+                        {message.content}
+                      </div>
+                    ) : (
+                      <div className="whitespace-pre-wrap text-sm leading-relaxed text-zinc-300">
+                        {message.content}
+                      </div>
+                    )}
                     <p className="mt-1 text-[10px] text-zinc-600">
                       {formatTimestamp(message.createdAt)}
                     </p>
@@ -370,9 +360,9 @@ export default function CoachPage() {
       )}
 
       {/* Input area */}
-      <div className="flex-shrink-0 border-t border-white/[0.06] bg-[#0a0a0a]/95 backdrop-blur-md px-4 py-3 pb-safe">
+      <div className="flex-shrink-0 border-t border-white/[0.06] bg-[#212121]/95 backdrop-blur-md px-4 py-3 pb-safe">
         <div className="mx-auto max-w-3xl">
-          <div className="relative flex items-end gap-2 rounded-2xl border border-white/[0.10] bg-zinc-800/80 focus-within:border-zinc-600 transition-colors px-4 py-2">
+          <div className="relative flex items-end gap-2 rounded-2xl border-none bg-[#2f2f2f] focus-within:ring-1 focus-within:ring-zinc-600 transition-all px-4 py-2">
             <textarea
               ref={textareaRef}
               value={input}
