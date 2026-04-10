@@ -42,6 +42,7 @@ const NAV_LINKS = [
   { label: "Techniques", href: "/bjj-techniques" },
   { label: "BJJ Encyclopedia", href: "/bjj" },
   { label: "Academies", href: "/academies" },
+  { label: "Blog", href: "/blog" },
   { label: "Teach", href: "/instructor-marketplace" },
   { label: "Pricing", href: "/pricing" },
 ];
