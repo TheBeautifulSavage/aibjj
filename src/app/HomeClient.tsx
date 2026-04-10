@@ -39,10 +39,11 @@ import {
 
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
-  { label: "For Academies", href: "/academies" },
+  { label: "Techniques", href: "/bjj-techniques" },
+  { label: "BJJ Encyclopedia", href: "/bjj" },
+  { label: "Academies", href: "/academies" },
   { label: "Teach", href: "/instructor-marketplace" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Affiliates", href: "/affiliates" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 const EARLY_ACCESS_BADGES = [
@@ -715,11 +716,37 @@ export default function HomeClient() {
               <h4 className="text-sm font-semibold text-zinc-300">Product</h4>
               <ul className="mt-3 space-y-2">
                 {[
-                  { label: "AI Coach", href: "/dashboard/coach" },
-                  { label: "Training Journal", href: "/dashboard/journal" },
-                  { label: "Technique Library", href: "/dashboard/library" },
-                  { label: "Game Plans", href: "/dashboard/gameplan" },
-                  { label: "Marketplace", href: "/dashboard/marketplace" },
+                  { label: "AI Coach", href: "/coach" },
+                  { label: "Training Journal", href: "/journal" },
+                  { label: "Technique Library", href: "/bjj-techniques" },
+                  { label: "Game Plans", href: "/gameplan" },
+                  { label: "AI Sparring", href: "/sparring" },
+                  { label: "Technique Graph", href: "/techniques/graph" },
+                  { label: "Marketplace", href: "/marketplace" },
+                  { label: "Developer API", href: "/api-docs" },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link href={item.href} className="text-sm text-zinc-500 transition-colors hover:text-zinc-300">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* BJJ Content */}
+            <div>
+              <h4 className="text-sm font-semibold text-zinc-300">BJJ Content</h4>
+              <ul className="mt-3 space-y-2">
+                {[
+                  { label: "BJJ Encyclopedia", href: "/bjj" },
+                  { label: "Complete BJJ Guide", href: "/brazilian-jiu-jitsu" },
+                  { label: "Find an Academy", href: "/academies" },
+                  { label: "City Academy Guides", href: "/academies" },
+                  { label: "Browse by Tag", href: "/bjj/tags" },
+                  { label: "Gordon Ryan", href: "/bjj/gordon-ryan" },
+                  { label: "Marcelo Garcia", href: "/bjj/marcelo-garcia" },
+                  { label: "ADCC Guide", href: "/bjj/adcc" },
                 ].map((item) => (
                   <li key={item.label}>
                     <Link href={item.href} className="text-sm text-zinc-500 transition-colors hover:text-zinc-300">
@@ -735,10 +762,10 @@ export default function HomeClient() {
               <h4 className="text-sm font-semibold text-zinc-300">Company</h4>
               <ul className="mt-3 space-y-2">
                 {[
-                  { label: "For Academies", href: "/academies" },
+                  { label: "Teach on AIBJJ", href: "/instructor-marketplace" },
+                  { label: "Import Courses", href: "/creator/import" },
                   { label: "Affiliates", href: "/affiliates" },
                   { label: "Pricing", href: "/pricing" },
-                  { label: "BJJ Techniques", href: "/bjj-techniques" },
                   { label: "Contact", href: "mailto:hulljessej@gmail.com" },
                 ].map((item) => (
                   <li key={item.label}>

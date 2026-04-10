@@ -40,18 +40,19 @@ import GlobalAIPrompt from "@/components/GlobalAIPrompt";
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "AI Coach", href: "/coach", icon: MessageSquare },
-  { name: "Learning Paths", href: "/learn", icon: GraduationCap },
+  { name: "Sparring AI", href: "/sparring", icon: Swords },
   { name: "Journal", href: "/journal", icon: BookOpen },
   { name: "Techniques", href: "/library", icon: Library },
-  { name: "Game Plan", href: "/gameplan", icon: Target },
-  { name: "Progress", href: "/progress", icon: TrendingUp },
-  { name: "My Courses", href: "/my-courses", icon: PlayCircle },
-  { name: "Competitions", href: "/competitions", icon: Trophy },
-  { name: "Meta", href: "/meta", icon: BarChart2 },
-  { name: "Sparring AI", href: "/sparring", icon: Swords },
   { name: "Tech Graph", href: "/techniques/graph", icon: GitBranch },
+  { name: "Game Plan", href: "/gameplan", icon: Target },
+  { name: "Learning Paths", href: "/learn", icon: GraduationCap },
+  { name: "Progress", href: "/progress", icon: TrendingUp },
+  { name: "Competitions", href: "/competitions", icon: Trophy },
+  { name: "BJJ Encyclopedia", href: "/bjj", icon: BookOpen },
+  { name: "Find Academy", href: "/academies", icon: Home },
+  { name: "Meta / Stats", href: "/meta", icon: BarChart2 },
   { name: "Marketplace", href: "/marketplace", icon: ShoppingBag },
-  { name: "Import", href: "/import", icon: Download },
+  { name: "My Courses", href: "/my-courses", icon: PlayCircle },
 ];
 
 const creatorNavItems = [
