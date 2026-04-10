@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "Andre Galvao: Four-Time ADCC Champion | AIBJJ",
   description: "Andre Galvao is a four-time ADCC champion and one of the most decorated grapplers in history. The founder of Atos Jiu-Jitsu, Galvao built one of the most s",

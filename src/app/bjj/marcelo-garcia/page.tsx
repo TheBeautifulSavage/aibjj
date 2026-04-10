@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "Marcelo Garcia: The Greatest Guard Player in BJJ History | AIBJJ",
   description: "Marcelo Garcia is widely regarded as the greatest grappler of his era — perhaps the most technically gifted BJJ practitioner ever. His butterfly guard and ",

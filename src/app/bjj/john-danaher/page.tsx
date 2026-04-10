@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "John Danaher: The Professor Who Changed Leg Locks | AIBJJ", description: "John Danaher is widely considered the greatest BJJ coach in history. His systematic approach to leg locks and back control revolutionized submission grappl" };
 export default function Page() {
   const tags = ["gordon-ryan", "no-gi", "leg-locks", "adcc"];

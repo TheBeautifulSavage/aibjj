@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Tainan Dalpra: The Undefeated Prodigy | AIBJJ", description: "Tainan Dalpra entered the black belt division and dominated immediately, compiling an undefeated record against elite competition. His technical sophistica" };
 export default function Page() {
   const tags = ["ibjjf-worlds", "gi-bjj", "competition", "gracie-family"];

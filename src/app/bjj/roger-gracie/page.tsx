@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "Roger Gracie: The Most Dominant BJJ Competitor Ever | AIBJJ",
   description: "Roger Gracie won 10 IBJJF World Championships with such dominance that he became the benchmark for all BJJ competition. His game was simple, classical, and",

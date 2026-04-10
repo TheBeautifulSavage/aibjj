@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Beatriz Mesquita: The Greatest Female BJJ Competitor | AIBJJ", description: "Beatriz Mesquita is the most decorated female BJJ competitor in history with eight world championship gold medals, multiple ADCC titles, and a complete gam" };
 export default function Page() {
   const tags = ["ibjjf-worlds", "adcc", "gi-bjj", "no-gi"];

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "IBJJF World Championship: BJJ's Biggest Stage | AIBJJ",
   description: "The IBJJF World Championship in Long Beach, California is the largest and most prestigious gi jiu-jitsu tournament in the world. A worlds gold medal is the",

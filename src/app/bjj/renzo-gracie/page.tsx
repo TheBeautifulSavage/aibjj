@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Renzo Gracie: The Fighter's Fighter | AIBJJ", description: "Renzo Gracie is one of the most beloved figures in martial arts history — a combat veteran who competed in vale tudo and early MMA, a master teacher, and a" };
 export default function Page() {
   const tags = ["gracie-family", "mma", "bjj-history", "no-gi"];

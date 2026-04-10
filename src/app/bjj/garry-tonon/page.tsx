@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Garry Tonon: Submission Machine and MMA Fighter | AIBJJ", description: "Garry Tonon is one of the most exciting and technically gifted submission grapplers of the modern era. His seamless transitions between positions and relen" };
 export default function Page() {
   const tags = ["no-gi", "leg-locks", "adcc", "mma"];

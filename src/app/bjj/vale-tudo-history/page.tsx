@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Vale Tudo: The Proving Ground of Brazilian Jiu-Jitsu | AIBJJ", description: "Vale tudo — Portuguese for anything goes — was the no-rules fighting system that the Gracie family used to test and prove their jiu-jitsu. Understanding va" };
 export default function Page() {
   const tags = ["bjj-history", "gracie-family", "mma", "self-defense"];

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 3600; // Re-generate hourly
 export const metadata: Metadata = {
   title: "Brazilian Jiu-Jitsu: The Complete Guide (2026) | AIBJJ",
   description: "The ultimate guide to Brazilian jiu-jitsu. Learn BJJ history, techniques, belt system, competition, training methods, and how AI is transforming the gentle art.",

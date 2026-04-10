@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "BJJ in Europe: The Continent Embraces the Gentle Art | AIBJJ", description: "European BJJ has grown from a small number of academies in the 1990s to one of the most developed regional scenes in the world, producing world champions a" };
 export default function Page() {
   const tags = ["bjj-history", "competition", "ibjjf-worlds", "beginners"];

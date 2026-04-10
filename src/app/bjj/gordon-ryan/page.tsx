@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "Gordon Ryan: The Greatest No-Gi Grappler of All Time | AIBJJ",
   description: "Gordon Ryan is widely considered the greatest no-gi submission grappler in history. Known for his systematic leg lock game and back control, Ryan has domin",

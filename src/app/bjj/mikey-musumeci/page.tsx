@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "Mikey Musumeci: The No-Gi World Champion | AIBJJ",
   description: "Mikey Musumeci is the dominant no-gi grappling champion of the 125-135lb weight classes. Known for his relentless submission hunting and technical precisio",

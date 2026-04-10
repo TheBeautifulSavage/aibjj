@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "ADCC: The World's Most Prestigious Grappling Tournament | AIBJJ",
   description: "The Abu Dhabi Combat Club Submission Wrestling World Championship is the most prestigious no-gi grappling event on the planet. Held every two years, ADCC d",

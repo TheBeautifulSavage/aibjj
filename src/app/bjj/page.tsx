@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "BJJ Encyclopedia: Athletes, Tournaments, Techniques & History | AIBJJ",
   description: "The most comprehensive BJJ content library. Athletes, tournaments, techniques, history — all interlinked and searchable by topic.",

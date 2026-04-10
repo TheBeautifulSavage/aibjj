@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "Rickson Gracie: The Greatest Fighter in Gracie History | AIBJJ",
   description: "Rickson Gracie is widely considered the greatest fighter the Gracie family ever produced. His legendary 400-0 record (disputed but iconic), his vale tudo c",

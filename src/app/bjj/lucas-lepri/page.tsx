@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Lucas Lepri: Alliance Lightweight Legend | AIBJJ", description: "Lucas Lepri is a six-time IBJJF World Champion in the lightweight division and one of the most technically complete practitioners in BJJ history. His blend" };
 export default function Page() {
   const tags = ["lucas-lepri", "ibjjf-worlds", "gi-bjj", "competition"];

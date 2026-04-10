@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Nicholas Meregali: The New Brazilian Giant | AIBJJ", description: "Nicholas Meregali is one of the most dominant heavyweight practitioners of his generation, winning multiple world championships and ADCC titles with a comb" };
 export default function Page() {
   const tags = ["ibjjf-worlds", "adcc", "gi-bjj", "no-gi"];

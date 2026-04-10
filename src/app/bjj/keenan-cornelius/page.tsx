@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "Keenan Cornelius: The Lapel Guard Innovator | AIBJJ",
   description: "Keenan Cornelius revolutionized guard play with his lapel guard systems — worm guard, squid guard, and reverse de la riva lapel — creating positions so com",

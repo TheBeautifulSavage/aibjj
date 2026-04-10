@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "BJJ Tags: Browse by Topic | AIBJJ",
   description: "Browse all BJJ articles by tag — athletes, tournaments, techniques, history, and more.",

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Romulo Barral: Alliance's Consistent Champion | AIBJJ", description: "Romulo Barral is a six-time IBJJF World Champion and one of the most technically refined guard players in BJJ history. His ability to work from both gi and" };
 export default function Page() {
   const tags = ["romulo-barral", "ibjjf-worlds", "gi-bjj", "guard-passing"];

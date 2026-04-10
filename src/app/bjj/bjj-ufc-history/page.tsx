@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "How BJJ Changed the UFC: From Royce Gracie to Today | AIBJJ",
   description: "BJJ transformed the UFC and MMA from a fringe spectacle into a legitimate sport. The story of how ground fighting became the foundation of modern mixed mar",

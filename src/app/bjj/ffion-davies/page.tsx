@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Ffion Davies: ADCC Champion and Welsh Phenom | AIBJJ", description: "Ffion Davies is a multiple ADCC World Champion and one of the most accomplished female grapplers in history. The Welsh practitioner dominated no-gi competi" };
 export default function Page() {
   const tags = ["adcc", "no-gi", "competition", "ibjjf-worlds"];

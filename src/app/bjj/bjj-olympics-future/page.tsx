@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "BJJ and the Olympics: The Path to Recognition | AIBJJ", description: "Brazilian jiu-jitsu has been pursuing Olympic recognition for years. Understanding the challenges and current status helps practitioners and fans follow th" };
 export default function Page() {
   const tags = ["bjj-history", "competition", "ibjjf-worlds", "beginners"];

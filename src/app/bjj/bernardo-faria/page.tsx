@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Bernardo Faria: The Over-Under Pass Master | AIBJJ", description: "Bernardo Faria is a five-time IBJJF World Champion best known for revolutionizing pressure passing with his body lock over-under system. His methodical, re" };
 export default function Page() {
   const tags = ["bernardo-faria", "ibjjf-worlds", "gi-bjj", "guard-passing"];

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Royler Gracie: ADCC Legend | AIBJJ", description: "Royler Gracie is one of the most technically gifted competitors the Gracie family produced. His four ADCC titles and multiple world championships cemented " };
 export default function Page() {
   const tags = ["gracie-family", "adcc", "gi-bjj", "no-gi"];

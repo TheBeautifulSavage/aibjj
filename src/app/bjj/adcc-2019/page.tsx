@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "ADCC 2019: Gordon Ryan's Statement Performance | AIBJJ",
   description: "ADCC 2019 in Anaheim, California was one of the greatest grappling events in history. Gordon Ryan's dominant absolute victory cemented his status as the gr",

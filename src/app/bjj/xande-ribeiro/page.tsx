@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Xande Ribeiro: The Defensive Genius | AIBJJ", description: "Xande Ribeiro is a multiple world champion known as one of the most technically sophisticated defenders in BJJ history. His ability to survive and escape f" };
 export default function Page() {
   const tags = ["xande-ribeiro", "ibjjf-worlds", "gi-bjj", "competition"];

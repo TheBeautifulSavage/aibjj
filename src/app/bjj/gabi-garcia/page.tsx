@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Gabi Garcia: The Most Dominant Female Grappler | AIBJJ", description: "Gabi Garcia is considered by many to be the greatest female grappler in history — a six-time world champion and multiple ADCC champion whose physical and t" };
 export default function Page() {
   const tags = ["ibjjf-worlds", "adcc", "gi-bjj", "no-gi"];

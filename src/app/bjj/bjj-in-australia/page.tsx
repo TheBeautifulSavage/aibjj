@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "BJJ in Australia: The Southern Hemisphere Powerhouse | AIBJJ", description: "Australia has developed one of the strongest BJJ scenes outside of Brazil and the United States, producing world champions and hosting elite international " };
 export default function Page() {
   const tags = ["bjj-history", "competition", "adcc", "beginners"];

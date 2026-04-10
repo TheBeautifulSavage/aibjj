@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Leandro Lo: 8-Time BJJ World Champion | AIBJJ", description: "Leandro Lo won 8 IBJJF World Championship titles across four weight classes, making him one of the most decorated competitors in the sport's history. His a" };
 export default function Page() {
   const tags = ["leandro-lo", "ibjjf-worlds", "gi-bjj", "competition"];

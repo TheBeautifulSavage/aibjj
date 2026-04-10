@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "Helio Gracie: Father of Brazilian Jiu-Jitsu | AIBJJ",
   description: "Helio Gracie co-developed and systematized Brazilian jiu-jitsu. His physical limitations forced him to refine leverage-based technique to a degree that tra",

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Mitsuyo Maeda: The Japanese Judoka Who Started It All | AIBJJ", description: "Mitsuyo Maeda is the direct ancestor of Brazilian jiu-jitsu. His decision to teach Carlos Gracie launched a chain of transmission that would change martial" };
 export default function Page() {
   const tags = ["bjj-history", "gracie-family", "beginners"];

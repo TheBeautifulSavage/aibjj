@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Carlos Gracie Sr: The Founder Who Started Everything | AIBJJ", description: "Carlos Gracie Sr. brought jiu-jitsu from Mitsuyo Maeda to the Gracie family and spent his life developing and spreading the art that would become Brazilian" };
 export default function Page() {
   const tags = ["gracie-family", "bjj-history", "self-defense", "beginners"];

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Alliance BJJ: Building World Champions | AIBJJ", description: "Alliance BJJ is one of the most successful competition teams in BJJ history, producing dozens of world champions and representing the pinnacle of competiti" };
 export default function Page() {
   const tags = ["gracie-family", "bjj-history", "competition", "ibjjf-worlds"];

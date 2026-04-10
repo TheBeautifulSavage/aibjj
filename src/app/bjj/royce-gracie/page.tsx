@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "Royce Gracie: The Man Who Changed Fighting Forever | AIBJJ",
   description: "Royce Gracie's victories at UFC 1, 2, and 4 single-handedly validated BJJ and ground fighting as essential to any serious martial artist. He is the most hi",

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "Craig Jones: The Australian Leg Lock Specialist | AIBJJ",
   description: "Craig Jones is one of the most entertaining and technically devastating leg lock specialists in submission grappling. The Australian developed his game in ",

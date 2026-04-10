@@ -3,7 +3,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 
-export const revalidate = 86400;
+export const revalidate = 3600; // Re-fetch from DB hourly
 
 const CITY_DATA: Record<string, { name: string; state?: string; country: string; searchTerms: string[] }> = {
   "los-angeles":   { name: "Los Angeles",   state: "CA", country: "United States", searchTerms: ["bjj academies los angeles", "jiu jitsu los angeles", "bjj gym LA"] },

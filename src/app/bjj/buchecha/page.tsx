@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = {
   title: "Marcus Almeida (Buchecha): 13-Time World Champion | AIBJJ",
   description: "Marcus 'Buchecha' Almeida holds the record for most IBJJF World Championship gold medals with 13 titles. His combination of wrestling, physical dominance, ",

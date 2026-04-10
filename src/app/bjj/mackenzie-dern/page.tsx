@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Mackenzie Dern: From World Champion to UFC Fighter | AIBJJ", description: "Mackenzie Dern is a former BJJ world champion who transitioned to MMA and became a top UFC strawweight contender, demonstrating how elite submission grappl" };
 export default function Page() {
   const tags = ["mma", "ibjjf-worlds", "gi-bjj", "self-defense"];

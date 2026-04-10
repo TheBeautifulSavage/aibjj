@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+export const revalidate = 86400; // Re-generate daily
 export const metadata: Metadata = { title: "Gracie Barra: The World's Largest BJJ Organization | AIBJJ", description: "Gracie Barra, founded by Carlos Gracie Jr., has grown from a single academy in Rio de Janeiro to over 1,000 schools worldwide — making it the largest BJJ o" };
 export default function Page() {
   const tags = ["gracie-family", "bjj-history", "beginners", "competition"];
