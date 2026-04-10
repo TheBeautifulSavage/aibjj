@@ -175,7 +175,7 @@ export default function HomepageSearch() {
                         <p className="text-xs text-zinc-400 truncate">
                           {academy.city}, {academy.country}
                           {academy.distance !== undefined && (
-                            <span className="ml-1 text-red-400">· {academy.distance < 1 ? `${Math.round(academy.distance * 1000)}m` : `${academy.distance.toFixed(1)}km`} away</span>
+                            <span className="ml-1 text-red-400">· {academy.distance.toFixed(1)}km ({(academy.distance * 0.621371).toFixed(1)}mi) away</span>
                           )}
                         </p>
                         {academy.rating && (
