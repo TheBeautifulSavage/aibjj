@@ -216,6 +216,15 @@ export default function CreatorDashboard() {
     month: d.month.slice(5), // show "04" instead of "2026-04"
   })) ?? [];
 
+  // Compute this month's earnings from revenueData
+  const currentMonth = new Date().toISOString().slice(0, 7);
+  const thisMonthRevenue = stats?.revenueData?.find((d) => d.month === currentMonth)?.revenue ?? 0;
+  const lifetimeRevenue = stats?.totalRevenue ?? 0;
+  const totalStudentsCount = stats?.totalStudents ?? 0;
+  const fanaticsEquivalent = lifetimeRevenue * 0.40;
+  const aibjjEquivalent = lifetimeRevenue * 0.85;
+  const advantage = aibjjEquivalent - fanaticsEquivalent;
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -249,6 +258,60 @@ export default function CreatorDashboard() {
           </Button>
         </div>
       </div>
+
+      {/* Earnings Widget */}
+      <Card className="border-green-800/40 bg-gradient-to-r from-green-950/30 to-zinc-900/50">
+        <CardHeader className="pb-3">
+          <div className="flex items-center gap-2">
+            <TrendingUp className="h-5 w-5 text-green-400" />
+            <CardTitle className="text-base text-green-300">Your Earnings</CardTitle>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 sm:grid-cols-4">
+            <div>
+              <p className="text-xs text-zinc-500 mb-1">This Month</p>
+              <p className="text-2xl font-bold text-zinc-100">
+                ${thisMonthRevenue.toLocaleString()}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-zinc-500 mb-1">Lifetime Earnings</p>
+              <p className="text-2xl font-bold text-zinc-100">
+                ${lifetimeRevenue.toLocaleString()}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-zinc-500 mb-1">Students</p>
+              <p className="text-2xl font-bold text-zinc-100">
+                {totalStudentsCount.toLocaleString()}
+              </p>
+            </div>
+            <div className="rounded-xl bg-green-900/20 border border-green-800/40 px-4 py-3">
+              <p className="text-xs text-zinc-400 mb-1">
+                AIBJJ advantage vs Fanatics
+              </p>
+              <p className="text-2xl font-black text-green-400">
+                +${advantage.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+              </p>
+              <p className="text-xs text-zinc-500 mt-0.5">
+                On Fanatics you&apos;d have kept only ${fanaticsEquivalent.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+              </p>
+            </div>
+          </div>
+          {lifetimeRevenue === 0 && (
+            <div className="mt-3 flex items-center gap-2">
+              <Link
+                href="/creator/import"
+                className="text-xs text-green-400 underline underline-offset-2 hover:text-green-300"
+              >
+                Import your existing courses →
+              </Link>
+              <span className="text-xs text-zinc-600">to start earning today</span>
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Quick Actions */}
       <div className="grid gap-3 sm:grid-cols-3">

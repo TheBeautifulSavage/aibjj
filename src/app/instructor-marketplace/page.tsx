@@ -221,6 +221,76 @@ export default async function InstructorMarketplacePage() {
         </div>
       </section>
 
+      {/* Already on BJJ Fanatics or YouTube? */}
+      <section className="py-16 px-4 bg-gradient-to-b from-gray-900 to-red-950/10">
+        <div className="mx-auto max-w-4xl">
+          <div className="rounded-2xl border border-red-700/40 bg-red-950/20 p-8">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="rounded-full bg-green-600/20 border border-green-600/30 px-3 py-1 text-xs text-green-400 font-semibold">
+                FREE MIGRATION HELP INCLUDED
+              </div>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+              Already on BJJ Fanatics or YouTube?
+            </h2>
+            <p className="text-gray-300 mb-8">
+              Don&apos;t start from scratch. Bring your existing content over and start earning more — immediately.
+            </p>
+
+            <div className="grid sm:grid-cols-3 gap-6 mb-8">
+              {[
+                {
+                  step: "1",
+                  icon: "📦",
+                  title: "Import your content",
+                  desc: "Paste a Fanatics URL or YouTube link. We parse your titles, descriptions, and lesson structure automatically.",
+                },
+                {
+                  step: "2",
+                  icon: "💰",
+                  title: "Set your price",
+                  desc: "Price between $15–$997. Run your own sales. No one changes your pricing without your permission.",
+                },
+                {
+                  step: "3",
+                  icon: "💳",
+                  title: "Get paid weekly",
+                  desc: "Automatic Stripe payouts every week. You keep 85%. That&apos;s the highest payout in BJJ.",
+                },
+              ].map((s) => (
+                <div key={s.step} className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="h-8 w-8 rounded-full bg-red-600/20 border border-red-600/30 flex items-center justify-center text-sm font-bold text-red-400">
+                      {s.step}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-lg mb-1">{s.icon}</p>
+                    <h3 className="font-semibold text-white text-sm mb-1">{s.title}</h3>
+                    <p className="text-gray-400 text-sm">{s.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link
+                href="/creator/import"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 transition-colors"
+              >
+                Import My Courses →
+              </Link>
+              <Link
+                href="/switch-from-bjj-fanatics"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-700 hover:border-gray-600 text-gray-300 font-semibold px-6 py-3 transition-colors"
+              >
+                See the earnings comparison
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Application Form (client) */}
       <InstructorMarketplaceClient />
     </div>
