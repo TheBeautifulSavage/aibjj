@@ -188,7 +188,7 @@ const EARLY_SIGNALS = [
   {
     icon: "💰",
     title: "Lowest fees in the industry",
-    desc: "Creators keep 85-92% of every sale. BJJ Fanatics takes 40-50%. The math is simple — your audience deserves better.",
+    desc: "Creators keep 85-92% of every sale — the highest payout in the BJJ industry. Your content, your students, your revenue.",
   },
 ];
 
@@ -333,35 +333,23 @@ export default function HomeClient() {
               ))}
             </div>
 
-            {/* Comparison Table */}
+            {/* Creator Value Props */}
             <div className="mx-auto mt-20 max-w-2xl">
-              <h3 className="text-center text-lg font-bold text-zinc-300 mb-6">Why Creators Choose AIBJJ</h3>
-              <div className="overflow-hidden rounded-xl border border-zinc-800">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-zinc-800 bg-zinc-900/80">
-                      <th className="px-6 py-3 text-left font-medium text-zinc-400">Feature</th>
-                      <th className="px-6 py-3 text-center font-bold text-red-500">AIBJJ</th>
-                      <th className="px-6 py-3 text-center font-medium text-zinc-500">BJJ Fanatics</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-zinc-800/50">
-                    {[
-                      ["Platform Fee", "15%", "40-50%"],
-                      ["Custom Website", "✅ Free", "❌"],
-                      ["AI Blog", "✅ Included", "❌"],
-                      ["Custom Domain", "✅ $29/mo", "❌"],
-                      ["AI Coach", "✅ Included", "❌"],
-                      ["Technique Library", "✅ 510+", "❌"],
-                    ].map(([feature, aibjj, fanatics]) => (
-                      <tr key={feature} className="bg-zinc-950/50 hover:bg-zinc-900/50 transition-colors">
-                        <td className="px-6 py-3 font-medium text-zinc-300">{feature}</td>
-                        <td className="px-6 py-3 text-center font-semibold text-green-400">{aibjj}</td>
-                        <td className="px-6 py-3 text-center text-zinc-500">{fanatics}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              <h3 className="text-center text-lg font-bold text-zinc-300 mb-6">Built for Creators & Coaches</h3>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {[
+                  ["85%", "Payout to Creators"],
+                  ["✅", "Your Own Student List"],
+                  ["✅", "Custom Domain"],
+                  ["✅", "AI-Powered Discovery"],
+                  ["✅", "Full Analytics"],
+                  ["✅", "Price Control"],
+                ].map(([val, label]) => (
+                  <div key={label} className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-3 text-center">
+                    <div className="text-xl font-black text-green-400">{val}</div>
+                    <div className="text-xs text-zinc-400 mt-0.5">{label}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
