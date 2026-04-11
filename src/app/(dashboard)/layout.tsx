@@ -177,7 +177,7 @@ export default function DashboardLayout({
   );
 
   return (
-    <div className="flex h-screen bg-[#212121]">
+    <div className="flex h-[100dvh] bg-[#212121]">
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div

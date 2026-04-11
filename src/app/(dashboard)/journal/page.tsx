@@ -172,8 +172,8 @@ export default function JournalPage() {
   return (
     <div className="flex h-full overflow-hidden">
 
-      {/* ── LEFT SIDEBAR ────────────────────────────────────────────────── */}
-      <div className="w-64 flex-shrink-0 flex flex-col border-r border-white/[0.06] bg-[#171717] overflow-hidden">
+      {/* ── LEFT SIDEBAR — hidden on mobile, visible on lg+ ─────────── */}
+      <div className="hidden lg:flex w-64 flex-shrink-0 flex-col border-r border-white/[0.06] bg-[#171717] overflow-hidden">
         {/* Header */}
         <div className="p-4 border-b border-white/[0.06]">
           <button
@@ -257,7 +257,50 @@ export default function JournalPage() {
       </div>
 
       {/* ── MAIN PANEL ──────────────────────────────────────────────────── */}
-      <div className="flex-1 overflow-y-auto bg-[#212121]">
+      <div className="flex-1 overflow-y-auto bg-[#212121] min-w-0">
+
+        {/* ── MOBILE HEADER (journal controls, lg hidden) ─────────────── */}
+        <div className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-white/[0.06] bg-[#171717]">
+          <div className="flex items-center gap-2 text-xs text-zinc-500">
+            <span className="font-semibold text-white">{entries.length}</span> sessions
+            <span className="mx-1">·</span>
+            <span className="font-semibold text-white">{Math.round(entries.reduce((s,e) => s+e.duration,0)/60)}</span> hrs
+          </div>
+          <button onClick={openNew} className="flex items-center gap-1.5 rounded-lg bg-white text-black font-semibold px-3 py-1.5 text-sm hover:bg-zinc-200 transition-colors">
+            <Plus className="h-3.5 w-3.5" /> New Session
+          </button>
+        </div>
+
+        {/* ── MOBILE ENTRY LIST (shown when no entry selected on mobile) ── */}
+        {mode === "view" && !selected && entries.length > 0 && (
+          <div className="lg:hidden">
+            <div className="px-4 py-2">
+              <div className="flex items-center gap-2 rounded-lg bg-[#2f2f2f] px-3 py-2 mb-3">
+                <Search className="h-3.5 w-3.5 text-zinc-500 flex-shrink-0" />
+                <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search sessions..."
+                  className="bg-transparent text-sm text-zinc-300 placeholder:text-zinc-600 focus:outline-none w-full" />
+              </div>
+            </div>
+            {Object.entries(groupEntries(entries.filter(e => !search || [e.workedOn,e.wentWell,e.toImprove,e.partners,TYPE_LABEL[e.trainingType]].some(v=>v?.toLowerCase().includes(search.toLowerCase()))))).map(([label, grpEntries]) => (
+              <div key={label}>
+                <p className="px-4 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-zinc-600 bg-[#1a1a1a]">{label}</p>
+                {grpEntries.map(e => (
+                  <button key={e.id} onClick={() => { setSelected(e); setMode("view"); }}
+                    className="w-full text-left px-4 py-3 border-b border-white/[0.04] hover:bg-[#2a2a2a] transition-colors">
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center gap-2">
+                        <span className={cn("h-2 w-2 rounded-full", TYPE_COLOR[e.trainingType] || "bg-zinc-500")} />
+                        <span className="text-sm font-medium text-white">{TYPE_LABEL[e.trainingType]}</span>
+                      </div>
+                      <span className="text-xs text-zinc-500">{fmtDate(e.date)} · {fmtDuration(e.duration)}</span>
+                    </div>
+                    {e.workedOn && <p className="text-xs text-zinc-500 truncate pl-4">{e.workedOn}</p>}
+                  </button>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* NEW / EDIT FORM */}
         {(mode === "new" || mode === "edit") && (
@@ -375,8 +418,11 @@ export default function JournalPage() {
 
         {/* VIEW ENTRY */}
         {mode === "view" && selected && (
-          <div className="max-w-2xl mx-auto px-6 py-8">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
             <div className="flex items-center justify-between mb-6">
+            <button onClick={() => setSelected(null)} className="lg:hidden mr-3 text-zinc-500 hover:text-zinc-200">
+              ← Back
+            </button>
               <div className="flex items-center gap-3">
                 <span className={cn("rounded-lg px-3 py-1 text-xs font-semibold text-white", TYPE_COLOR[selected.trainingType] || "bg-zinc-600")}>
                   {TYPE_LABEL[selected.trainingType]}
@@ -441,8 +487,8 @@ export default function JournalPage() {
           </div>
         )}
 
-        {/* EMPTY STATE */}
-        {mode === "view" && !selected && (
+        {/* EMPTY STATE — desktop only (mobile shows entry list above) */}
+        {mode === "view" && !selected && entries.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-center px-6">
             <div className="h-16 w-16 rounded-2xl bg-[#2f2f2f] flex items-center justify-center mb-4">
               <Plus className="h-8 w-8 text-zinc-600" />
