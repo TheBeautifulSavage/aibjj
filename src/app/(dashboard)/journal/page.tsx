@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { Plus, Search, Loader2, Trash2, Pencil, Star, Flame } from "lucide-react";
+import { Plus, Search, Loader2, Trash2, Pencil, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -235,24 +235,9 @@ export default function JournalPage() {
         </div>
 
         {/* Stats strip */}
-        <div className="border-t border-white/[0.06] p-3 grid grid-cols-3 gap-1 text-center">
+        <div className="border-t border-white/[0.06] p-3 grid grid-cols-2 gap-1 text-center">
           <div><p className="text-lg font-bold text-white">{entries.length}</p><p className="text-[10px] text-zinc-600">Sessions</p></div>
           <div><p className="text-lg font-bold text-white">{Math.round(entries.reduce((s, e) => s + e.duration, 0) / 60)}</p><p className="text-[10px] text-zinc-600">Hours</p></div>
-          <div>
-            <p className="text-lg font-bold text-white flex items-center justify-center gap-0.5">
-              <Flame className="h-4 w-4 text-orange-400" />
-              {(() => {
-                const dates = Array.from(new Set(entries.map(e => toDateStr(new Date(e.date))))).sort((a,b) => b.localeCompare(a));
-                let streak = 0;
-                for (let i = 0; i < dates.length; i++) {
-                  const expected = toDateStr(new Date(Date.now() - i * 86400000));
-                  if (dates[i] === expected) streak++; else break;
-                }
-                return streak;
-              })()}
-            </p>
-            <p className="text-[10px] text-zinc-600">Streak</p>
-          </div>
         </div>
       </div>
 

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { z } from "zod";
 import { db as prisma } from "@/lib/db";
+import { supabase } from "@/lib/supabase";
 import { authOptions } from "@/lib/auth";
 
 const createEntrySchema = z.object({
@@ -102,19 +103,17 @@ export async function POST(req: NextRequest) {
     // Anti-spam: Free users limited to 10 journal entries/month
     const user = await prisma.user.findUnique({
       where: { id: userId },
-      select: { subscriptionTier: true, isLifetime: true },
+      select: { subscriptionTier: true, isLifetime: true, role: true },
     });
-    const isPro = user && (["PRO", "ANNUAL"].includes(user.subscriptionTier) || user.isLifetime);
-    if (!isPro) {
+    const isPro = user && (["PRO", "ANNUAL", "CREATOR_PRO", "CREATOR_ELITE"].includes(user.subscriptionTier) || user.isLifetime);
+    const isAdmin = user?.role === "ADMIN";
+    if (!isPro && !isAdmin) {
       const startOfMonth = new Date();
       startOfMonth.setDate(1);
       startOfMonth.setHours(0, 0, 0, 0);
-      const monthEntries = await prisma.journalEntry.findMany({
-        where: { userId },
+      const thisMonthCount = await prisma.journalEntry.count({
+        where: { userId, createdAt: { gte: startOfMonth } },
       });
-      const thisMonthCount = monthEntries.filter(
-        (e: { createdAt: string }) => new Date(e.createdAt) >= startOfMonth
-      ).length;
       if (thisMonthCount >= 10) {
         return NextResponse.json(
           {
@@ -154,14 +153,25 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // Increment permanent session counter (never decrements)
-    await prisma.user.update({
-      where: { id: userId },
-      data: {
-        totalSessions: { increment: 1 },
-        totalMinutes: { increment: data.duration || 60 },
-      } as Record<string, unknown>,
-    });
+    // Increment permanent session counter using raw RPC to avoid Prisma increment syntax issues
+    try {
+      const { data: userData } = await supabase
+        .from('User')
+        .select('totalSessions, totalMinutes')
+        .eq('id', userId)
+        .single();
+      if (userData) {
+        await supabase
+          .from('User')
+          .update({
+            totalSessions: (userData.totalSessions || 0) + 1,
+            totalMinutes: (userData.totalMinutes || 0) + (data.duration || 60),
+          })
+          .eq('id', userId);
+      }
+    } catch {
+      // Non-critical — don't fail the whole request if counter update fails
+    }
 
     return NextResponse.json(entry, { status: 201 });
   } catch (error) {
