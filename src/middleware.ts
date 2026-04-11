@@ -36,7 +36,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Match all paths except static files and API routes that shouldn't be rewritten
-    "/((?!_next/static|_next/image|favicon.ico).*)",
+    // Exclude Next.js internals, static files, api/auth (NextAuth), and favicon
+    "/((?!_next/static|_next/image|favicon.ico|api/auth).*)",
   ],
 };
