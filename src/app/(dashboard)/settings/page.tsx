@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import {
@@ -29,7 +29,7 @@ const PLAN_COLOR: Record<string, string> = {
   CREATOR_ELITE: "text-purple-400",
 };
 
-export default function SettingsPage() {
+function SettingsContent() {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const defaultTab = searchParams.get("tab") || "account";
@@ -275,5 +275,14 @@ export default function SettingsPage() {
         </div>
       )}
     </div>
+  );
+}
+
+
+export default function SettingsPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center h-64"><div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-700 border-t-white" /></div>}>
+      <SettingsContent />
+    </Suspense>
   );
 }

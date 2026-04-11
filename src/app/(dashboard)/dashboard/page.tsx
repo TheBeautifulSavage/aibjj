@@ -1,904 +1,210 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
-import {
-  MessageSquare,
-  BookOpen,
-  Library,
-  Target,
-  Flame,
-  Clock,
-  ChevronRight,
-  Zap,
-  ShoppingBag,
-  Check,
-  Loader2,
-  Brain,
-  RefreshCw,
-  ChevronDown,
-  ChevronUp,
-  GraduationCap,
-  X,
-  BarChart2,
-  Send,
-  ArrowRight,
+  MessageSquare, BookOpen, Library, Target, Flame,
+  Clock, ChevronRight, Swords, Trophy, Home, TrendingUp,
+  Plus, BarChart2,
 } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import TrainingStreak from "@/components/TrainingStreak";
 
-// ---------- Types ----------
-
-interface StudyFocusArea {
-  area: string;
-  reason: string;
-  position: string;
-  category: string;
-  drills: string[];
+// ── Types ──────────────────────────────────────────────────────────────────────
+interface Stats {
+  totalSessions: number;
+  totalMinutes: number;
+  currentStreak: number;
+  belt: string;
+  name: string;
+  subscriptionTier: string;
 }
 
-interface StudyPlan {
-  summary: string;
-  weaknesses: string[];
-  focusAreas: StudyFocusArea[];
-  weeklyGoal: string;
-  searchTerms: string[];
-}
+// ── Quick actions — the 6 most important things ────────────────────────────────
+const QUICK_ACTIONS = [
+  { label: "AI Coach",       href: "/coach",    icon: MessageSquare, desc: "Ask anything about BJJ",    color: "bg-red-600/10 text-red-400 border-red-800/20" },
+  { label: "Log Session",    href: "/journal",  icon: Plus,          desc: "Track today's training",     color: "bg-blue-600/10 text-blue-400 border-blue-800/20" },
+  { label: "Techniques",     href: "/library",  icon: Library,       desc: "Browse technique library",   color: "bg-purple-600/10 text-purple-400 border-purple-800/20" },
+  { label: "Game Plan",      href: "/gameplan", icon: Target,        desc: "Build your A-game",          color: "bg-green-600/10 text-green-400 border-green-800/20" },
+  { label: "Sparring AI",    href: "/sparring", icon: Swords,        desc: "Drill scenario thinking",    color: "bg-orange-600/10 text-orange-400 border-orange-800/20" },
+  { label: "Find Academy",   href: "/academies",icon: Home,          desc: "Gyms near you",              color: "bg-yellow-600/10 text-yellow-400 border-yellow-800/20" },
+];
 
-interface RelatedCourse {
-  id: string;
-  title: string;
-  slug: string;
-  price: number;
-  coverImage: string | null;
-  creator: { name: string | null; username: string | null; belt: string | null };
-  reviews: { rating: number }[];
-}
+const BELT_COLORS: Record<string, string> = {
+  WHITE: "bg-white text-black",
+  BLUE: "bg-blue-600 text-white",
+  PURPLE: "bg-purple-600 text-white",
+  BROWN: "bg-amber-800 text-white",
+  BLACK: "bg-zinc-900 text-white border border-zinc-600",
+};
 
-interface JournalEntry {
-  id: string;
-  date: string;
-  trainingType: string;
-  duration: number;
-  workedOn: string | null;
-  wentWell: string | null;
-}
+const BELT_LABEL: Record<string, string> = {
+  WHITE: "White Belt", BLUE: "Blue Belt", PURPLE: "Purple Belt",
+  BROWN: "Brown Belt", BLACK: "Black Belt",
+};
 
-interface TrainingDataPoint {
-  date: string;
-  duration: number;
-}
-
-interface DashboardStats {
-  journalCount: number;
-  techniqueCount: number;
-  chatSessionCount: number;
-  courseCount: number;
-  streak: number;
-  recentJournals: JournalEntry[];
-  trainingData: TrainingDataPoint[];
-}
-
-// ---------- Greeting ----------
-
-function getGreeting(name: string): string {
-  const hour = new Date().getHours();
-  if (hour < 12) return `Good morning, ${name}`;
-  if (hour < 17) return `Good afternoon, ${name}`;
-  return `Good evening, ${name}`;
-}
-
-// ---------- Custom Tooltip ----------
-
-function ChartTooltip({
-  active,
-  payload,
-  label,
-}: {
-  active?: boolean;
-  payload?: { value: number }[];
-  label?: string;
-}) {
-  if (!active || !payload?.length) return null;
-  return (
-    <div className="rounded-lg border border-white/[0.08] bg-[#1a1a1a] px-3 py-2 shadow-xl">
-      <p className="text-xs text-zinc-400">{label}</p>
-      <p className="text-sm font-semibold text-zinc-100">
-        {payload[0].value} min
-      </p>
-    </div>
-  );
-}
-
-// ---------- Meta Alert Card ----------
-
-function MetaAlertCard() {
-  const [dismissed, setDismissed] = useState(false);
-  if (dismissed) return null;
-  return (
-    <div className="flex items-start gap-3 rounded-xl border border-amber-800/30 bg-amber-950/15 p-4">
-      <BarChart2 className="h-4 w-4 text-amber-400 flex-shrink-0 mt-0.5" />
-      <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-amber-300 mb-0.5">
-          🏆 Trending in No-Gi: Inside Heel Hooks
-        </p>
-        <p className="text-sm text-zinc-400">
-          Inside heel hooks account for <strong className="text-amber-400">40%</strong> of No-Gi
-          submissions in 2024.{" "}
-          <Link href="/meta" className="text-amber-400 hover:text-amber-300 underline underline-offset-2">
-            See full meta breakdown →
-          </Link>
-        </p>
-      </div>
-      <button
-        onClick={() => setDismissed(true)}
-        className="flex-shrink-0 text-zinc-600 hover:text-zinc-400 transition-colors"
-      >
-        <X className="h-4 w-4" />
-      </button>
-    </div>
-  );
-}
-
-// ---------- Study Plan Card ----------
-
-const STUDY_PLAN_CACHE_KEY = "aibjj_study_plan_cache";
-const STUDY_PLAN_TTL_MS = 24 * 60 * 60 * 1000;
-
-function StudyPlanCard() {
-  const [plan, setPlan] = useState<StudyPlan | null>(null);
-  const [relatedCourses, setRelatedCourses] = useState<RelatedCourse[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [expandedArea, setExpandedArea] = useState<number | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  function loadFromCache(): { plan: StudyPlan; courses: RelatedCourse[] } | null {
-    try {
-      const raw = localStorage.getItem(STUDY_PLAN_CACHE_KEY);
-      if (!raw) return null;
-      const { data, timestamp } = JSON.parse(raw);
-      if (Date.now() - timestamp > STUDY_PLAN_TTL_MS) return null;
-      return data;
-    } catch {
-      return null;
-    }
-  }
-
-  function saveToCache(data: { plan: StudyPlan; courses: RelatedCourse[] }) {
-    try {
-      localStorage.setItem(
-        STUDY_PLAN_CACHE_KEY,
-        JSON.stringify({ data, timestamp: Date.now() })
-      );
-    } catch { /* ignore */ }
-  }
-
-  async function fetchPlan(force = false) {
-    if (!force) {
-      const cached = loadFromCache();
-      if (cached) {
-        setPlan(cached.plan);
-        setRelatedCourses(cached.courses);
-        return;
-      }
-    }
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/dashboard/study-plan");
-      if (!res.ok) throw new Error("Failed to fetch");
-      const data = await res.json();
-      if (data.plan) {
-        setPlan(data.plan);
-        setRelatedCourses(data.relatedCourses || []);
-        saveToCache({ plan: data.plan, courses: data.relatedCourses || [] });
-      }
-    } catch {
-      setError("Could not load study plan. Try again.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => { fetchPlan(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  if (!plan && !loading && !error) return null;
-
-  return (
-    <Card className="border-amber-700/20 bg-[#1a1a1a]">
-      <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Brain className="h-4 w-4 text-amber-400" />
-            <CardTitle className="text-sm font-semibold text-amber-300">Your Study Plan</CardTitle>
-            <span className="text-xs text-zinc-600">AI-powered · Updated daily</span>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="h-7 px-2 text-zinc-500 hover:text-zinc-300"
-            onClick={() => fetchPlan(true)}
-            disabled={loading}
-          >
-            <RefreshCw className={`h-3.5 w-3.5 mr-1 ${loading ? "animate-spin" : ""}`} />
-            Refresh
-          </Button>
-        </div>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        {loading && (
-          <div className="flex items-center gap-2 text-zinc-500 text-sm py-4">
-            <Loader2 className="h-4 w-4 animate-spin" />
-            Analyzing your training data...
-          </div>
-        )}
-        {error && <p className="text-sm text-red-400">{error}</p>}
-        {plan && !loading && (
-          <>
-            <div className="rounded-lg border border-amber-600/15 bg-amber-600/8 p-3">
-              <p className="text-xs font-semibold uppercase tracking-wider text-amber-500 mb-1">
-                This Week's Goal
-              </p>
-              <p className="text-sm text-zinc-200 font-medium">{plan.weeklyGoal}</p>
-            </div>
-            <p className="text-sm text-zinc-400">{plan.summary}</p>
-            <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Focus Areas</p>
-              {plan.focusAreas?.map((area, i) => (
-                <div key={i} className="rounded-lg border border-white/[0.06] bg-white/[0.02]">
-                  <button
-                    className="w-full flex items-center justify-between p-3 text-left"
-                    onClick={() => setExpandedArea(expandedArea === i ? null : i)}
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600/20 text-xs font-bold text-amber-400">
-                        {i + 1}
-                      </span>
-                      <div>
-                        <p className="text-sm font-medium text-zinc-200">{area.area}</p>
-                        <p className="text-xs text-zinc-500">{area.reason}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                      <Link
-                        href={`/library?position=${encodeURIComponent(area.position)}&category=${encodeURIComponent(area.category)}`}
-                        className="text-xs text-amber-500 hover:text-amber-400 mr-1"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        View techniques
-                      </Link>
-                      {expandedArea === i ? (
-                        <ChevronUp className="h-4 w-4 text-zinc-500" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-zinc-500" />
-                      )}
-                    </div>
-                  </button>
-                  {expandedArea === i && area.drills?.length > 0 && (
-                    <div className="border-t border-white/[0.06] px-3 pb-3 pt-2">
-                      <p className="text-xs font-semibold text-zinc-500 mb-2 uppercase tracking-wider">
-                        Drills to practice:
-                      </p>
-                      <ul className="space-y-1">
-                        {area.drills.map((drill, di) => (
-                          <li key={di} className="flex items-start gap-2 text-xs text-zinc-400">
-                            <Check className="h-3 w-3 text-amber-500 flex-shrink-0 mt-0.5" />
-                            {drill}
-                          </li>
-                        ))}
-                      </ul>
-                      <Link
-                        href={`/coach?q=${encodeURIComponent(`Teach me about ${area.area}`)}`}
-                        className="mt-2 inline-flex items-center gap-1 text-xs text-red-400 hover:text-red-300"
-                      >
-                        <MessageSquare className="h-3 w-3" />
-                        Ask AI Coach about this
-                      </Link>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-            {relatedCourses.length > 0 && (
-              <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                  Recommended Courses
-                </p>
-                {relatedCourses.slice(0, 2).map((course) => {
-                  const avgRating =
-                    course.reviews.length > 0
-                      ? (
-                          course.reviews.reduce((s, r) => s + r.rating, 0) /
-                          course.reviews.length
-                        ).toFixed(1)
-                      : null;
-                  return (
-                    <Link key={course.id} href={`/courses/${course.slug || course.id}`}>
-                      <div className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3 hover:border-white/[0.10] transition-colors">
-                        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-zinc-800">
-                          <GraduationCap className="h-5 w-5 text-zinc-400" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="text-sm font-medium text-zinc-200 truncate">{course.title}</p>
-                          <p className="text-xs text-zinc-500">
-                            by {course.creator?.name || "Instructor"}
-                            {avgRating ? ` · ⭐ ${avgRating}` : ""}
-                          </p>
-                        </div>
-                        <span className="text-sm font-semibold text-zinc-300 flex-shrink-0">
-                          {course.price === 0 ? "Free" : `$${course.price}`}
-                        </span>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
-          </>
-        )}
-      </CardContent>
-    </Card>
-  );
-}
-
-// ---------- Loading Skeleton ----------
-
-function DashboardSkeleton() {
-  return (
-    <div className="mx-auto max-w-4xl space-y-6">
-      <div className="space-y-2">
-        <div className="h-8 w-64 animate-pulse rounded-xl bg-zinc-800" />
-        <div className="h-4 w-80 animate-pulse rounded-xl bg-zinc-800" />
-      </div>
-      <div className="h-16 animate-pulse rounded-2xl bg-zinc-800" />
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {[...Array(4)].map((_, i) => (
-          <div key={i} className="h-20 animate-pulse rounded-xl bg-zinc-800" />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ---------- Quick Log Widget ----------
-
-function QuickLogWidget() {
-  const [type, setType] = useState("GI");
-  const [duration, setDuration] = useState(60);
-  const [notes, setNotes] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [lastSession, setLastSession] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function fetchLast() {
-      try {
-        const res = await fetch("/api/journal?limit=1");
-        if (res.ok) {
-          const data = await res.json();
-          if (data.entries?.length > 0) {
-            const d = new Date(data.entries[0].date);
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            d.setHours(0, 0, 0, 0);
-            const diff = Math.floor(
-              (today.getTime() - d.getTime()) / (1000 * 60 * 60 * 24)
-            );
-            if (diff === 0) setLastSession("today");
-            else if (diff === 1) setLastSession("1 day ago");
-            else setLastSession(`${diff} days ago`);
-          }
-        }
-      } catch { /* silent */ }
-    }
-    fetchLast();
-  }, [success]);
-
-  async function handleQuickLog() {
-    setSubmitting(true);
-    try {
-      const res = await fetch("/api/journal", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          date: new Date().toISOString().split("T")[0],
-          trainingType: type,
-          duration,
-          workedOn: notes || undefined,
-        }),
-      });
-      if (res.ok) {
-        setSuccess(true);
-        setNotes("");
-        setTimeout(() => setSuccess(false), 3000);
-      }
-    } catch { /* silent */ }
-    finally { setSubmitting(false); }
-  }
-
-  const durations = [30, 60, 90, 120];
-
-  return (
-    <Card className="border-white/[0.06] bg-[#141414]">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-sm font-semibold flex items-center gap-2">
-          <BookOpen className="h-4 w-4 text-zinc-400" />
-          Quick Log
-          {lastSession && (
-            <span className="text-xs font-normal text-zinc-500 ml-auto">
-              {lastSession === "today" ? (
-                <span className="text-emerald-400">✓ You trained today</span>
-              ) : (
-                `Last: ${lastSession}`
-              )}
-            </span>
-          )}
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        {success ? (
-          <div className="flex items-center gap-2 text-emerald-400 py-4 justify-center">
-            <Check className="h-5 w-5" />
-            <span className="text-sm font-medium">Session logged!</span>
-          </div>
-        ) : (
-          <div className="space-y-3">
-            <div className="flex gap-2">
-              {["GI", "NOGI"].map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setType(t)}
-                  className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                    type === t
-                      ? "bg-red-600 text-white"
-                      : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
-                  }`}
-                >
-                  {t === "GI" ? "Gi" : "No-Gi"}
-                </button>
-              ))}
-            </div>
-            <div className="flex gap-2">
-              {durations.map((d) => (
-                <button
-                  key={d}
-                  onClick={() => setDuration(d)}
-                  className={`flex-1 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                    duration === d
-                      ? "bg-zinc-700 text-zinc-100"
-                      : "bg-zinc-800/60 text-zinc-500 hover:bg-zinc-800"
-                  }`}
-                >
-                  {d}m
-                </button>
-              ))}
-            </div>
-            <textarea
-              placeholder="Quick notes (optional)"
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              rows={2}
-              className="w-full rounded-xl border border-white/[0.08] bg-zinc-900/60 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-zinc-600 resize-none"
-            />
-            <Button
-              className="w-full bg-red-600 hover:bg-red-700 text-white rounded-lg"
-              onClick={handleQuickLog}
-              disabled={submitting}
-            >
-              {submitting ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
-              Log Session
-            </Button>
-          </div>
-        )}
-      </CardContent>
-    </Card>
-  );
-}
-
-// ---------- Main Dashboard Page ----------
-
+// ── Component ──────────────────────────────────────────────────────────────────
 export default function DashboardPage() {
   const { data: session } = useSession();
-  const router = useRouter();
-  const [stats, setStats] = useState<DashboardStats | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [suggestion, setSuggestion] = useState<string[] | null>(null);
-  const [loadingSuggestion, setLoadingSuggestion] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [stats, setStats] = useState<Stats | null>(null);
+  const [recentSessions, setRecentSessions] = useState<{ date: string; trainingType: string; duration: number; workedOn: string | null }[]>([]);
 
-  const userName = session?.user?.name?.split(" ")[0] || "Practitioner";
-  const belt = (session?.user as { belt?: string })?.belt;
+  const user = session?.user as { name?: string } | undefined;
+  const firstName = stats?.name?.split(" ")[0] || user?.name?.split(" ")[0] || "Athlete";
 
   useEffect(() => {
-    async function fetchStats() {
-      try {
-        const res = await fetch("/api/dashboard/stats");
-        if (res.ok) {
-          const data = await res.json();
-          setStats(data);
-        }
-      } catch (err) {
-        console.error("Failed to fetch dashboard stats:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchStats();
+    fetch("/api/dashboard/stats").then(r => r.json()).then(d => {
+      if (!d.error) setStats(d);
+    }).catch(() => {});
 
-    setLoadingSuggestion(true);
-    fetch("/api/dashboard/suggestion")
-      .then((r) => r.json())
-      .then((d) => { if (d.bullets) setSuggestion(d.bullets); })
-      .catch(() => {})
-      .finally(() => setLoadingSuggestion(false));
+    fetch("/api/journal?limit=5&all=false&page=1").then(r => r.json()).then(d => {
+      if (d.entries) setRecentSessions(d.entries.slice(0, 4));
+    }).catch(() => {});
   }, []);
 
-  const handleAskCoach = () => {
-    const q = inputValue.trim();
-    if (!q) return;
-    router.push(`/coach?prompt=${encodeURIComponent(q)}`);
-  };
+  const totalHours = stats ? Math.round((stats.totalMinutes || 0) / 60) : 0;
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleAskCoach();
-    }
-  };
+  const TYPE_LABEL: Record<string, string> = { GI: "Gi", NOGI: "No-Gi", COMP: "Comp", DRILLING: "Drilling", OPEN_MAT: "Open Mat" };
+  const TYPE_DOT: Record<string, string> = { GI: "bg-blue-500", NOGI: "bg-purple-500", COMP: "bg-red-500", DRILLING: "bg-green-500", OPEN_MAT: "bg-yellow-500" };
 
-  const quickChips = [
-    "Analyze my guard game",
-    "Create a game plan",
-    "What should I drill today?",
-    "Explain the heel hook",
-  ];
+  function fmtDate(s: string) {
+    const d = new Date(s);
+    const now = new Date();
+    const diff = Math.floor((now.getTime() - d.getTime()) / 86400000);
+    if (diff === 0) return "Today";
+    if (diff === 1) return "Yesterday";
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  }
 
-  if (loading) return <DashboardSkeleton />;
-
-  const statCards = [
-    {
-      label: "Sessions Logged",
-      value: String(stats?.journalCount ?? 0),
-      icon: BookOpen,
-      color: "text-blue-400",
-      bg: "bg-blue-500/10",
-    },
-    {
-      label: "Training Streak",
-      value: `${stats?.streak ?? 0}d`,
-      icon: Flame,
-      color: "text-orange-400",
-      bg: "bg-orange-500/10",
-    },
-    {
-      label: "Techniques",
-      value: String(stats?.techniqueCount ?? 0),
-      icon: Library,
-      color: "text-emerald-400",
-      bg: "bg-emerald-500/10",
-    },
-    {
-      label: "Coach Sessions",
-      value: String(stats?.chatSessionCount ?? 0),
-      icon: MessageSquare,
-      color: "text-purple-400",
-      bg: "bg-purple-500/10",
-    },
-  ];
-
-  const trainingData = stats?.trainingData ?? [];
-  const recentJournals = stats?.recentJournals ?? [];
+  function fmtDuration(m: number) {
+    const h = Math.floor(m / 60); const mins = m % 60;
+    return h ? (mins ? `${h}h ${mins}m` : `${h}h`) : `${m}m`;
+  }
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6">
-      {/* Welcome + Hero Input */}
-      <div className="space-y-6 pt-2">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white">
-              {getGreeting(userName)}
-            </h1>
-            <p className="text-sm text-zinc-400 mt-1">
-              Keep pushing forward on the mats.
-            </p>
-          </div>
-          {belt && (
-            <Badge
-              variant="outline"
-              className="hidden sm:flex border-blue-500/30 text-blue-400"
-            >
-              <Zap className="mr-1 h-3 w-3" />
-              {belt}
-            </Badge>
-          )}
-        </div>
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 space-y-8">
 
-        {/* ChatGPT-style input */}
-        <div className="relative rounded-2xl border border-white/[0.10] bg-zinc-800 shadow-xl shadow-black/20 focus-within:border-zinc-600 transition-colors">
-          <textarea
-            ref={inputRef}
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Ask your AI coach anything..."
-            rows={2}
-            className="w-full resize-none bg-transparent px-5 py-4 text-base text-zinc-100 placeholder:text-zinc-500 focus:outline-none"
-          />
-          <div className="flex items-center justify-between px-3 pb-3">
-            <span className="text-xs text-zinc-600">Press Enter to send</span>
-            <button
-              onClick={handleAskCoach}
-              disabled={!inputValue.trim()}
-              className="flex h-9 w-9 items-center justify-center rounded-xl bg-red-600 hover:bg-red-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-            >
-              <Send className="h-4 w-4 text-white" />
-            </button>
-          </div>
+      {/* ── Greeting ──────────────────────────────────────────────── */}
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-white">
+            Good {new Date().getHours() < 12 ? "morning" : new Date().getHours() < 17 ? "afternoon" : "evening"}, {firstName} 👋
+          </h1>
+          <p className="text-zinc-500 text-sm mt-1">
+            {stats?.totalSessions
+              ? `${stats.totalSessions} sessions logged · ${totalHours}h on the mats`
+              : "Ready to train? Let's go."}
+          </p>
         </div>
+        {stats?.belt && (
+          <span className={`text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0 ${BELT_COLORS[stats.belt] || "bg-zinc-700 text-white"}`}>
+            {BELT_LABEL[stats.belt] || stats.belt}
+          </span>
+        )}
+      </div>
 
-        {/* Quick action chips */}
-        <div className="flex flex-wrap gap-2">
-          {quickChips.map((chip) => (
-            <button
-              key={chip}
-              onClick={() => router.push(`/coach?prompt=${encodeURIComponent(chip)}`)}
-              className="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-1.5 text-sm text-zinc-400 hover:bg-white/[0.06] hover:text-zinc-200 hover:border-white/[0.15] transition-all"
-            >
-              {chip}
-            </button>
-          ))}
+      {/* ── Stats strip ───────────────────────────────────────────── */}
+      <div className="grid grid-cols-3 gap-3">
+        <div className="rounded-2xl bg-[#1a1a1a] border border-white/[0.06] p-4 text-center">
+          <div className="flex items-center justify-center gap-1.5 mb-1">
+            <Flame className="h-4 w-4 text-orange-400" />
+            <span className="text-2xl font-black text-white">{stats?.currentStreak ?? 0}</span>
+          </div>
+          <p className="text-xs text-zinc-600">Day Streak</p>
+        </div>
+        <div className="rounded-2xl bg-[#1a1a1a] border border-white/[0.06] p-4 text-center">
+          <div className="flex items-center justify-center gap-1.5 mb-1">
+            <Clock className="h-4 w-4 text-blue-400" />
+            <span className="text-2xl font-black text-white">{totalHours}</span>
+          </div>
+          <p className="text-xs text-zinc-600">Total Hours</p>
+        </div>
+        <div className="rounded-2xl bg-[#1a1a1a] border border-white/[0.06] p-4 text-center">
+          <div className="flex items-center justify-center gap-1.5 mb-1">
+            <BarChart2 className="h-4 w-4 text-green-400" />
+            <span className="text-2xl font-black text-white">{stats?.totalSessions ?? 0}</span>
+          </div>
+          <p className="text-xs text-zinc-600">Sessions</p>
         </div>
       </div>
 
-      {/* Training Streak */}
-      <TrainingStreak />
-
-      {/* Today's Focus — AI Suggestion */}
-      {(loadingSuggestion || suggestion) && (
-        <div className="rounded-xl border border-red-800/30 bg-red-950/20 p-4">
-          <div className="flex items-center gap-2 mb-3">
-            <Zap className="h-4 w-4 text-red-400" />
-            <span className="text-sm font-semibold text-red-300">Today's Focus</span>
-            <span className="text-xs text-zinc-600 ml-auto">AI Coach</span>
-          </div>
-          {loadingSuggestion ? (
-            <div className="flex items-center gap-2 text-zinc-500 text-sm">
-              <Loader2 className="h-4 w-4 animate-spin" />
-              Generating your daily training plan...
-            </div>
-          ) : (
-            <ul className="space-y-1.5">
-              {suggestion?.map((bullet, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-zinc-300">
-                  <Check className="h-4 w-4 text-red-400 flex-shrink-0 mt-0.5" />
-                  {bullet}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
-
-      {/* Stats Row */}
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {statCards.map((stat) => (
-          <div
-            key={stat.label}
-            className="rounded-xl border border-white/[0.06] bg-[#141414] p-4"
-          >
-            <div className="flex items-center gap-3">
-              <div className={`flex h-9 w-9 items-center justify-center rounded-lg ${stat.bg}`}>
-                <stat.icon className={`h-4 w-4 ${stat.color}`} />
-              </div>
-              <div>
-                <p className="text-xs text-zinc-500">{stat.label}</p>
-                <p className="text-xl font-bold text-white">{stat.value}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Study Plan */}
-      <StudyPlanCard />
-
-      {/* Meta Alert */}
-      <MetaAlertCard />
-
-      {/* Middle row: Chart + Recent Sessions */}
-      <div className="grid gap-4 lg:grid-cols-5">
-        {/* Training Chart */}
-        <Card className="lg:col-span-3 border-white/[0.06] bg-[#141414]">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold">Training Frequency</CardTitle>
-            <CardDescription className="text-xs">
-              Minutes trained per day (last 30 days)
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="h-56">
-              {trainingData.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart
-                    data={trainingData}
-                    margin={{ top: 5, right: 5, left: -20, bottom: 0 }}
-                  >
-                    <defs>
-                      <linearGradient id="trainGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#dc2626" stopOpacity={0.3} />
-                        <stop offset="100%" stopColor="#dc2626" stopOpacity={0} />
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
-                    <XAxis
-                      dataKey="date"
-                      tick={{ fontSize: 11, fill: "#71717a" }}
-                      tickLine={false}
-                      axisLine={false}
-                      interval={6}
-                    />
-                    <YAxis
-                      tick={{ fontSize: 11, fill: "#71717a" }}
-                      tickLine={false}
-                      axisLine={false}
-                    />
-                    <Tooltip content={<ChartTooltip />} />
-                    <Area
-                      type="monotone"
-                      dataKey="duration"
-                      stroke="#dc2626"
-                      strokeWidth={2}
-                      fill="url(#trainGrad)"
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
-              ) : (
-                <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
-                  <Clock className="h-10 w-10 text-zinc-700" />
-                  <div>
-                    <p className="text-sm font-medium text-zinc-400">No training data yet</p>
-                    <p className="text-xs text-zinc-500 mt-1">
-                      Start logging sessions to see your progress
-                    </p>
-                  </div>
-                  <Link href="/journal">
-                    <Button size="sm" className="mt-1 bg-red-600 hover:bg-red-700 text-white rounded-lg">
-                      Log Your First Session
-                    </Button>
-                  </Link>
-                </div>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Recent Sessions */}
-        <Card className="lg:col-span-2 border-white/[0.06] bg-[#141414]">
-          <CardHeader className="pb-2">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-semibold">Recent Sessions</CardTitle>
-              {recentJournals.length > 0 && (
-                <Link
-                  href="/journal"
-                  className="text-xs text-red-500 hover:text-red-400 flex items-center gap-0.5"
-                >
-                  View all <ChevronRight className="h-3 w-3" />
-                </Link>
-              )}
-            </div>
-          </CardHeader>
-          <CardContent>
-            {recentJournals.length > 0 ? (
-              <div className="space-y-2">
-                {recentJournals.map((entry) => (
-                  <div
-                    key={entry.id}
-                    className="flex items-start gap-3 rounded-xl border border-white/[0.05] bg-white/[0.02] p-3"
-                  >
-                    <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-zinc-800">
-                      <BookOpen className="h-4 w-4 text-zinc-400" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-2">
-                        <p className="truncate text-sm font-medium text-zinc-200">
-                          {entry.trainingType.replace("_", " ")}
-                        </p>
-                        <span className="flex-shrink-0 text-xs text-zinc-500">{entry.duration}m</span>
-                      </div>
-                      <p className="text-xs text-zinc-500 mt-0.5">
-                        {new Date(entry.date).toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </p>
-                      {entry.workedOn && (
-                        <p className="mt-1 truncate text-xs text-zinc-400">{entry.workedOn}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="space-y-2">
-                <p className="text-sm text-zinc-400 mb-3">Get started with your BJJ journey</p>
-                {[
-                  { label: "AI Coach", href: "/coach", icon: MessageSquare, color: "text-red-400", bg: "bg-red-500/10" },
-                  { label: "Technique Library", href: "/library", icon: Library, color: "text-emerald-400", bg: "bg-emerald-500/10" },
-                  { label: "Training Journal", href: "/journal", icon: BookOpen, color: "text-blue-400", bg: "bg-blue-500/10" },
-                  { label: "Browse Courses", href: "/marketplace", icon: ShoppingBag, color: "text-purple-400", bg: "bg-purple-500/10" },
-                ].map((card) => (
-                  <Link key={card.label} href={card.href}>
-                    <div className="flex items-center gap-3 rounded-xl border border-white/[0.05] bg-white/[0.02] p-3 transition-colors hover:border-white/[0.10]">
-                      <div className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg ${card.bg}`}>
-                        <card.icon className={`h-4 w-4 ${card.color}`} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-zinc-200">{card.label}</p>
-                      </div>
-                      <ArrowRight className="h-4 w-4 text-zinc-600" />
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Quick Log Widget */}
-      <QuickLogWidget />
-
-      {/* Quick Actions */}
+      {/* ── Quick actions ─────────────────────────────────────────── */}
       <div>
-        <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">
-          Quick Actions
-        </h2>
-        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-          {[
-            { label: "Start AI Coach", href: "/coach", icon: MessageSquare, accent: true, description: "Get personalized guidance" },
-            { label: "Log Training", href: "/journal", icon: BookOpen, accent: false, description: "Record your session" },
-            { label: "View Techniques", href: "/library", icon: Library, accent: false, description: "Browse your library" },
-            { label: "Build Game Plan", href: "/gameplan", icon: Target, accent: false, description: "Strategize your game" },
-          ].map((action) => (
-            <Link key={action.label} href={action.href}>
-              <div className={`group cursor-pointer rounded-xl border transition-colors p-4 text-center ${
-                action.accent
-                  ? "border-red-800/30 bg-red-950/15 hover:border-red-700/50"
-                  : "border-white/[0.06] bg-[#141414] hover:border-white/[0.12]"
-              }`}>
-                <div className={`mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl transition-colors ${
-                  action.accent ? "bg-red-600/15 group-hover:bg-red-600/25" : "bg-zinc-800 group-hover:bg-zinc-700"
-                }`}>
-                  <action.icon className={`h-5 w-5 ${action.accent ? "text-red-400" : "text-zinc-400"}`} />
-                </div>
-                <p className="text-sm font-medium text-zinc-200">{action.label}</p>
-                <p className="mt-0.5 text-xs text-zinc-500">{action.description}</p>
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3">Quick Access</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {QUICK_ACTIONS.map(({ label, href, icon: Icon, desc, color }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`rounded-2xl border p-4 flex flex-col gap-2 hover:opacity-80 transition-opacity ${color}`}
+            >
+              <Icon className="h-5 w-5" />
+              <div>
+                <p className="text-sm font-semibold text-white">{label}</p>
+                <p className="text-xs opacity-70">{desc}</p>
               </div>
             </Link>
           ))}
         </div>
       </div>
+
+      {/* ── Recent sessions ───────────────────────────────────────── */}
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Recent Sessions</h2>
+          <Link href="/journal" className="text-xs text-zinc-500 hover:text-zinc-300 flex items-center gap-1">
+            View all <ChevronRight className="h-3 w-3" />
+          </Link>
+        </div>
+
+        {recentSessions.length === 0 ? (
+          <div className="rounded-2xl bg-[#1a1a1a] border border-white/[0.06] p-6 text-center">
+            <BookOpen className="h-8 w-8 text-zinc-700 mx-auto mb-3" />
+            <p className="text-sm text-zinc-400 mb-3">No sessions yet — log your first one</p>
+            <Link href="/journal" className="inline-flex items-center gap-1.5 rounded-xl bg-white text-black px-4 py-2 text-sm font-semibold hover:bg-zinc-200 transition-colors">
+              <Plus className="h-3.5 w-3.5" /> Log Session
+            </Link>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {recentSessions.map((s, i) => (
+              <Link
+                key={i}
+                href="/journal"
+                className="flex items-center gap-3 rounded-2xl bg-[#1a1a1a] border border-white/[0.06] px-4 py-3 hover:bg-[#222] transition-colors"
+              >
+                <span className={`h-2.5 w-2.5 rounded-full flex-shrink-0 ${TYPE_DOT[s.trainingType] || "bg-zinc-500"}`} />
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-white">{TYPE_LABEL[s.trainingType] || s.trainingType}</p>
+                  {s.workedOn && <p className="text-xs text-zinc-500 truncate">{s.workedOn}</p>}
+                </div>
+                <div className="text-right flex-shrink-0">
+                  <p className="text-xs text-zinc-500">{fmtDate(s.date)}</p>
+                  <p className="text-xs text-zinc-600">{fmtDuration(s.duration)}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* ── Upgrade CTA (free users only) ─────────────────────────── */}
+      {stats?.subscriptionTier === "FREE" && (
+        <div className="rounded-2xl bg-gradient-to-br from-red-950/40 to-zinc-900 border border-red-900/30 p-6">
+          <div className="flex items-start gap-4">
+            <div className="h-10 w-10 rounded-xl bg-red-600/20 flex items-center justify-center flex-shrink-0">
+              <TrendingUp className="h-5 w-5 text-red-400" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="text-base font-bold text-white">Unlock Full Access</h3>
+              <p className="text-sm text-zinc-400 mt-1">Unlimited AI coaching, full technique library, game plan builder, and more.</p>
+              <Link href="/pricing" className="mt-3 inline-flex items-center gap-1.5 rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700 transition-colors">
+                See Plans <ChevronRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

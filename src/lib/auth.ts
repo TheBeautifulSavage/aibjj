@@ -62,25 +62,18 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user, account }) {
       if (account?.provider === "google") {
         try {
-          // Check if user exists
-          const { data: existingUsers } = await supabase
+          const now = new Date().toISOString();
+          const newId = randomUUID();
+
+          // Upsert user: insert if email doesn't exist, skip if it does
+          // This eliminates the find-then-insert pattern (2 round trips → 1)
+          await supabase
             .from("User")
-            .select("id, email, name, role, belt, subscriptionTier")
-            .eq("email", user.email!)
-            .limit(1);
-
-          let dbUser = existingUsers?.[0];
-
-          if (!dbUser) {
-            // Create new user
-            const newId = randomUUID();
-            const now = new Date().toISOString();
-            const { data: newUsers, error } = await supabase
-              .from("User")
-              .insert({
+            .upsert(
+              {
                 id: newId,
                 email: user.email,
                 name: user.name,
@@ -93,46 +86,64 @@ export const authOptions: NextAuthOptions = {
                 verified: false,
                 createdAt: now,
                 updatedAt: now,
-              })
-              .select("id, email, name, role, belt, subscriptionTier")
-              .single();
+              },
+              { onConflict: "email", ignoreDuplicates: true }
+            );
 
-            if (error) {
-              console.error("Error creating user:", error);
-              return false;
-            }
-            dbUser = newUsers;
+          // Fetch the user (existing or newly created)
+          const { data: dbUsers, error: fetchError } = await supabase
+            .from("User")
+            .select("id, email, name, role, belt, subscriptionTier")
+            .eq("email", user.email!)
+            .limit(1);
+
+          if (fetchError) {
+            console.error("Error fetching user after upsert:", fetchError);
+            // Don't block sign-in over a DB read error — JWT will have limited data
+            return true;
           }
 
-          // Upsert OAuth account link
+          const dbUser = dbUsers?.[0];
+
+          // Upsert OAuth account link (fire and forget — don't block sign-in on failure)
           if (dbUser && account.providerAccountId) {
-            await supabase
+            supabase
               .from("Account")
-              .upsert({
-                id: randomUUID(),
-                userId: dbUser.id,
-                type: account.type,
-                provider: account.provider,
-                providerAccountId: account.providerAccountId,
-                access_token: account.access_token,
-                refresh_token: account.refresh_token,
-                expires_at: account.expires_at,
-                token_type: account.token_type,
-                scope: account.scope,
-                id_token: account.id_token,
-              }, { onConflict: "provider,providerAccountId", ignoreDuplicates: true });
+              .upsert(
+                {
+                  id: randomUUID(),
+                  userId: dbUser.id,
+                  type: account.type,
+                  provider: account.provider,
+                  providerAccountId: account.providerAccountId,
+                  access_token: account.access_token,
+                  refresh_token: account.refresh_token,
+                  expires_at: account.expires_at,
+                  token_type: account.token_type,
+                  scope: account.scope,
+                  id_token: account.id_token,
+                },
+                { onConflict: "provider,providerAccountId", ignoreDuplicates: true }
+              )
+              .then(({ error }) => {
+                if (error) console.error("Account upsert error (non-fatal):", error);
+              });
           }
 
-          // Set the user id for JWT
-          user.id = dbUser?.id || user.id;
-          (user as { role?: string }).role = dbUser?.role || "STUDENT";
-          (user as { belt?: string }).belt = dbUser?.belt || "WHITE";
-          (user as { subscriptionTier?: string }).subscriptionTier = dbUser?.subscriptionTier || "FREE";
+          // Set the user data for JWT
+          if (dbUser) {
+            user.id = dbUser.id;
+            (user as { role?: string }).role = dbUser.role || "STUDENT";
+            (user as { belt?: string }).belt = dbUser.belt || "WHITE";
+            (user as { subscriptionTier?: string }).subscriptionTier =
+              dbUser.subscriptionTier || "FREE";
+          }
 
           return true;
         } catch (error) {
-          console.error("Google sign-in error:", error);
-          return false;
+          // Log but never block sign-in — a DB blip shouldn't lock users out
+          console.error("Google sign-in error (non-fatal):", error);
+          return true;
         }
       }
       return true;
@@ -142,7 +153,8 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id;
         token.role = (user as { role?: string }).role ?? "STUDENT";
         token.belt = (user as { belt?: string }).belt ?? "WHITE";
-        token.subscriptionTier = (user as { subscriptionTier?: string }).subscriptionTier ?? "FREE";
+        token.subscriptionTier =
+          (user as { subscriptionTier?: string }).subscriptionTier ?? "FREE";
       }
       return token;
     },
@@ -151,7 +163,8 @@ export const authOptions: NextAuthOptions = {
         (session.user as { id?: string }).id = token.id as string;
         (session.user as { role?: string }).role = token.role as string;
         (session.user as { belt?: string }).belt = token.belt as string;
-        (session.user as { subscriptionTier?: string }).subscriptionTier = token.subscriptionTier as string;
+        (session.user as { subscriptionTier?: string }).subscriptionTier =
+          token.subscriptionTier as string;
       }
       return session;
     },

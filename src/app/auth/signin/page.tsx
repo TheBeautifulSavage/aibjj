@@ -68,7 +68,7 @@ function SignInForm() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#0a0a0a]">
+    <div className="flex min-h-screen bg-[#0a0a0a] overflow-x-hidden">
       {/* Left panel — hidden on mobile */}
       <div className="hidden md:flex md:w-1/2 lg:w-[55%] flex-col justify-between bg-gradient-to-br from-[#0a0a0a] via-zinc-950 to-red-950/20 p-10 lg:p-14 border-r border-white/[0.04]">
         <Link href="/" className="inline-block">
@@ -126,7 +126,7 @@ function SignInForm() {
             {/* Google sign in */}
             <Button
               variant="outline"
-              className="w-full h-11 rounded-xl border-white/[0.10] bg-white text-zinc-900 hover:bg-zinc-100 font-medium"
+              className="w-full h-12 rounded-xl border-white/[0.10] bg-white text-zinc-900 hover:bg-zinc-100 font-medium"
               onClick={handleGoogleSignIn}
               disabled={isGoogleLoading || isLoading}
             >
@@ -207,7 +207,7 @@ function SignInForm() {
 
               <Button
                 type="submit"
-                className="w-full h-11 rounded-xl bg-red-600 hover:bg-red-700 text-white font-medium"
+                className="w-full h-12 rounded-xl bg-red-600 hover:bg-red-700 text-white font-medium"
                 disabled={isLoading || isGoogleLoading}
               >
                 {isLoading ? (
