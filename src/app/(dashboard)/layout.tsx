@@ -33,6 +33,7 @@ import {
   Palette,
   PenLine,
   ChevronRight,
+  Shield,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GlobalAIPrompt from "@/components/GlobalAIPrompt";
@@ -90,7 +91,9 @@ export default function DashboardLayout({
   const [moreOpen, setMoreOpen] = useState(false);
 
   const user = session?.user;
-  const isCreator = (user as { role?: string })?.role === "creator";
+  const userRole = (user as { role?: string })?.role?.toUpperCase()
+  const isCreator = userRole === "CREATOR" || userRole === "ADMIN";
+  const isAdmin = userRole === "ADMIN";
 
   const navItems = isCreator ? [...navigation, ...creatorNavItems] : navigation;
 
@@ -141,6 +144,19 @@ export default function DashboardLayout({
           );
         })}
       </nav>
+
+      {/* Admin link */}
+      {isAdmin && (
+        <div className="px-2 pb-2">
+          <Link
+            href="/admin"
+            className="flex items-center gap-3 rounded-lg px-3 h-10 text-sm font-medium text-red-400 hover:bg-red-600/10 transition-colors"
+          >
+            <Shield className="h-4 w-4 flex-shrink-0 text-red-500" />
+            Admin Panel
+          </Link>
+        </div>
+      )}
 
       {/* Sidebar footer */}
       <div className="border-t border-white/[0.06] p-3">
