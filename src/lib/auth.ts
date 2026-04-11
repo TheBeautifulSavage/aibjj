@@ -6,7 +6,6 @@ import bcrypt from "bcryptjs";
 import { randomUUID } from "crypto";
 
 export const authOptions: NextAuthOptions = {
-  // No adapter — using JWT sessions only with manual DB lookups
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -60,16 +59,18 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
     async signIn({ user, account }) {
+      // For Google OAuth: create user in DB if they don't exist yet
+      // We do NOT mutate user.id here — that's handled in jwt() below
       if (account?.provider === "google") {
         try {
           const now = new Date().toISOString();
           const newId = randomUUID();
 
-          // Upsert user: insert if email doesn't exist, skip if it does
-          // This eliminates the find-then-insert pattern (2 round trips → 1)
+          // Upsert user — insert if new, skip if email already exists
           await supabase
             .from("User")
             .upsert(
@@ -90,22 +91,14 @@ export const authOptions: NextAuthOptions = {
               { onConflict: "email", ignoreDuplicates: true }
             );
 
-          // Fetch the user (existing or newly created)
-          const { data: dbUsers, error: fetchError } = await supabase
+          // Link OAuth account (non-blocking)
+          const { data: dbUsers } = await supabase
             .from("User")
-            .select("id, email, name, role, belt, subscriptionTier")
+            .select("id")
             .eq("email", user.email!)
             .limit(1);
 
-          if (fetchError) {
-            console.error("Error fetching user after upsert:", fetchError);
-            // Don't block sign-in over a DB read error — JWT will have limited data
-            return true;
-          }
-
           const dbUser = dbUsers?.[0];
-
-          // Upsert OAuth account link (fire and forget — don't block sign-in on failure)
           if (dbUser && account.providerAccountId) {
             supabase
               .from("Account")
@@ -129,42 +122,71 @@ export const authOptions: NextAuthOptions = {
                 if (error) console.error("Account upsert error (non-fatal):", error);
               });
           }
-
-          // Set the user data for JWT
-          if (dbUser) {
-            user.id = dbUser.id;
-            (user as { role?: string }).role = dbUser.role || "STUDENT";
-            (user as { belt?: string }).belt = dbUser.belt || "WHITE";
-            (user as { subscriptionTier?: string }).subscriptionTier =
-              dbUser.subscriptionTier || "FREE";
-          }
-
-          return true;
         } catch (error) {
-          // Log but never block sign-in — a DB blip shouldn't lock users out
-          console.error("Google sign-in error (non-fatal):", error);
-          return true;
+          console.error("Google sign-in DB error (non-fatal):", error);
+          // Never block sign-in over a DB error
         }
       }
       return true;
     },
-    async jwt({ token, user }) {
-      if (user) {
+
+    async jwt({ token, user, account }) {
+      // Credentials login: user object is fully populated from authorize()
+      if (user && !account) {
         token.id = user.id;
         token.role = (user as { role?: string }).role ?? "STUDENT";
         token.belt = (user as { belt?: string }).belt ?? "WHITE";
         token.subscriptionTier =
           (user as { subscriptionTier?: string }).subscriptionTier ?? "FREE";
+        return token;
       }
+
+      // Google OAuth first login: account is present, look up the real DB user
+      if (account?.provider === "google" && user?.email) {
+        try {
+          const { data: dbUsers } = await supabase
+            .from("User")
+            .select("id, role, belt, subscriptionTier, name, image")
+            .eq("email", user.email)
+            .limit(1);
+
+          const dbUser = dbUsers?.[0];
+          if (dbUser) {
+            token.id = dbUser.id;
+            token.role = dbUser.role || "STUDENT";
+            token.belt = dbUser.belt || "WHITE";
+            token.subscriptionTier = dbUser.subscriptionTier || "FREE";
+            token.name = dbUser.name || user.name;
+            token.picture = dbUser.image || user.image;
+          } else {
+            // Fallback if DB lookup fails — still let them in
+            token.id = user.id;
+            token.role = "STUDENT";
+            token.belt = "WHITE";
+            token.subscriptionTier = "FREE";
+          }
+        } catch (err) {
+          console.error("JWT Google DB lookup error:", err);
+          // Fallback
+          token.id = user.id;
+          token.role = "STUDENT";
+          token.belt = "WHITE";
+          token.subscriptionTier = "FREE";
+        }
+        return token;
+      }
+
+      // Subsequent requests — token already populated, just return it
       return token;
     },
+
     async session({ session, token }) {
       if (session.user) {
         (session.user as { id?: string }).id = token.id as string;
-        (session.user as { role?: string }).role = token.role as string;
-        (session.user as { belt?: string }).belt = token.belt as string;
+        (session.user as { role?: string }).role = token.role as string ?? "STUDENT";
+        (session.user as { belt?: string }).belt = token.belt as string ?? "WHITE";
         (session.user as { subscriptionTier?: string }).subscriptionTier =
-          token.subscriptionTier as string;
+          token.subscriptionTier as string ?? "FREE";
       }
       return session;
     },
