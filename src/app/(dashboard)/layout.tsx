@@ -40,6 +40,7 @@ import GlobalAIPrompt from "@/components/GlobalAIPrompt";
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "AI Coach", href: "/coach", icon: MessageSquare },
+  { name: "Billing & Settings", href: "/settings", icon: Settings },
   { name: "Sparring AI", href: "/sparring", icon: Swords },
   { name: "Journal", href: "/journal", icon: BookOpen },
   { name: "Techniques", href: "/library", icon: Library },
