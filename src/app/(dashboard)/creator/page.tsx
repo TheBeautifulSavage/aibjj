@@ -119,6 +119,7 @@ export default function CreatorDashboard() {
     accountId: string | null;
   } | null>(null);
   const [connectLoading, setConnectLoading] = useState(false);
+  const [userRole, setUserRole] = useState<string | null>(null);
   const [deletingCourse, setDeletingCourse] = useState<string | null>(null);
   const [togglingCourse, setTogglingCourse] = useState<string | null>(null);
 
@@ -147,6 +148,11 @@ export default function CreatorDashboard() {
     fetch("/api/stripe/connect/status")
       .then((r) => r.json())
       .then((d) => setConnectStatus(d))
+      .catch(() => {});
+
+    fetch("/api/auth/session")
+      .then((r) => r.json())
+      .then((d) => { if (d?.user?.role) setUserRole(d.user.role); })
       .catch(() => {});
   }, [fetchStats]);
 
@@ -360,7 +366,7 @@ export default function CreatorDashboard() {
       </div>
 
       {/* Payouts Section */}
-      {!connectStatus || (!connectStatus.connected && !connectStatus.chargesEnabled) ? (
+      {userRole !== "ADMIN" && (!connectStatus || (!connectStatus.connected && !connectStatus.chargesEnabled)) ? (
         <Card className="border-red-600/50 border-2">
           <CardHeader>
             <div className="flex items-center gap-2">

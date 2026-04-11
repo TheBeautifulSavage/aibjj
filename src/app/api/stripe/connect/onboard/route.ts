@@ -16,7 +16,7 @@ export async function POST() {
       where: { email: session.user.email },
     });
 
-    if (!user || user.role !== "CREATOR") {
+    if (!user || (user.role !== "CREATOR" && user.role !== "ADMIN")) {
       return NextResponse.json(
         { error: "Creator account required" },
         { status: 403 }

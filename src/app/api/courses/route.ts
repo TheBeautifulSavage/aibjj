@@ -137,24 +137,26 @@ export async function POST(request: Request) {
     const userId = (session.user as { id?: string }).id;
     const userRole = (session.user as { role?: string }).role;
 
-    if (!userId || userRole !== "CREATOR") {
+    if (!userId || (userRole !== "CREATOR" && userRole !== "ADMIN")) {
       return NextResponse.json(
         { error: "Only creators can create courses" },
         { status: 403 }
       );
     }
 
-    // Check Stripe Connect status before allowing course creation
-    const creator = await prisma.user.findUnique({
-      where: { id: userId },
-      select: { stripeConnectId: true, stripeConnectStatus: true },
-    });
+    // Check Stripe Connect status before allowing course creation (skip for ADMIN)
+    if (userRole !== "ADMIN") {
+      const creator = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { stripeConnectId: true, stripeConnectStatus: true },
+      });
 
-    if (!creator?.stripeConnectId || creator.stripeConnectStatus !== "active") {
-      return NextResponse.json(
-        { error: "You must connect your bank account before publishing courses. Go to Creator Dashboard to set up payouts." },
-        { status: 403 }
-      );
+      if (!creator?.stripeConnectId || creator.stripeConnectStatus !== "active") {
+        return NextResponse.json(
+          { error: "You must connect your bank account before publishing courses. Go to Creator Dashboard to set up payouts." },
+          { status: 403 }
+        );
+      }
     }
 
     const body = await request.json();

@@ -125,13 +125,17 @@ export default function UploadCoursePage() {
     chargesEnabled: boolean;
   } | null>(null);
   const [connectLoading, setConnectLoading] = useState(true);
+  const [userRole, setUserRole] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/api/stripe/connect/status")
-      .then((r) => r.json())
-      .then((d) => setConnectStatus(d))
-      .catch(() => {})
-      .finally(() => setConnectLoading(false));
+    // Fetch user role and connect status in parallel
+    Promise.all([
+      fetch("/api/auth/session").then((r) => r.json()).catch(() => null),
+      fetch("/api/stripe/connect/status").then((r) => r.json()).catch(() => null),
+    ]).then(([sessionData, connectData]) => {
+      if (sessionData?.user?.role) setUserRole(sessionData.user.role);
+      if (connectData) setConnectStatus(connectData);
+    }).finally(() => setConnectLoading(false));
   }, []);
 
   // Course details
@@ -261,7 +265,8 @@ export default function UploadCoursePage() {
 
   const earnings = price ? (parseFloat(price) * 0.85).toFixed(2) : "0.00";
 
-  const bankConnected = connectStatus?.connected && connectStatus?.chargesEnabled;
+  const isAdmin = userRole === "ADMIN";
+  const bankConnected = isAdmin || (connectStatus?.connected && connectStatus?.chargesEnabled);
 
   if (connectLoading) {
     return (
