@@ -1,7 +1,8 @@
 import { MetadataRoute } from "next"
 import { supabase } from "@/lib/supabase"
 
-export const revalidate = 86400 // Rebuild sitemap daily
+export const revalidate = 3600 // Rebuild sitemap every hour
+export const dynamic = 'force-dynamic' // Never serve stale cache
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = "https://aibjj.com"
