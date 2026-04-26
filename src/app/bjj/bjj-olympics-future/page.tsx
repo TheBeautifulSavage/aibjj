@@ -6,11 +6,7 @@ export default function Page() {
   const tags = ["bjj-history", "competition", "ibjjf-worlds", "beginners"];
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
-      <nav className="sticky top-0 z-40 border-b border-zinc-800 bg-[#0a0a0a]/95 backdrop-blur px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
-      </nav>
-      <article className="mx-auto max-w-4xl px-6 py-12">
+<article className="mx-auto max-w-4xl px-6 py-12">
         <div className="mb-4 flex flex-wrap gap-2">{tags.map(tag => (<Link key={tag} href={`/bjj/tag/${tag}`} className="rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 text-xs text-zinc-400 hover:text-red-400">#{tag}</Link>))}</div>
         <h1 className="text-4xl font-black sm:text-5xl">BJJ and the Olympics: The Path to Recognition</h1>
         <p className="mt-4 text-xl text-zinc-400">Brazilian jiu-jitsu has been pursuing Olympic recognition for years. Understanding the challenges and current status helps practitioners and fans follow this important institutional story.</p>

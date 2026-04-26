@@ -15,19 +15,7 @@ export default function BJJTechniquesPage() {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-300">
       {/* Nav */}
-      <nav className="border-b border-zinc-800/60 bg-black/80 backdrop-blur-xl px-4 py-4">
-        <div className="mx-auto max-w-7xl flex items-center justify-between">
-          <Link href="/" className="text-xl font-black tracking-tight">
-            <span className="text-red-600">AI</span><span className="text-white">BJJ</span>
-          </Link>
-          <div className="flex gap-3">
-            <Link href="/auth/signin" className="text-sm text-zinc-400 hover:text-white px-4 py-2">Sign In</Link>
-            <Link href="/auth/signup" className="text-sm bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">Get Started</Link>
-          </div>
-        </div>
-      </nav>
-
-      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+<div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
 
         {/* Hero */}
         <div className="mb-12">

@@ -24,12 +24,7 @@ export default function BJJTrainingAppPage() {
       />
 
       {/* Nav */}
-      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
-      </nav>
-
-      {/* Hero */}
+{/* Hero */}
       <div className="mx-auto max-w-4xl px-6 py-16">
         <h1 className="text-4xl font-black sm:text-5xl">Best BJJ Training App: Track Sessions, Techniques & Progress</h1>
         <p className="mt-4 text-xl text-zinc-400">Most BJJ practitioners train for years without a system. They rely on memory, hope they're improving, and repeat the same mistakes. The right BJJ training app changes everything — giving you a structured way to log, review, and optimize every hour on the mats.</p>

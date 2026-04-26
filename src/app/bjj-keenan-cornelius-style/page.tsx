@@ -5,11 +5,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "Keenan Cornelius BJJ Style: Lapel Guards and Worm Guard", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
-      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
-      </nav>
-      <article className="mx-auto max-w-4xl px-6 py-12">
+<article className="mx-auto max-w-4xl px-6 py-12">
         <h1 className="text-4xl font-black">Keenan Cornelius BJJ Style: Lapel Guards and Worm Guard</h1>
         <p className="mt-4 text-xl text-zinc-400">Keenan Cornelius is the most innovative guard developer in modern BJJ, creating the worm guard and lapel guard systems that transformed how the gi is used as a control tool in guard play.</p>
         <div className="mt-10 space-y-8 text-zinc-300">

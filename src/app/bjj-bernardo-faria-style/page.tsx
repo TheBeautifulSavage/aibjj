@@ -5,11 +5,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "Bernardo Faria BJJ Style: Deep Half and Over-Under Pass", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
-      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
-      </nav>
-      <article className="mx-auto max-w-4xl px-6 py-12">
+<article className="mx-auto max-w-4xl px-6 py-12">
         <h1 className="text-4xl font-black">Bernardo Faria BJJ Style: Deep Half and Over-Under Pass</h1>
         <p className="mt-4 text-xl text-zinc-400">Bernardo Faria is a five-time World Champion known for one of the most specialized yet effective games in BJJ history — built around two techniques mastered to an almost mythical level of proficiency.</p>
         <div className="mt-10 space-y-8 text-zinc-300">

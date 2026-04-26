@@ -9,13 +9,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
-      <nav className="border-b border-zinc-800 px-4 py-4">
-        <div className="max-w-4xl mx-auto flex justify-between items-center">
-          <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-          <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold">Get Started Free</Link>
-        </div>
-      </nav>
-      <section className="max-w-4xl mx-auto px-4 py-16">
+<section className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-black mb-6">Berimbolo BJJ: The Back-Take Everyone's Talking About</h1>
         <p className="text-xl text-zinc-400 mb-8">The berimbolo is one of the most distinctive and controversial techniques in modern BJJ. Here's everything you need to know about how it works, who made it famous, and whether you should add it to your game.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>

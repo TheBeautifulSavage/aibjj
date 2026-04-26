@@ -24,12 +24,7 @@ export default function BJJProgressTrackerPage() {
       />
 
       {/* Nav */}
-      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
-      </nav>
-
-      {/* Hero */}
+{/* Hero */}
       <div className="mx-auto max-w-4xl px-6 py-16">
         <h1 className="text-4xl font-black sm:text-5xl">BJJ Progress Tracker: Measure Your Growth from White to Black Belt</h1>
         <p className="mt-4 text-xl text-zinc-400">BJJ progress is notoriously hard to see. You're in the trenches every day — feeling every bad round, every submission you took. A BJJ progress tracker cuts through the noise and shows you the truth: you are improving, and here's the data to prove it.</p>

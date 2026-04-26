@@ -109,24 +109,7 @@ export default async function CityAcademiesPage({ params }: { params: { city: st
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
       {/* Nav */}
-      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black">
-          <span className="text-red-600">AI</span>BJJ
-        </Link>
-        <div className="flex items-center gap-3">
-          <Link href="/academies" className="text-sm text-zinc-400 hover:text-white hidden sm:block">
-            All Academies
-          </Link>
-          <Link
-            href="/auth/signup"
-            className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700"
-          >
-            Start Free
-          </Link>
-        </div>
-      </nav>
-
-      <div className="mx-auto max-w-5xl px-6 py-12">
+<div className="mx-auto max-w-5xl px-6 py-12">
         {/* Breadcrumb */}
         <nav className="text-sm text-zinc-500 mb-6" aria-label="breadcrumb">
           <Link href="/academies" className="hover:text-zinc-300">

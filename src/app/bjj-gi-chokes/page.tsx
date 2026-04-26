@@ -5,11 +5,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "BJJ Gi Chokes: Complete Guide to Collar Chokes, Loop Chokes & More", "publisher": { "@type": "Organization", "name": "AIBJJ", "url": "https://aibjj.com" } }) }} />
-      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
-      </nav>
-      <article className="mx-auto max-w-4xl px-6 py-12">
+<article className="mx-auto max-w-4xl px-6 py-12">
         <h1 className="text-4xl font-black">BJJ Gi Chokes: Complete Guide to Collar Chokes, Loop Chokes & More</h1>
         <p className="mt-4 text-xl text-zinc-400">The gi unlocks a unique arsenal of chokes unavailable in no-gi. From the classic cross-collar choke to the devastating bow-and-arrow, gi chokes are some of the highest-percentage submissions in BJJ competition.</p>
         <div className="mt-10 space-y-8 text-zinc-300">

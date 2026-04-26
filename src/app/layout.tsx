@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import FoundingMemberBanner from "@/components/FoundingMemberBanner";
 import PWAInstall from "@/components/PWAInstall";
+import NavBar from "@/components/NavBar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -131,6 +132,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <Providers>
+          <NavBar />
           <FoundingMemberBanner />
           {children}
           <PWAInstall />

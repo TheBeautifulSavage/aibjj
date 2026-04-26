@@ -9,14 +9,7 @@ export const metadata: Metadata = {
 export default function KimuraPage() {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
-      <nav className="border-b border-zinc-800 px-4 py-4">
-        <div className="max-w-4xl mx-auto flex justify-between items-center">
-          <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-          <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold">Get Started Free</Link>
-        </div>
-      </nav>
-
-      <section className="max-w-4xl mx-auto px-4 py-16">
+<section className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-black mb-6">BJJ Kimura: Setup from Guard, Side Control & More</h1>
         <p className="text-xl text-zinc-400 mb-8">The kimura is one of the most versatile techniques in BJJ — a shoulder lock that can be a submission, a sweep, a back take, or a control grip. The kimura trap system has become one of the most developed areas of modern BJJ strategy.</p>
         <Link href="/auth/signup" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg inline-block">Start Training Smarter →</Link>

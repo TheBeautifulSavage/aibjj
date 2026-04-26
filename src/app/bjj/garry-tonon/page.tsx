@@ -6,11 +6,7 @@ export default function Page() {
   const tags = ["no-gi", "leg-locks", "adcc", "mma"];
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
-      <nav className="sticky top-0 z-40 border-b border-zinc-800 bg-[#0a0a0a]/95 backdrop-blur px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
-      </nav>
-      <article className="mx-auto max-w-4xl px-6 py-12">
+<article className="mx-auto max-w-4xl px-6 py-12">
         <div className="mb-4 flex flex-wrap gap-2">{tags.map(tag => (<Link key={tag} href={`/bjj/tag/${tag}`} className="rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 text-xs text-zinc-400 hover:text-red-400">#{tag}</Link>))}</div>
         <h1 className="text-4xl font-black sm:text-5xl">Garry Tonon: Submission Machine and MMA Fighter</h1>
         <p className="mt-4 text-xl text-zinc-400">Garry Tonon is one of the most exciting and technically gifted submission grapplers of the modern era. His seamless transitions between positions and relentless submission hunting made him a fan favorite and an elite competitor.</p>

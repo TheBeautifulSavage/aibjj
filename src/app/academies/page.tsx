@@ -44,19 +44,7 @@ export default async function AcademiesPage({
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
-      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black">
-          <span className="text-red-600">AI</span>BJJ
-        </Link>
-        <Link
-          href="/auth/signup"
-          className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700"
-        >
-          Start Free
-        </Link>
-      </nav>
-
-      <div className="mx-auto max-w-6xl px-6 py-16">
+<div className="mx-auto max-w-6xl px-6 py-16">
         <h1 className="text-4xl font-black">BJJ Academy Finder</h1>
         <p className="mt-3 text-lg text-zinc-400">
           Find Brazilian jiu-jitsu schools and academies near you

@@ -24,12 +24,7 @@ export default function BJJTechniqueTrackerPage() {
       />
 
       {/* Nav */}
-      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
-      </nav>
-
-      {/* Hero */}
+{/* Hero */}
       <div className="mx-auto max-w-4xl px-6 py-16">
         <h1 className="text-4xl font-black sm:text-5xl">BJJ Technique Tracker: Build Your A-Game Systematically</h1>
         <p className="mt-4 text-xl text-zinc-400">You've learned thousands of techniques over your BJJ career. How many can you actually hit under pressure? A BJJ technique tracker helps you identify which moves are truly in your arsenal — and which ones are just "gym knowledge" you've never used live.</p>

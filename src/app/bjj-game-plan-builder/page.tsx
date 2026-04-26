@@ -24,12 +24,7 @@ export default function BJJGamePlanBuilderPage() {
       />
 
       {/* Nav */}
-      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
-      </nav>
-
-      {/* Hero */}
+{/* Hero */}
       <div className="mx-auto max-w-4xl px-6 py-16">
         <h1 className="text-4xl font-black sm:text-5xl">BJJ Game Plan Builder: Create Your Personalized Position-by-Position Strategy</h1>
         <p className="mt-4 text-xl text-zinc-400">Top competitors don't walk onto the mat hoping something works. They have a game plan — a sequence of positions and techniques that flows from standing to finish. Building yours is one of the highest-leverage things you can do for your BJJ.</p>

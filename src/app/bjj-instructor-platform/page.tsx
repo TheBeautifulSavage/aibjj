@@ -16,22 +16,7 @@ export default function BJJInstructorPlatformPage() {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
       {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/60 bg-zinc-950/90 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center gap-1 text-xl font-black tracking-tight">
-            <span className="text-red-600">AI</span>
-            <span className="text-white">BJJ</span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Link href="/auth/signin" className="text-sm text-zinc-400 hover:text-white px-3 py-1.5">Sign In</Link>
-            <Link href="/auth/signup?role=creator" className="text-sm bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">
-              Become a Creator
-            </Link>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero */}
+{/* Hero */}
       <section className="relative overflow-hidden pt-16">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/2 top-0 -translate-x-1/2 h-[600px] w-[900px] rounded-full bg-red-600/8 blur-[140px]" />

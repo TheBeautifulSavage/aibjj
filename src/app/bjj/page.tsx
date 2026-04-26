@@ -43,12 +43,7 @@ export default function BJJHubPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <nav className="sticky top-0 z-40 border-b border-zinc-800 bg-[#0a0a0a]/95 backdrop-blur px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
-      </nav>
-
-      <div className="mx-auto max-w-6xl px-6 py-12">
+<div className="mx-auto max-w-6xl px-6 py-12">
         <div className="text-center mb-12">
           <span className="text-xs font-semibold uppercase tracking-widest text-red-500">BJJ Encyclopedia</span>
           <h1 className="mt-2 text-4xl font-black sm:text-5xl">Everything Jiu-Jitsu</h1>

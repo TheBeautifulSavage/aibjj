@@ -24,12 +24,7 @@ export default function BJJFitnessPage() {
       />
 
       {/* Nav */}
-      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
-      </nav>
-
-      {/* Hero */}
+{/* Hero */}
       <div className="mx-auto max-w-4xl px-6 py-16">
         <h1 className="text-4xl font-black sm:text-5xl">BJJ Fitness: Get in the Best Shape of Your Life on the Mats</h1>
         <p className="mt-4 text-xl text-zinc-400">BJJ training is one of the most complete fitness activities available. A single hour of live sparring burns 800-1200 calories while developing full-body strength, cardiovascular endurance, flexibility, and explosive power simultaneously. No gym machine replicates it.</p>

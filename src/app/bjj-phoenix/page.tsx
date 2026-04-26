@@ -13,14 +13,7 @@ export const metadata: Metadata = {
 export default function BJJPhoenixPage() {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
-      <nav className="border-b border-zinc-800/60 bg-zinc-950/90 backdrop-blur-xl px-4 py-4 sticky top-0 z-50">
-        <div className="mx-auto max-w-7xl flex items-center justify-between">
-          <Link href="/" className="text-xl font-black tracking-tight"><span className="text-red-600">AI</span><span className="text-white">BJJ</span></Link>
-          <Link href="/auth/signup" className="text-sm bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">Start Training</Link>
-        </div>
-      </nav>
-
-      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+<div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-10">
           <p className="text-sm font-semibold uppercase tracking-widest text-red-500 mb-3">BJJ in Arizona</p>
           <h1 className="text-4xl font-black text-white sm:text-5xl mb-6">BJJ in Phoenix: Find the Best Jiu-Jitsu Gyms & Training</h1>

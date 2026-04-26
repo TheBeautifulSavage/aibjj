@@ -77,15 +77,7 @@ export default function BrazilianJiuJitsuPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Nav */}
-      <nav className="sticky top-0 z-40 border-b border-zinc-800 bg-[#0a0a0a]/95 backdrop-blur px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <div className="flex items-center gap-4">
-          <Link href="/auth/signin" className="text-sm text-zinc-400 hover:text-white">Sign In</Link>
-          <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700">Start Free</Link>
-        </div>
-      </nav>
-
-      {/* Hero */}
+{/* Hero */}
       <div className="mx-auto max-w-4xl px-6 py-16">
         <nav className="text-sm text-zinc-500 mb-6 flex items-center gap-1">
           <Link href="/" className="hover:text-zinc-300">Home</Link>
