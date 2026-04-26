@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
       disallow: ['/api/', '/dashboard/'],
+      allow: ['/api/sitemap'],
     },
     sitemap: 'https://aibjj.com/sitemap.xml',
   }
