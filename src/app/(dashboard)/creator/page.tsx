@@ -397,7 +397,7 @@ export default function CreatorDashboard() {
             <p className="text-xs text-zinc-500">Powered by Stripe — bank-level security</p>
           </CardContent>
         </Card>
-      ) : connectStatus.connected && !connectStatus.chargesEnabled ? (
+      ) : connectStatus?.connected && !connectStatus?.chargesEnabled ? (
         <Card className="border-yellow-600/50 border-2">
           <CardHeader>
             <div className="flex items-center gap-2">
