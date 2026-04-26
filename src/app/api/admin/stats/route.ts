@@ -99,7 +99,7 @@ export async function GET() {
   }
 
   // Fill in months with 0 if missing
-  const growthData = []
+  const growthData: { month: string; signups: number }[] = []
   for (let i = 5; i >= 0; i--) {
     const d = new Date(now.getFullYear(), now.getMonth() - i, 1)
     const key = d.toISOString().slice(0, 7)
