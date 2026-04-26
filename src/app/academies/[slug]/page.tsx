@@ -49,16 +49,35 @@ export default async function AcademyPage({
     .neq("slug", academy.slug)
     .limit(6);
 
+  // Schema.org LocalBusiness markup
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    name: academy.name,
+    description: `${academy.name} is a Brazilian jiu-jitsu academy in ${academy.city}, ${academy.country}.`,
+    url: `https://aibjj.com/academies/${academy.slug}`,
+    ...(academy.address ? { address: { "@type": "PostalAddress", streetAddress: academy.address, addressLocality: academy.city, addressCountry: academy.country } } : {}),
+    ...(academy.phone ? { telephone: academy.phone } : {}),
+    ...(academy.website ? { sameAs: academy.website } : {}),
+    ...(academy.rating ? { aggregateRating: { "@type": "AggregateRating", ratingValue: Number(academy.rating).toFixed(1), reviewCount: academy.review_count, bestRating: "5" } } : {}),
+    ...(academy.lat && academy.lng ? { geo: { "@type": "GeoCoordinates", latitude: academy.lat, longitude: academy.lng } } : {}),
+    sport: "Brazilian Jiu-Jitsu",
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "AIBJJ", item: "https://aibjj.com" },
+      { "@type": "ListItem", position: 2, name: "Academies", item: "https://aibjj.com/academies" },
+      { "@type": "ListItem", position: 3, name: academy.name, item: `https://aibjj.com/academies/${academy.slug}` },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
-      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black">
-          <span className="text-red-600">AI</span>BJJ
-        </Link>
-        <Link href="/academies" className="text-sm text-zinc-400 hover:text-white">
-          ← All Academies
-        </Link>
-      </nav>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="mx-auto max-w-4xl px-6 py-16">
         {/* Breadcrumb */}
