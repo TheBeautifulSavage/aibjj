@@ -111,15 +111,7 @@ export default async function CityAcademiesPage({ params }: { params: { city: st
       {/* Nav */}
 <div className="mx-auto max-w-5xl px-6 py-12">
         {/* Breadcrumb */}
-        <nav className="text-sm text-zinc-500 mb-6" aria-label="breadcrumb">
-          <Link href="/academies" className="hover:text-zinc-300">
-            BJJ Academies
-          </Link>{" "}
-          ›{" "}
-          <span className="text-zinc-300">{city.name}</span>
-        </nav>
-
-        {/* Hero */}
+{/* Hero */}
         <h1 className="text-4xl font-black leading-tight">
           Best BJJ Academies in {city.name} (2026)
         </h1>

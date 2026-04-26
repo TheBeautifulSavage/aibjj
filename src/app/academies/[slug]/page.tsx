@@ -81,26 +81,7 @@ export default async function AcademyPage({
 
       <div className="mx-auto max-w-4xl px-6 py-16">
         {/* Breadcrumb */}
-        <nav className="mb-6 text-sm text-zinc-500">
-          <Link href="/academies" className="hover:text-zinc-300">
-            Academies
-          </Link>
-          {" / "}
-          <Link
-            href={`/academies?country=${encodeURIComponent(academy.country)}`}
-            className="hover:text-zinc-300"
-          >
-            {academy.country}
-          </Link>
-          {academy.city && (
-            <>
-              {" / "}
-              <span className="text-zinc-400">{academy.city}</span>
-            </>
-          )}
-        </nav>
-
-        <h1 className="text-4xl font-black">{academy.name}</h1>
+<h1 className="text-4xl font-black">{academy.name}</h1>
         <p className="mt-2 text-lg text-zinc-400">{academy.address}</p>
 
         {academy.rating && (

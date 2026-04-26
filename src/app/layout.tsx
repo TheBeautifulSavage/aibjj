@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "@/components/providers";
-import FoundingMemberBanner from "@/components/FoundingMemberBanner";
+// import FoundingMemberBanner from "@/components/FoundingMemberBanner";
 import PWAInstall from "@/components/PWAInstall";
 import NavBar from "@/components/NavBar";
 
@@ -133,7 +133,7 @@ export default function RootLayout({
       >
         <Providers>
           <NavBar />
-          <FoundingMemberBanner />
+          {/* Banner removed */}
           {children}
           <PWAInstall />
         </Providers>
@@ -141,3 +141,4 @@ export default function RootLayout({
     </html>
   );
 }
+

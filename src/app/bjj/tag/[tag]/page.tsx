@@ -37,12 +37,7 @@ export default function TagPage({ params }: { params: { tag: string } }) {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
 <div className="mx-auto max-w-4xl px-6 py-12">
-        <nav className="text-sm text-zinc-500 mb-6 flex gap-1 items-center">
-          <Link href="/bjj" className="hover:text-zinc-300">BJJ Encyclopedia</Link>
-          <span>›</span>
-          <span className="text-zinc-300">#{tag}</span>
-        </nav>
-        <h1 className="text-3xl font-black">#{tag}</h1>
+<h1 className="text-3xl font-black">#{tag}</h1>
         <p className="mt-2 text-zinc-400">{articles.length} article{articles.length !== 1 ? "s" : ""} tagged <strong className="text-white">{label}</strong></p>
 
         {articles.length === 0 ? (

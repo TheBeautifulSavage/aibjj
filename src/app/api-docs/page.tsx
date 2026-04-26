@@ -9,12 +9,7 @@ export const metadata: Metadata = {
 export default function ApiDocsPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
-      <nav className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-black"><span className="text-red-600">AI</span>BJJ</Link>
-        <Link href="/dashboard" className="text-sm text-zinc-400 hover:text-white">← Dashboard</Link>
-      </nav>
-
-      <div className="mx-auto max-w-4xl px-6 py-16">
+<div className="mx-auto max-w-4xl px-6 py-16">
         <div className="mb-12">
           <span className="text-xs font-semibold uppercase tracking-widest text-red-500">Developer</span>
           <h1 className="mt-2 text-4xl font-black">AIBJJ REST API</h1>

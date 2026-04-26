@@ -108,26 +108,7 @@ export default function CreatorStorefront({
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
       {/* Navigation */}
-      <nav className="border-b border-zinc-800/50 bg-[#0a0a0a]/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-600 font-bold text-white text-sm">
-              AI
-            </div>
-            <span className="text-lg font-bold tracking-tight text-white">
-              AIBJJ
-            </span>
-          </Link>
-          <Link
-            href="/marketplace"
-            className="text-sm text-zinc-400 hover:text-zinc-200 transition-colors"
-          >
-            Browse Marketplace
-          </Link>
-        </div>
-      </nav>
-
-      {/* Creator Profile Header */}
+{/* Creator Profile Header */}
       <div className="border-b border-zinc-800/50">
         <div className="mx-auto max-w-6xl px-4 py-12">
           <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-6">

@@ -105,15 +105,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       <article className="max-w-3xl mx-auto px-4 py-16">
         {/* Breadcrumb */}
-        <nav className="text-sm text-zinc-500 mb-8" aria-label="Breadcrumb">
-          <Link href="/" className="hover:text-white transition">AIBJJ</Link>
-          <span className="mx-2">›</span>
-          <Link href="/blog" className="hover:text-white transition">Blog</Link>
-          <span className="mx-2">›</span>
-          <span className="text-zinc-300">{post.title}</span>
-        </nav>
-
-        {post.coverImage && (
+{post.coverImage && (
           <img src={post.coverImage} alt={post.title}
             className="w-full rounded-xl mb-8 max-h-96 object-cover" />
         )}

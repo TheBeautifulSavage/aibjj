@@ -69,13 +69,7 @@ export default function TagsPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
 <div className="mx-auto max-w-4xl px-6 py-12">
-        <nav className="text-sm text-zinc-500 mb-6 flex gap-1 items-center">
-          <Link href="/bjj" className="hover:text-zinc-300">BJJ Encyclopedia</Link>
-          <span>›</span>
-          <span className="text-zinc-300">All Tags</span>
-        </nav>
-
-        <h1 className="text-3xl font-black">Browse by Tag</h1>
+<h1 className="text-3xl font-black">Browse by Tag</h1>
         <p className="mt-2 text-zinc-400">{ALL_TAGS.length} tags across athletes, tournaments, techniques, history, and academies.</p>
 
         <div className="mt-10 space-y-10">
