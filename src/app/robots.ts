@@ -4,9 +4,8 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
-      allow: '/',
+      allow: ['/', '/api/sitemap'],
       disallow: ['/api/', '/dashboard/'],
-      allow: ['/api/sitemap'],
     },
     sitemap: 'https://aibjj.com/sitemap.xml',
   }
