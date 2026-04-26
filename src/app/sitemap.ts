@@ -104,7 +104,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Academy pages from Supabase
   let academyPages: MetadataRoute.Sitemap = []
   try {
-    let allSlugs: string[] = []
+    const allSlugs: string[] = []
     let offset = 0
     const batch = 1000
     while (true) {
