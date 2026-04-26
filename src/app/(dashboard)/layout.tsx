@@ -52,7 +52,7 @@ const navigation = [
   { name: "Competitions", href: "/competitions", icon: Trophy },
   { name: "BJJ Encyclopedia", href: "/bjj", icon: BookOpen },
   { name: "Find Academy", href: "/academies", icon: Home },
-  { name: "Blog", href: "/blog", icon: PenLine },
+  { name: "Blog", href: "/blog-admin", icon: PenLine },
   { name: "Meta / Stats", href: "/meta", icon: BarChart2 },
   { name: "Marketplace", href: "/marketplace", icon: ShoppingBag },
   { name: "My Courses", href: "/my-courses", icon: PlayCircle },
@@ -72,7 +72,7 @@ const moreNavItems = [
   { name: "Meta", href: "/meta", icon: BarChart2 },
   { name: "Sparring AI", href: "/sparring", icon: Swords },
   { name: "Tech Graph", href: "/techniques/graph", icon: GitBranch },
-  { name: "Blog", href: "/blog", icon: PenLine },
+  { name: "Blog", href: "/blog-admin", icon: PenLine },
   { name: "Marketplace", href: "/marketplace", icon: ShoppingBag },
   { name: "My Courses", href: "/my-courses", icon: PlayCircle },
   { name: "Learning Paths", href: "/learn", icon: GraduationCap },
@@ -425,3 +425,4 @@ function MobileBottomNav({
     </nav>
   );
 }
+

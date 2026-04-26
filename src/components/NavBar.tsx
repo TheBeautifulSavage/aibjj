@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
-const HIDE_ON = ['/dashboard', '/coach', '/journal', '/library', '/gameplan', '/progress', '/marketplace', '/blog', '/settings', '/sparring', '/competitions', '/creator', '/upload', '/creator-setup', '/my-courses', '/learn', '/meta', '/techniques/graph', '/admin', '/import', '/auth'];
+const HIDE_ON = ['/dashboard', '/coach', '/journal', '/library', '/gameplan', '/progress', '/marketplace', '/blog-admin', '/settings', '/sparring', '/competitions', '/creator', '/upload', '/creator-setup', '/my-courses', '/learn', '/meta', '/techniques/graph', '/admin', '/import', '/auth'];
 
 export default function NavBar() {
   const pathname = usePathname();
@@ -26,6 +26,7 @@ export default function NavBar() {
           <Link href="/academies" className="hover:text-white transition">Academies</Link>
           <Link href="/pricing" className="hover:text-white transition">Pricing</Link>
           <Link href="/bjj" className="hover:text-white transition">BJJ Wiki</Link>
+        <Link href="/blog" className="hover:text-white transition">Blog</Link>
           <Link href="/auth/signup" className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700 transition">
             Start Free
           </Link>
@@ -58,6 +59,7 @@ export default function NavBar() {
           <Link href="/academies" onClick={() => setOpen(false)} className="hover:text-white px-2">Academies</Link>
           <Link href="/pricing" onClick={() => setOpen(false)} className="hover:text-white px-2">Pricing</Link>
           <Link href="/bjj" onClick={() => setOpen(false)} className="hover:text-white px-2">BJJ Wiki</Link>
+          <Link href="/blog" onClick={() => setOpen(false)} className="hover:text-white px-2">Blog</Link>
           <Link href="/auth/signup" onClick={() => setOpen(false)} className="rounded-lg bg-red-600 px-4 py-2 text-center font-semibold text-white hover:bg-red-700 mx-2">
             Start Free
           </Link>
