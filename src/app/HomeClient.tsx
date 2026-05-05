@@ -234,9 +234,9 @@ export default function HomeClient() {
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400 sm:text-xl">
-              The all-in-one platform for BJJ athletes. AI coaching that learns your game,
-              an intelligent training journal, a massive technique library, and a marketplace
-              built by the community.
+              Ask better questions after class, log what happened on the mats, build a real
+              game plan, and find the next academy or technique without digging through random
+              forum threads.
             </p>
 
             {/* AI Search Bar — No login required */}
@@ -246,13 +246,25 @@ export default function HomeClient() {
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button size="lg" className="w-full sm:w-auto text-base px-8" asChild>
                 <Link href="/auth/signup">
-                  Start Free — No Credit Card
+                  Start Free - No Credit Card
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button variant="outline" size="lg" className="w-full sm:w-auto text-base px-8" asChild>
-                <Link href="/creator-setup">Claim Your Creator Page</Link>
+                <Link href="/academies">Find a BJJ Academy</Link>
               </Button>
+            </div>
+
+            <div className="mx-auto mt-8 max-w-xl rounded-xl border border-zinc-800 bg-zinc-950/70 p-4">
+              <p className="mb-3 text-sm font-semibold text-zinc-300">
+                Get the free BJJ training stack.
+              </p>
+              <EmailCapture
+                source="homepage-hero"
+                intent="free-training-stack"
+                buttonLabel="Send It"
+                placeholder="Email for the free training stack"
+              />
             </div>
 
             {/* Early Access Badges */}
@@ -597,8 +609,8 @@ export default function HomeClient() {
             ?
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg text-zinc-400">
-            Join thousands of athletes who are using AI to train smarter, learn faster, and
-            compete harder. Your next belt is closer than you think.
+            Start with the free account, then use the AI coach, training journal,
+            technique library, and academy directory to tighten up your training.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button size="lg" className="w-full sm:w-auto text-base px-8" asChild>
@@ -613,7 +625,7 @@ export default function HomeClient() {
           </div>
           <div className="mt-8">
             <p className="text-sm text-zinc-500 mb-3">Or get updates — no spam, just BJJ.</p>
-            <EmailCapture />
+            <EmailCapture source="homepage-final-cta" intent="bjj-updates" />
           </div>
         </div>
       </section>

@@ -38,3 +38,6 @@ next-env.d.ts
 /src/generated/prisma
 .env.local
 node_modules
+
+# local preserved files/folders moved out of the app tree, never deploy
+preserved_untracked/

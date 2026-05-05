@@ -393,11 +393,11 @@ export default function SignUpPage() {
                 />
                 <label htmlFor="terms" className="text-xs text-zinc-400 leading-relaxed">
                   I agree to the{" "}
-                  <Link href="#" className="text-red-500 hover:text-red-400">
+                  <Link href="/terms" className="text-red-500 hover:text-red-400">
                     Terms of Service
                   </Link>{" "}
                   and{" "}
-                  <Link href="#" className="text-red-500 hover:text-red-400">
+                  <Link href="/privacy" className="text-red-500 hover:text-red-400">
                     Privacy Policy
                   </Link>
                 </label>

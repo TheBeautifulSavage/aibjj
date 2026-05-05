@@ -14,6 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/academies`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/blog`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
     { url: `${base}/pricing`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/signup`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/bjj`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/bjj-techniques`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/brazilian-jiu-jitsu`, lastModified: now, changeFrequency: "monthly", priority: 1.0 },
@@ -85,6 +86,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${base}/${s}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8,
   }))
 
+  const academyCitySlugs = [
+    "boise","omaha","tulsa","memphis","louisville","new-orleans","cincinnati",
+    "cleveland","oklahoma-city","virginia-beach","mexico-city","vancouver",
+    "montreal","calgary","paris","berlin","madrid","lisbon","amsterdam","auckland",
+  ]
+  const academyCityPages: MetadataRoute.Sitemap = academyCitySlugs.map(s => ({
+    url: `${base}/bjj-academies/${s}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }))
+
   // BJJ Wiki / athlete pages
   const wikiSlugs = [
     "gordon-ryan","marcelo-garcia","roger-gracie","john-danaher","helio-gracie",
@@ -129,7 +142,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Sitemap: academy fetch failed", e)
   }
 
-  const pages = [...staticPages, ...techniquePages, ...cityPages, ...wikiPages, ...academyPages]
+  const pages = [...staticPages, ...techniquePages, ...cityPages, ...academyCityPages, ...wikiPages, ...academyPages]
   console.log(`Sitemap: ${pages.length} total URLs`)
   return pages
 }

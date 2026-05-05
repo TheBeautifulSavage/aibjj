@@ -1,5 +1,28 @@
 # AIBJJ.com — Project State
-_Last updated: 2026-04-08_
+_Last updated: 2026-05-04 AKDT_
+
+## Current Source of Truth
+- Live site: https://aibjj.com
+- Repo: TheBeautifulSavage/aibjj
+- Local source: D:\AIBJJ\source
+- Hosting: Vercel, auto-deployed from GitHub main
+- DNS: Hostinger points aibjj.com to Vercel
+- Current sitemap: 11,670+ URLs before this update; this update adds /signup plus scalable /bjj-academies/[city] pages.
+- Latest verified local state before this update: clean `main` synced with `origin/main`.
+
+## 2026-05-04 Active Fix Pass
+- Added `/signup` redirect so public "Start Free" intent no longer 404s.
+- Hardened `/api/email-capture`: normalizes emails, stores source/intent, and returns an error if storage fails instead of fake success.
+- Added `EmailCapture` schema plus SQL setup script at `scripts/create_email_capture_table.sql`.
+- Improved homepage conversion copy and added a visible hero email capture.
+- Improved academy finder landing page with stronger search-intent copy, popular city links, and a free-coach CTA.
+- Added scalable city SEO route: `/bjj-academies/[city]` with 20 initial city pages and schema markup.
+- Confirmed Stripe paths are present: checkout, billing portal, and `customer.subscription.deleted` webhook cancellation handling.
+
+## Still Needs Production Setup
+- Run the SQL in `scripts/create_email_capture_table.sql` against Supabase if the `EmailCapture` table is not already present.
+- Vercel production env vars are the real runtime source; local `.env` contains placeholders.
+- A real Stripe checkout/cancel test should use a dedicated test user and Stripe test mode, not a live customer.
 
 ## Stack
 - Next.js 14 (App Router), TypeScript, Tailwind, shadcn/ui

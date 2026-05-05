@@ -10,6 +10,19 @@ export const metadata: Metadata = {
 
 export const revalidate = 0; // Always fresh
 
+const popularCityLinks = [
+  ["Austin", "/bjj-austin"],
+  ["New York", "/bjj-new-york"],
+  ["Los Angeles", "/bjj-los-angeles"],
+  ["Miami", "/bjj-miami"],
+  ["Dallas", "/bjj-dallas"],
+  ["Chicago", "/bjj-chicago"],
+  ["Denver", "/bjj-denver"],
+  ["Seattle", "/bjj-seattle"],
+  ["Anchorage", "/bjj-anchorage"],
+  ["London", "/bjj-london"],
+];
+
 export default async function AcademiesPage({
   searchParams,
 }: {
@@ -45,10 +58,30 @@ export default async function AcademiesPage({
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
 <div className="mx-auto max-w-6xl px-6 py-16">
-        <h1 className="text-4xl font-black">BJJ Academy Finder</h1>
-        <p className="mt-3 text-lg text-zinc-400">
-          Find Brazilian jiu-jitsu schools and academies near you
-        </p>
+        <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-start">
+          <div>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-red-500">
+              Global BJJ Directory
+            </p>
+            <h1 className="text-4xl font-black md:text-5xl">BJJ Academy Finder</h1>
+            <p className="mt-3 max-w-2xl text-lg text-zinc-400">
+              Search Brazilian jiu-jitsu schools by city, country, academy name, rating, and reviews.
+              Use it when you are starting BJJ, moving cities, or traveling and need open mats.
+            </p>
+          </div>
+          <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-5">
+            <h2 className="text-base font-bold text-white">New to BJJ?</h2>
+            <p className="mt-2 text-sm text-zinc-400">
+              Find a school, then use the free AI coach to prep for your first class.
+            </p>
+            <Link
+              href="/auth/signup"
+              className="mt-4 block rounded-lg bg-red-600 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-red-700"
+            >
+              Start Free After You Pick a Gym
+            </Link>
+          </div>
+        </div>
 
         {/* Search box */}
         <form className="mt-8 max-w-xl" method="GET">
@@ -78,6 +111,23 @@ export default async function AcademiesPage({
           <span>
             <strong className="text-white">{Object.keys(countries).length}+</strong> countries
           </span>
+        </div>
+
+        <div className="mt-8">
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-widest text-zinc-500">
+            Popular BJJ cities
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {popularCityLinks.map(([city, href]) => (
+              <Link
+                key={city}
+                href={href}
+                className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-300 transition-colors hover:border-red-600/50 hover:text-white"
+              >
+                {city}
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* Active filter pill */}
